@@ -13,10 +13,10 @@
 
 #include <arpa/telnet.h>
 
-#include <osmocom/vty/vty.h>
-#include <osmocom/vty/command.h>
-#include <osmocom/vty/buffer.h>
-#include <osmocom/core/talloc.h>
+#include "vty.h"
+#include "command.h"
+#include "buffer.h"
+#include "talloc.h"
 
 #define SYSCONFDIR "/usr/local/etc"
 

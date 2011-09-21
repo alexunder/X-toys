@@ -25,28 +25,52 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-#include <osmocom/core/utils.h>
-#include <osmocom/gsm/gsm48.h>
-#include <osmocom/core/talloc.h>
-#include <osmocom/core/signal.h>
+#include "utils.h"
+//#include <osmocom/gsm/gsm48.h>
+#include "talloc.h"
+#include "signal.h"
 
-#include <osmocom/bb/common/osmocom_data.h>
-#include <osmocom/bb/common/networks.h>
-#include <osmocom/bb/common/gps.h>
-#include <osmocom/bb/mobile/mncc.h>
-#include <osmocom/bb/mobile/transaction.h>
-#include <osmocom/bb/mobile/vty.h>
-#include <osmocom/bb/mobile/app_mobile.h>
-#include <osmocom/vty/telnet_interface.h>
+//#include <osmocom/bb/common/osmocom_data.h>
+//#include <osmocom/bb/common/networks.h>
+//#include <osmocom/bb/common/gps.h>
+//#include <osmocom/bb/mobile/mncc.h>
+//#include <osmocom/bb/mobile/transaction.h>
+#include "vty_interface.h"
+//#include <osmocom/bb/mobile/app_mobile.h>
+#include "telnet_interface.h"
 
 void *l23_ctx;
 
-int mncc_call(struct osmocom_ms *ms, char *number);
-int mncc_hangup(struct osmocom_ms *ms);
-int mncc_answer(struct osmocom_ms *ms);
-int mncc_hold(struct osmocom_ms *ms);
-int mncc_retrieve(struct osmocom_ms *ms, int number);
-int mncc_dtmf(struct osmocom_ms *ms, char *dtmf);
+int mncc_call(struct osmocom_ms *ms, char *number)
+{
+	printf("let's make a fucking call\n");
+	return 0;
+}
+
+int mncc_hangup(struct osmocom_ms *ms)
+{
+	return 0;
+}
+
+int mncc_answer(struct osmocom_ms *ms)
+{
+	return 0;
+}
+
+int mncc_hold(struct osmocom_ms *ms)
+{
+	return 0;
+}
+
+int mncc_retrieve(struct osmocom_ms *ms, int number)
+{
+	return 0;
+}
+
+int mncc_dtmf(struct osmocom_ms *ms, char *dtmf)
+{
+	return 0;
+}
 
 extern struct llist_head ms_list;
 extern struct llist_head active_connections;

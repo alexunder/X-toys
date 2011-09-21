@@ -22,19 +22,23 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../../config.h"
+//#include "../../config.h"
 
-#include <osmocom/core/talloc.h>
-#include <osmocom/core/logging.h>
-#include <osmocom/core/utils.h>
+//#include <osmocom/core/talloc.h>
+//#include <osmocom/core/logging.h>
+//#include <osmocom/core/utils.h>
+
+#include "talloc.h"
+#include "logging.h"
+#include "utils.h"
 
 //#include <openbsc/vty.h>
 
-#include <osmocom/vty/command.h>
-#include <osmocom/vty/buffer.h>
-#include <osmocom/vty/vty.h>
-#include <osmocom/vty/telnet_interface.h>
-#include <osmocom/vty/logging.h>
+#include "command.h"
+#include "buffer.h"
+#include "vty.h"
+#include "telnet_interface.h"
+#include "logging_core.h"
 
 #define LOG_STR "Configure logging sub-system\n"
 

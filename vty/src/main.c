@@ -1,6 +1,9 @@
-#include <stdlib.sh>
+#include <stdlib.h>
 #include <stdio.h>
-#include "vty.h"
+#include <unistd.h>
+#include <getopt.h>
+
+#include "vty_interface.h"
 #include "telnet_interface.h"
 
 void *l23_ctx = NULL;
@@ -14,7 +17,7 @@ char *config_dir = NULL;
 
 static struct vty_app_info vty_info = {
         .name = "OsmocomBB",
-        .version = PACKAGE_VERSION,
+        .version = "0.0.1",
         .go_parent_cb = ms_vty_go_parent,
 };
 

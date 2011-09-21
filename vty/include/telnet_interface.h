@@ -21,10 +21,10 @@
 #ifndef TELNET_INTERFACE_H
 #define TELNET_INTERFACE_H
 
-#include <osmocom/core/logging.h>
-#include <osmocom/core/select.h>
+#include "logging_core.h"
+#include "select.h"
 
-#include <osmocom/vty/vty.h>
+#include "vty.h"
 
 struct telnet_connection {
 	struct llist_head entry;

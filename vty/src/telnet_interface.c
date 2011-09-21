@@ -25,13 +25,13 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <osmocom/core/msgb.h>
-#include <osmocom/core/talloc.h>
-#include <osmocom/core/logging.h>
+//#include <osmocom/core/msgb.h>
+#include "talloc.h"
+#include "logging_core.h"
 
-#include <osmocom/vty/telnet_interface.h>
-#include <osmocom/vty/buffer.h>
-#include <osmocom/vty/command.h>
+#include "telnet_interface.h"
+#include "buffer.h"
+#include "command.h"
 
 /* per connection data */
 LLIST_HEAD(active_connections);

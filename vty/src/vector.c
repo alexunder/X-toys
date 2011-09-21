@@ -22,9 +22,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <osmocom/vty/vector.h>
-#include <osmocom/vty/vty.h>
-#include <osmocom/core/talloc.h>
+#include "vector.h"
+#include "vty.h"
+#include "talloc.h"
 #include <memory.h>
 
 void *tall_vty_vec_ctx;

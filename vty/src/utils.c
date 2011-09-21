@@ -23,12 +23,12 @@
 #include <stdint.h>
 #include <inttypes.h>
 
-#include <osmocom/core/linuxlist.h>
-#include <osmocom/core/talloc.h>
-#include <osmocom/core/timer.h>
-#include <osmocom/core/rate_ctr.h>
+#include "linuxlist.h"
+#include "talloc.h"
+#include "timer.h"
+#include "rate_ctr.h"
 
-#include <osmocom/vty/vty.h>
+#include "vty.h"
 
 void vty_out_rate_ctr_group(struct vty *vty, const char *prefix,
 			    struct rate_ctr_group *ctrg)
