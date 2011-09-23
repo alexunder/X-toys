@@ -24,6 +24,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <errno.h>
 
 #include "utils.h"
 //#include <osmocom/gsm/gsm48.h>
@@ -40,7 +41,7 @@
 #include "telnet_interface.h"
 
 void *l23_ctx;
-
+/*
 int mncc_call(struct osmocom_ms *ms, char *number)
 {
 	printf("let's make a fucking call\n");
@@ -71,6 +72,7 @@ int mncc_dtmf(struct osmocom_ms *ms, char *dtmf)
 {
 	return 0;
 }
+*/
 
 extern struct llist_head ms_list;
 extern struct llist_head active_connections;
@@ -140,24 +142,25 @@ int vty_check_number(struct vty *vty, const char *number)
 
 int vty_reading = 0;
 static int hide_default = 0;
-
+/*
 static void vty_restart(struct vty *vty, struct osmocom_ms *ms)
 {
 	if (vty_reading)
 		return;
-	if (ms->shutdown != 0)
-		return;
+//	if (ms->shutdown != 0)
+//		return;
 	vty_out(vty, "You must restart MS '%s' ('shutdown / no shutdown') for "
 		"change to take effect!%s", ms->name, VTY_NEWLINE);
 }
 
 static void vty_restart_if_started(struct vty *vty, struct osmocom_ms *ms)
 {
-	if (!ms->started)
-		return;
+//	if (!ms->started)
+//		return;
 	vty_restart(vty, ms);
 }
-
+*/
+/*
 static struct osmocom_ms *get_ms(const char *name, struct vty *vty)
 {
 	struct osmocom_ms *ms;
@@ -176,7 +179,9 @@ static struct osmocom_ms *get_ms(const char *name, struct vty *vty)
 
 	return NULL;
 }
+*/
 
+/*
 static void gsm_ms_dump(struct osmocom_ms *ms, struct vty *vty)
 {
 	struct gsm_settings *set = &ms->settings;
@@ -186,7 +191,7 @@ static void gsm_ms_dump(struct osmocom_ms *ms, struct vty *vty)
 	if (!ms->started)
 		service = ", radio is not started";
 	else if (ms->mmlayer.state == GSM48_MM_ST_MM_IDLE) {
-		/* current MM idle state */
+		// current MM idle state 
 		switch (ms->mmlayer.substate) {
 		case GSM48_MM_SST_NORMAL_SERVICE:
 		case GSM48_MM_SST_PLMN_SEARCH_NORMAL:
@@ -264,8 +269,9 @@ static void gsm_ms_dump(struct osmocom_ms *ms, struct vty *vty)
 			gsm48_cc_state_name(trans->cc.state), VTY_NEWLINE);
 	}
 }
+*/
 
-
+/*
 DEFUN(show_ms, show_ms_cmd, "show ms [MS_NAME]",
 	SHOW_STR "Display available MS entities\n")
 {
@@ -1073,7 +1079,10 @@ DEFUN(cfg_no_hide_default, cfg_no_hide_default_cmd, "no hide-default",
 	return CMD_SUCCESS;
 }
 
+*/
+
 /* per MS config */
+/*
 DEFUN(cfg_ms, cfg_ms_cmd, "ms MS_NAME",
 	"Select a mobile station to configure\nName of MS (see \"show ms\")")
 {
@@ -1273,7 +1282,7 @@ static void config_write_ms(struct vty *vty, struct osmocom_ms *ms)
 		vty_out(vty, " %sneighbour-measurement%s",
 			(set->no_neighbour) ? "no " : "", VTY_NEWLINE);
 	if (set->full_v1 || set->full_v2 || set->full_v3) {
-		/* mandatory anyway */
+//mandatory anyway 
 		vty_out(vty, " codec full-speed%s%s",
 			(!set->half_prefer) ? " prefer" : "",
 			VTY_NEWLINE);
@@ -1394,7 +1403,7 @@ static void config_write_ms(struct vty *vty, struct osmocom_ms *ms)
 			(set->test_always) ? "everywhere" : "foreign-country",
 			VTY_NEWLINE);
 	vty_out(vty, " exit%s", VTY_NEWLINE);
-	/* no shutdown must be written to config, because shutdown is default */
+	 no shutdown must be written to config, because shutdown is default 
 	vty_out(vty, " %sshutdown%s", (ms->shutdown) ? "" : "no ",
 		VTY_NEWLINE);
 	vty_out(vty, "exit%s", VTY_NEWLINE);
@@ -1984,7 +1993,7 @@ static int config_write_dummy(struct vty *vty)
 	return CMD_SUCCESS;
 }
 
-/* per support config */
+// per support config 
 DEFUN(cfg_ms_support, cfg_ms_support_cmd, "support",
 	"Define supported features")
 {
@@ -2303,7 +2312,7 @@ DEFUN(cfg_ms_sup_no_skip_max_per_band, cfg_ms_sup_no_skip_max_per_band_cmd,
 	return CMD_SUCCESS;
 }
 
-/* per testsim config */
+// per testsim config 
 DEFUN(cfg_ms_testsim, cfg_ms_testsim_cmd, "test-sim",
 	"Configure test SIM emulation")
 {
@@ -2544,6 +2553,7 @@ DEFUN(cfg_shutdown_force, cfg_ms_shutdown_force_cmd, "shutdown force",
 
 	return CMD_SUCCESS;
 }
+*/
 
 enum node_type ms_vty_go_parent(struct vty *vty)
 {
@@ -2563,7 +2573,8 @@ enum node_type ms_vty_go_parent(struct vty *vty)
 	return vty->node;
 }
 
-/* Down vty node level. */
+/*
+// Down vty node level. 
 gDEFUN(ournode_exit,
        ournode_exit_cmd, "exit", "Exit current mode and down to previous mode\n")
 {
@@ -2582,14 +2593,14 @@ gDEFUN(ournode_exit,
 	return CMD_SUCCESS;
 }
 
-/* End of configuration. */
+// End of configuration.
 gDEFUN(ournode_end,
        ournode_end_cmd, "end", "End current mode and change to enable mode.")
 {
 	switch (vty->node) {
 	case VIEW_NODE:
 	case ENABLE_NODE:
-		/* Nothing to do. */
+		// Nothing to do.
 		break;
 	case CONFIG_NODE:
 	case VTY_NODE:
@@ -2614,12 +2625,13 @@ DEFUN(off, off_cmd, "off",
 
 	return CMD_SUCCESS;
 }
-
+*/
 #define SUP_NODE(item) \
 	install_element(SUPPORT_NODE, &cfg_ms_sup_item_cmd);
 
 int ms_vty_init(void)
 {
+/*
 	install_element_ve(&show_ms_cmd);
 	install_element_ve(&show_subscr_cmd);
 	install_element_ve(&show_support_cmd);
@@ -2781,10 +2793,10 @@ int ms_vty_init(void)
 	install_element(MS_NODE, &cfg_ms_shutdown_cmd);
 	install_element(MS_NODE, &cfg_ms_shutdown_force_cmd);
 	install_element(MS_NODE, &cfg_ms_no_shutdown_cmd);
-
+*/
 	return 0;
 }
-
+/*
 void vty_notify(struct osmocom_ms *ms, const char *fmt, ...)
 {
 	struct telnet_connection *connection;
@@ -2819,4 +2831,4 @@ void vty_notify(struct osmocom_ms *ms, const char *fmt, ...)
 			vty_out(vty, "%% %s", buffer);
 	}
 }
-
+*/

@@ -1407,11 +1407,13 @@ vty_create (int vty_sock, void *priv)
 {
   struct vty *vty;
 
-	struct termios t;
+  struct termios t;
 
-	tcgetattr(vty_sock, &t);
-	cfmakeraw(&t);
-	tcsetattr(vty_sock, TCSANOW, &t);
+  tcgetattr(vty_sock, &t);
+  cfmakeraw(&t);
+  tcsetattr(vty_sock, TCSANOW, &t);
+
+	printf("start vty_create\n");
 
   /* Allocate new vty structure and set up default values. */
   vty = vty_new ();
@@ -1472,6 +1474,7 @@ vty_create (int vty_sock, void *priv)
   vty_event (VTY_WRITE, vty_sock, vty);
   vty_event (VTY_READ, vty_sock, vty);
 
+  printf("end vty_create\n");
   return vty;
 }
 
@@ -1650,6 +1653,7 @@ extern void *tall_bsc_ctx;
 /* Install vty's own commands like `who' command. */
 void vty_init(struct vty_app_info *app_info)
 {
+	printf("start vty_init\n");
 	tall_vty_ctx = talloc_named_const(app_info->tall_ctx, 0, "vty");
 	tall_vty_vec_ctx = talloc_named_const(tall_vty_ctx, 0, "vty_vector");
 	tall_vty_cmd_ctx = talloc_named_const(tall_vty_ctx, 0, "vty_command");
@@ -1678,6 +1682,7 @@ void vty_init(struct vty_app_info *app_info)
 	install_default(VTY_NODE);
 	install_element(VTY_NODE, &vty_login_cmd);
 	install_element(VTY_NODE, &no_vty_login_cmd);
+	printf("end vty_init\n");
 }
 
 int vty_read_config_file(const char *file_name, void *priv)

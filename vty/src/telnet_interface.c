@@ -64,6 +64,8 @@ int telnet_init(void *tall_ctx, void *priv, int port)
 
 	setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
 
+	printf("port=%d\n", port);
+
 	memset(&sock_addr, 0, sizeof(sock_addr));
 	sock_addr.sin_family = AF_INET;
 	sock_addr.sin_port = htons(port);
@@ -155,6 +157,8 @@ static int telnet_new_connection(struct osmo_fd *fd, unsigned int what)
 	struct telnet_connection *connection;
 	struct sockaddr_in sockaddr;
 	socklen_t len = sizeof(sockaddr);
+
+	printf("there is new connections\n");
 	int new_connection = accept(fd->fd, (struct sockaddr*)&sockaddr, &len);
 
 	if (new_connection < 0) {

@@ -21,6 +21,23 @@ static struct vty_app_info vty_info = {
         .go_parent_cb = ms_vty_go_parent,
 };
 
+static void print_usage(const char *app)
+{
+     printf("Usage: %s\n", app);
+}
+
+ 
+static void print_help()
+{
+	printf(" Some help...\n");
+	printf("  -h --help     this text\n");
+	printf("  -i --gsmtap-ip    The destination IP used for GSMTAP.\n");
+	printf("  -v --vty-port     The VTY port number to telnet to. "
+           "(default %u)\n", vty_port);
+	printf("  -d --debug        Change debug flags.\n");
+ }
+
+
 static void handle_options(int argc, char **argv)
 {
 	while (1) {
@@ -44,6 +61,8 @@ static void handle_options(int argc, char **argv)
 			print_help();
 			exit(0);
 			break;
+//		case 'i':
+//			gsm
 		case 'v':
 			vty_port = atoi(optarg);
 			break;
@@ -65,5 +84,11 @@ int main(int argc, char ** argv)
 	handle_options(argc, argv);
 	vty_init(&vty_info);
 	telnet_init(l23_ctx, NULL, vty_port);
+
+	while(1)
+	{
+		osmo_select_main(0);
+	}
+
 	return 0;
 }

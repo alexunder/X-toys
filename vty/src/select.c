@@ -27,6 +27,7 @@
 #include "timer.h"
 
 //#include "../config.h"
+#define HAVE_SYS_SELECT_H
 
 #ifdef HAVE_SYS_SELECT_H
 

@@ -15,7 +15,7 @@ $(APP): $(OBJS)
 	$(LD) -o $@ $^
 
 %.o:    %.c
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c -g $(CFLAGS) $< -o $@
 
 clean:
 	@rm -f $(SRC)/*.o
