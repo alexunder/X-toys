@@ -21,6 +21,4 @@
 \(E=mc^2\)，$$x_{1,2} = \frac{-b \pm \sqrt{b^2-4ac}}{2b}.$$
 </pre>
 
-<div lang="latex">
-\frac{1+sin(x)}{y}
-</div>
+<img src="http://latex.codecogs.com/svg.latex?1+sin(x)" border="0"/>
