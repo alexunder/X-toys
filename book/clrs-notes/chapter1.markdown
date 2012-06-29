@@ -22,4 +22,4 @@
 </pre>
 
 <img src="http://latex.codecogs.com/svg.latex?1+sin(x)" border="0"/>
-<img src="http://latex.codecogs.com/svg.latex?\int_{b}^{a}\Omega \left ( x \right )dx" title="\int_{b}^{a}\Omega \left ( x \right )dx" />
+<img src="http://latex.codecogs.com/gif.latex?\int_{b}^{a}\Phi \left ( x \right )\f{\mathrm{d} x}" border="0"/>
