@@ -17,3 +17,7 @@
 为了方便分析 f(n) 的增长趋势，先人们发明了几种基于 f(n) 的函数集合，也叫Asymptotic notation，即渐近表达式，常用的有三种：
 
 段内插入LaTeX代码是这样的：$\exp(-\frac{x^2}{2})$，试试看看吧
+
+<pre>
+\[\frac {1}{c^2} \frac{\partial^2}{\partial t^2} \psi - \nabla^2 \psi + \frac {m^2 c^2}{\hbar^2} \psi = 0.\]
+</pre>
