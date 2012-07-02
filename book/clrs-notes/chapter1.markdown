@@ -15,36 +15,22 @@
 
 为了方便分析 f(n) 的增长趋势，先人们发明了几种基于 f(n) 的函数集合，也叫Asymptotic notation，即渐近表达式，常用的有三种：
 
-<table class="table table-striped table-bordered table-condensed">
-   <tr>
-      <td>John</td>
-      <td>Smith</td>
-      <td>123 Main St.</td>
-      <td>Springfield</td>
-   </tr>
-   <tr>
-      <td>Mary</td>
-      <td>Jones</td>
-      <td>456 Pine St.</td>
-      <td>Dover</td>
-   </tr>
-   <tr>
-      <td>Jim</td>
-      <td>Baker</td>
-      <td>789 Park Ave.</td>
-      <td>Lincoln</td>
-   </tr>
-</table>
-
 <table>
-  <tr>
-    <th>ID</th><th>Name</th><th>Rank</th>
-  </tr>
-  <tr>
-    <td>1</td><td>Tom Preston-Werner</td><td>Awesome</td>
-  </tr>
-  <tr>
-    <td>2</td><td>Albert Einstein</td><td>Nearly as awesome</td>
-  </tr>
+<thead>
+<tr>
+  <th>First Header</th>
+  <th>Second Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Content Cell</td>
+  <td>Content Cell</td>
+</tr>
+<tr>
+  <td>Content Cell</td>
+  <td>Content Cell</td>
+</tr>
+</tbody>
 </table>
 
