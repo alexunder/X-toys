@@ -52,4 +52,72 @@ Framework中會運行一個ServerThread,用來啟動android所需要的所有的
 
 ### PackageManagerService構造函數 ###
 
-在構造函數PackageManagerService中，會檢測所有的安裝在設備中的應用程序，將相關信息存入相關的數據結構中。
+在構造函數PackageManagerService中，會檢測所有的安裝在設備中的應用程序，將相關信息存入相關的數據結構中。我們先來看一下PackageManagerService的構造函數的運行流程概覽：
+
+![alt text](PackageManagerConstructor.png "Title")
+
+我們逐步分析各個子過程：
+
+* Installer對象的創建
+* 建立PackageHandler消息循环
+* readPermissions流程
+* Settings對象的創建與讀取
+* java binary的DexOpt
+* 用AppDirObserver來監視app目錄
+* scanDirLI流程
+* Other Operations
+
+### 1. Installer對象的創建 ###
+
+Installer是一個單獨的類，他主要通過socket與C語言編寫的installd程序交互，主要實現apk安裝卸載，dex的優化。Installer負責通過socket往installd發送消息，而具體操作都是在installd中完成。命令行程序installd執行的命令如下：
+
+	struct cmdinfo cmds[] = {
+    	{ "ping",             0, do_ping },
+        { "install",          3, do_install },
+        { "dexopt",           3, do_dexopt },
+        { "movedex",          2, do_move_dex },
+        { "rmdex",            1, do_rm_dex },
+        { "remove",           1, do_remove },
+        { "rename",           2, do_rename },
+        { "freecache",        1, do_free_cache },
+        { "rmcache",          1, do_rm_cache },
+        { "protect",          2, do_protect },
+        { "getsize",          3, do_get_size },
+        { "rmuserdata",       1, do_rm_user_data },
+        { "movefiles",        0, do_movefiles },
+     };
+
+PackageManagerService也不是直接使用Installer對象，而是通過UserManager間接使用，在UserManager調用構造函數的時候將Installer對象傳進去：
+
+	mInstaller = new Installer();
+	......
+    mUserManager = new UserManager(mInstaller, mUserAppDataDir);
+
+在PackageManagerService的其他部份將會通過mUserManager來調用Installer相關的功能。
+
+### 2. 建立PackageHandler消息循环 ###
+
+代碼如下：
+
+	mHandlerThread.start();
+    mHandler = new PackageHandler(mHandlerThread.getLooper());
+
+mHandlerThread是HandlerThread的實例化，HandlerThread繼承自Thread，根據文檔介紹，HandlerThread對於run函數有自己特殊的實現，通過mHandlerThread.getLooper()獲得的Looper傳遞給Handler的構造函數，這樣的話，mHandler的消息處理實際就在HandlerThread里運行了。另外PackageManagerService的Handler所處理的消息如下：
+
+	static final int SEND_PENDING_BROADCAST = 1;
+    static final int MCS_BOUND = 3;
+    static final int END_COPY = 4;
+    static final int INIT_COPY = 5;
+    static final int MCS_UNBIND = 6;
+    static final int START_CLEANING_PACKAGE = 7;
+    static final int FIND_INSTALL_LOC = 8;
+    static final int POST_INSTALL = 9;
+    static final int MCS_RECONNECT = 10;
+    static final int MCS_GIVE_UP = 11;
+    static final int UPDATED_MEDIA_STATUS = 12;
+    static final int WRITE_SETTINGS = 13;
+    static final int WRITE_STOPPED_PACKAGES = 14;
+    static final int PACKAGE_VERIFIED = 15;
+    static final int CHECK_PENDING_VERIFICATION = 16;
+
+### 3. readPermissions流程 ###
