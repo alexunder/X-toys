@@ -60,7 +60,7 @@ int main(int argc, int ** argv)
 	{
 		float probability; 
 		fscanf (input,"%f",&probability);
-		Matrix m; 
+		Matrix m;
 		m.Read3x3(input);
 		// < DO SOMETHING WITH probability and m >
 	}
