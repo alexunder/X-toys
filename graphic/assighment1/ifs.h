@@ -18,19 +18,33 @@ public:
 	}
 	~ifs()
 	{
+        clearMemory();
+	}
+
+    void setNumberOfTrans(int num)
+    {
+        mNumberOfTrans = num;
+        clearMemory();
+
+        mArrayMatrices = new Matrix[mNumberOfTrans];
+        mProbibilitiesArray = new float[mNumberOfTrans];
+    }
+
+	void readDescription();
+	void renderImage();
+private:
+    void clearMemory()
+    {
 		if (mArrayMatrices != NULL)
 			delete [] mArrayMatrices;
 		
 		if (mProbibilitiesArray != NULL)
 			delete [] mProbibilitiesArray;
-	}
-
-	void readDescription();
-	void renderImage();
+    }
 private:
 	int mNumberOfTrans;
 	Matrix * mArrayMatrices;
-	float  * mProbibilitiesArray;	
+	float  * mProbibilitiesArray;
 };
 
 #endif
