@@ -15,6 +15,8 @@ public:
 		mNumberOfTrans = 0;
 		mArrayMatrices = NULL;
 		mProbibilitiesArray = NULL;
+		mCountMatrices = 0;
+		mCountProbiblity = 0;
 	}
 	~ifs()
 	{
@@ -30,7 +32,9 @@ public:
         mProbibilitiesArray = new float[mNumberOfTrans];
     }
 
-	void readDescription();
+	//void readDescription();
+	bool addMatrix(Matrix m);
+	bool addProbibility(float p);
 	void renderImage();
 private:
     void clearMemory()
@@ -45,6 +49,8 @@ private:
 	int mNumberOfTrans;
 	Matrix * mArrayMatrices;
 	float  * mProbibilitiesArray;
+	int mCountMatrices;
+	int mCountProbiblity;
 };
 
 #endif
