@@ -2,6 +2,10 @@
  *  The first assignment of graphic
  *  Developed by Mohist Research
  */
+#include <stdlib.h>
+#include <stdio.h>
+#include "matrix.h"
+#include "ifs.h"
 
 int main(int argc, int ** argv)
 {
@@ -49,19 +53,22 @@ int main(int argc, int ** argv)
 	FILE *input = fopen(input_file,"r");
 	assert(input != NULL);
 
+	ifs ifsInstance;
 	// read the number of transforms
-	int num_transforms; 
+	int num_transforms;
 	fscanf(input,"%d",&num_transforms);
-
-	// < DO SOMETHING WITH num_transforms >
+	infsInstance.setNumberOfTrans(num_transforms);
 
 	// read in the transforms
 	for (int i = 0; i < num_transforms; i++) 
 	{
 		float probability; 
 		fscanf (input,"%f",&probability);
+		infsInstance.addProbability(probability);
+
 		Matrix m;
 		m.Read3x3(input);
+		infsInstance.addMatrix(m);
 		// < DO SOMETHING WITH probability and m >
 	}
 

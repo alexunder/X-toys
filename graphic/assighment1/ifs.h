@@ -6,6 +6,7 @@
 #define __H_IFS
 
 #include "matrix.h"
+#include <Vector>
 
 class ifs
 {
@@ -14,27 +15,20 @@ public:
 	{
 		mNumberOfTrans = 0;
 		mArrayMatrices = NULL;
-		mProbibilitiesArray = NULL;
+		mProbabilitiesArray = NULL;
 		mCountMatrices = 0;
-		mCountProbiblity = 0;
+		mCountProbablities = 0;
 	}
 	~ifs()
 	{
         clearMemory();
 	}
 
-    void setNumberOfTrans(int num)
-    {
-        mNumberOfTrans = num;
-        clearMemory();
 
-        mArrayMatrices = new Matrix[mNumberOfTrans];
-        mProbibilitiesArray = new float[mNumberOfTrans];
-    }
-
+	void setNumberOfTrans(int num);
 	//void readDescription();
 	bool addMatrix(Matrix m);
-	bool addProbibility(float p);
+	bool addProbability(float p);
 	void renderImage();
 private:
     void clearMemory()
@@ -42,15 +36,15 @@ private:
 		if (mArrayMatrices != NULL)
 			delete [] mArrayMatrices;
 		
-		if (mProbibilitiesArray != NULL)
+		if (mProbabilitiesArray != NULL)
 			delete [] mProbibilitiesArray;
     }
 private:
 	int mNumberOfTrans;
-	Matrix * mArrayMatrices;
-	float  * mProbibilitiesArray;
+	Vector<Matrix> mArrayMatrices;
+	Vector<float> mProbabilitiesArray;
 	int mCountMatrices;
-	int mCountProbiblity;
+	int mCountProbabilities;
 };
 
 #endif
