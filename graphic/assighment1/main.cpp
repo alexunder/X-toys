@@ -4,10 +4,13 @@
  */
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+
 #include "matrix.h"
 #include "ifs.h"
+#include "image.h"
 
-int main(int argc, int ** argv)
+int main(int argc, char ** argv)
 {
 	char *input_file = NULL;
 	int num_points = 10000;
@@ -57,21 +60,26 @@ int main(int argc, int ** argv)
 	// read the number of transforms
 	int num_transforms;
 	fscanf(input,"%d",&num_transforms);
-	infsInstance.setNumberOfTrans(num_transforms);
+	ifsInstance.setNumberOfTrans(num_transforms);
 
+    int i;
 	// read in the transforms
-	for (int i = 0; i < num_transforms; i++) 
+	for (i = 0; i < num_transforms; i++) 
 	{
 		float probability; 
 		fscanf (input,"%f",&probability);
-		infsInstance.addProbability(probability);
+		ifsInstance.addProbability(probability);
 
 		Matrix m;
 		m.Read3x3(input);
-		infsInstance.addMatrix(m);
-		// < DO SOMETHING WITH probability and m >
+		ifsInstance.addMatrix(m);
 	}
 
+	Image outImg(size, size); 
+	outImg.SetAllPixels(Vec3f(1.0, 1.0, 1.0));
+    ifsInstance.renderImage(outImg, num_points, num_iters);
+    outImg.SaveTGA(output_file);
 	// close the file
 	fclose(input);
+	return 0;
 }

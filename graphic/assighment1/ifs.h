@@ -6,7 +6,10 @@
 #define __H_IFS
 
 #include "matrix.h"
-#include <Vector>
+#include "image.h"
+#include <vector>
+
+using namespace std;
 
 class ifs
 {
@@ -14,10 +17,8 @@ public:
 	ifs()
 	{
 		mNumberOfTrans = 0;
-		mArrayMatrices = NULL;
-		mProbabilitiesArray = NULL;
 		mCountMatrices = 0;
-		mCountProbablities = 0;
+		mCountProbabilities = 0;
 	}
 	~ifs()
 	{
@@ -26,23 +27,19 @@ public:
 
 
 	void setNumberOfTrans(int num);
-	//void readDescription();
 	bool addMatrix(Matrix m);
 	bool addProbability(float p);
-	void renderImage();
+	void renderImage(Image &img, int numPoints, int numIters);
 private:
     void clearMemory()
     {
-		if (mArrayMatrices != NULL)
-			delete [] mArrayMatrices;
-		
-		if (mProbabilitiesArray != NULL)
-			delete [] mProbibilitiesArray;
+		mArrayMatrices.clear();
+		mProbabilitiesArray.clear();
     }
 private:
 	int mNumberOfTrans;
-	Vector<Matrix> mArrayMatrices;
-	Vector<float> mProbabilitiesArray;
+	vector<Matrix> mArrayMatrices;
+	vector<float> mProbabilitiesArray;
 	int mCountMatrices;
 	int mCountProbabilities;
 };
