@@ -43,9 +43,36 @@ void ifs::renderImage(Image &img, int numPoints, int numIters)
 		}
 	}
 
-	//for (i = 0; i < numIters; i++)
+	for (i = 0; i < numIters; i++)
 	{
-		int trans_index = rand() % mNumberOfTrans;
+		int indexProbability = 0;
+		float probability =(float)(rand()) /(float)(RAND_MAX);
+		int transIndex = getTransformationIndex(probability);
 		Matrix m = mArrayMatrices[trans_index];
+		Vec3f p = m*
 	}
+}
+
+int getTransformationIndex(float probability)
+{
+	float * pTemp = new int[mNumberOfTrans];
+	memset(pTemp, 0, mNumberOfTrans*sizeof(float));
+
+	int index = 0;
+	int i;
+	pTemp[0] = mProbabilitiesArray[0];
+	for (i = 1; i < mNumberOfTrans; i++)
+	{
+		pTemp[i] = pTemp[i - 1] + mProbabilitiesArray[i];
+	}
+
+	for (i = 0; i < mNumberOfTrans; i++)
+	{
+		if (probability <= pTemp[i])
+			break;
+	}
+
+	delete [] pTemp;
+	
+	return i;
 }

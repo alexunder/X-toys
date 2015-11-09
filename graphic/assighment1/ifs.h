@@ -22,20 +22,19 @@ public:
 	}
 	~ifs()
 	{
-        clearMemory();
+		clearMemory();
 	}
-
 
 	void setNumberOfTrans(int num);
 	bool addMatrix(Matrix m);
 	bool addProbability(float p);
 	void renderImage(Image &img, int numPoints, int numIters);
 private:
-    void clearMemory()
-    {
+	void clearMemory()
+	{
 		mArrayMatrices.clear();
 		mProbabilitiesArray.clear();
-    }
+	}
 private:
 	int mNumberOfTrans;
 	vector<Matrix> mArrayMatrices;

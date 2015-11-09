@@ -75,10 +75,10 @@ int main(int argc, char ** argv)
 		ifsInstance.addMatrix(m);
 	}
 
-	Image outImg(size, size); 
+	Image outImg(size, size);
 	outImg.SetAllPixels(Vec3f(1.0, 1.0, 1.0));
-    ifsInstance.renderImage(outImg, num_points, num_iters);
-    outImg.SaveTGA(output_file);
+	ifsInstance.renderImage(outImg, num_points, num_iters);
+	outImg.SaveTGA(output_file);
 	// close the file
 	fclose(input);
 	return 0;
