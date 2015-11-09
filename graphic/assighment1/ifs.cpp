@@ -26,7 +26,7 @@ bool ifs::addProbability(float p)
 	mCountProbabilities++;
 }
 
-void ifs::renderImage(Image &img, int numPoints, int numIters)
+void ifs::renderImage(Image &img, int numPoints, int numIters, Vec3f color)
 {
     int i;
     int j;
@@ -34,7 +34,6 @@ void ifs::renderImage(Image &img, int numPoints, int numIters)
     srand((unsigned) time(&t));
     int height = img.Height();
     int width = img.Width();
-    Vec3f color(0.0, 1.0, 0.0);
 
     float coordinate_x = 0.0;
     float coordinate_y = 0.0;

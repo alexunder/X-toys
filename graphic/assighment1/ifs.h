@@ -28,7 +28,7 @@ public:
 	void setNumberOfTrans(int num);
 	bool addMatrix(Matrix m);
 	bool addProbability(float p);
-	void renderImage(Image &img, int numPoints, int numIters);
+	void renderImage(Image &img, int numPoints, int numIters, Vec3f color);
 private:
 	void clearMemory()
 	{
