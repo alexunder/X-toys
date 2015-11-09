@@ -35,6 +35,8 @@ private:
 		mArrayMatrices.clear();
 		mProbabilitiesArray.clear();
 	}
+
+    int getTransformationIndex(float probability);
 private:
 	int mNumberOfTrans;
 	vector<Matrix> mArrayMatrices;
