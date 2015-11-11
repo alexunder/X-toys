@@ -26,8 +26,16 @@ bool Group::intersect(const Ray &r, Hit &h, float tmin);
 {
     vector<Object3D*>::iterator itr_end = mObjectArray.end();
     vector<Object3D*>::iterator itr;
-    for (itr = vAAA.begin(); itr != itr_end; ++itr)
-        (*itr)->intersect(r, h, tmin);
+
+	for (itr = mObjectArray.begin(); itr != itr_end; ++itr)
+	{
+        ret = (*itr)->intersect(r, h, tmin);
+		if (ret == true)
+			return true;
+	}
+
+	return false;
+}
 
 void Group::addObject(int index, Object3D *obj)
 {
