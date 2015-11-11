@@ -20,7 +20,7 @@ public:
     bool intersect(const Ray &r, Hit &h, float tmin);
     void addObject(int index, Object3D *obj);
 private:
-    vector<Object> mObjectArray;
+    vector<Object*> mObjectArray;
     int mNumberObj;
 };
 
