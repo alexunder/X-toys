@@ -27,6 +27,8 @@ bool Group::intersect(const Ray &r, Hit &h, float tmin);
     vector<Object3D*>::iterator itr_end = mObjectArray.end();
     vector<Object3D*>::iterator itr;
 
+	bool ret = false;
+	
 	for (itr = mObjectArray.begin(); itr != itr_end; ++itr)
 	{
         ret = (*itr)->intersect(r, h, tmin);
