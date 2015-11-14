@@ -17,6 +17,7 @@ private:
     Vec3f mCenter;
     Vec3f mDirection;
     Vec3f mUp;
+    Vec3f mHorizontal;
     int mCameraSize;
 };
 
