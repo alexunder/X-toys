@@ -2,10 +2,13 @@
  *  The real first assignment of graphic
  *  Developed by Mohist Research
  */
-#include<stdlio.h>
+#include<stdio.h>
 #include<string.h>
 
 #include "scene_parser.h"
+#include "OrthographicCamera.h" 
+#include "Group.h"
+#include "image.h"
 
 int main(int argc, char ** argv)
 {
@@ -17,7 +20,6 @@ int main(int argc, char ** argv)
     float  depth_max = 1;
     char * depth_file = NULL;
 
-    // sample command line:
     // raytracer -input scene1_1.txt -size 200 200 -output output1_1.tga -depth 9 10 depth1_1.tga
 
     for (int i = 1; i < argc; i++) 
@@ -62,6 +64,35 @@ int main(int argc, char ** argv)
         }
     }
 
-    //Now we start to parse the scene file
+	// crop the output image
+	if (width < height)
+	{
+		height = width;
+	}
+	else if (width > height)
+	{
+		width = height;	
+	}
 
+    //Now we start to parse the scene file
+	SceneParser parser(input_file);
+
+	OrthographicCamera * pCamera  = parser.getCamera();
+	Vec3f backColor = parser.getBackgroundColor();
+	Group * objGroups = parser.getGroup();
+
+	Image outImg(width, height);
+	outImg.setAllPixels(backColor);
+
+	//Generate the image content
+	int i;
+	int j;
+
+	for (j = 0; j < height; j++)
+	for (i = 0; i < width; i++)
+	{
+		
+	}	
+
+	outImg.SaveTGA(output_file);
 }
