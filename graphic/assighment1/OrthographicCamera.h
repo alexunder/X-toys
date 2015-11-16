@@ -6,6 +6,9 @@
 #ifndef __H_ORTHOGRAPHICCAMERA
 #define __H_ORTHOGRAPHICCAMERA
 
+#include "Camera.h"
+#include "vectors.h"
+
 class OrthographicCamera : public Camera
 {
 public:

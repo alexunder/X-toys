@@ -31,10 +31,22 @@ OrthographicCamera::OrthographicCamera(const Vec3f &center, Vec3f &direction, Ve
 
 Ray OrthographicCamera::generateRay(Vec2f point)
 {
-    Ray r();
+    float x = point.x();
+    float y = point.y();
+
+    float l = - mCameraSize / 2;
+    float t = - mCameraSize / 2;
+
+    float u = x * mCameraSize + l;
+    float v = y * mCameraSize + t;
+
+    Vec3f originalPoint = mCenter + u * mHorizontal + v * mUp;
+    Ray r(originalPoint, mDirection);
+
+    return r;
 }
     
 float OrthographicCamera::getTMin() const
 {
-
+    return 0.0;
 }

@@ -36,7 +36,7 @@ bool Sphere::intersect(const Ray &r, Hit &h, float tmin)
         if (t < tmin)
             t = (- b + discriminant) / (2*a);
 
-        if (t < tmin || t > tmax)
+        if (t < tmin)
             return false;
 
 #ifdef DEBUG

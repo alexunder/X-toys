@@ -25,6 +25,6 @@ public:
     virtual bool intersect(const Ray &r, Hit &h, float tmin) = 0;
 private:
     Material * mMaterial;
-}
+};
 
 #endif

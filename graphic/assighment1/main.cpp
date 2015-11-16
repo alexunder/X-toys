@@ -64,7 +64,7 @@ int main(int argc, char ** argv)
         }
     }
 
-	// crop the output image
+	// crop the output image, to make sure the rectangle is the squre.
 	if (width < height)
 	{
 		height = width;
@@ -77,22 +77,37 @@ int main(int argc, char ** argv)
     //Now we start to parse the scene file
 	SceneParser parser(input_file);
 
-	OrthographicCamera * pCamera  = parser.getCamera();
+	OrthographicCamera * pCamera  =(OrthographicCamera*)parser.getCamera();
 	Vec3f backColor = parser.getBackgroundColor();
 	Group * objGroups = parser.getGroup();
 
 	Image outImg(width, height);
-	outImg.setAllPixels(backColor);
+	outImg.SetAllPixels(backColor);
 
 	//Generate the image content
 	int i;
 	int j;
+    float tmin = 0.00001;
 
 	for (j = 0; j < height; j++)
 	for (i = 0; i < width; i++)
 	{
-		
-	}	
+        float u = (i + 0.5) / width;
+        float v = (j + 0.5) / height;
+        Vec2f p(u, v);
+	    Ray	r = pCamera->generateRay(p);
+
+        bool ishit = false;
+        Hit h;
+        ishit = objGroups.intersect(r, h, tmin);
+
+        if (ishit)
+        {
+            tmin = h.getT();
+            Vec3f color = h.getMaterial().getDiffuseColor();
+            outImg.setPixel(i, j, color);
+        }
+	}
 
 	outImg.SaveTGA(output_file);
 }

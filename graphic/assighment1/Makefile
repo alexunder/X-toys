@@ -4,13 +4,12 @@
 # ===============================================================
 
 SRCS 	 	= main.cpp \
-		  matrix.cpp \
 		  image.cpp \
-		  scene_parser.cpp \
-		  sphere.cpp \
-		  raytracer.cpp \
-		  camera.cpp \
-		  group.cpp
+		  matrix.cpp \
+          scene_parser.cpp \
+		  Sphere.cpp \
+		  OrthographicCamera.cpp \
+		  Group.cpp
 
 # ===============================================================
 

@@ -7,7 +7,7 @@
 #define __H_SPHERE
 
 #include "Object3D.h"
-#include "vector.h"
+#include "vectors.h"
 #include "material.h"
 
  class Sphere : public Object3D

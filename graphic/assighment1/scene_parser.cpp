@@ -3,11 +3,11 @@
 
 #include "scene_parser.h"
 #include "matrix.h"
-#include "camera.h" 
+#include "Camera.h" 
 #include "material.h"
-#include "object3d.h"
-#include "group.h" 
-#include "sphere.h"
+#include "Object3D.h"
+#include "Group.h" 
+#include "Sphere.h"
 
 #define DegreesToRadians(x) ((M_PI * x) / 180.0f)
 
