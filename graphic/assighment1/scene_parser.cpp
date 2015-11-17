@@ -8,6 +8,7 @@
 #include "Object3D.h"
 #include "Group.h" 
 #include "Sphere.h"
+#include "OrthographicCamera.h"
 
 #define DegreesToRadians(x) ((M_PI * x) / 180.0f)
 
@@ -118,12 +119,19 @@ void SceneParser::parseMaterials() {
   // read in the number of objects
   getToken(token); assert (!strcmp(token, "numMaterials"));
   num_materials = readInt();
-  materials = new (Material*)[num_materials];
+#ifdef DEBUG
+  printf("num_materials=%d\n", num_materials); 
+#endif
+  materials = new Material*[num_materials];
+  //materials = (Material*)malloc(num_materials);
   // read in the objects
   int count = 0;
   while (num_materials > count) {
     getToken(token); 
-    if (!strcmp(token, "Material")) {
+#ifdef DEBUG
+  printf("token=%s\n", token); 
+#endif
+    if (strstr(token, "Material") != NULL) {
       materials[count] = parseMaterial();
     } else {
       printf ("Unknown token in parseMaterial: '%s'\n", token); 

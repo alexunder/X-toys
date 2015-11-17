@@ -7,9 +7,8 @@
 #include "hit.h"
 
 Sphere::Sphere(const Vec3f &point, float radius, Material *m)
-    : mCenterPoint(point), mRadius(radius)
+    : Object3D(m), mCenterPoint(point), mRadius(radius)
 {
-    mMaterial = m;
 }
 
 bool Sphere::intersect(const Ray &r, Hit &h, float tmin)

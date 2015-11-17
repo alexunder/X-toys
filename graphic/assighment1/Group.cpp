@@ -17,12 +17,12 @@ Group::~Group()
 
     for (i = 0; i < mNumberObj; i++)
     {
-        Object3D * obj =dynamic_cast<Object *>(mObjectArray[i]);
+        Object3D * obj =dynamic_cast<Object3D *>(mObjectArray[i]);
         delete obj;
     }
 }
 
-bool Group::intersect(const Ray &r, Hit &h, float tmin);
+bool Group::intersect(const Ray &r, Hit &h, float tmin)
 {
     vector<Object3D*>::iterator itr_end = mObjectArray.end();
     vector<Object3D*>::iterator itr;

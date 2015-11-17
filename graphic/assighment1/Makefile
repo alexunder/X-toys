@@ -17,7 +17,7 @@ LIBS            = -lm -L/usr/X11R6/lib
 CC		= g++
 EXE	  	= raytracer
 OBJS =  $(SRCS:.C=.o)
-
+CFLAGS = -DDEBUG
 # ===============================================================
 # targets
 
@@ -35,7 +35,7 @@ clean:
 # compilation rules
 
 $(EXE): $(OBJS)
-	$(CC) -o $@ $(OBJS) $(LIBS)
+	$(CC) $(CFLAGS)  -o $@ $(OBJS) $(LIBS)
 
 .C.o:
 	$(CC) $< -c -o $@

@@ -6,6 +6,8 @@
 #ifndef __H_OBJECT3D
 #define __H_OBJECT3D
 
+#include <cstddef>
+
 class Material;
 class Ray;
 class Hit;
@@ -18,12 +20,17 @@ public:
     {
     }
 
+    Object3D()
+    {
+        mMaterial = NULL;
+    }
+
     virtual ~Object3D()
     {
     }
 
     virtual bool intersect(const Ray &r, Hit &h, float tmin) = 0;
-private:
+protected:
     Material * mMaterial;
 };
 

@@ -13,7 +13,7 @@ OrthographicCamera::OrthographicCamera(const Vec3f &center, Vec3f &direction, Ve
     if (v != 0)
     {
         Vec3f assistant(0, 0, 1);
-        Vec3f.Cross3(mUp, assistant, mDirection); 
+        Vec3f::Cross3(mUp, assistant, mDirection); 
     }
 
     if (mDirection.Length() != 1)
@@ -26,7 +26,7 @@ OrthographicCamera::OrthographicCamera(const Vec3f &center, Vec3f &direction, Ve
         mUp.Normalize();    
     }
 
-    Vec3f.cross3(mHorizontal, mDirection, mUp);
+    Vec3f::Cross3(mHorizontal, mDirection, mUp);
 }
 
 Ray OrthographicCamera::generateRay(Vec2f point)

@@ -10,6 +10,7 @@
 #include "Group.h"
 #include "image.h"
 #include "hit.h"
+#include "material.h"
 
 int main(int argc, char ** argv)
 {
@@ -104,8 +105,9 @@ int main(int argc, char ** argv)
 
         if (ishit)
         {
-            tmin = h.getT();
-            Vec3f color = h.getMaterial()->getDiffuseColor();
+            //tmin = h.getT();
+            Material * pM = h.getMaterial();
+            Vec3f color = pM->getDiffuseColor();
             outImg.SetPixel(i, j, color);
         }
 	}
