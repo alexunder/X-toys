@@ -9,6 +9,7 @@
 #include "OrthographicCamera.h" 
 #include "Group.h"
 #include "image.h"
+#include "hit.h"
 
 int main(int argc, char ** argv)
 {
@@ -99,13 +100,13 @@ int main(int argc, char ** argv)
 
         bool ishit = false;
         Hit h;
-        ishit = objGroups.intersect(r, h, tmin);
+        ishit = objGroups->intersect(r, h, tmin);
 
         if (ishit)
         {
             tmin = h.getT();
-            Vec3f color = h.getMaterial().getDiffuseColor();
-            outImg.setPixel(i, j, color);
+            Vec3f color = h.getMaterial()->getDiffuseColor();
+            outImg.SetPixel(i, j, color);
         }
 	}
 

@@ -6,8 +6,8 @@
 #ifndef __H_CAMERA
 #define __H_CAMERA
 
-class Vec2f;
-class Ray;
+#include "vectors.h"
+#include "ray.h"
 
 class Camera
 {
