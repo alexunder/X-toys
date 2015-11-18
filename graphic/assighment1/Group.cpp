@@ -30,11 +30,11 @@ bool Group::intersect(const Ray &r, Hit &h, float tmin)
 	bool is_hit = false;
 	bool ret = false;
 	float small = 100000.0;
-	Hit hit;
+	Hit tempHit;
 
 	for (itr = mObjectArray.begin(); itr != itr_end; ++itr)
 	{
-        ret = (*itr)->intersect(r, h, tmin);
+        ret = (*itr)->intersect(r, tempHit, tmin);
 		if (ret == true)
 		{
 			float temp = h.getT();
@@ -43,7 +43,7 @@ bool Group::intersect(const Ray &r, Hit &h, float tmin)
 			{
 				is_hit = true;
 				small = temp;
-			    hit.set(h.getT(), h.getMaterial(), );
+			    h.set(tempHit.getT(), tempHit.getMaterial(), tempHit.getIntersectionPoint());
 			}
 		}
 	}
