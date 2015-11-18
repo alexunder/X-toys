@@ -39,7 +39,6 @@ private:
   float t;
   Material *material;
   Vec3f intersectionPoint;
-
 };
 
 inline ostream &operator<<(ostream &os, const Hit &h) {

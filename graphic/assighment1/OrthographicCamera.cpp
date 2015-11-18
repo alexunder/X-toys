@@ -34,8 +34,8 @@ Ray OrthographicCamera::generateRay(Vec2f point)
     float x = point.x();
     float y = point.y();
 
-    float l = - mCameraSize / 2;
-    float t = - mCameraSize / 2;
+    float l = - mCameraSize / 2.0;
+    float t = - mCameraSize / 2.0;
 
     float u = x * mCameraSize + l;
     float v = y * mCameraSize + t;
