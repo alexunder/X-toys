@@ -89,7 +89,8 @@ int main(int argc, char ** argv)
 	//Generate the image content
 	int i;
 	int j;
-    float tmin = 0.00001;
+    //float tmin = -10000.0;
+    float tmin = pCamera->getTMin();
 
 	for (j = 0; j < height; j++)
 	for (i = 0; i < width; i++)
@@ -105,7 +106,9 @@ int main(int argc, char ** argv)
 
         if (ishit)
         {
-            //tmin = h.getT();
+#ifdef DEBUG
+        printf("Pixel(%d, %d), t=%f\n", i, j, h.getT());
+#endif
             Material * pM = h.getMaterial();
             Vec3f color = pM->getDiffuseColor();
             outImg.SetPixel(i, j, color);

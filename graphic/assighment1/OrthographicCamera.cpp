@@ -48,5 +48,5 @@ Ray OrthographicCamera::generateRay(Vec2f point)
     
 float OrthographicCamera::getTMin() const
 {
-    return 0.0;
+    return 0.00001f;
 }
