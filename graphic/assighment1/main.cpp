@@ -89,8 +89,11 @@ int main(int argc, char ** argv)
 	//Generate the image content
 	int i;
 	int j;
-    //float tmin = -10000.0;
     float tmin = pCamera->getTMin();
+
+#ifdef DEBUG
+	printf("tmin=%f\n", tmin);
+#endif
 
 	for (j = 0; j < height; j++)
 	for (i = 0; i < width; i++)
@@ -116,4 +119,42 @@ int main(int argc, char ** argv)
 	}
 
 	outImg.SaveTGA(output_file);
+
+	//Now let us render the gray image.
+	Image depthtImg(width, height);
+	depthtImg.SetAllPixels(backColor);
+
+	for (j = 0; j < height; j++)
+	for (i = 0; i < width; i++)
+	{
+        float u = (i + 0.5) / width;
+        float v = (j + 0.5) / height;
+        Vec2f p(u, v);
+	    Ray	r = pCamera->generateRay(p);
+
+        bool ishit = false;
+        Hit h;
+        ishit = objGroups->intersect(r, h, tmin);
+
+        if (ishit)
+        {
+			float t = h.getT();
+#ifdef DEBUG
+			printf("t=%f, tmin=%f, tmax=%f\n", t, depth_min, depth_max);
+#endif
+			if (t > depth_max || t < depth_min)
+				continue;
+
+			float GrayComponent = (t - depth_min) / (depth_max - depth_min);
+			GrayComponent = 1 - GrayComponent;
+#ifdef DEBUG
+			printf("GrayComponent =%f\n", GrayComponent);
+#endif
+            Vec3f color(GrayComponent, GrayComponent, GrayComponent);
+            depthtImg.SetPixel(i, j, color);
+        }
+
+	}
+
+	depthtImg.SaveTGA(depth_file);
 }

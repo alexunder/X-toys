@@ -32,20 +32,27 @@ bool Group::intersect(const Ray &r, Hit &h, float tmin)
 
 	bool is_hit = false;
 	bool ret = false;
+	int cnt = 0;
+	Hit temphit;
 
 	for (itr = mObjectArray.begin(); itr != itr_end; ++itr)
 	{
-        ret = (*itr)->intersect(r, h, tmin);
+        ret = (*itr)->intersect(r, temphit, tmin);
 		if (ret == true)
 		{
-			float t = h.getT();
-
+			float t = temphit.getT();
+#ifdef DEBUG
+//			printf("obj index=%d, t=%f, t0=%f, t1=%f\n", cnt, t, t0, t1);
+#endif
 			if (t <= t1 && t >= t0)
 			{
 				is_hit = true;
 				t1 = t;
+				h.set(t, temphit.getMaterial(), temphit.getIntersectionPoint());
 			}
 		}
+
+		cnt++;
 	}
 
 	if (is_hit)

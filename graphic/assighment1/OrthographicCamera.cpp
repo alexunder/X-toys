@@ -5,6 +5,8 @@
 
 #include "OrthographicCamera.h"
 
+#define T_MIN -100000.0
+
 OrthographicCamera::OrthographicCamera(const Vec3f &center, Vec3f &direction, Vec3f &up, int size)
     : mCenter(center), mDirection(direction), mUp(up), mCameraSize(size)
 {
@@ -48,5 +50,5 @@ Ray OrthographicCamera::generateRay(Vec2f point)
     
 float OrthographicCamera::getTMin() const
 {
-    return 0.00001f;
+    return T_MIN;
 }
