@@ -21,6 +21,7 @@ int main(int argc, char ** argv)
     float  depth_min = 0;
     float  depth_max = 1;
     char * depth_file = NULL;
+    char * normal_file = NULL;
 
     // raytracer -input scene1_1.txt -size 200 200 -output output1_1.tga -depth 9 10 depth1_1.tga
 
@@ -58,7 +59,13 @@ int main(int argc, char ** argv)
             i++;
             assert (i < argc); 
             depth_file = argv[i];
-        } 
+        }
+        else if (!strcmp(argv[i], "-normals"))
+        {
+            i++;
+            assert (i < argc);
+            normal_file = argv[i];
+        }
         else 
         {
             printf ("whoops error with command line argument %d: '%s'\n",i,argv[i]);
