@@ -3,15 +3,16 @@
 
 #include "scene_parser.h"
 #include "matrix.h"
-#include "camera.h" 
+#include "Camera.h"
+#include "OrthographicCamera.h"
 #include "light.h"
 #include "material.h"
-#include "object3d.h"
-#include "group.h" 
-#include "sphere.h"
-#include "plane.h"
-#include "triangle.h"
-#include "transform.h"
+#include "Object3D.h"
+#include "Group.h"
+#include "Sphere.h"
+//#include "plane.h"
+//#include "triangle.h"
+//#include "transform.h"
 
 #define DegreesToRadians(x) ((M_PI * x) / 180.0f)
 
@@ -159,7 +160,7 @@ void SceneParser::parseLights() {
   // read in the number of objects
   getToken(token); assert (!strcmp(token, "numLights"));
   num_lights = readInt();
-  lights = new (Light*)[num_lights];
+  lights = new Light*[num_lights];
   // read in the objects
   int count = 0;
   while (num_lights > count) {

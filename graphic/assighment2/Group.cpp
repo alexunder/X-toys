@@ -48,7 +48,7 @@ bool Group::intersect(const Ray &r, Hit &h, float tmin)
 			{
 				is_hit = true;
 				t1 = t;
-				h.set(t, temphit.getMaterial(), temphit.getNormal, temphit.getIntersectionPoint());
+				h.set(t, temphit.getMaterial(), temphit.getNormal(), temphit.getIntersectionPoint());
 			}
 		}
 

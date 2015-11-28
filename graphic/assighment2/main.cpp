@@ -11,6 +11,7 @@
 #include "image.h"
 #include "hit.h"
 #include "material.h"
+#include "light.h" 
 
 int main(int argc, char ** argv)
 {
@@ -88,9 +89,13 @@ int main(int argc, char ** argv)
 
 	OrthographicCamera * pCamera  =(OrthographicCamera*)parser.getCamera();
 	Vec3f backColor = parser.getBackgroundColor();
-	Group * objGroups = parser.getGroup();
+	Vec3f ambientLight = parser.getAmbientLight();
 
-	Image outImg(width, height);
+    Group * objGroups = parser.getGroup();
+
+    int numberLights = parser.getNumLights();
+
+    Image outImg(width, height);
 	outImg.SetAllPixels(backColor);
 
 	//Generate the image content
@@ -120,8 +125,46 @@ int main(int argc, char ** argv)
         printf("Pixel(%d, %d), t=%f\n", i, j, h.getT());
 #endif
             Material * pM = h.getMaterial();
-            Vec3f color = pM->getDiffuseColor();
-            outImg.SetPixel(i, j, color);
+            Vec3f normal = h.getNormal();
+            Vec3f point = h.getIntersectionPoint();
+
+            Vec3f diffuseColor = pM->getDiffuseColor();
+
+            Vec3f pixelColor(diffuseColor[0] * ambientLight[0],
+                             diffuseColor[1] * ambientLight[2],
+                             diffuseColor[2] * ambientLight[2] );
+
+
+
+            Vec3f delata(0.0, 0.0, 0.0);
+
+            int k;
+            for (k = 0; k < numberLights; k++)
+            {
+                Light * plight = parser.getLight(k);
+
+                if (plight == NULL)
+                    continue;
+
+                Vec3f lightDir;
+                Vec3f lightColor;
+                plight->getIllumination(point, lightDir, lightColor);
+                float d = lightDir.Dot3(normal);
+
+                if (d < 0)
+                    continue;
+
+                Vec3f temp(lightColor[0] * diffuseColor[0],
+                           lightColor[1] * diffuseColor[1],
+                           lightColor[2] * diffuseColor[2]);
+
+                temp = d * temp;
+
+                delata += temp;
+            }
+
+            pixelColor += delata;
+            outImg.SetPixel(i, j, pixelColor);
         }
 	}
 

@@ -35,7 +35,7 @@ public:
     t = _t; material = m; normal = n; 
     intersectionPoint = ray.pointAtParameter(t); }
 
-  void set(float _t, Material *m, Vec3f n const Vec3f &p) {
+  void set(float _t, Material *m, Vec3f n, const Vec3f &p) {
     t = _t; material = m; normal = n;
     intersectionPoint = p; }
 private: 
