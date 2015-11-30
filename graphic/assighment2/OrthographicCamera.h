@@ -16,6 +16,11 @@ public:
 
 	Ray generateRay(Vec2f point);
     float getTMin() const;
+
+    CameraType getCameraType()
+    {
+        return CameraType::Orthographic;
+    }
 private:
     Vec3f mCenter;
     Vec3f mDirection;

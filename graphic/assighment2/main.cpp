@@ -74,21 +74,34 @@ int main(int argc, char ** argv)
         }
     }
 
-	// crop the output image, to make sure the rectangle is the squre.
-	if (width < height)
-	{
-		height = width;
-	}
-	else if (width > height)
-	{
-		width = height;	
-	}
 
     //Now we start to parse the scene file
 	SceneParser parser(input_file);
 
-	OrthographicCamera * pCamera  =(OrthographicCamera*)parser.getCamera();
-	Vec3f backColor = parser.getBackgroundColor();
+	Camera * pCamera = parser.getCamera();
+
+    if (pCamera == NULL)
+        return 2;
+
+    if (pCamera->getCameraType() == CameraType::Orthographic)
+    {
+        // crop the output image, to make sure the rectangle is the squre.
+        if (width < height)
+        {
+            height = width;
+        }
+        else if (width > height)
+        {
+            width = height;
+        }
+    }
+    else if (pCamera->getCameraType() == CameraType::Perspective)
+    {
+        float ratio = ((float)width) / ((float)height);
+        (PerspectiveCamera*)pCamera->setRatio(ratio);
+    }
+
+    Vec3f backColor = parser.getBackgroundColor();
 	Vec3f ambientLight = parser.getAmbientLight();
 
     Group * objGroups = parser.getGroup();
