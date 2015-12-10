@@ -7,6 +7,7 @@
 
 #include "scene_parser.h"
 #include "OrthographicCamera.h" 
+#include "PerspectiveCamera.h"
 #include "Group.h"
 #include "image.h"
 #include "hit.h"
@@ -98,7 +99,7 @@ int main(int argc, char ** argv)
     else if (pCamera->getCameraType() == CameraType::Perspective)
     {
         float ratio = ((float)width) / ((float)height);
-        (PerspectiveCamera*)pCamera->setRatio(ratio);
+        ((PerspectiveCamera*)pCamera)->setRatio(ratio);
     }
 
     Vec3f backColor = parser.getBackgroundColor();

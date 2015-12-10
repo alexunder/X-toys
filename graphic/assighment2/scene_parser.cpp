@@ -5,6 +5,7 @@
 #include "matrix.h"
 #include "Camera.h"
 #include "OrthographicCamera.h"
+#include "PerspectiveCamera.h"
 #include "light.h"
 #include "material.h"
 #include "Object3D.h"
