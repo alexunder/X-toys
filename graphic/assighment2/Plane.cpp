@@ -33,6 +33,10 @@ bool Plane::intersect(const Ray &r, Hit &h, float tmin)
     float b = dir.Dot3(mNormal);
 
     double t = (mDistance - a) / b;
+
+    if (t < tmin)
+        return false;
+
     h.set(t, mMaterial, mNormal, r);
     return true;
 }
