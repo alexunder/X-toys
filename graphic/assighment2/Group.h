@@ -1,5 +1,5 @@
 /*
- * The Sphere class derived from Object3D.
+ * The Group class derived from Object3D.
  * Implemented by Mohism Research
  */
 

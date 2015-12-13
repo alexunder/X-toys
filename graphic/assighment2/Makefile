@@ -8,7 +8,10 @@ SRCS 	 	= main.cpp \
 		  matrix.cpp \
           scene_parser.cpp \
 		  Sphere.cpp \
+		  Plane.cpp \
+		  Triangle.cpp \
 		  OrthographicCamera.cpp \
+		  PerspectiveCamera.cpp \
 		  Group.cpp
 
 # ===============================================================
