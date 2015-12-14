@@ -82,10 +82,16 @@ int main(int argc, char ** argv)
 	Camera * pCamera = parser.getCamera();
 
     if (pCamera == NULL)
+    {
+        fprintf(stderr, "The camera is not defined in config file, so quit.");
         return 2;
-
+    }
+    
     if (pCamera->getCameraType() == CameraType::Orthographic)
     {
+#ifdef DEBUG
+        printf("The Camera type is Orthographic.\n");
+#endif
         // crop the output image, to make sure the rectangle is the squre.
         if (width < height)
         {
@@ -98,6 +104,9 @@ int main(int argc, char ** argv)
     }
     else if (pCamera->getCameraType() == CameraType::Perspective)
     {
+#ifdef DEBUG
+        printf("The Camera type is Perspective.\n");
+#endif
         float ratio = ((float)width) / ((float)height);
         ((PerspectiveCamera*)pCamera)->setRatio(ratio);
     }
@@ -185,40 +194,85 @@ int main(int argc, char ** argv)
 	outImg.SaveTGA(output_file);
 
 	//Now let us render the gray image.
-	Image depthtImg(width, height);
-	depthtImg.SetAllPixels(backColor);
 
-	for (j = 0; j < height; j++)
-	for (i = 0; i < width; i++)
-	{
-        float u = (i + 0.5) / width;
-        float v = (j + 0.5) / height;
-        Vec2f p(u, v);
-	    Ray	r = pCamera->generateRay(p);
+    if (depth_file == NULL)
+    {
+        fprintf(stderr, "Depth file is null, no need to render.\n");
+    }
+    else
+    {
+        Image depthtImg(width, height);
+        depthtImg.SetAllPixels(backColor);
 
-        bool ishit = false;
-        Hit h;
-        ishit = objGroups->intersect(r, h, tmin);
+        for (j = 0; j < height; j++)
+            for (i = 0; i < width; i++)
+            {
+                float u = (i + 0.5) / width;
+                float v = (j + 0.5) / height;
+                Vec2f p(u, v);
+                Ray	r = pCamera->generateRay(p);
 
-        if (ishit)
+                bool ishit = false;
+                Hit h;
+                ishit = objGroups->intersect(r, h, tmin);
+
+                if (ishit)
+                {
+                    float t = h.getT();
+#ifdef DEBUG
+                    printf("t=%f, tmin=%f, tmax=%f\n", t, depth_min, depth_max);
+#endif
+                    if (t > depth_max || t < depth_min)
+                        continue;
+
+                    float GrayComponent = (t - depth_min) / (depth_max - depth_min);
+                    GrayComponent = 1 - GrayComponent;
+#ifdef DEBUG
+                    printf("GrayComponent =%f\n", GrayComponent);
+#endif
+                    Vec3f color(GrayComponent, GrayComponent, GrayComponent);
+                    depthtImg.SetPixel(i, j, color);
+                }
+
+            }
+
+        depthtImg.SaveTGA(depth_file);
+    }
+    
+    //Now let us render the normal visualize image.
+    if (normal_file == NULL )
+    {
+        fprintf(stderr, "The normal file is null, no need to render.\n");
+    }
+    else
+    {
+        Image normalImg(width, height);
+
+        for (j = 0; j < height; j++)
+        for (i = 0; i < width; i++)
         {
-			float t = h.getT();
-#ifdef DEBUG
-			printf("t=%f, tmin=%f, tmax=%f\n", t, depth_min, depth_max);
-#endif
-			if (t > depth_max || t < depth_min)
-				continue;
+            float u = (i + 0.5) / width;
+            float v = (j + 0.5) / height;
+            Vec2f p(u, v);
+            Ray	r = pCamera->generateRay(p);
 
-			float GrayComponent = (t - depth_min) / (depth_max - depth_min);
-			GrayComponent = 1 - GrayComponent;
-#ifdef DEBUG
-			printf("GrayComponent =%f\n", GrayComponent);
-#endif
-            Vec3f color(GrayComponent, GrayComponent, GrayComponent);
-            depthtImg.SetPixel(i, j, color);
+            bool ishit = false;
+            Hit h;
+            ishit = objGroups->intersect(r, h, tmin);
+
+            if (ishit)
+            {
+                Vec3f n = h.getNormal();
+
+                if (n.Length() != 1)
+                    n.Normalize();
+
+                normalImg.SetPixel(i, j, n);
+            }
         }
 
-	}
+        normalImg.SaveTGA(normal_file);
+    }
 
-	depthtImg.SaveTGA(depth_file);
+    return 0;
 }

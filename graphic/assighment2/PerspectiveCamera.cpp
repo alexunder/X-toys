@@ -41,7 +41,9 @@ Ray PerspectiveCamera::generateRay(Vec2f point)
     float x = point.x();
     float y = point.y();
 
-    float height = 2 * tan(angle * PI / 360.0);
+    printf("PerspectiveCamera::generateRay, x=%f, y=%f\n", x, y);
+
+    float height = 2 * tan(mAngle * PI / 360.0);
     float width = height * mRatio;
 
     float l = - width / 2.0;
@@ -59,6 +61,6 @@ Ray PerspectiveCamera::generateRay(Vec2f point)
     }
 
     Ray r(mCenter, originalDir);
-    
+    cout<<r<<endl; 
     return r;
 }

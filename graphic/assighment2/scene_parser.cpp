@@ -11,9 +11,9 @@
 #include "Object3D.h"
 #include "Group.h"
 #include "Sphere.h"
-//#include "plane.h"
-//#include "triangle.h"
-//#include "transform.h"
+#include "Plane.h"
+#include "Triangle.h"
+#include "Transform.h"
 
 #define DegreesToRadians(x) ((M_PI * x) / 180.0f)
 

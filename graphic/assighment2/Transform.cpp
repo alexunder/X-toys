@@ -25,6 +25,13 @@ bool Transform::intersect(const Ray &r, Hit &h, float tmin)
 
 	if (mObj->intersect(transformedRay, h, tmin))
 	{
-		
+        Vec3f normal = h.getNormal();
+        Matrix t;
+        mReverseMat.Transpose(t);
+        t.TransformDirection(normal);
+        h.set(h.getT(), h.getMaterial(), normal, r);
+        return true;
 	}
+
+    return false;
 }

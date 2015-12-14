@@ -12,7 +12,7 @@ Plane::Plane(Vec3f &normal, float d, Material *m)
     
 }
 
-Plane::Plane(Vec3f a, Vec3f b, vec3f c, Materiak *m)
+Plane::Plane(Vec3f a, Vec3f b, Vec3f c, Material *m)
     : Object3D(m)
 {
     Vec3f ba = b - a;

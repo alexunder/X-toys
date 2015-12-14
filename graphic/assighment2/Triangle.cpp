@@ -7,7 +7,7 @@
 #include "hit.h"
 
 Triangle::Triangle(Vec3f &a, Vec3f &b, Vec3f &c, Material *m)
-    : Object3D(m), mP0(a), mP1(b), mP2(c), 
+    : Object3D(m), mP0(a), mP1(b), mP2(c)
 {
 
 }
@@ -68,14 +68,14 @@ bool Triangle::intersect(const Ray &r, Hit &h, float tmin)
     * B3 =  | a21  a22  b2 |
     *       | a31  a32  b3 |
     */
-    tval = -(a12*bdj1 + a22*bdj2 + a32*bdj3)/DetA;
+    t = -(a12*bdj1 + a22*bdj2 + a32*bdj3)/DetA;
 
     if (t  >= tmin)
     {
         Vec3f normal;
         Vec3f::Cross3(normal, (mP1 - mP0), (mP2 - mP0));
         normal.Normalize();
-        h.set(t, mMaterial, mNormal, r);
+        h.set(t, mMaterial, normal, r);
         return true;
     }
 
