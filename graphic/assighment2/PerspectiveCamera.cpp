@@ -17,7 +17,7 @@ PerspectiveCamera::PerspectiveCamera(Vec3f &center, Vec3f &direction, Vec3f &up,
     if (v != 0)
     {
         Vec3f assistant(0, 0, 1);
-        Vec3f::Cross3(mUp, assistant, mDirection); 
+        Vec3f::Cross3(mUp, assistant, mDirection);
     }
 
     if (mDirection.Length() != 1)
@@ -33,26 +33,50 @@ PerspectiveCamera::PerspectiveCamera(Vec3f &center, Vec3f &direction, Vec3f &up,
     Vec3f::Cross3(mHorizontal, mDirection, mUp);
 
     mRatio = 1.0;
+#ifdef DEBUG
+    printf("mAngle=%f\n", mAngle);
+#endif
 }
 
 
 Ray PerspectiveCamera::generateRay(Vec2f point)
 {
-    float x = point.x();
-    float y = point.y();
+    float x_ndc = point.x();
+    float y_ndc = point.y();
 
-    printf("PerspectiveCamera::generateRay, x=%f, y=%f\n", x, y);
+    printf("PerspectiveCamera::generateRay, x_ndc=%f, y_ndc=%f\n", x_ndc, y_ndc);
 
-    float height = 2 * tan(mAngle * PI / 360.0);
-    float width = height * mRatio;
+    float screenWidth = 0.f;
+    float screenHeight = 0.f;
 
-    float l = - width / 2.0;
-    float t = - height / 2.0;
+    if (mRatio > 1.f)
+    {
+        screenWidth = 2 * mRatio;
+        screenHeight = 2.f;
+    }
+    else
+    {
+        screenWidth = 2.f;
+        screenHeight = 2 * mRatio;
+    }
+#ifdef DEBUG
+    printf("screenWidth=%f, screenHeight=%f\n", screenWidth, screenHeight);
+#endif
+    //float height = 2 * tan(mAngle * PI / 360.0);
+    //float width = height * mRatio;
 
-    float u = x * width + l;
-    float v = y * height + t;
+    float left = - screenWidth / 2.0;
+    float top  = - screenHeight / 2.0;
 
-    float near = 1.0;
+    float u = x_ndc * screenWidth + left;
+    float v = y_ndc * screenHeight + top;
+#ifdef DEBUG
+    printf("u=%f, v=%f\n", u, v);
+#endif
+    float near = screenHeight / (2.f * tanf(mAngle / 2.0));
+#ifdef DEBUG
+    printf("near=%f\n", near);
+#endif
     Vec3f originalDir = near * mDirection + u * mHorizontal + v * mUp;
 
     if (originalDir.Length() != 0)
