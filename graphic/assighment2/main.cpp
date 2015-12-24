@@ -24,6 +24,7 @@ int main(int argc, char ** argv)
     float  depth_max = 1;
     char * depth_file = NULL;
     char * normal_file = NULL;
+    bool needShadeBack = false;
 
     // raytracer -input scene1_1.txt -size 200 200 -output output1_1.tga -depth 9 10 depth1_1.tga
 
@@ -67,6 +68,10 @@ int main(int argc, char ** argv)
             i++;
             assert (i < argc);
             normal_file = argv[i];
+        }
+        else if (!strcmp(argv[i], "-shade_back"))
+        {
+            needShadeBack = true;
         }
         else 
         {
@@ -154,7 +159,7 @@ int main(int argc, char ** argv)
             Vec3f diffuseColor = pM->getDiffuseColor();
 
             Vec3f pixelColor(diffuseColor[0] * ambientLight[0],
-                             diffuseColor[1] * ambientLight[2],
+                             diffuseColor[1] * ambientLight[1],
                              diffuseColor[2] * ambientLight[2] );
 
 

@@ -43,9 +43,9 @@ Ray PerspectiveCamera::generateRay(Vec2f point)
 {
     float x_ndc = point.x();
     float y_ndc = point.y();
-
+#ifdef DEBUG
     printf("PerspectiveCamera::generateRay, x_ndc=%f, y_ndc=%f\n", x_ndc, y_ndc);
-
+#endif
     float screenWidth = 0.f;
     float screenHeight = 0.f;
 
@@ -85,6 +85,8 @@ Ray PerspectiveCamera::generateRay(Vec2f point)
     }
 
     Ray r(mCenter, originalDir);
-    cout<<r<<endl; 
+#ifdef DEBUG
+    cout<<r<<endl;
+#endif
     return r;
 }
