@@ -16,8 +16,9 @@ PerspectiveCamera::PerspectiveCamera(Vec3f &center, Vec3f &direction, Vec3f &up,
 
     if (v != 0)
     {
-        Vec3f assistant(0, 0, 1);
-        Vec3f::Cross3(mUp, assistant, mDirection);
+        Vec3f temp;
+        Vec3f::Cross3(temp, mDirection, mUp);
+        Vec3f::Cross3(mUp, temp, mDirection);
     }
 
     if (mDirection.Length() != 1)
