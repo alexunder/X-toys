@@ -17,6 +17,12 @@ public:
 	Ray generateRay(Vec2f point);
     float getTMin() const;
 
+	void glInit(int w, int h);
+	void glPlaceCamera(void);
+	void dollyCamera(float dist);
+	void truckCamera(float dx, float dy);
+	void rotateCamera(float rx, float ry);
+
     CameraType getCameraType()
     {
         return CameraType::Orthographic;
