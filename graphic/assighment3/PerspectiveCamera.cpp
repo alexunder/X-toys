@@ -32,8 +32,9 @@ PerspectiveCamera::PerspectiveCamera(Vec3f &center, Vec3f &direction, Vec3f &up,
     }
 
     Vec3f::Cross3(mHorizontal, mDirection, mUp);
+    mHorizontal.Normalize();
 
-    mRatio = 1.0;
+	mRatio = 1.0;
 #ifdef DEBUG
     printf("mAngle=%f\n", mAngle);
 #endif
@@ -99,9 +100,9 @@ Ray PerspectiveCamera::generateRay(Vec2f point)
 
 void PerspectiveCamera::glInit(int w, int h)
 {
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  gluPerspective(angle*180.0/3.14159, (float)w/float(h), 0.5, 40.0);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(angle*180.0/3.14159, (float)w/float(h), 0.5, 40.0);
 }
 
 // ====================================================================
@@ -110,9 +111,9 @@ void PerspectiveCamera::glInit(int w, int h)
 
 void PerspectiveCamera::glPlaceCamera(void)
 {
-  gluLookAt(center.x(), center.y(), center.z(),
-            center.x()+direction.x(), center.y()+direction.y(), center.z()+direction.z(),
-            up.x(), up.y(), up.z());
+	gluLookAt(mCenter.x(), mCcenter.y(), mCenter.z(),
+			mCenter.x() + mDirection.x(), mCenter.y() + mDirection.y(), mCenter.z() + mDirection.z(),
+			mUp.x(), mUp.y(), mUp.z());
 }
 
 // ====================================================================
@@ -134,11 +135,11 @@ void PerspectiveCamera::glPlaceCamera(void)
 
 void PerspectiveCamera::dollyCamera(float dist)
 {
-  center += direction*dist;
+	mCenter += mDirection * dist;
 
-  // ===========================================
-  // ASSIGNMENT 3: Fix any other affected values
-  // ===========================================
+	// ===========================================
+	// ASSIGNMENT 3: Fix any other affected values
+	// ===========================================
 
 
 }
@@ -149,18 +150,20 @@ void PerspectiveCamera::dollyCamera(float dist)
 
 void PerspectiveCamera::truckCamera(float dx, float dy)
 {
-  Vec3f horizontal;
-  Vec3f::Cross3(horizontal, direction, up);
-  horizontal.Normalize();
+	/*
+	Vec3f horizontal;
+	Vec3f::Cross3(horizontal, direction, up);
+	horizontal.Normalize();
+	*/
 
-  Vec3f screenUp;
-  Vec3f::Cross3(screenUp, horizontal, direction);
+	Vec3f screenUp;
+	Vec3f::Cross3(screenUp, mHorizontal, mDirection);
 
-  center += horizontal*dx + screenUp*dy;
+	mCenter += mHorizontal*dx + screenUp*dy;
 
-  // ===========================================
-  // ASSIGNMENT 3: Fix any other affected values
-  // ===========================================
+	// ===========================================
+	// ASSIGNMENT 3: Fix any other affected values
+	// ===========================================
 
 
 }
@@ -171,28 +174,34 @@ void PerspectiveCamera::truckCamera(float dx, float dy)
 
 void PerspectiveCamera::rotateCamera(float rx, float ry)
 {
-  Vec3f horizontal;
-  Vec3f::Cross3(horizontal, direction, up);
-  horizontal.Normalize();
+	/*
+	Vec3f horizontal;
+	Vec3f::Cross3(horizontal, direction, up);
+	horizontal.Normalize();
+	*/
 
-  // Don't let the model flip upside-down (There is a singularity
-  // at the poles when 'up' and 'direction' are aligned)
-  float tiltAngle = acos(up.Dot3(direction));
-  if (tiltAngle-ry > 3.13)
-    ry = tiltAngle - 3.13;
-  else if (tiltAngle-ry < 0.01)
-    ry = tiltAngle - 0.01;
+	// Don't let the model flip upside-down (There is a singularity
+	// at the poles when 'up' and 'direction' are aligned)
+	float tiltAngle = acos(mUp.Dot3(mDirection));
+	if (tiltAngle-ry > 3.13)
+		ry = tiltAngle - 3.13;
+	else if (tiltAngle-ry < 0.01)
+		ry = tiltAngle - 0.01;
 
-  Matrix rotMat = Matrix::MakeAxisRotation(up, rx);
-  rotMat *= Matrix::MakeAxisRotation(horizontal, ry);
+	Matrix rotMat = Matrix::MakeAxisRotation(mUp, rx);
+	rotMat *= Matrix::MakeAxisRotation(mHorizontal, ry);
 
-  rotMat.Transform(center);
-  rotMat.TransformDirection(direction);
-  direction.Normalize();
+	rotMat.Transform(mCenter);
+	rotMat.TransformDirection(mDirection);
+	rotMat.TransformDirection(mUp);
+	rotMat.TransformDirection(mHorizontal);
+	mDirection.Normalize();
+	mUp.Normalize();
+	mHorizontal.Normalize();
 
-  // ===========================================
-  // ASSIGNMENT 3: Fix any other affected values
-  // ===========================================
+	// ===========================================
+	// ASSIGNMENT 3: Fix any other affected values
+	// ===========================================
 
 
 }

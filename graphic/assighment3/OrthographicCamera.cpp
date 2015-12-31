@@ -30,6 +30,7 @@ OrthographicCamera::OrthographicCamera(const Vec3f &center, Vec3f &direction, Ve
     }
 
     Vec3f::Cross3(mHorizontal, mDirection, mUp);
+	mHorizontal.Normalize();
 #ifdef DEBUG
     cout<<"mCenter="<<mCenter<<endl;
     cout<<"mDirection="<<mDirection<<endl;
@@ -67,12 +68,12 @@ float OrthographicCamera::getTMin() const
 
 void OrthographicCamera::glInit(int w, int h)
 {
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  if (w > h)
-    glOrtho(-size/2.0, size/2.0, -size*(float)h/(float)w/2.0, size*(float)h/(float)w/2.0, 0.5, 40.0);
-  else
-    glOrtho(-size*(float)w/(float)h/2.0, size*(float)w/(float)h/2.0, -size/2.0, size/2.0, 0.5, 40.0);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	if (w > h)
+		glOrtho(-mCameraSize/2.0, mCameraSize/2.0, -mCameraSize*(float)h/(float)w/2.0, mCameraSize*(float)h/(float)w/2.0, 0.5, 40.0);
+	else
+		glOrtho(-mCameraSize*(float)w/(float)h/2.0, mCameraSize*(float)w/(float)h/2.0, -mCameraSize/2.0, mCameraSize/2.0, 0.5, 40.0);
 }
 
 // ====================================================================
@@ -81,9 +82,9 @@ void OrthographicCamera::glInit(int w, int h)
 
 void OrthographicCamera::glPlaceCamera(void)
 {
-  gluLookAt(center.x(), center.y(), center.z(),
-            center.x()+direction.x(), center.y()+direction.y(), center.z()+direction.z(),
-            up.x(), up.y(), up.z());
+	gluLookAt(mCenter.x(), mCenter.y(), mCenter.z(),
+			mCenter.x() + mDirection.x(), mCenter.y() + mDirection.y(), mCenter.z() + mDirection.z(),
+			mUp.x(), mUp.y(), mUp.z());
 }
 
 // ====================================================================
@@ -105,11 +106,11 @@ void OrthographicCamera::glPlaceCamera(void)
 
 void OrthographicCamera::dollyCamera(float dist)
 {
-  center += direction*dist;
+	mCenter += mDirection*dist;
 
-  // ===========================================
-  // ASSIGNMENT 3: Fix any other affected values
-  // ===========================================
+	// ===========================================
+	// ASSIGNMENT 3: Fix any other affected values
+	// ===========================================
 
 
 }
@@ -120,18 +121,20 @@ void OrthographicCamera::dollyCamera(float dist)
 
 void OrthographicCamera::truckCamera(float dx, float dy)
 {
-  Vec3f horizontal;
-  Vec3f::Cross3(horizontal, direction, up);
-  horizontal.Normalize();
+	/*
+	Vec3f horizontal;
+	Vec3f::Cross3(horizontal, direction, up);
+	horizontal.Normalize();
+	*/
 
-  Vec3f screenUp;
-  Vec3f::Cross3(screenUp, horizontal, direction);
+	Vec3f screenUp;
+	Vec3f::Cross3(screenUp, mHorizontal, mDirection);
 
-  center += horizontal*dx + screenUp*dy;
+	mCenter += mHorizontal*dx + screenUp*dy;
 
-  // ===========================================
-  // ASSIGNMENT 3: Fix any other affected values
-  // ===========================================
+	// ===========================================
+	// ASSIGNMENT 3: Fix any other affected values
+	// ===========================================
 
 
 }
@@ -142,27 +145,33 @@ void OrthographicCamera::truckCamera(float dx, float dy)
 
 void OrthographicCamera::rotateCamera(float rx, float ry)
 {
-  Vec3f horizontal;
-  Vec3f::Cross3(horizontal, direction, up);
-  horizontal.Normalize();
+	/*
+	Vec3f horizontal;
+	Vec3f::Cross3(horizontal, direction, up);
+	horizontal.Normalize();
+	*/
+	// Don't let the model flip upside-down (There is a singularity
+	// at the poles when 'up' and 'direction' are aligned)
+	float tiltAngle = acos(mUp.Dot3(mDirection));
+	if (tiltAngle-ry > 3.13)
+		ry = tiltAngle - 3.13;
+	else if (tiltAngle-ry < 0.01)
+		ry = tiltAngle - 0.01;
 
-  // Don't let the model flip upside-down (There is a singularity
-  // at the poles when 'up' and 'direction' are aligned)
-  float tiltAngle = acos(up.Dot3(direction));
-  if (tiltAngle-ry > 3.13)
-    ry = tiltAngle - 3.13;
-  else if (tiltAngle-ry < 0.01)
-    ry = tiltAngle - 0.01;
+	Matrix rotMat = Matrix::MakeAxisRotation(mUp, rx);
+	rotMat *= Matrix::MakeAxisRotation(mHorizontal, ry);
 
-  Matrix rotMat = Matrix::MakeAxisRotation(up, rx);
-  rotMat *= Matrix::MakeAxisRotation(horizontal, ry);
+	rotMat.Transform(mCenter);
+	rotMat.TransformDirection(mDirection);
+	rotMat.TransformDirection(mUp);
+	rotMat.TransformDirection(mHorizontal);
+	mDirection.Normalize();
+	mUp.Normalize();
+	mHorizontal.Normalize();
 
-  rotMat.Transform(center);
-  rotMat.TransformDirection(direction);
-  
-  // ===========================================
-  // ASSIGNMENT 3: Fix any other affected values
-  // ===========================================
+	// ===========================================
+	// ASSIGNMENT 3: Fix any other affected values
+	// ===========================================
 
 
 }
