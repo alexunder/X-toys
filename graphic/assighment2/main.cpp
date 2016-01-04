@@ -192,6 +192,7 @@ int main(int argc, char ** argv)
             }
 
             pixelColor += delata;
+            pixelColor.Clamp();
             outImg.SetPixel(i, j, pixelColor);
         }
 	}
