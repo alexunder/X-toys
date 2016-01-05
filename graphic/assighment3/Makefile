@@ -16,7 +16,8 @@ SRCS 	 	= main.cpp \
 		  PerspectiveCamera.cpp \
 		  Group.cpp \
 		  light.cpp \
-		  glCanvas.cpp
+		  PhongMaterial.cpp \
+          glCanvas.cpp
  #         material.cpp \
 		  raytracer.C \
 		  camera.cpp \

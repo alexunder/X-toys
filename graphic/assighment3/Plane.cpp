@@ -5,11 +5,12 @@
 
 #include "Plane.h"
 #include "hit.h"
+#include <GL/gl.h>
 
 Plane::Plane(Vec3f &normal, float d, Material *m)
     : Object3D(m), mNormal(normal), mDistance(d)
 {
-    
+    ComputeGLPoints();
 }
 
 Plane::Plane(Vec3f a, Vec3f b, Vec3f c, Material *m)
@@ -20,6 +21,40 @@ Plane::Plane(Vec3f a, Vec3f b, Vec3f c, Material *m)
 
     Vec3f::Cross3(mNormal, ba, ca);
     mDistance = mNormal.Dot3(a);
+}
+
+void Plane::ComputeGLPoints()
+{
+    mNormal.Normalize();
+    Vec3f v(1.0, 0.0, 0.0);
+
+    if (v == mNormal)
+    {
+        v.Set(0.0, 1.0, 0.0);
+    }
+    
+    Vec3f origin(0.0, 0.0, 0.0);
+    Vec3f b1;
+    Vec3f b2;
+
+    Vec3f::Cross3(b1, v, mNormal);
+    Vec3f::Cross3(b2, mNormal, b1);
+
+    /*
+     *   p0---------------p1
+     *   |                |
+     *   |                |
+     *   |                |
+     *   |                |
+     *   |                |
+     *   |                | 
+     *   p2---------------p3
+     */
+
+    p0 = original - mBigHalfWidth * b1 - mBigHalfWidth * b2;  
+    p1 = original - mBigHalfWidth * b1 + mBigHalfWidth * b2;  
+    p2 = original + mBigHalfWidth * b1 - mBigHalfWidth * b2;  
+    p3 = original + mBigHalfWidth * b1 + mBigHalfWidth * b2;  
 }
 
 bool Plane::intersect(const Ray &r, Hit &h, float tmin)
@@ -39,4 +74,15 @@ bool Plane::intersect(const Ray &r, Hit &h, float tmin)
 
     h.set(t, mMaterial, mNormal, r);
     return true;
+}
+
+void Plane::paint(void)
+{
+    glBegin(GL_QUADS);
+    glNormal3f(mNormal.x(), mNormal.y(), mNormal.z());
+    glVertex3f(p0.x(), p0.y(), p0.z());
+    glVertex3f(p1.x(), p1.y(), p1.z());
+    glVertex3f(p2.x(), p2.y(), p2.z());
+    glVertex3f(p3.x(), p3.y(), p3.z());
+    glEnd();
 }

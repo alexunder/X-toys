@@ -5,11 +5,13 @@
 
 #include "Triangle.h"
 #include "hit.h"
+#include <GL/gl.h>
 
 Triangle::Triangle(Vec3f &a, Vec3f &b, Vec3f &c, Material *m)
     : Object3D(m), mP0(a), mP1(b), mP2(c)
 {
-
+    Vec3f::Cross3(mNormal, (mP1 - mP0), (mP2 - mP0));
+    mNormal.Normalize();
 }
 
 bool Triangle::intersect(const Ray &r, Hit &h, float tmin)
@@ -72,12 +74,19 @@ bool Triangle::intersect(const Ray &r, Hit &h, float tmin)
 
     if (t  >= tmin)
     {
-        Vec3f normal;
-        Vec3f::Cross3(normal, (mP1 - mP0), (mP2 - mP0));
-        normal.Normalize();
-        h.set(t, mMaterial, normal, r);
+        h.set(t, mMaterial, mNormal, r);
         return true;
     }
 
     return false;   
+}
+
+void Triangle::paint(void)
+{
+    glBegin(GL_TRIANGLES);
+    glNormal3f(mNormal.x(), mNormal.y(), mNormal.z());
+    glVertex3f(mP0.x(), mP0.y(), mP0.z());
+    glVertex3f(mP1.x(), mP1.y(), mP1.z());
+    glVertex3f(mP2.x(), mP2.y(), mP2.z());
+    glEnd();
 }

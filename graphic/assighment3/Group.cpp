@@ -65,3 +65,14 @@ void Group::addObject(int index, Object3D *obj)
 {
     mObjectArray.push_back(obj);
 }
+
+void Group::paint(void)
+{
+    vector<Object3D*>::iterator itr_end = mObjectArray.end();
+    vector<Object3D*>::iterator itr;
+
+	for (itr = mObjectArray.begin(); itr != itr_end; ++itr)
+	{
+        ret = (*itr)->pain();
+    }
+}

@@ -7,6 +7,7 @@
 #define __H_OBJECT3D
 
 #include <cstddef>
+#include <GL/gl.h>
 
 class Material;
 class Ray;
@@ -30,6 +31,8 @@ public:
     }
 
     virtual bool intersect(const Ray &r, Hit &h, float tmin) = 0;
+
+    virtual void paint(void) = 0;
 protected:
     Material * mMaterial;
 };

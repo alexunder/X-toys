@@ -19,6 +19,7 @@ public:
 
     virtual Vec3f Shade(const Ray &ray, const Hit &hit, const Vec3f &dirToLight,
             const Vec3f &lightColor) const = 0;
+    virtual void glSetMaterial(void) const = 0;
 protected:
     // REPRESENTATION
     Vec3f diffuseColor;
