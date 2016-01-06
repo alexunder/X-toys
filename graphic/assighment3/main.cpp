@@ -14,20 +14,20 @@
 #include "material.h"
 #include "light.h" 
 
-int main(int argc, char ** argv)
+char * input_file = NULL;
+int    width = 100;
+int    height = 100;
+char * output_file = NULL;
+float  depth_min = 0;
+float  depth_max = 1;
+char * depth_file = NULL;
+char * normal_file = NULL;
+bool needShadeBack = false;
+int theta_steps = 10;
+int phi_steps = 5;
+
+void parseArgs(int argc, char **argv);
 {
-    char * input_file = NULL;
-    int    width = 100;
-    int    height = 100;
-    char * output_file = NULL;
-    float  depth_min = 0;
-    float  depth_max = 1;
-    char * depth_file = NULL;
-    char * normal_file = NULL;
-    bool needShadeBack = false;
-
-    // raytracer -input scene1_1.txt -size 200 200 -output output1_1.tga -depth 9 10 depth1_1.tga
-
     for (int i = 1; i < argc; i++) 
     {
         if (!strcmp(argv[i],"-input")) 
@@ -73,14 +73,27 @@ int main(int argc, char ** argv)
         {
             needShadeBack = true;
         }
+        else if (!strcmp(argv[i],"-tessellation"))
+        {
+            i++;
+            assert (i < argc);
+            theta_steps = atof(argv[i]);
+            i++;
+            assert (i < argc);
+            phi_steps = atof(argv[i]);
+        }
         else 
         {
             printf ("whoops error with command line argument %d: '%s'\n",i,argv[i]);
             assert(0);
         }
     }
+}
 
+int main(int argc, char ** argv)
+{
 
+    parseArgs(argc, argv);
     //Now we start to parse the scene file
 	SceneParser parser(input_file);
 

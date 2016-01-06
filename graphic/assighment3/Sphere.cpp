@@ -6,7 +6,10 @@
 #include "Sphere.h"
 #include "hit.h"
 
+#include <GL/gl.h>
+
 #define T_MAX 100000.0f
+#define PI    3.1415926
 
 Sphere::Sphere(const Vec3f &point, float radius, Material *m)
     : Object3D(m), mCenterPoint(point), mRadius(radius)
@@ -55,4 +58,67 @@ bool Sphere::intersect(const Ray &r, Hit &h, float tmin)
     }
 
     return false;
+}
+
+void Sphere::paint(void)
+{
+    float thetaRange = 2*PI;
+    float phiRange   = PI;
+    float thetaStart = 0.0;
+    float phiStart = -PI/2.0;
+    float thetaDelta = thetaRange / mThetaSteps;
+    float phiDelta = phiRange / mPhiSteps;
+
+    int i;
+    int j;
+    glBegin(GL_QUADS);
+    for (i = 0; i < mPhiSteps; i++)
+    for (j = 0; j < mThetaSteps; j++)
+    {
+        // compute appropriate coordinates & normals
+        float curPhi = i * phiDelta;
+        float curTheta = j * thetaDelta;
+        float nextPhi = (i + 1) * phiDelta;
+        float nextTheta = (j + 1) * thetaDelta;
+
+        Vec3f p0(mRadius * sin(curTheta) * cos(curPhi),
+                 mRadius * sin(curTheta) * sin(curPhi),
+                 mRadius * cos(curTheta));
+
+        Vec3d n0 = p0 - mCenterPoint;
+        n0.Normalize();
+
+        Vec3f p1(mRadius * sin(curTheta) * cos(nextPhi),
+                 mRadius * sin(curTheta) * sin(nextPhi),
+                 mRadius * cos(curTheta));
+
+        Vec3d n1 = p1 - mCenterPoint;
+        n1.Normalize();
+
+        Vec3f p2(mRadius * sin(nextTheta) * cos(curPhi),
+                 mRadius * sin(nextTheta) * sin(curPhi),
+                 mRadius * cos(nextTheta));
+
+        Vec3d n2 = p2 - mCenterPoint;
+        n2.Normalize();
+
+        Vec3f p3(mRadius * sin(nextTheta) * cos(nextPhi),
+                 mRadius * sin(nextTheta) * sin(nextPhi),
+                 mRadius * cos(nextTheta));
+
+        Vec3d n3 = p3 - mCenterPoint;
+        n3.Normalize();
+
+        glNormal3f(n0.x(), n0.y(), n0.z());
+        glNormal3f(n1.x(), n1.y(), n1.z());
+        glNormal3f(n2.x(), n2.y(), n2.z());
+        glNormal3f(n3.x(), n3.y(), n3.z());
+
+        // send gl vertex commands
+        glVertex3f(p0.x(), p0.y(), p0.z());
+        glVertex3f(p1.x(), p1.y(), p1.z());
+        glVertex3f(p2.x(), p2.y(), p2.z());
+        glVertex3f(p3.x(), p3.y(), p3.z());
+    }
+    glEnd();
 }
