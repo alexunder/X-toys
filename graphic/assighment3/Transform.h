@@ -14,6 +14,7 @@ class Transform : public Object3D
 public:
 	Transform(Matrix &m, Object3D *o);
     bool intersect(const Ray &r, Hit &h, float tmin);
+	void paint(void);
 private:
 	Object3D * mObj;
 	Matrix     mMat;

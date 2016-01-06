@@ -13,6 +13,7 @@
 #include "hit.h"
 #include "material.h"
 #include "light.h" 
+#include "glCanvas.h"
 
 char * input_file = NULL;
 int    width = 100;
@@ -25,6 +26,7 @@ char * normal_file = NULL;
 bool needShadeBack = false;
 int theta_steps = 10;
 int phi_steps = 5;
+bool guiMode = false;
 
 void parseArgs(int argc, char **argv);
 {
@@ -82,6 +84,10 @@ void parseArgs(int argc, char **argv);
             assert (i < argc);
             phi_steps = atof(argv[i]);
         }
+        else if (!strcmp(argv[i], "-gui"))
+        {
+            guiMode = true;
+        }
         else 
         {
             printf ("whoops error with command line argument %d: '%s'\n",i,argv[i]);
@@ -96,6 +102,7 @@ int main(int argc, char ** argv)
     parseArgs(argc, argv);
     //Now we start to parse the scene file
 	SceneParser parser(input_file);
+
 
 	Camera * pCamera = parser.getCamera();
 
