@@ -4,7 +4,9 @@
  */
 
 #include "PerspectiveCamera.h"
-
+#include "matrix.h"
+#include <GL/gl.h>
+#include <GL/glu.h>
 #include <math.h>
 
 #define PI 3.14159265
@@ -102,7 +104,7 @@ void PerspectiveCamera::glInit(int w, int h)
 {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(angle*180.0/3.14159, (float)w/float(h), 0.5, 40.0);
+    gluPerspective(mAngle*180.0/3.14159, (float)w/float(h), 0.5, 40.0);
 }
 
 // ====================================================================
@@ -111,7 +113,7 @@ void PerspectiveCamera::glInit(int w, int h)
 
 void PerspectiveCamera::glPlaceCamera(void)
 {
-	gluLookAt(mCenter.x(), mCcenter.y(), mCenter.z(),
+	gluLookAt(mCenter.x(), mCenter.y(), mCenter.z(),
 			mCenter.x() + mDirection.x(), mCenter.y() + mDirection.y(), mCenter.z() + mDirection.z(),
 			mUp.x(), mUp.y(), mUp.z());
 }

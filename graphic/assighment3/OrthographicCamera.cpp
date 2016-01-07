@@ -4,6 +4,9 @@
  */
 
 #include "OrthographicCamera.h"
+#include "matrix.h"
+#include <GL/gl.h>
+#include <GL/glu.h>
 
 #define T_MIN -100000.0
 

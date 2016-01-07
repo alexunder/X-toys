@@ -6,6 +6,7 @@
 #include "PhongMaterial.h"
 #include "glCanvas.h"
 #include <math.h>
+#include <GL/gl.h>
 
 #ifdef SPECULAR_FIX
 // OPTIONAL:  global variable allows (hacky) communication
@@ -17,21 +18,21 @@ PhongMaterial::PhongMaterial(const Vec3f &diffuseColor, const Vec3f &specularCol
     : Material(diffuseColor), mHighLightColor(specularColor), mPhongComponent(exponent)
 {
 #ifdef DEBUG
-    cout << mDiffuseColor << endl;
+    cout << diffuseColor << endl;
     cout << mHighLightColor << endl;
     cout << mPhongComponent << endl;
 #endif
 }
     
-Vec3f PhongMaterial::Shade(const Ray &ray, const Hit &hit, const Vec3f &dirToLight, const Vec3f &lightColor)
+Vec3f PhongMaterial::Shade(const Ray &ray, const Hit &hit, const Vec3f &dirToLight, const Vec3f &lightColor) const
 {
     Vec3f eyeDir = ray.getDirection();
-    eyeDir.Negative();
+    eyeDir.Negate();
 
     Vec3f eyePlusLight = eyeDir + dirToLight;
-    Vec3f h = eyePlusLight.Normalize();
-
-    float hn = h.Dot3(hit.getNormal());
+    eyePlusLight.Normalize(); 
+    
+    float hn = eyePlusLight.Dot3(hit.getNormal());
     hn = pow(hn, mPhongComponent);
 
     Vec3f color = lightColor * mHighLightColor;
@@ -41,23 +42,23 @@ Vec3f PhongMaterial::Shade(const Ray &ray, const Hit &hit, const Vec3f &dirToLig
 }
 
 
-void PhongMaterial::glSetMaterial(void)
+void PhongMaterial::glSetMaterial(void) const
 {
     GLfloat one[4] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat zero[4] = { 0.0, 0.0, 0.0, 0.0 };
     GLfloat specular[4] = {
-        getSpecularColor().r(),
-        getSpecularColor().g(),
-        getSpecularColor().b(),
+        mHighLightColor.r(),
+        mHighLightColor.g(),
+        mHighLightColor.b(),
         1.0};
     GLfloat diffuse[4] = {
-        getDiffuseColor().r(),
-        getDiffuseColor().g(),
-        getDiffuseColor().b(),
+        diffuseColor.r(),
+        diffuseColor.g(),
+        diffuseColor.b(),
         1.0};
 
     // NOTE: GL uses the Blinn Torrance version of Phong...
-    float glexponent = exponent;
+    float glexponent = mPhongComponent;
     if (glexponent < 0) glexponent = 0;
     if (glexponent > 128) glexponent = 128;
 

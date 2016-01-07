@@ -2,7 +2,8 @@
 #define _MATERIAL_H_
 
 #include "vectors.h"
-
+#include "ray.h"
+#include "hit.h"
 // ====================================================================
 // ====================================================================
 
@@ -12,6 +13,10 @@ class Material {
 public:
     // CONSTRUCTORS & DESTRUCTOR
     Material(const Vec3f &d_color) { diffuseColor = d_color; }
+    Material()
+    {
+        diffuseColor.Set(0.0, 0.0, 0.0);
+    }
     virtual ~Material() {}
 
     // ACCESSORS

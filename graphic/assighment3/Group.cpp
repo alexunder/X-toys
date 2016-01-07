@@ -73,6 +73,6 @@ void Group::paint(void)
 
 	for (itr = mObjectArray.begin(); itr != itr_end; ++itr)
 	{
-        ret = (*itr)->pain();
+        (*itr)->paint();
     }
 }

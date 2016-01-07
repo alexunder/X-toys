@@ -6,6 +6,7 @@
 #include "Sphere.h"
 #include "hit.h"
 
+#include <math.h>
 #include <GL/gl.h>
 
 #define T_MAX 100000.0f
@@ -85,28 +86,28 @@ void Sphere::paint(void)
                  mRadius * sin(curTheta) * sin(curPhi),
                  mRadius * cos(curTheta));
 
-        Vec3d n0 = p0 - mCenterPoint;
+        Vec3f n0 = p0 - mCenterPoint;
         n0.Normalize();
 
         Vec3f p1(mRadius * sin(curTheta) * cos(nextPhi),
                  mRadius * sin(curTheta) * sin(nextPhi),
                  mRadius * cos(curTheta));
 
-        Vec3d n1 = p1 - mCenterPoint;
+        Vec3f n1 = p1 - mCenterPoint;
         n1.Normalize();
 
         Vec3f p2(mRadius * sin(nextTheta) * cos(curPhi),
                  mRadius * sin(nextTheta) * sin(curPhi),
                  mRadius * cos(nextTheta));
 
-        Vec3d n2 = p2 - mCenterPoint;
+        Vec3f n2 = p2 - mCenterPoint;
         n2.Normalize();
 
         Vec3f p3(mRadius * sin(nextTheta) * cos(nextPhi),
                  mRadius * sin(nextTheta) * sin(nextPhi),
                  mRadius * cos(nextTheta));
 
-        Vec3d n3 = p3 - mCenterPoint;
+        Vec3f n3 = p3 - mCenterPoint;
         n3.Normalize();
 
         glNormal3f(n0.x(), n0.y(), n0.z());

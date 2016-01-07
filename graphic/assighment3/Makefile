@@ -26,12 +26,13 @@ SRCS 	 	= main.cpp \
 # NOTE:  On athena, the Mesa GL libraries are currently located in the
 #        mesa_v501 locker.  Type "add mesa_v501" to access these files.
 
-LIBS            = -lm -lGL -lGLU -lglut -L/usr/X11R6/lib -lXmu -lXi \
-		  -Xlinker -rpath -Xlinker /mit/mesa_v501/lib/ -L/mit/mesa_v501/lib/
-INCLUDE 	= -I/mit/mesa_v501/Mesa-5.0.1/include/
+LIBS            = -lm -lGL -lGLU -lglut -L/usr/lib/x86_64-linux-gnu -lXmu -lXi
+		 # -Xlinker -rpath -Xlinker /mit/mesa_v501/lib/ -L/mit/mesa_v501/lib/
+INCLUDE 	= -I/usr/include/
 CC		= g++
 EXE	  	= raytracer
 OBJS =  $(SRCS:.C=.o)
+CFLAGS = -std=c++0x -DDEBUG
 
 # ===============================================================
 # targets
@@ -50,7 +51,7 @@ clean:
 # compilation rules
 
 $(EXE): $(OBJS)
-	$(CC) $(INCLUDE) -o $@ $(OBJS) $(LIBS)
+	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $(OBJS) $(LIBS)
 
 .C.o:
 	$(CC) $(INCLUDE) $< -c -o $@

@@ -14,9 +14,11 @@ class Plane : public Object3D
 {
 public:
     Plane(Vec3f &normal, float d, Material *m);
-    Plane(Vec3f a, Vec3f b, Vec3f c, Material *m00);
+    Plane(Vec3f a, Vec3f b, Vec3f c, Material *m);
     bool intersect(const Ray &r, Hit &h, float tmin);
     void paint(void);
+private:
+    void ComputeGLPoints();
 private:
     Vec3f mNormal;
     float mDistance;

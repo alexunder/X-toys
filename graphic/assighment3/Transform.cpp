@@ -39,7 +39,7 @@ bool Transform::intersect(const Ray &r, Hit &h, float tmin)
 void Transform::paint(void)
 {
 	glPushMatrix();
-	GLfloat *glMatrix = matrix.glGet();
+	GLfloat *glMatrix = mMat.glGet();
 	glMultMatrixf(glMatrix);
 	delete[] glMatrix;
 

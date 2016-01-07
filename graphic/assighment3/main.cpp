@@ -28,7 +28,7 @@ int theta_steps = 10;
 int phi_steps = 5;
 bool guiMode = false;
 
-void parseArgs(int argc, char **argv);
+void parseArgs(int argc, char **argv)
 {
     for (int i = 1; i < argc; i++) 
     {
@@ -196,7 +196,8 @@ int main(int argc, char ** argv)
 
                 Vec3f lightDir;
                 Vec3f lightColor;
-                plight->getIllumination(point, lightDir, lightColor);
+                float distance;
+                plight->getIllumination(point, lightDir, lightColor, distance);
                 float d = lightDir.Dot3(normal);
 
                 if (d < 0)
@@ -298,6 +299,13 @@ int main(int argc, char ** argv)
         }
 
         normalImg.SaveTGA(normal_file);
+    }
+
+    //OpenGL ui
+    if (guiMode)
+    {
+        GLCanvas canvas;
+        canvas.initialize(&parser, NULL);
     }
 
     return 0;

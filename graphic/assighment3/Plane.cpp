@@ -51,10 +51,10 @@ void Plane::ComputeGLPoints()
      *   p2---------------p3
      */
 
-    p0 = original - mBigHalfWidth * b1 - mBigHalfWidth * b2;  
-    p1 = original - mBigHalfWidth * b1 + mBigHalfWidth * b2;  
-    p2 = original + mBigHalfWidth * b1 - mBigHalfWidth * b2;  
-    p3 = original + mBigHalfWidth * b1 + mBigHalfWidth * b2;  
+    p0 = origin - mBigHalfWidth * b1 - mBigHalfWidth * b2;  
+    p1 = origin - mBigHalfWidth * b1 + mBigHalfWidth * b2;  
+    p2 = origin + mBigHalfWidth * b1 - mBigHalfWidth * b2;  
+    p3 = origin + mBigHalfWidth * b1 + mBigHalfWidth * b2;  
 }
 
 bool Plane::intersect(const Ray &r, Hit &h, float tmin)
