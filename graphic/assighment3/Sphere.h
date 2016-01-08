@@ -16,16 +16,12 @@ public:
     Sphere(const Vec3f &point, float radius, Material *m);
     bool intersect(const Ray &r, Hit &h, float tmin);
     void paint(void);
-    void setTesselationSize(int theta, int phi)
-    {
-        mThetaSteps = theta;
-        mPhiSteps = phi;
-    }
+    static void setTesselationSize(int theta, int phi);
 private:
     float mRadius;
     Vec3f mCenterPoint;
-    int mThetaSteps;
-    int mPhiSteps;
+    static int mThetaSteps;
+    static int mPhiSteps;
  };
 
 #endif

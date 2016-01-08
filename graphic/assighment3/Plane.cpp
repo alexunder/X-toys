@@ -32,8 +32,12 @@ void Plane::ComputeGLPoints()
     {
         v.Set(0.0, 1.0, 0.0);
     }
-    
-    Vec3f origin(0.0, 0.0, 0.0);
+   
+    //Firstly, compute the projected point on the plane from the origin point.
+    // (o + t.Normal)*Normal = d, due to the Plane equation.
+    Vec3f realOrigin(0.0, 0.0, 0.0);
+    Vec3f origin = realOrigin + mDistance*mNormal;
+
     Vec3f b1;
     Vec3f b2;
 
@@ -82,7 +86,7 @@ void Plane::paint(void)
     glNormal3f(mNormal.x(), mNormal.y(), mNormal.z());
     glVertex3f(p0.x(), p0.y(), p0.z());
     glVertex3f(p1.x(), p1.y(), p1.z());
-    glVertex3f(p2.x(), p2.y(), p2.z());
     glVertex3f(p3.x(), p3.y(), p3.z());
+    glVertex3f(p2.x(), p2.y(), p2.z());
     glEnd();
 }

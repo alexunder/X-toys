@@ -4,6 +4,7 @@
  */
 #include<stdio.h>
 #include<string.h>
+#include<GL/glut.h>
 
 #include "scene_parser.h"
 #include "OrthographicCamera.h" 
@@ -14,6 +15,7 @@
 #include "material.h"
 #include "light.h" 
 #include "glCanvas.h"
+#include "Sphere.h"
 
 char * input_file = NULL;
 int    width = 100;
@@ -201,7 +203,7 @@ int main(int argc, char ** argv)
                 float d = lightDir.Dot3(normal);
 
                 if (d < 0)
-                    continue;
+                    d = 0.0;;
 
                 Vec3f temp(lightColor[0] * diffuseColor[0],
                            lightColor[1] * diffuseColor[1],
@@ -210,6 +212,7 @@ int main(int argc, char ** argv)
                 temp = d * temp;
 
                 delata += temp;
+                delata += pM->Shade(r, h, lightDir, lightColor);
             }
 
             pixelColor += delata;
@@ -304,6 +307,8 @@ int main(int argc, char ** argv)
     //OpenGL ui
     if (guiMode)
     {
+        Sphere::setTesselationSize(theta_steps, phi_steps);
+        glutInit(&argc, argv);
         GLCanvas canvas;
         canvas.initialize(&parser, NULL);
     }
