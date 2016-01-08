@@ -158,11 +158,7 @@ int main(int argc, char ** argv)
 
             Vec3f diffuseColor = pM->getDiffuseColor();
 
-            Vec3f pixelColor(diffuseColor[0] * ambientLight[0],
-                             diffuseColor[1] * ambientLight[1],
-                             diffuseColor[2] * ambientLight[2] );
-
-
+            Vec3f pixelColor = diffuseColor * ambientLight;
 
             Vec3f delata(0.0, 0.0, 0.0);
 
@@ -178,19 +174,23 @@ int main(int argc, char ** argv)
                 Vec3f lightColor;
                 plight->getIllumination(point, lightDir, lightColor);
                 float d = lightDir.Dot3(normal);
-
+#ifdef DEBUG
+                printf("d=%f\n", d);
+#endif
                 if (d < 0)
-                    continue;
+                {
+                    d = 0.0;
+                }
 
-                Vec3f temp(lightColor[0] * diffuseColor[0],
-                           lightColor[1] * diffuseColor[1],
-                           lightColor[2] * diffuseColor[2]);
-
+                Vec3f temp = lightColor * diffuseColor;
                 temp = d * temp;
 
                 delata += temp;
             }
 
+#ifdef DEBUG
+            cout << "diffuse collor=" << delata << endl;
+#endif
             pixelColor += delata;
             pixelColor.Clamp();
             outImg.SetPixel(i, j, pixelColor);
