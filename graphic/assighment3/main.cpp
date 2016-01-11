@@ -29,6 +29,7 @@ bool needShadeBack = false;
 int theta_steps = 10;
 int phi_steps = 5;
 bool guiMode = false;
+Group * objGroups = NULL;
 
 void parseArgs(int argc, char **argv)
 {
@@ -98,6 +99,11 @@ void parseArgs(int argc, char **argv)
     }
 }
 
+void RenderScene()
+{
+
+}
+
 int main(int argc, char ** argv)
 {
 
@@ -141,7 +147,7 @@ int main(int argc, char ** argv)
     Vec3f backColor = parser.getBackgroundColor();
 	Vec3f ambientLight = parser.getAmbientLight();
 
-    Group * objGroups = parser.getGroup();
+    objGroups = parser.getGroup();
 
     int numberLights = parser.getNumLights();
 

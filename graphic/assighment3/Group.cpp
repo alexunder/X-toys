@@ -5,6 +5,7 @@
 
 #include "Group.h"
 #include "hit.h"
+#include "material.h"
 
 Group::Group(int numObj)
     : mNumberObj(numObj)
@@ -73,6 +74,17 @@ void Group::paint(void)
 
 	for (itr = mObjectArray.begin(); itr != itr_end; ++itr)
 	{
+        Material * m = (*itr)->getMaterial();
+
+        if (m)
+        {
+            m->glSetMaterial();
+        }
+        else
+        {
+            printf("The material is null.\n");
+        }
+
         (*itr)->paint();
     }
 }
