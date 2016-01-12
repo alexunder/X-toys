@@ -19,7 +19,6 @@ Sphere::Sphere(const Vec3f &point, float radius, Material *m)
     : Object3D(m), mCenterPoint(point), mRadius(radius)
 {
 #ifdef DEBUG
-    //cout << "temp="  << temp<<endl;
     printf("Sphere, mCenterPoint = (x=%f,y=%f,z=%f)\n", mCenterPoint[0], mCenterPoint[1], mCenterPoint[2]);
     printf("radius=%f\n", mRadius);
 #endif
@@ -73,6 +72,8 @@ void Sphere::paint(void)
     float thetaDelta = thetaRange / mThetaSteps;
     float phiDelta = phiRange / mPhiSteps;
 
+    mMaterial->glSetMaterial();
+
     int i;
     int j;
     glBegin(GL_QUADS);
@@ -89,6 +90,7 @@ void Sphere::paint(void)
                  mRadius * sin(curTheta) * sin(curPhi),
                  mRadius * cos(curTheta));
 
+        p0 += mCenterPoint;
         Vec3f n0 = p0 - mCenterPoint;
         n0.Normalize();
 
@@ -96,6 +98,7 @@ void Sphere::paint(void)
                  mRadius * sin(curTheta) * sin(nextPhi),
                  mRadius * cos(curTheta));
 
+        p1 += mCenterPoint;
         Vec3f n1 = p1 - mCenterPoint;
         n1.Normalize();
 
@@ -103,6 +106,7 @@ void Sphere::paint(void)
                  mRadius * sin(nextTheta) * sin(curPhi),
                  mRadius * cos(nextTheta));
 
+        p2 += mCenterPoint;
         Vec3f n2 = p2 - mCenterPoint;
         n2.Normalize();
 
@@ -110,12 +114,15 @@ void Sphere::paint(void)
                  mRadius * sin(nextTheta) * sin(nextPhi),
                  mRadius * cos(nextTheta));
 
+        p3 += mCenterPoint;
         Vec3f n3 = p3 - mCenterPoint;
         n3.Normalize();
 
+        //Actually, what I have done is just the Gourand shading, four normals for
+        //the polygon
         glNormal3f(n0.x(), n0.y(), n0.z());
         glVertex3f(p0.x(), p0.y(), p0.z());
-        
+
         glNormal3f(n1.x(), n1.y(), n1.z());
         glVertex3f(p1.x(), p1.y(), p1.z());
         
@@ -124,7 +131,6 @@ void Sphere::paint(void)
         
         glNormal3f(n2.x(), n2.y(), n2.z());
         glVertex3f(p2.x(), p2.y(), p2.z());
-        // send gl vertex commands
     }
     glEnd();
 }

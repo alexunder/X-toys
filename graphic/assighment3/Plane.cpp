@@ -82,6 +82,7 @@ bool Plane::intersect(const Ray &r, Hit &h, float tmin)
 
 void Plane::paint(void)
 {
+    mMaterial->glSetMaterial();
     glBegin(GL_QUADS);
     glNormal3f(mNormal.x(), mNormal.y(), mNormal.z());
     glVertex3f(p0.x(), p0.y(), p0.z());

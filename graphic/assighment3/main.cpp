@@ -29,7 +29,8 @@ bool needShadeBack = false;
 int theta_steps = 10;
 int phi_steps = 5;
 bool guiMode = false;
-Group * objGroups = NULL;
+SceneParser * parser = NULL;
+//Camera * pCamera = NULL;
 
 void parseArgs(int argc, char **argv)
 {
@@ -102,22 +103,13 @@ void parseArgs(int argc, char **argv)
 void RenderScene()
 {
 
-}
 
-int main(int argc, char ** argv)
-{
-
-    parseArgs(argc, argv);
-    //Now we start to parse the scene file
-	SceneParser parser(input_file);
-
-
-	Camera * pCamera = parser.getCamera();
+	Camera * pCamera = parser->getCamera();
 
     if (pCamera == NULL)
     {
         fprintf(stderr, "The camera is not defined in config file, so quit.");
-        return 2;
+        return;
     }
     
     if (pCamera->getCameraType() == CameraType::Orthographic)
@@ -144,12 +136,12 @@ int main(int argc, char ** argv)
         ((PerspectiveCamera*)pCamera)->setRatio(ratio);
     }
 
-    Vec3f backColor = parser.getBackgroundColor();
-	Vec3f ambientLight = parser.getAmbientLight();
+    Vec3f backColor = parser->getBackgroundColor();
+	Vec3f ambientLight = parser->getAmbientLight();
 
-    objGroups = parser.getGroup();
+    Group * objGroups = parser->getGroup();
 
-    int numberLights = parser.getNumLights();
+    int numberLights = parser->getNumLights();
 
     Image outImg(width, height);
 	outImg.SetAllPixels(backColor);
@@ -197,7 +189,7 @@ int main(int argc, char ** argv)
             int k;
             for (k = 0; k < numberLights; k++)
             {
-                Light * plight = parser.getLight(k);
+                Light * plight = parser->getLight(k);
 
                 if (plight == NULL)
                     continue;
@@ -209,7 +201,7 @@ int main(int argc, char ** argv)
                 float d = lightDir.Dot3(normal);
 
                 if (d < 0)
-                    d = 0.0;;
+                    d = 0.0;
 
                 Vec3f temp(lightColor[0] * diffuseColor[0],
                            lightColor[1] * diffuseColor[1],
@@ -222,14 +214,16 @@ int main(int argc, char ** argv)
             }
 
             pixelColor += delata;
-            pixelColor.Clamp(); 
+            pixelColor.Clamp();
             outImg.SetPixel(i, j, pixelColor);
         }
 	}
 
 	outImg.SaveTGA(output_file);
+}
 
-	//Now let us render the gray image.
+void RenderDepth()
+{
 
     if (depth_file == NULL)
     {
@@ -237,8 +231,22 @@ int main(int argc, char ** argv)
     }
     else
     {
+        Vec3f backColor = parser->getBackgroundColor();
         Image depthtImg(width, height);
         depthtImg.SetAllPixels(backColor);
+
+        Camera * pCamera = parser->getCamera();
+        Group * objGroups = parser->getGroup();
+
+        if (pCamera == NULL)
+        {
+            fprintf(stderr, "The camera is not defined in config file, so quit.");
+            return;
+        }
+
+        int i;
+        int j;
+        float tmin = pCamera->getTMin();
 
         for (j = 0; j < height; j++)
             for (i = 0; i < width; i++)
@@ -274,8 +282,10 @@ int main(int argc, char ** argv)
 
         depthtImg.SaveTGA(depth_file);
     }
-    
-    //Now let us render the normal visualize image.
+}
+
+void RenderNormal()
+{
     if (normal_file == NULL )
     {
         fprintf(stderr, "The normal file is null, no need to render.\n");
@@ -284,31 +294,59 @@ int main(int argc, char ** argv)
     {
         Image normalImg(width, height);
 
-        for (j = 0; j < height; j++)
-        for (i = 0; i < width; i++)
+        Camera * pCamera = parser->getCamera();
+        Group * objGroups = parser->getGroup();
+
+        int i;
+        int j;
+        float tmin = pCamera->getTMin();
+
+        if (pCamera == NULL)
         {
-            float u = (i + 0.5) / width;
-            float v = (j + 0.5) / height;
-            Vec2f p(u, v);
-            Ray	r = pCamera->generateRay(p);
-
-            bool ishit = false;
-            Hit h;
-            ishit = objGroups->intersect(r, h, tmin);
-
-            if (ishit)
-            {
-                Vec3f n = h.getNormal();
-
-                if (n.Length() != 1)
-                    n.Normalize();
-
-                normalImg.SetPixel(i, j, n);
-            }
+            fprintf(stderr, "The camera is not defined in config file, so quit.");
+            return;
         }
+
+        for (j = 0; j < height; j++)
+            for (i = 0; i < width; i++)
+            {
+                float u = (i + 0.5) / width;
+                float v = (j + 0.5) / height;
+                Vec2f p(u, v);
+                Ray	r = pCamera->generateRay(p);
+
+                bool ishit = false;
+                Hit h;
+                ishit = objGroups->intersect(r, h, tmin);
+
+                if (ishit)
+                {
+                    Vec3f n = h.getNormal();
+
+                    if (n.Length() != 1)
+                        n.Normalize();
+
+                    normalImg.SetPixel(i, j, n);
+                }
+            }
 
         normalImg.SaveTGA(normal_file);
     }
+}
+
+void RenderAll()
+{
+    RenderScene();
+    RenderDepth();
+    RenderNormal();
+}
+
+int main(int argc, char ** argv)
+{
+
+    parseArgs(argc, argv);
+    //Now we start to parse the scene file
+    parser = new SceneParser(input_file);
 
     //OpenGL ui
     if (guiMode)
@@ -316,8 +354,13 @@ int main(int argc, char ** argv)
         Sphere::setTesselationSize(theta_steps, phi_steps);
         glutInit(&argc, argv);
         GLCanvas canvas;
-        canvas.initialize(&parser, NULL);
+        canvas.initialize(parser, RenderAll);
+    }
+    else
+    {
+        RenderAll();
     }
 
+    delete parser;
     return 0;
 }

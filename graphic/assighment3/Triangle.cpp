@@ -83,6 +83,7 @@ bool Triangle::intersect(const Ray &r, Hit &h, float tmin)
 
 void Triangle::paint(void)
 {
+    mMaterial->glSetMaterial();
     glBegin(GL_TRIANGLES);
     glNormal3f(mNormal.x(), mNormal.y(), mNormal.z());
     glVertex3f(mP0.x(), mP0.y(), mP0.z());
