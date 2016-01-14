@@ -17,6 +17,8 @@ SRCS 	 	= main.cpp \
 		  Group.cpp \
 		  light.cpp \
 		  PhongMaterial.cpp \
+          rayTree.cpp \
+		  Raytracer.C \
           glCanvas.cpp
  #         material.cpp \
 		  raytracer.C \

@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "scene_parser.h"
-#include "matrix.h"
+
 #include "Camera.h" 
 #include "OrthographicCamera.h"
 #include "PerspectiveCamera.h"
+
+#include "scene_parser.h"
+#include "matrix.h"
 #include "light.h"
-#include "material.h"
 #include "PhongMaterial.h" 
 #include "Object3D.h"
 #include "Group.h" 
@@ -169,6 +170,8 @@ void SceneParser::parseLights() {
     getToken(token); 
     if (!strcmp(token, "DirectionalLight")) {
       lights[count] = parseDirectionalLight();
+    } else if (!strcmp(token, "PointLight")) {
+      lights[count] = parsePointLight();
     } else {
       printf ("Unknown token in parseLight: '%s'\n", token); 
       exit(0);  
@@ -188,6 +191,26 @@ Light* SceneParser::parseDirectionalLight() {
   Vec3f color = readVec3f();
   getToken(token); assert (!strcmp(token, "}"));
   return new DirectionalLight(direction,color);
+}
+
+
+Light* SceneParser::parsePointLight() {
+  char token[MAX_PARSER_TOKEN_LENGTH];
+  getToken(token); assert (!strcmp(token, "{"));
+  getToken(token); assert (!strcmp(token, "position"));
+  Vec3f position = readVec3f();
+  getToken(token); assert (!strcmp(token, "color"));
+  Vec3f color = readVec3f();
+  float att[3] = { 1, 0, 0 };
+  getToken(token); 
+  if (!strcmp(token,"attenuation")) {
+    att[0] = readFloat();
+    att[1] = readFloat();
+    att[2] = readFloat();
+    getToken(token); 
+  } 
+  assert (!strcmp(token, "}"));
+  return new PointLight(position,color,att[0], att[1], att[2]);
 }
 
 // ====================================================================
@@ -222,6 +245,9 @@ Material* SceneParser::parsePhongMaterial() {
   Vec3f diffuseColor(1,1,1);
   Vec3f specularColor(0,0,0);
   float exponent = 1;
+  Vec3f reflectiveColor(0,0,0);
+  Vec3f transparentColor(0,0,0);
+  float indexOfRefraction = 1;
   getToken(token); assert (!strcmp(token, "{"));
   while (1) {
     getToken(token); 
@@ -231,14 +257,21 @@ Material* SceneParser::parsePhongMaterial() {
       specularColor = readVec3f();
     } else if  (!strcmp(token, "exponent")) {
       exponent = readFloat();
+    } else if (!strcmp(token, "reflectiveColor")) {
+      reflectiveColor = readVec3f();
+    } else if (!strcmp(token, "transparentColor")) {
+      transparentColor = readVec3f();
+    } else if (!strcmp(token, "indexOfRefraction")) {
+      indexOfRefraction = readFloat();
     } else {
       assert (!strcmp(token, "}"));
       break;
     }
   }
-  //Material *answer = new PhongMaterial(diffuseColor,specularColor,exponent);
-  //return answer;
-  return new PhongMaterial(diffuseColor,specularColor,exponent);
+  Material *answer = new PhongMaterial(diffuseColor,specularColor,exponent,
+				       reflectiveColor,transparentColor,
+				       indexOfRefraction);
+  return answer;
 }
 
 // ====================================================================

@@ -30,7 +30,9 @@ int theta_steps = 10;
 int phi_steps = 5;
 bool guiMode = false;
 SceneParser * parser = NULL;
-//Camera * pCamera = NULL;
+bool renderShadow = false;
+float weight = 0.0;
+int bounces = 0;
 
 void parseArgs(int argc, char **argv)
 {
@@ -92,6 +94,22 @@ void parseArgs(int argc, char **argv)
         {
             guiMode = true;
         }
+        else if (!strcmp(argv[i], "-shadows"))
+        {
+            renderShadow = true;
+        }
+        else if (!strcmp(argv[i], "-weight"))
+        {
+            i++;
+            assert (i < argc);
+            weight = atof(argv[i]);
+        }
+        else if (!strcmp(argv[i], "-bounces"))
+        {
+            i++;
+            assert (i < argc);
+            bounces = atoi(argv[i]);
+        }
         else 
         {
             printf ("whoops error with command line argument %d: '%s'\n",i,argv[i]);
@@ -102,8 +120,6 @@ void parseArgs(int argc, char **argv)
 
 void RenderScene()
 {
-
-
 	Camera * pCamera = parser->getCamera();
 
     if (pCamera == NULL)
