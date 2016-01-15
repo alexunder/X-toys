@@ -73,10 +73,24 @@ Vec3f RayTracer::traceRay(Ray &ray, float tmin, int bounces, float weight, float
             }
         }
 
+        //Process the reflective situation
+        if (pM->getReflectiveColor() != Vec3f(0.0, 0.0, 0.0))
+        {
+            Vec3f reflectiveDir = mirrorDirection(normal, ray.getDirection());
+            Ray reflectiveray(point, reflectiveDir);
+        }
+
         return pixelColor;
     }
     else
     {
         return backColor;
     }
+}
+    
+Vec3f RayTracer::mirrorDirection(const Vec3f &normal, const Vec3f &incoming)
+{
+   float d = normal.Dot3(incoming);
+   Vec3f reflection = (incoming - 2*d*normal);
+   return reflection; 
 }

@@ -18,6 +18,11 @@ public:
             float indexOfRefraction);
     Vec3f Shade(const Ray &ray, const Hit &hit, const Vec3f &dirToLight, const Vec3f &lightColor) const;
     void glSetMaterial(void) const;
+
+    Vec3f getReflectiveColor()
+    {
+        return mReflectiveColor;
+    }
 private:
     Vec3f mHighLightColor;
     float mPhongComponent;
