@@ -1,8 +1,8 @@
 #include "glCanvas.h"
 #include "scene_parser.h"
 #include "light.h"
-#include "camera.h"
-#include "group.h"
+#include "Camera.h"
+#include "Group.h"
 #include "rayTree.h"
 
 // Included files for OpenGL Rendering

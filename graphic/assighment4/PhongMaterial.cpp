@@ -18,12 +18,15 @@ PhongMaterial::PhongMaterial(const Vec3f &diffuseColor, const Vec3f &specularCol
                              const Vec3f &reflectiveColor, const Vec3f &transparentColor,
                              float indexOfRefraction)
     : Material(diffuseColor), mHighLightColor(specularColor), mPhongComponent(exponent), 
-      mReflectiveColor(transparentColor), mTransparentColor(transparentColor), mIndexOfRefraction(indexOfRefraction)
+      mReflectiveColor(reflectiveColor), mTransparentColor(transparentColor), mIndexOfRefraction(indexOfRefraction)
 {
 #ifdef DEBUG
     cout << diffuseColor << endl;
     cout << mHighLightColor << endl;
     cout << mPhongComponent << endl;
+    cout << reflectiveColor << endl;
+    cout << transparentColor<< endl;
+    cout << mIndexOfRefraction<< endl;
 #endif
 }
     

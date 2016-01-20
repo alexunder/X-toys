@@ -27,6 +27,10 @@ public:
     virtual void glSetMaterial(void) const = 0;
     
     virtual Vec3f getReflectiveColor() const = 0;
+
+    virtual Vec3f getTransparentColor() const = 0;
+
+    virtual float getIndexOfRefraction() const = 0;
 protected:
     // REPRESENTATION
     Vec3f diffuseColor;

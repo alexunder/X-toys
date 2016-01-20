@@ -268,10 +268,13 @@ Material* SceneParser::parsePhongMaterial() {
       break;
     }
   }
-  Material *answer = new PhongMaterial(diffuseColor,specularColor,exponent,
+  //Material *answer = new PhongMaterial(diffuseColor,specularColor,exponent,
+  //				       reflectiveColor,transparentColor,
+  //				       indexOfRefraction);
+  //return answer;
+  return  new PhongMaterial(diffuseColor,specularColor,exponent,
 				       reflectiveColor,transparentColor,
 				       indexOfRefraction);
-  return answer;
 }
 
 // ====================================================================

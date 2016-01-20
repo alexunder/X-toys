@@ -32,7 +32,7 @@ public:
 
     float getTMin() const
     {
-        return 0.0;
+        return 0.0001;
     }
 private:
     Vec3f mCenter;

@@ -19,9 +19,19 @@ public:
     Vec3f Shade(const Ray &ray, const Hit &hit, const Vec3f &dirToLight, const Vec3f &lightColor) const;
     void glSetMaterial(void) const;
 
-    Vec3f getReflectiveColor()
+    Vec3f getReflectiveColor() const
     {
         return mReflectiveColor;
+    }
+    
+    Vec3f getTransparentColor() const
+    {
+        return mTransparentColor;
+    }
+    
+    float getIndexOfRefraction() const
+    {
+        return mIndexOfRefraction;
     }
 private:
     Vec3f mHighLightColor;

@@ -16,6 +16,7 @@
 #include "light.h" 
 #include "glCanvas.h"
 #include "Sphere.h"
+#include "RayTracer.h"
 
 char * input_file = NULL;
 int    width = 100;
@@ -33,6 +34,7 @@ SceneParser * parser = NULL;
 bool renderShadow = false;
 float weight = 0.0;
 int bounces = 0;
+RayTracer * pTracer = NULL;
 
 void parseArgs(int argc, char **argv)
 {
@@ -116,6 +118,62 @@ void parseArgs(int argc, char **argv)
             assert(0);
         }
     }
+}
+
+void RenderSceneV2()
+{
+    if (pTracer == NULL )
+        pTracer = new RayTracer(parser, bounces, weight, renderShadow);
+
+	Camera * pCamera = parser->getCamera();
+    
+    if (pCamera->getCameraType() == CameraType::Orthographic)
+    {
+        // crop the output image, to make sure the rectangle is the squre.
+        if (width < height)
+        {
+            height = width;
+        }
+        else if (width > height)
+        {
+            width = height;
+        }
+    }
+    else if (pCamera->getCameraType() == CameraType::Perspective)
+    {
+        float ratio = ((float)width) / ((float)height);
+        ((PerspectiveCamera*)pCamera)->setRatio(ratio);
+    }
+
+	int i;
+	int j;
+   
+    float airRefraction = 1.0;
+    Vec3f backColor = parser->getBackgroundColor();
+    
+    Image outImg(width, height);
+	//outImg.SetAllPixels(backColor);
+
+	for (j = 0; j < height; j++)
+	for (i = 0; i < width; i++)
+	{
+        fprintf(stderr, "Render,pixel at x=%d, y=%d\n", i, j);
+        float u = (i + 0.5) / width;
+        float v = (j + 0.5) / height;
+        Vec2f p(u, v);
+	    Ray	r = pCamera->generateRay(p);
+
+        int bounces = 0;
+        Hit hit;
+        Vec3f pixelcolor = pTracer->traceRay(r, 0.0, bounces, weight, airRefraction, hit); 
+        
+        pixelcolor.Clamp();
+        outImg.SetPixel(i, j, pixelcolor);
+    }
+	
+    outImg.SaveTGA(output_file);
+    delete pTracer;
+    pTracer = NULL;
 }
 
 void RenderScene()
@@ -350,9 +408,29 @@ void RenderNormal()
     }
 }
 
+void debugTraceRay(float x, float y)
+{
+    if (pTracer == NULL )
+        pTracer = new RayTracer(parser, bounces, weight, renderShadow);
+    
+    fprintf(stderr, "debugTraceRay, x=%f, y=%f \n", x, y);
+	Camera * pCamera = parser->getCamera();
+    
+    Vec2f p(x, y);
+    Ray	ray = pCamera->generateRay(p);
+   
+    Hit hit;
+    
+    pTracer->traceRay(ray, 1e-2, 0, 1.0f, 1.0f, hit);
+
+    delete pTracer;
+    pTracer = NULL;
+}
+
 void RenderAll()
 {
-    RenderScene();
+    //RenderScene();
+    RenderSceneV2();
     RenderDepth();
     RenderNormal();
 }
@@ -370,7 +448,7 @@ int main(int argc, char ** argv)
         Sphere::setTesselationSize(theta_steps, phi_steps);
         glutInit(&argc, argv);
         GLCanvas canvas;
-        canvas.initialize(parser, RenderAll);
+        canvas.initialize(parser, RenderAll, debugTraceRay);
     }
     else
     {

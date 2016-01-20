@@ -45,7 +45,7 @@ bool Group::intersect(const Ray &r, Hit &h, float tmin)
 #ifdef DEBUG
 //			printf("obj index=%d, t=%f, t0=%f, t1=%f\n", cnt, t, t0, t1);
 #endif
-			if (t <= t1 && t >= t0)
+			if (t <= t1 && t > t0)
 			{
 				is_hit = true;
 				t1 = t;
