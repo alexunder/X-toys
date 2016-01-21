@@ -26,8 +26,6 @@ private:
     int mBounces;
     int mCutoffWeight;
     bool mRenderShadow;
-    int mImageWidth;
-    int mImageHeight;
 };
 
 #endif

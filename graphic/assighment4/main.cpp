@@ -172,6 +172,7 @@ void RenderSceneV2()
     }
 	
     outImg.SaveTGA(output_file);
+
     delete pTracer;
     pTracer = NULL;
 }

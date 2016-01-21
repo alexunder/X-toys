@@ -40,7 +40,7 @@ bool Sphere::intersect(const Ray &r, Hit &h, float tmin)
 
     double discriminant = b*b - 4*a*c;
 
-    if (discriminant > 0)
+    if (discriminant >= 0)
     {
         discriminant = sqrt(discriminant);
         double t = (- b - discriminant) / (2*a);
