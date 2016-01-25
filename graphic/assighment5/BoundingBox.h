@@ -3,6 +3,7 @@
 
 #include "vectors.h"
 
+
 #include <assert.h>
 
 #define min2(a,b) (((a)<(b))?(a):(b))
@@ -17,7 +18,16 @@ public:
     // CONSTRUCTOR & DESTRUCTOR
     BoundingBox(Vec3f _min, Vec3f _max) {
         Set(_min,_max); }
+
+    BoundingBox()
+    {
+        min = Vec3f(  INFINITY,  INFINITY,  INFINITY);
+        max = Vec3f( -INFINITY, -INFINITY, -INFINITY);
+    }
     ~BoundingBox() {}
+
+    friend BoundingBox Union(const BoundingBox &b, const Vec3f &p);
+    friend BoundingBox Union(const BoundingBox &b, const BoundingBox &b2);
 
     // ACCESSORS
     void Get(Vec3f &_min, Vec3f &_max) const {
@@ -58,7 +68,7 @@ public:
                 max.x(),max.y(),max.z()); }
     void paint() const;
 private:
-    BoundingBox() { assert(0); } // don't use this constructor
+    //BoundingBox() { assert(0); } // don't use this constructor
     // REPRESENTATION
     Vec3f min;
     Vec3f max;

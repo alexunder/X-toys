@@ -6,6 +6,7 @@
 #include "Group.h"
 #include "hit.h"
 #include "material.h"
+#include "BoundingBox.h"
 
 Group::Group(int numObj)
     : mNumberObj(numObj)
@@ -74,4 +75,29 @@ void Group::paint(void)
 	{
         (*itr)->paint();
     }
+}
+
+BoundingBox * Group::getBoundingBox()
+{
+    if (mpBox == NULL && mNumberObj == mObjectArray.size())
+    {
+        mpBox = new BoundingBox();
+
+        vector<Object3D*>::iterator itr_end = mObjectArray.end();
+        vector<Object3D*>::iterator itr;
+
+        BoundingBox box;
+        for (itr = mObjectArray.begin(); itr != itr_end; ++itr)
+        {
+            Object3D * pObj = (Object3D *)(*itr);
+            BoundingBox * pBox = pObj->getBoundingBox();
+
+            if (pBox != NULL)
+                box = Union(box, *pBox);
+        }
+
+        mpBox.Set(&box);
+    }
+
+    return pBox;
 }

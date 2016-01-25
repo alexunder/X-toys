@@ -39,7 +39,7 @@ public:
 
     virtual void paint(void) = 0;
 
-    BoundingBox * getBoundingBox()
+    virtual BoundingBox * getBoundingBox()
     {
         return mpBox;
     }

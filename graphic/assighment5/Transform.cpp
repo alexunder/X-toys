@@ -5,12 +5,38 @@
 
 #include "Transform.h"
 #include "hit.h"
+#include "BoundingBox.h"
 #include <GL/gl.h>
 
 Transform::Transform(Matrix &m, Object3D *o)
 	:mMat(m), mObj(o)
 {
-	mMat.Inverse(mReverseMat); 
+	mMat.Inverse(mReverseMat);
+
+    //Compute the transformed BBox
+    BoundingBox *pBB = mObj->getBoundingBox();
+
+    if (pBB == NULL)
+        return;
+
+    Vec3f minP = pBB->getMin();
+    Vec3f maxP = pBB->getMax();
+
+    mMat.Transform(minP);
+    mMat.Transform(maxP);
+
+    BoundingBox box;
+    box = Union(box, minP);
+    box = Union(box, Vec3f(maxP.x(), minP.y(), minP.z()));
+    box = Union(box, Vec3f(minP.x(), maxP.y(), minP.z()));
+    box = Union(box, Vec3f(maxP.x(), maxP.y(), minP.z()));
+    box = Union(box, Vec3f(minP.x(), minP.y(), maxP.z()));
+    box = Union(box, Vec3f(maxP.x(), minP.y(), maxP.z()));
+    box = Union(box, Vec3f(minP.x(), maxP.y(), maxP.z()));
+    box = Union(box, maxP);
+
+    mpBox = new BoundingBox();
+    mpBox->set(box);
 }
     
 bool Transform::intersect(const Ray &r, Hit &h, float tmin)
