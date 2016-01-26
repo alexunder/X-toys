@@ -13,6 +13,8 @@ class Material;
 class Ray;
 class Hit;
 class BoundingBox;
+class Grid;
+class Matrix;
 
 class Object3D
 {
@@ -42,6 +44,11 @@ public:
     virtual BoundingBox * getBoundingBox()
     {
         return mpBox;
+    }
+
+    virtual void insertIntoGrid(Grid *g, Matrix *m)
+    {
+        return;
     }
 protected:
     Material * mMaterial;

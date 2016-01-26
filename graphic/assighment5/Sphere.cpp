@@ -151,3 +151,45 @@ void Sphere::setTesselationSize(int theta, int phi)
     mThetaSteps = theta;
     mPhiSteps = phi;
 }
+
+void Sphere::insertIntoGrid(Grid *g, Matrix *m)
+{
+    int i;
+    int j;
+    int k;
+
+    if (mpBox == NULL)
+        return;
+
+    Vec3f minp = mpBox->getMin();
+    Vec3f maxp = mpBox->getMax();
+
+    float xBox = maxp.x() - minp.x();
+    float yBox = maxp.y() - minp.y();
+    float zBox = maxp.z() - minp.z();
+
+    int xSize = g->getXSize();
+    int ySize = g->getYSize();
+    int zSize = g->getZSize();
+
+    float xDelta = xBox / xSize;
+    float yDelta = yBox / ySize;
+    float zDelta = zBox / zSize;
+
+    for (k = 0; k < zSize; k++)
+    for (j = 0; j < ySize; j++)
+    for (i = 0; i < xSize; i++)
+    {
+        //Get the min point
+        Vec3f curPoint(minp.x() + (i + 0.5)*xDelta,
+                       minp.y() + (j + 0.5)*yDelta,
+                       minp.z() + (k + 0.5) *zDelta );
+
+        //Computing the distance between the voxel and the center point;
+        Vec3f temp = curPoint - mCenterPoint;
+        float distance = temp.Length();
+
+        if (distance <= mRadius)
+            g->setVoxelFlag(i, j, k);
+    }
+}

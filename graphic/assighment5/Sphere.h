@@ -16,6 +16,7 @@ public:
     Sphere(const Vec3f &point, float radius, Material *m);
     bool intersect(const Ray &r, Hit &h, float tmin);
     void paint(void);
+    void insertIntoGrid(Grid *g, Matrix *m);
     static void setTesselationSize(int theta, int phi);
 private:
     float mRadius;
