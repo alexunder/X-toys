@@ -13,11 +13,11 @@
 
 #include <math.h>
 
-RayTracer::RayTracer(SceneParser *s, int max_bounces, float cutoff_weight, bool shadows)
+RayTracer::RayTracer(SceneParser *s, int max_bounces, float cutoff_weight, bool shadows, Grid *g)
     : mParser(s), mBounces(max_bounces), mCutoffWeight(cutoff_weight), 
-      mRenderShadow(shadows)
+      mRenderShadow(shadows), mpGrid(g)
 {
-
+    mParser->getGroup()->insertIntoGrid(mpGrid, NULL);
 }
 
 Vec3f RayTracer::traceRay(Ray &ray, float tmin, int bounces, float weight, float indexOfRefraction, Hit &hit) const

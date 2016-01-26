@@ -17,6 +17,7 @@
 #include "glCanvas.h"
 #include "Sphere.h"
 #include "RayTracer.h"
+#include "Grid.h"
 
 char * input_file = NULL;
 int    width = 100;
@@ -35,6 +36,13 @@ bool renderShadow = false;
 float weight = 0.0;
 int bounces = 0;
 RayTracer * pTracer = NULL;
+
+Grid * pGrid = NULL;
+bool visualize_grid = false;
+bool malloc_grid = false;
+int nx = 1;
+int ny = 1;
+int nz = 1;
 
 void parseArgs(int argc, char **argv)
 {
@@ -112,6 +120,23 @@ void parseArgs(int argc, char **argv)
             assert (i < argc);
             bounces = atoi(argv[i]);
         }
+        else if (!strcmp(argv[i], "-visualize_grid"))
+        {
+            renderShadow = true;
+        }
+        else if (!strcmp(argv[i],"-grid"))
+        {
+            malloc_grid = true
+            i++;
+            assert (i < argc);
+            nx = atoi(argv[i]);
+            i++;
+            assert (i < argc);
+            ny = atoi(argv[i]);
+            i++;
+            assert (i < argc);
+            nz = atoi(argv[i]);
+        }
         else 
         {
             printf ("whoops error with command line argument %d: '%s'\n",i,argv[i]);
@@ -122,8 +147,10 @@ void parseArgs(int argc, char **argv)
 
 void RenderSceneV2()
 {
+    if (malloc_grid)
+        pGrid = new Grid(parser->getGroup()->getBoundingBox, nx, ny, nz);
     if (pTracer == NULL )
-        pTracer = new RayTracer(parser, bounces, weight, renderShadow);
+        pTracer = new RayTracer(parser, bounces, weight, renderShadow, pGrid);
 
 	Camera * pCamera = parser->getCamera();
     

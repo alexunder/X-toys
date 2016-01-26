@@ -31,6 +31,8 @@ public:
     {
         return mZSize;
     }
+
+    void paint();
 private:
     int mXSize;
     int mYSize;

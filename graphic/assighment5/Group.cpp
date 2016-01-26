@@ -101,3 +101,15 @@ BoundingBox * Group::getBoundingBox()
 
     return pBox;
 }
+
+void Group::insertIntoGrid(Grid *g, Matrix *m)
+{
+    vector<Object3D*>::iterator itr_end = mObjectArray.end();
+    vector<Object3D*>::iterator itr;
+
+    for (i = 0; i < mNumberObj; i++)
+    {
+        Object3D * obj =dynamic_cast<Object3D *>(mObjectArray[i]);
+        obj->insertIntoGrid(g, m);
+    }
+}

@@ -20,6 +20,7 @@ public:
     bool intersect(const Ray &r, Hit &h, float tmin);
     void addObject(int index, Object3D *obj);
     void paint(void);
+    void insertIntoGrid(Grid *g, Matrix *m);
     BoundingBox * getBoundingBox();
 private:
     vector<Object3D*> mObjectArray;

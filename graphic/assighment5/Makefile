@@ -19,8 +19,9 @@ SRCS 	 	= main.cpp \
 		  PhongMaterial.cpp \
           rayTree.cpp \
 		  RayTracer.cpp \
-          glCanvas.cpp
-          BoundingBox.cpp
+          glCanvas.cpp \
+          BoundingBox.cpp \
+          Grid.cpp
  #         material.cpp \
 		  raytracer.C \
 		  camera.cpp \
