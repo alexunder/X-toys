@@ -56,19 +56,91 @@ void Grid::paint(void)
     for (j = 0; j < ySize; j++)
     for (i = 0; i < xSize; i++)
     {
-    mpFlagArray[i + j*mXSize + k*mXSize*mYSize] = true;
         if (mpFlagArray[i + j*mXSize + k*mXSize*mYSize])
         {
             Vec3f curMinPoint(minp.x() + i*xDelta,
-                           minp.y() + j*yDelta,
-                           minp.z() + k*zDelta );
+                              minp.y() + j*yDelta,
+                              minp.z() + k*zDelta );
 
             Vec3f curMaxPoint(curMinPoint.x() + xDelta,
                               curMinPoint.y() + yDelta,
                               curMinPoint.z() + zDelta );
-            
-            
 
+            glBegin(GL_QUADS);
+
+            //The up plane
+            Vec3f normalUp;
+            Vec3f::Cross3( normalUp,
+                           Vec3f(0.0, curMaxPoint.y() - curMinPoint.y() , 0.0),
+                           Vec3f(curMaxPoint.x() - curMinPoint.x(), 0.0, 0.0) );
+            glNormal3f(normalUp.x(), normalUp.y(), normalUp.z());
+
+            glVertex3f(curMinPoint.x(), curMinPoint.y(), curMaxPoint.z());
+            glVertex3f(curMaxPoint.x(), curMinPoint.y(), curMaxPoint.z());
+            glVertex3f(curMaxPoint.x(), curMaxPoint.y(), curMaxPoint.z());
+            glVertex3f(curMinPoint.x(), curMaxPoint.y(), curMaxPoint.z());
+
+            //the down plane
+            Vec3f normalDown;
+            Vec3f::Cross3( normalDown,
+                           Vec3f(curMaxPoint.x() - curMinPoint.x(), 0.0, 0.0),
+                           Vec3f(0.0, curMaxPoint.y() - curMinPoint.y(), 0.0) );
+            glNormal3f(normalDown.x(), normalDown.y(), normalDown.z());
+
+            glVertex3f(curMinPoint.x(), curMinPoint.y(), curMinPoint.z());
+            glVertex3f(curMaxPoint.x(), curMinPoint.y(), curMinPoint.z());
+            glVertex3f(curMaxPoint.x(), curMaxPoint.y(), curMinPoint.z());
+            glVertex3f(curMinPoint.x(), curMaxPoint.y(), curMinPoint.z());
+
+            //the front plane
+            Vec3f normalFront;
+            Vec3f::Cross3( normalFront,
+                           Vec3f(0.0, curMaxPoint.y() - curMinPoint.y(), 0.0),
+                           Vec3f(0.0, 0.0, curMaxPoint.z() - curMinPoint.z()) );
+            glNormal3f(normalFront.x(), normalFront.y(), normalFront.z());
+
+            glVertex3f(curMinPoint.x(), curMinPoint.y(), curMinPoint.z());
+            glVertex3f(curMinPoint.x(), curMinPoint.y(), curMaxPoint.z());
+            glVertex3f(curMinPoint.x(), curMaxPoint.y(), curMaxPoint.z());
+            glVertex3f(curMinPoint.x(), curMaxPoint.y(), curMinPoint.z());
+
+            //the back plane
+            Vec3f normalBack;
+            Vec3f::Cross3( normalBack,
+                           Vec3f(0.0, 0.0, curMaxPoint.z() - curMinPoint.z()),
+                           Vec3f(0.0, curMaxPoint.y() - curMinPoint.y(), 0.0) );
+            glNormal3f(normalBack.x(), normalBack.y(), normalBack.z());
+
+            glVertex3f(curMaxPoint.x(), curMinPoint.y(), curMinPoint.z());
+            glVertex3f(curMaxPoint.x(), curMinPoint.y(), curMaxPoint.z());
+            glVertex3f(curMaxPoint.x(), curMaxPoint.y(), curMaxPoint.z());
+            glVertex3f(curMaxPoint.x(), curMaxPoint.y(), curMinPoint.z());
+
+            //the left plane
+            Vec3f normalLeft;
+            Vec3f::Cross3( normalLeft,
+                           Vec3f(curMinPoint.x() - curMaxPoint.x(), 0.0, 0.0),
+                           Vec3f(0.0, 0.0, curMaxPoint.z() - curMinPoint.z()) );
+            glNormal3f(normalLeft.x(), normalLeft.y(), normalLeft.z());
+
+            glVertex3f(curMaxPoint.x(), curMinPoint.y(), curMinPoint.z());
+            glVertex3f(curMaxPoint.x(), curMinPoint.y(), curMaxPoint.z());
+            glVertex3f(curMinPoint.x(), curMinPoint.y(), curMaxPoint.z());
+            glVertex3f(curMinPoint.x(), curMinPoint.y(), curMinPoint.z());
+
+            //the right plane
+            Vec3f normalRight;
+            Vec3f::Cross3( normalRight,
+                           Vec3f(0.0, 0.0, curMaxPoint.z() - curMinPoint.z()),
+                           Vec3f(curMinPoint.x() - curMaxPoint.x(), 0.0, 0.0) );
+            glNormal3f(normalRight.x(), normalRight.y(), normalRight.z());
+
+            glVertex3f(curMaxPoint.x(), curMaxPoint.y(), curMinPoint.z());
+            glVertex3f(curMaxPoint.x(), curMaxPoint.y(), curMaxPoint.z());
+            glVertex3f(curMinPoint.x(), curMaxPoint.y(), curMaxPoint.z());
+            glVertex3f(curMinPoint.x(), curMaxPoint.y(), curMinPoint.z());
+
+            glEnd();
         }
     }
 
