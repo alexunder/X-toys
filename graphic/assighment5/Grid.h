@@ -33,6 +33,8 @@ public:
     }
 
     void paint();
+
+    void initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const;
 private:
     int mXSize;
     int mYSize;

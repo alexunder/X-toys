@@ -4,6 +4,7 @@
  */
 
 #include "Grid.h"
+#include "MarchingInfo.h"
 #include <memory.h>
 
 Grid::Grid(BoundingBox *bb, int nx, int ny, int nz)
@@ -144,4 +145,10 @@ void Grid::paint(void)
         }
     }
 
+}
+
+void Grid::initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const
+{
+    Vec3f rayOrigin = r.getOrigin();
+    Vec3f rayDir = r.getDirection();
 }
