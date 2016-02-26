@@ -19,7 +19,7 @@ usbtest list
 
 Then I  got the calling graph like below:
 
-![usbtest.png](/home/xuchenyu/mohism/github/X-toys/doc-note/fastboot/usbtest.png  "usbtest.png")
+![usbtest.png](usbtest.png  "usbtest.png")
 
 It's very simple, isn't it? Inside the main function, it just call usb_open:
 
