@@ -113,3 +113,78 @@ static usb_handle *find_usb_device(const char *base, ifc_match_func callback)
 }
 ```
 
+This function traverse all directories under the directory "/sys/bus/usb/devices", but only the directories whose names are made up pf numbers , dots and dashes, just like these:
+
+```bash
+1-0:1.0  1-1  1-1.1  1-1:1.0  1-1.1:1.0  1-1.2  1-1.2:1.0 
+```
+
+Then we get the dev names from previous files we just traversed via the calling to convert_to_devfs_name:
+
+```c
+static int convert_to_devfs_name(const char* sysfs_name,
+                                 char* devname, int devname_size)
+{
+    int busnum, devnum;
+
+    busnum = read_sysfs_number(sysfs_name, "busnum");
+    if (busnum < 0)
+        return -1;
+
+    devnum = read_sysfs_number(sysfs_name, "devnum");
+    if (devnum < 0)
+        return -1;
+
+    snprintf(devname, devname_size, "/dev/bus/usb/%03d/%03d", busnum, devnum);
+    return 0;
+}
+```
+
+There are many information nodes ir files under the path that we just talked about, one path represent one device, For example, The files below is under the path of "/sys/bus/usb/devices/1-1":
+
+```bash
+drwxr-xr-x  5 root root     0 Feb 29 11:06 1-1.1
+drwxr-xr-x 10 root root     0 Feb 29 10:49 1-1:1.0
+drwxr-xr-x  5 root root     0 Feb 29 10:49 1-1.2
+-rw-r--r--  1 root root  4096 Feb 29 10:49 authorized
+-rw-r--r--  1 root root  4096 Feb 29 10:49 avoid_reset_quirk
+-r--r--r--  1 root root  4096 Feb 29 10:49 bcdDevice
+-rw-r--r--  1 root root  4096 Feb 29 10:49 bConfigurationValue
+-r--r--r--  1 root root  4096 Feb 29 10:49 bDeviceClass
+-r--r--r--  1 root root  4096 Feb 29 10:49 bDeviceProtocol
+-r--r--r--  1 root root  4096 Feb 29 10:49 bDeviceSubClass
+-r--r--r--  1 root root  4096 Feb 29 10:49 bmAttributes
+-r--r--r--  1 root root  4096 Feb 29 10:49 bMaxPacketSize0
+-r--r--r--  1 root root  4096 Feb 29 10:49 bMaxPower
+-r--r--r--  1 root root  4096 Feb 29 10:49 bNumConfigurations
+-r--r--r--  1 root root  4096 Feb 29 10:49 bNumInterfaces
+-r--r--r--  1 root root  4096 Feb 29 10:49 busnum
+-r--r--r--  1 root root  4096 Feb 29 10:49 configuration
+-r--r--r--  1 root root 65553 Feb 29 10:49 descriptors
+-r--r--r--  1 root root  4096 Feb 29 10:49 dev
+-r--r--r--  1 root root  4096 Feb 29 10:49 devnum
+-r--r--r--  1 root root  4096 Feb 29 10:49 devpath
+lrwxrwxrwx  1 root root     0 Feb 29 10:49 driver -> ../../../../../bus/usb/drivers/usb
+drwxr-xr-x  3 root root     0 Feb 29 10:49 ep_00
+-r--r--r--  1 root root  4096 Feb 29 10:49 idProduct
+-r--r--r--  1 root root  4096 Feb 29 10:49 idVendor
+-r--r--r--  1 root root  4096 Feb 29 10:49 ltm_capable
+-r--r--r--  1 root root  4096 Feb 29 10:49 maxchild
+lrwxrwxrwx  1 root root     0 Feb 29 10:49 port -> ../1-0:1.0/usb1-port1
+drwxr-xr-x  2 root root     0 Feb 29 10:49 power
+-r--r--r--  1 root root  4096 Feb 29 10:49 quirks
+-r--r--r--  1 root root  4096 Feb 29 10:49 removable
+--w-------  1 root root  4096 Feb 29 10:49 remove
+-r--r--r--  1 root root  4096 Feb 29 10:49 speed
+lrwxrwxrwx  1 root root     0 Feb 29 10:49 subsystem -> ../../../../../bus/usb
+-rw-r--r--  1 root root  4096 Feb 29 10:49 uevent
+-r--r--r--  1 root root  4096 Feb 29 10:49 urbnum
+-r--r--r--  1 root root  4096 Feb 29 10:49 version
+``` 
+
+After getting values from busnum and devnumber, the dev path can be got. Finally, after calling "open", the File descriptor can be required, then assign it to usb_handle object, and other informations can be got from calling filter_usb_device.
+
+## The details of USB  ##
+
+Actually I know nothing about the USB protocols, but if I want to analyze the fastboot code, I must do some studies for USB. 
+  
