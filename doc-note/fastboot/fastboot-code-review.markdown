@@ -140,7 +140,7 @@ static int convert_to_devfs_name(const char* sysfs_name,
 }
 ```
 
-There are many information nodes ir files under the path that we just talked about, one path represent one device, For example, The files below is under the path of "/sys/bus/usb/devices/1-1":
+There are many information nodes or files under the path that we just talked about, one path represent one device, For example, The files below is under the path of "/sys/bus/usb/devices/1-1":
 
 ```bash
 drwxr-xr-x  5 root root     0 Feb 29 11:06 1-1.1
@@ -188,3 +188,98 @@ After getting values from busnum and devnumber, the dev path can be got. Finally
 
 Actually I know nothing about the USB protocols, but if I want to analyze the fastboot code, I must do some studies for USB. 
   
+###  Some data structures about USB ###
+
+* usb_device_descriptor
+
+```c
+struct usb_device_descriptor {
+    __u8  bLength;
+    __u8  bDescriptorType;
+    __le16 bcdUSB;
+    __u8  bDeviceClass;
+    __u8  bDeviceSubClass;
+    __u8  bDeviceProtocol;
+    __u8  bMaxPacketSize0;
+    __le16 idVendor;
+    __le16 idProduct;
+    __le16 bcdDevice;
+    __u8  iManufacturer;
+    __u8  iProduct;
+    __u8  iSerialNumber;
+    __u8  bNumConfigurations;
+} __attribute__ ((packed));
+```
+
+ It describes general information about a USB device. It includes information that applies globally to the device and all of the device's configurations. A USB device has only one device descriptor. The last field of usb_device_descriptor (bNumConfigurations) tells us the number of configurations the current device has.
+
+*  usb_config_descriptor
+
+```c
+struct usb_config_descriptor {
+    __u8  bLength;
+    __u8  bDescriptorType;
+    __le16 wTotalLength;
+    __u8  bNumInterfaces;
+    __u8  bConfigurationValue;
+    __u8  iConfiguration;
+    __u8  bmAttributes;
+    __u8  bMaxPower;
+} __attribute__ ((packed));
+```
+
+One device may have many configurations, and every configuration may has many interfaces. 
+
+* usb_interface_descriptor
+
+```c
+struct usb_interface_descriptor {
+    __u8  bLength;
+    __u8  bDescriptorType;
+
+    __u8  bInterfaceNumber;
+    __u8  bAlternateSetting;
+    __u8  bNumEndpoints;
+    __u8  bInterfaceClass;
+    __u8  bInterfaceSubClass;
+    __u8  bInterfaceProtocol;
+    __u8  iInterface;
+} __attribute__ ((packed));
+```
+
+The USB interfaces allow USB devices to support multipile functions. It defines the number of end points. The end points are the real elements which communicate with the host.
+
+* usb_endpoint_descriptor
+
+```c
+struct usb_endpoint_descriptor {
+    __u8  bLength;
+    __u8  bDescriptorType;
+
+    __u8  bEndpointAddress;
+    __u8  bmAttributes;
+    __le16 wMaxPacketSize;
+    __u8  bInterval;
+
+    /* NOTE:  these two are _only_ in audio endpoints. */
+    /* use USB_DT_ENDPOINT*_SIZE in bLength, not sizeof. */
+    __u8  bRefresh;
+    __u8  bSynchAddress;
+} __attribute__ ((packed));
+```
+
+There are two kinds of end points, one direction that the data come from the device, we call it a "IN transfer", one direction that the datas go to the device, we call it a "OUT transfer".  The bit 7 determine the category of the end point.
+
+Even though these four data structures are distinct, the first two fields are same, like:
+
+```c
+ struct usb_descriptor_header {
+    __u8  bLength;
+    __u8  bDescriptorType;
+} __attribute__ ((packed));
+
+```
+
+All standard descriptors have these 2 fields at the beginning.
+
+### About filter_usb_device ###
