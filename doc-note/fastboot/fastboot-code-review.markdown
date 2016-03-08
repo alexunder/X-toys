@@ -283,3 +283,167 @@ Even though these four data structures are distinct, the first two fields are sa
 All standard descriptors have these 2 fields at the beginning.
 
 ### About filter_usb_device ###
+
+The source code of filter_usb_device is below:
+
+```c
+static int filter_usb_device(char* sysfs_name,
+                             char *ptr, int len, int writable,
+                             ifc_match_func callback,
+                             int *ept_in_id, int *ept_out_id, int *ifc_id)
+{
+    struct usb_device_descriptor *dev;
+    struct usb_config_descriptor *cfg;
+    struct usb_interface_descriptor *ifc;
+    struct usb_endpoint_descriptor *ept;
+    struct usb_ifc_info info;
+
+    int in, out;
+    unsigned i;
+    unsigned e;
+    
+    if (check(ptr, len, USB_DT_DEVICE, USB_DT_DEVICE_SIZE))
+        return -1;
+    dev = (struct usb_device_descriptor *)ptr;
+    len -= dev->bLength;
+    ptr += dev->bLength;
+
+    if (check(ptr, len, USB_DT_CONFIG, USB_DT_CONFIG_SIZE))
+        return -1;
+    cfg = (struct usb_config_descriptor *)ptr;
+    len -= cfg->bLength;
+    ptr += cfg->bLength;
+
+    info.dev_vendor = dev->idVendor;
+    info.dev_product = dev->idProduct;
+    info.dev_class = dev->bDeviceClass;
+    info.dev_subclass = dev->bDeviceSubClass;
+    info.dev_protocol = dev->bDeviceProtocol;
+    info.writable = writable;
+
+    snprintf(info.device_path, sizeof(info.device_path), "usb:%s", sysfs_name);
+
+    /* Read device serial number (if there is one).
+     * We read the serial number from sysfs, since it's faster and more
+     * reliable than issuing a control pipe read, and also won't
+     * cause problems for devices which don't like getting descriptor
+     * requests while they're in the middle of flashing.
+     */
+    info.serial_number[0] = '\0';
+    if (dev->iSerialNumber) {
+        char path[80];
+        int fd;
+
+        snprintf(path, sizeof(path),
+                 "/sys/bus/usb/devices/%s/serial", sysfs_name);
+        path[sizeof(path) - 1] = '\0';
+
+        fd = open(path, O_RDONLY);
+        if (fd >= 0) {
+            int chars_read = read(fd, info.serial_number,
+                                  sizeof(info.serial_number) - 1);
+            close(fd);
+
+            if (chars_read <= 0)
+                info.serial_number[0] = '\0';
+            else if (info.serial_number[chars_read - 1] == '\n') {
+                // strip trailing newline
+                info.serial_number[chars_read - 1] = '\0';
+            }
+        }
+    }
+
+    for(i = 0; i < cfg->bNumInterfaces; i++) {
+
+        while (len > 0) {
+	        struct usb_descriptor_header *hdr = (struct usb_descriptor_header *)ptr;
+            if (check(hdr, len, USB_DT_INTERFACE, USB_DT_INTERFACE_SIZE) == 0)
+                break;
+            len -= hdr->bLength;
+            ptr += hdr->bLength;
+        }
+
+        if (len <= 0)
+            return -1;
+
+        ifc = (struct usb_interface_descriptor *)ptr;
+        len -= ifc->bLength;
+        ptr += ifc->bLength;
+
+        in = -1;
+        out = -1;
+        info.ifc_class = ifc->bInterfaceClass;
+        info.ifc_subclass = ifc->bInterfaceSubClass;
+        info.ifc_protocol = ifc->bInterfaceProtocol;
+
+        for(e = 0; e < ifc->bNumEndpoints; e++) {
+            while (len > 0) {
+	            struct usb_descriptor_header *hdr = (struct usb_descriptor_header *)ptr;
+                if (check(hdr, len, USB_DT_ENDPOINT, USB_DT_ENDPOINT_SIZE) == 0)
+                    break;
+                len -= hdr->bLength;
+                ptr += hdr->bLength;
+            }
+            if (len < 0) {
+                break;
+            }
+
+            ept = (struct usb_endpoint_descriptor *)ptr;
+            len -= ept->bLength;
+            ptr += ept->bLength;
+
+            if((ept->bmAttributes & USB_ENDPOINT_XFERTYPE_MASK) != USB_ENDPOINT_XFER_BULK)
+                continue;
+
+            if(ept->bEndpointAddress & USB_ENDPOINT_DIR_MASK) {
+                in = ept->bEndpointAddress;
+            } else {
+                out = ept->bEndpointAddress;
+            }
+
+            // For USB 3.0 devices skip the SS Endpoint Companion descriptor
+            if (check((struct usb_descriptor_hdr *)ptr, len,
+                      USB_DT_SS_ENDPOINT_COMP, USB_DT_SS_EP_COMP_SIZE) == 0) {
+                len -= USB_DT_SS_EP_COMP_SIZE;
+                ptr += USB_DT_SS_EP_COMP_SIZE;
+            }
+        }
+
+        info.has_bulk_in = (in != -1);
+        info.has_bulk_out = (out != -1);
+
+        if(callback(&info) == 0) {
+            *ept_in_id = in;
+            *ept_out_id = out;
+            *ifc_id = ifc->bInterfaceNumber;
+            return 0;
+        }
+    }
+
+    return -1;
+}
+```
+
+Firstly,  from the source code above, we can know that there are some data structures mentioned in last section, and they are following the linear layout from usb_device_descriptor, usb_config_descriptor, usb_interface_descriptor, then usb_endpoint_descriptor, like the graph below:
+
+![usb_dev_structure.png](usb_dev_structure.png  "usb_dev_structure.png")
+
+The main routine of filter_usb_device is traversing every interface inside the config(This scenario has only one config), and traversing every end point inside one interface, then using callback to filter out the desired end point, but in usbtest, the callback function don't filter any one, it dumps all end points' information.
+
+### USB I/O interfaces ###
+
+After introduction of  the USB layer internals, let's focus on the interfaces exported to the upper layer(declared in usb.h):
+
+```c
+usb_handle *usb_open(ifc_match_func callback);
+int usb_close(usb_handle *h);
+int usb_read(usb_handle *h, void *_data, int len);
+int usb_write(usb_handle *h, const void *_data, int len);
+int usb_wait_for_disconnect(usb_handle *h);
+```
+
+# The architecture of fastboot #
+
+
+
+
