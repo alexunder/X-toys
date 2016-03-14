@@ -442,8 +442,16 @@ int usb_write(usb_handle *h, const void *_data, int len);
 int usb_wait_for_disconnect(usb_handle *h);
 ```
 
-# The architecture of fastboot #
+# The Architecture of fastboot #
 
+Now, we will get the main running routines via functions profiling just as usbtest. I choose the "fastboot oem lock", the calling graph is below:
 
+![fastboot_oem_lock.png](fastboot_oem_lock.png  "fastboot_oem_lock.png")
+
+According to the graph, there are three main parts in the fastboot running routine: 
+
+![fastboot_main_routine.png](fastboot_main_routine.png  "fastboot_main_routine.png")
+
+  
 
 
