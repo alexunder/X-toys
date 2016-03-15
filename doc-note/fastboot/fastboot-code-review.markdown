@@ -444,6 +444,7 @@ int usb_wait_for_disconnect(usb_handle *h);
 
 # The Architecture of fastboot #
 
+## The running routine ##
 Now, we will get the main running routines via functions profiling just as usbtest. I choose the "fastboot oem lock", the calling graph is below:
 
 ![fastboot_oem_lock.png](fastboot_oem_lock.png  "fastboot_oem_lock.png")
@@ -452,6 +453,116 @@ According to the graph, there are three main parts in the fastboot running routi
 
 ![fastboot_main_routine.png](fastboot_main_routine.png  "fastboot_main_routine.png")
 
+The first part is about USB details, we can get one USB instance from this part, now we will step into the next part: the command processing part.
+
+## The command queue ##
+
+Sometimes, in order to achieve a function, such as: flashing binaries, we must send many commands to the target device, let us see the do_flashall function, I personally think this is the most complicated function, because its main function is flash all the binaries including linux kernel and android image into the target. It contains many commands:
+
+```c
+void do_flashall(usb_handle *usb, int erase_first)
+{
+    queue_info_dump();
+ 
+     fb_queue_query_save("product", cur_product, sizeof(cur_product));
+ 
+     char* fname = find_item("info", product);
+     if (fname == 0) die("cannot find android-info.txt");
+ 
+     unsigned sz;
+     void* data = load_file(fname, &sz);
+     if (data == 0) die("could not load android-info.txt: %s", strerror(errno));
+ 
+     setup_requirements(reinterpret_cast<char*>(data), sz);
+ 
+     for (size_t i = 0; i < ARRAY_SIZE(images); i++) {
+         fname = find_item(images[i].part_name, product);
+         fastboot_buffer buf;
+         if (load_buf(usb, fname, &buf)) {
+             if (images[i].is_optional)
+                 continue;
+             die("could not load %s\n", images[i].img_name);
+         }
+         do_send_signature(fname);
+         if (erase_first && needs_erase(usb, images[i].part_name)) {
+             fb_queue_erase(images[i].part_name);
+         }
+         flash_buf(images[i].part_name, &buf);
+    }
+}
+
+``` 
   
+Threrefore the fastboot uses the link list to manage commands. Firstly, let's see the definition of structure Action:
 
+```c
+struct Action
+{
+    unsigned op;
+    Action *next;
+    char cmd[CMD_SIZE];
+    const char *prod;
+    void *data;
+    unsigned size;
+    const char *msg;
+    int (*func)(Action *a, int status, char *resp);
+    double start;
+};
+```
 
+If we launch couple of commands just as do_flashall function, we will get a link list like below:
+
+![fastboot_main_routine.png](action_list.png "action_list.png")
+
+Then finally, fb_execute_queue run all commands via traversing all nodes. Otherwise, the fastboot is just one time running, so we don't need to clear the commands link list.
+
+```c
+int fb_execute_queue(usb_handle *usb)
+{
+    Action *a;
+    char resp[FB_RESPONSE_SZ+1];
+    int status = 0;
+
+    a = action_list;
+    if (!a)
+        return status;
+    resp[FB_RESPONSE_SZ] = 0;
+
+    double start = -1;
+    for (a = action_list; a; a = a->next) {
+        a->start = now();
+        if (start < 0) start = a->start;
+        if (a->msg) {
+            // fprintf(stderr,"%30s... ",a->msg);
+            fprintf(stderr,"%s...\n",a->msg);
+        }
+        if (a->op == OP_DOWNLOAD) {
+            status = fb_download_data(usb, a->data, a->size);
+            status = a->func(a, status, status ? fb_get_error() : "");
+            if (status) break;
+        } else if (a->op == OP_COMMAND) {
+            status = fb_command(usb, a->cmd);
+            status = a->func(a, status, status ? fb_get_error() : "");
+            if (status) break;
+        } else if (a->op == OP_QUERY) {
+            status = fb_command_response(usb, a->cmd, resp);
+            status = a->func(a, status, status ? fb_get_error() : resp);
+            if (status) break;
+        } else if (a->op == OP_NOTICE) {
+            fprintf(stderr,"%s\n",(char*)a->data);
+        } else if (a->op == OP_DOWNLOAD_SPARSE) {
+            status = fb_download_data_sparse(usb, a->data);
+            status = a->func(a, status, status ? fb_get_error() : "");
+            if (status) break;
+        } else if (a->op == OP_WAIT_FOR_DISCONNECT) {
+            usb_wait_for_disconnect(usb);
+        } else {
+            die("bogus action");
+        }
+    }
+
+    fprintf(stderr,"finished. total time: %.3fs\n", (now() - start));
+    return status;
+}
+
+```
