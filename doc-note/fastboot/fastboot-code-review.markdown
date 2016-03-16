@@ -442,6 +442,35 @@ int usb_write(usb_handle *h, const void *_data, int len);
 int usb_wait_for_disconnect(usb_handle *h);
 ```
 
+The USB layer is mainly using ioctl system call to implement the data transfer,  and the difference is that we can use the different end point address to separate the read process and the write process:
+
+* Firstly, one important data structure need be filled.
+
+```c
+struct usbdevfs_bulktransfer {
+        unsigned int ep;
+        unsigned int len;
+        unsigned int timeout; /* in milliseconds */
+        void __user *data;
+};
+```
+
+This structure is defined in linux kernel header, the first field can determine the data direction.
+
+* Then if the write behavior will be done, we must set the out end point address to the first field of usbdevfs_bulktransfer:
+
+```c
+int xfer;
+xfer = (len > MAX_USBFS_BULK_SIZE) ? MAX_USBFS_BULK_SIZE : len;
+bulk.ep = h->ep_out;
+bulk.len = xfer;
+bulk.data = data;
+bulk.timeout = 0;
+n = ioctl(h->desc, USBDEVFS_BULK, &bulk);
+```
+
+* The read case is same as above, we don't need to discuss it.
+
 # The Architecture of fastboot #
 
 ## The running routine ##
@@ -566,3 +595,9 @@ int fb_execute_queue(usb_handle *usb)
 }
 
 ```
+
+# The vertiacal architecture of fastboot #
+
+In the last section, we mainly discuss the running routine from the hortizental view of point, as time goes by. Howover, now I will talk about it from the vertical point of view. Let's see a summary architecture graph:
+
+![fastboot_vertical_arch.png](fastboot_vertical_arch.png "fastboot_vertical_arch.png")
