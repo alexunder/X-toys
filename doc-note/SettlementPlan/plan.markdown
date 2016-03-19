@@ -8,17 +8,13 @@ category: Confidential
 
 ## Why choose Canda? ##
 
-Firstly, to be a professional software developer, I have been working for ten years in Beijing. But the air polution in Beijing is very serious, I think that factor would be bad for my future family and myself, especially raising children, and Canada is a ideal place to live and work. Secondly, Canada is the second largest country in the world with many gorgeous landscapes, and without too much population, because I prefer to a more quiet and peaceful life. Lastly, Canada is a free, highly developed country with the great health and due to many opportunities in the Information Technology sector for software professionals, I can easily find my desired job position.  Otherwise, Living in another different country is a extremely chanllenging thing to accomplish!  Therefore, I pick Canada as my new home.
+Firstly, to be a professional software developer, I have been working for ten years in Beijing. But the air polution in Beijing is very serious, I think that factor would be bad for my future family and myself, especially raising children, and Canada is a ideal place to live and work. Secondly, Canada is the second largest country in the world with many gorgeous landscapes, and without too much population, because I prefer to a more quiet and peaceful life. Lastly, Canada is a free, highly developed country with the great health and welfare programs, and due to many opportunities in the Information Technology sector for software professionals, I can easily find my desired job position. Otherwise, Living in another different country is a extremely chanllenging thing to accomplish!  Therefore, I pick Canada as my new home.
 
 ## About Saskatchewan ##
 
 Saskatchewan is a land of natural beauty that is rich in resources and full of opportunities for study, quality careers, or starting a business. I think Saskatchewan is a great place for me and my future family to call home, and Regina would be the place where we choose to live. Regina’s comfortable size will give me more chances to explore and entertain, whether it’s walking around Wascana Lake, going to the movies or the art gallery, relaxing in the sun at nearby Regina Beach or skiing in the winter, and enjoy the favorite activities---Mosaic, a popular multicultural festival held every spring. It will be a great place to meet other immigrants who live there!
 
-# About myself #
-
 # Before I leave #
-
-
 
 Before leaving from China, There are some fundamental learning works need to do.
 
@@ -63,8 +59,12 @@ In order to be convenient, I will check and search for suitable temporary reside
 [http://www.ihg.com/destinations/us/en/canada/saskatchewan/regina-hotels](http://www.ihg.com/destinations/us/en/canada/saskatchewan/regina-hotels) 
 [regina.en.craigslist.ca](http://regina.en.craigslist.ca) 
 
-
-
 # Crossing the border #
+
+* Carry along all the above important documents 
+* Present a Canadian immigrant visa, a Confirmation of Permanent Residence, and a valid passport for myself and each family member traveling with me.
+* Present two copies of a list of items that are arriving later and their money value.
+* Have two border crossing interviews. 
+* Report to the CBSA if bringing CAN$10,000 or more.
 
 # After landing #
