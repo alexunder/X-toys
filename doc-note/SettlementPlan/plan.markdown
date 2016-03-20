@@ -62,9 +62,43 @@ In order to be convenient, I will check and search for suitable temporary reside
 # Crossing the border #
 
 * Carry along all the above important documents 
-* Present a Canadian immigrant visa, a Confirmation of Permanent Residence, and a valid passport for myself and each family member traveling with me.
+* Present a Canadian immigrant visa, a Confirmation of Permanent Residence, and a valid passport for myself
 * Present two copies of a list of items that are arriving later and their money value.
 * Have two border crossing interviews. 
 * Report to the CBSA if bringing CAN$10,000 or more.
 
 # After landing #
+
+## Immediate to-do list##
+
+When I arrive at the new country, there are some essential things:
+
+* Buy private insurance within five days of arriving, and waiting for health insurance coverage to begin.
+* Apply for a public health card.
+* Apply for a Social Insurance Number (SIN).
+* Open a Canadian bank account and apply for a credit card so I can begin to establish my credit history in Canada.
+* Exchange my money for Canadian currency. 
+* Get a map of your area and find out about public transportation.
+* Prepare to get my education and work credentials recognized in Canada.
+* Find immigrant-serving organizations in my community with many of the steps in my settlement plan including language training and finding work.
+* Get a copy of The Saskatchewan Driver's Handbook, learn Saskatchewan Traffic Safety Act and take exams to get a driver license.  
+
+## Renting a house ##
+
+To rent a house is an essential step to have a normal living in Saskatchewan. So I can find it via internet resources:
+
+[properties.mitula.ca](http://properties.mitula.ca)
+
+I will choose an area which is not far away from the university of Regina and Wascana Lake. I may signed one or six months's rental contract. When my full time work is confirmed, I will reconsider the location where I will live.
+
+##  Buying a house ##
+
+This linkis also okay:
+
+[properties.mitula.ca](http://properties.mitula.ca)
+
+Since housing varies greatly between areas and communities, houses for sale in Regina with 3 bedrooms and 2 bathrooms could be marked a price between $200,000 and $600,000, it can be a challenge for new arrivals like me to buy an ideal home, our budget for buying a home would be around $500,000.
+
+Before buying a home, we have to decide how much we can afford, how many rooms we will need, where we’d like to live and what type of housing my family prefer.
+
+After living in Regina for a while, I am sure we could find a safe, affordable area to live and have a better idea of the condition and its worth of a home.
