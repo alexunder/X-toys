@@ -102,3 +102,22 @@ Since housing varies greatly between areas and communities, houses for sale in R
 Before buying a home, we have to decide how much we can afford, how many rooms we will need, where we’d like to live and what type of housing my family prefer.
 
 After living in Regina for a while, I am sure we could find a safe, affordable area to live and have a better idea of the condition and its worth of a home.
+
+## Working ##
+
+Finding a job in Canada can take time and may be different from finding a job in our home country. We need to apply a Social Insurance Number so that I can work and get access to government service. To apply for my Social Insurance Number (SIN), we simply need to gather all the required original proof-of-identity documents and take them to the nearest Service Canada point of service.
+
+### Some resources I can use ###
+
+* I can use the **Working in Canada** Tool ([www.workingincanada.gc.ca](http://www.workingincanada.gc.ca) ) to get information on the Canadian job market.
+* I also could use [LinkedIn](http://www.linkedin.com) to find my ideal job.
+
+### Gathering Certificated Documents ###
+I will collect all my certificated documents, such as college's GPA result, diplomas and my current and previous team leader's reference letters.
+
+### My competency ###
+As an experienced software programmer, besides the offical engineering trainning and diplomas I got in college, I have also aquired abundant developing technologies and related experiences in my career life. I am familar with C, C++ and Java programming languages. I developed softwares and debuged on mutiple operating systems, such as Windows desktop, Windows CE and linux. At present, I have been working on android phone development for five years, I have had the deep understanding of Android smartphone's software stack and hardware's architecture. Therefore the most matched job position for me is Android related jobs, including the entire platform development or Android application development. I strongly believe that I can  get my desired job in SK.
+
+### Potencial job postions ###
+
+
