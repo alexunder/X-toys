@@ -120,4 +120,110 @@ As an experienced software programmer, besides the offical engineering trainning
 
 ### Potencial job postions ###
 
+There are job positions from internet, such as LinkedInand [www.workingincanada.gc.ca](http://www.workingincanada.gc.ca).
 
+#### Job Description 0 ####
+
+* Android Developer
+
+Full-Time | Developer | Regina, SK
+
+GasBuddy is currently seeking an Android Developer for mobile apps, who can juggle multiple projects in our fast-paced, environment. You will help maintain and update the GasBuddy Android app, as well as explore the possibilities for expansion.
+
+* Responsibilities
+
+Collaborate with a team to produce quick release cycles
+Ensure the best possible performance, quality, and responsiveness of applications
+Help maintain code quality, organization, and automation
+Identify and solve performance bottlenecks and app issues
+
+* Requirements
+
+Bachelor’s degree or SIAST diploma in computer related field
+3-5+ years professional experience in mobile application development
+Example apps or side projects to demo
+Strong knowledge of Android SDK, different versions of Android, and how to deal with different screen sizes
+Strong knowledge of Android UI design principles, patterns, and best practices
+
+This job position is come from LinkedIn, this is the most matched position for my current working field. As a developer with the strong capability of quick learning, I also can do other alternative developing jobs. 
+
+#### Job Description 1 ####
+
+* Software Developer
+
+Regina, SK, Canada Full Time Development Mid Level 
+
+* Skills
+
+We’re not big fans of giant lists of skills, but search engines require job postings to have them. There’s a lot going on in different areas at iQmetrix, so don’t consider these to be pre-requisites. Instead consider them things you’ll get the opportunity to learn at iQmetrix.
+
+* C#, .NET, object-oriented programming, design patterns
+* Test-Driven Development, Automated Testing
+* REST APIs, JSON, YAML
+* SQL Server, MongoDB, Redis
+* Agile, Scrum
+* Azure, Azure Service Bus, Azure Web Apps, Azure Cloud Services
+* ØMQ, ZeroMQ
+* Distributed Systems, Messaging Patterns, Enterprise Integration Patterns, Domain-Driven Design
+* Visual Studio, ReSharper, NCrunch
+* Git, Team Foundation Server
+* WPF, XAML
+* DevOps, Continuous Integration, Continuous Delivery, Continuous Deployment, TeamCity
+* PowerShell, Ruby, rake
+* Loggly, New Relic, Pingdom, Pager Duty
+* NancyFx, NetMQ
+* JavaScript, EcmaScript5, EcmaScript 2015
+* Backbone.js, Marionette, Ember, Angular, RiotJs, React, Aurelia, jQuery, underscore, D3
+* Gulp, Grunt, Babel
+* Jasmine, Protractor, Karma, Mocha
+* Boostrap, SASS, LESS
+* HTML5, Handlebars, Mustache, Jade
+
+#### Job Description 2 ####
+
+* Multimedia developer
+
+Lexcom Systems Group Inc.
+Regina, CA
+
+* Job detail:
+
+Languages English Education Bachelor's degree. Experience 3 years to less than 5 years . Specific Skills Write, modify, integrate and test software code . Programming Languages JavaScript; Ajax; JQuery; C#; .NET; ASP.NET. Computer and Technology Knowledge Software development; SharePoint; API.
+
+#### Job Description 3 ####
+
+* Mobile Developer- Junior to Intermediate
+
+Location:Regina, Saskatchewan
+Date Posted:February-19-16 reference number297932PROEN
+Our Regina based client in currently seeking Mobile Developers.
+
+* Skills required:
+
+Experience in full stack application development including server, database, front end, back end and mobile technologies.        
+Experience with iOS application development and Python programming development 
+Experience with web technologies including HTML5, Cascading Style Sheets, JavaScript, etc. 
+Experience with Android application development would be beneficial.
+
+#### Job Description 4 ####
+
+* Software Developer in Test
+
+iQmetrix Regina, CA
+
+* Responsibilities
+
+Designing and implementing the automation platform
+Working with Team Leads and QAs to brainstorm automation that would improve the quality of the software
+Automation of QA functions to improve reliability of the platform software
+Working with geographically distributed teams
+Technologies: C#, Microsoft Visual Studio 2012 / TFS, git / github / SQL Server
+Performance testing
+Working with multidisciplinary teams
+
+* Experience
+
+3+ years related experience
+Developer backgrounds, with a Computer Science degree and/or equivalent experience
+A demonstrated understanding of the development lifecycle and how SDET fits into the process
+A demonstrated understanding of front-end and back-end technologies and how they fit together.
