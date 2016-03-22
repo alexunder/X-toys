@@ -232,9 +232,14 @@ A demonstrated understanding of front-end and back-end technologies and how they
 
 Canada has two official languages: English and French, and English is the main language spoken in the majority of provinces and territories. We realize that strong skills in languages are very important to my life in Canada, such as getting a job, accessing services, helping your children with school work, as well as meeting and interacting with people. Consider improving our English after arriving in Regina, I have already found some immigrant-serving organizations in the city, and they can help me find the information and services we need to start our new life, including language training and help finding work:
 
-Regina Open Door Society
+**Regina Open Door Society**
 Add: 2332 11th Avenue Regina SK S4P 0K1  
 Web: http://www.rods.sk.ca
 Telephone: 306-352-3500
-Services:
+
+**Services**:
 Language assessment/Language training (general)/Help with daily life/Find or become a mentor to a newcomer/Services for refugees/Services for Youth
+
+## Education ##
+
+Adult education is common in Canada and there are many education programs available for adults. I wish to use adult education to train for a new job or to improve the skills I already have. [The Regina Open Door Society](http://rods.sk.ca/)  which was mentioned in the previous section also can offer me some courses about career skills.
