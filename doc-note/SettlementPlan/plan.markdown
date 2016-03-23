@@ -243,3 +243,10 @@ Language assessment/Language training (general)/Help with daily life/Find or bec
 ## Education ##
 
 Adult education is common in Canada and there are many education programs available for adults. I wish to use adult education to train for a new job or to improve the skills I already have. [The Regina Open Door Society](http://rods.sk.ca/)  which was mentioned in the previous section also can offer me some courses about career skills.
+
+## Health ##
+
+Canada’s health insurance system is set up to respond to people’s need for health care rather than their ability to pay for it. Often referred to as medicare, the system is designed to make sure that all residents of Canada have reasonable access to health care from doctors and hospitals.
+Canada’s public health care system is funded through taxes and administered by the provinces and territories.
+
+To access health care under this system I must apply a health card issued by the government of the province or territory where I live as soon as possible when I arrive Canada. In order to apply Health Insurance card, I should fill the application form that can be found in an immigrant-serving organization in Saskatchewan.  The required documents also include Permanent Resident Card, Passport, Confirmation of Permanent Residence and so forth.  Then I can apply health card online [http://www.ehealthsask.ca/HealthRegistries/Pages/apply-for-health-card.aspx](http://www.ehealthsask.ca/HealthRegistries/Pages/apply-for-health-card.aspx) 
