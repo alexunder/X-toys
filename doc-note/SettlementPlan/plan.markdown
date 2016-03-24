@@ -249,4 +249,42 @@ Adult education is common in Canada and there are many education programs availa
 Canada’s health insurance system is set up to respond to people’s need for health care rather than their ability to pay for it. Often referred to as medicare, the system is designed to make sure that all residents of Canada have reasonable access to health care from doctors and hospitals.
 Canada’s public health care system is funded through taxes and administered by the provinces and territories.
 
-To access health care under this system I must apply a health card issued by the government of the province or territory where I live as soon as possible when I arrive Canada. In order to apply Health Insurance card, I should fill the application form that can be found in an immigrant-serving organization in Saskatchewan.  The required documents also include Permanent Resident Card, Passport, Confirmation of Permanent Residence and so forth.  Then I can apply health card online [http://www.ehealthsask.ca/HealthRegistries/Pages/apply-for-health-card.aspx](http://www.ehealthsask.ca/HealthRegistries/Pages/apply-for-health-card.aspx) 
+To access health care under this system I must apply a health card issued by the government of the province or territory where I live as soon as possible when I arrive Canada. In order to apply Health Insurance card, I should fill the application form that can be found in an immigrant-serving organization in Saskatchewan.  The required documents also include Permanent Resident Card, Passport, Confirmation of Permanent Residence and so forth.  Then I can apply health card online [http://www.ehealthsask.ca/HealthRegistries/Pages/apply-for-health-card.aspx](http://www.ehealthsask.ca/HealthRegistries/Pages/apply-for-health-card.aspx)
+
+## Family ##
+
+
+## Money ##
+
+I prepare about $13,000 to support me in the first year after we arrive Canada. The main cost I assumed is the cost of renting. It also includes the often-high cost of heating my home and paying for electricity, telephone service, water, food, transportation, etc. Below data is my statistics from my investigations on internet:
+
+### Cost per month ###
+
+|*Item*|*Cost*|
+|---|:---|
+|Renting the apartment|$900|
+|Food|$100|
+|Public Transportation|$20|
+|Internet & Mobile phone|$60|
+|Other fees |$100|
+|Entertainment|$150|
+|Total budget|$1430|
+
+
+## Connecting ##
+
+Connecting with others in my new community is an important step in the settlement process. Making new friends and contacts will help me feel at home in Canada and help me advance my professional goals by creating a network of people that can support me in my search for work. There are many different ways in which I can connect with others in my new city or town.
+
+### Sports and Leisure Programs ###
+
+I can join fitness centers in some communities; City neighborhoods are organized into Community Associations that offer low-cost exercise, sports and special-interest programs for adults and children. Classes are usually held in local schools in the evenings.
+
+### Outdoor Recreation ###
+
+Saskatchewan offers year-round outdoor recreation. Provincial parks in many areas allow camping and picnics.  Many communities have parks, play areas and outdoor wading pools for children.  Hunting and fishing are popular outdoor sports, but I must hunt only in certain seasons and follow specific laws that regulate each activity.
+
+### Volunteering ###
+
+When I work as a volunteer, I am donating my time to an organization, person or group of people. I can do volunteer work in many places, such as care-homes where senior citizens live, schools, or for a charity.  My Regional Newcomer Gateway may also be able to help me find opportunities to volunteer.
+
+I can learn more about volunteer in [volunteer.ca](http://volunteer.ca/)
