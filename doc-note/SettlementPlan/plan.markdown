@@ -20,11 +20,11 @@ Before leaving from China, There are some fundamental learning works need to do.
 
 ##Knowing more about Life in Canada ##
 
-As a new immigrant to Canada, it is important to know about Canada’s history, the land, climate, people, government, and laws and justice. We should understand both the rights and responsibilities of the people who live here. It is essential for us to learn rights and responsibilities of living in Saskatchewan as to adapt to the new culture.
+As a new immigrant to Canada, it is important to know about Canada’s history, the land, climate, people, government, and laws and justice. We should understand both the rights and responsibilities of the people who live here. It is essential for me to learn rights and responsibilities of living in Saskatchewan as to adapt to the new culture.
 
 ### Rights in Canada ###
 
-When I arrive in Canada and begin our life in Saskatchewan, I will have certain rights and protections under Canadian, provincial and local laws.
+When I arrive in Canada and begin my new life in Saskatchewan, I will have certain rights and protections under Canadian, provincial and local laws.
 Some of those rights and freedoms include:
 
 * The right to life, liberty and personal security
@@ -45,7 +45,7 @@ Other information about starting life in Canada can be easily accessed in [Welco
 ## Gathering all nessary documents  ##
 
 1. Passports with Canadian immigrant visa and Confirmation of Permanent Residence.  
-2. Two (2) copies of a detailed list of all the personal or household items I bring or bring later filling Form B4, Personal Effects Accounting Document
+2. Two copies of a detailed list of all the personal or household items I bring or bring later filling Form B4, Personal Effects Accounting Document
 3. School records, diplomas or degrees / Trade or professional certificates and licenses for credential recognition via Credential assessment organizations or Regulatory bodies and apprenticeship authorities in Canada or even apply for recognition before our departure.  
 4. Immunization or vaccination record
 5. Identification documents such as Birth Certificates, Marriage Certificates, Divorce Papers, 
@@ -97,11 +97,11 @@ This linkis also okay for buying a house:
 
 [properties.mitula.ca](http://properties.mitula.ca)
 
-Since housing varies greatly between areas and communities, houses for sale in Regina with 3 bedrooms and 2 bathrooms could be marked a price between $200,000 and $600,000, it can be a challenge for new arrivals like me to buy an ideal home, our budget for buying a home would be around $500,000.
+Since housing varies greatly between areas and communities, houses for sale in Regina with 3 bedrooms and 2 bathrooms could be marked a price between $200,000 and $600,000, it can be a challenge for new arrivals like me to buy an ideal home, my budget for buying a home would be around $500,000.
 
 Before buying a home, we have to decide how much we can afford, how many rooms we will need, where we’d like to live and what type of housing my family prefer.
 
-After living in Regina for a while, I am sure we could find a safe, affordable area to live and have a better idea of the condition and its worth of a home.
+After living in Regina for a while, I am sure I could find a safe, affordable area to live.
 
 ## Working ##
 
@@ -230,7 +230,7 @@ A demonstrated understanding of front-end and back-end technologies and how they
 
 ## Languages issues ##
 
-Canada has two official languages: English and French, and English is the main language spoken in the majority of provinces and territories. We realize that strong skills in languages are very important to my life in Canada, such as getting a job, accessing services, helping your children with school work, as well as meeting and interacting with people. Consider improving our English after arriving in Regina, I have already found some immigrant-serving organizations in the city, and they can help me find the information and services we need to start our new life, including language training and help finding work:
+Canada has two official languages: English and French, and English is the main language spoken in the majority of provinces and territories. I realize that strong skills in languages are very important to my life in Canada, such as getting a job, accessing services, helping your children with school work, as well as meeting and interacting with people. Consider improving my English after arriving in Regina, I have already found some immigrant-serving organizations in the city, and they can help me find the information and services we need to start my new life, including language training and help finding work:
 
 **Regina Open Door Society**
 Add: 2332 11th Avenue Regina SK S4P 0K1  
