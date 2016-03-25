@@ -247,11 +247,22 @@ Adult education is common in Canada and there are many education programs availa
 ## Health ##
 
 Canada’s health insurance system is set up to respond to people’s need for health care rather than their ability to pay for it. Often referred to as medicare, the system is designed to make sure that all residents of Canada have reasonable access to health care from doctors and hospitals.
+
 Canada’s public health care system is funded through taxes and administered by the provinces and territories.
 
 To access health care under this system I must apply a health card issued by the government of the province or territory where I live as soon as possible when I arrive Canada. In order to apply Health Insurance card, I should fill the application form that can be found in an immigrant-serving organization in Saskatchewan.  The required documents also include Permanent Resident Card, Passport, Confirmation of Permanent Residence and so forth.  Then I can apply health card online [http://www.ehealthsask.ca/HealthRegistries/Pages/apply-for-health-card.aspx](http://www.ehealthsask.ca/HealthRegistries/Pages/apply-for-health-card.aspx)
 
 ## Family ##
+
+Currently, I still don't have a family, so maybe I will get married in the future in Saskatchewan. And the family issues is a long-term process:
+
+### Getting a marriage ###
+
+When I am ready for getting marriage, I will colloect all my and my wife's related documents to get the  Marriage Certificate. This link includes many instructions and tutorials about marriage issues: [http://www.saskatchewan.ca/residents/births-deaths-marriages-and-divorces/marriages](http://www.saskatchewan.ca/residents/births-deaths-marriages-and-divorces/marriages).
+
+### Having a babay ###
+
+If we deicede to have a baby, we will learn enough knowledges to let babaies healthy. Then I am going to get the birth certificate, the helpful instruction is from [http://www.ehealthsask.ca/vitalstats/births/ordercertificate/Pages/default.aspx](http://www.ehealthsask.ca/vitalstats/births/ordercertificate/Pages/default.aspx).
 
 
 ## Money ##
