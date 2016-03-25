@@ -6,9 +6,9 @@ category: Confidential
 
 # Why  I want to immigrate to Saskatchewan#
 
-## Why choose Canda? ##
+## Why choose Canada? ##
 
-Firstly, to be a professional software developer, I have been working for ten years in Beijing. But the air polution in Beijing is very serious, I think that factor would be bad for my future family and myself, especially raising children, and Canada is a ideal place to live and work. Secondly, Canada is the second largest country in the world with many gorgeous landscapes, and without too much population, because I prefer to a more quiet and peaceful life. Lastly, Canada is a free, highly developed country with the great health and welfare programs, and due to many opportunities in the Information Technology sector for software professionals, I can easily find my desired job position. Otherwise, Living in another different country is a extremely chanllenging thing to accomplish!  Therefore, I pick Canada as my new home.
+Firstly, to be a professional software developer, I have been working for ten years in Beijing. But the air polution in Beijing is very serious, I think that factor would be bad for my future family and myself, especially raising children, and Canada is a ideal place to live and work. Secondly, Canada is the second largest country in the world with many gorgeous landscapes, and without too much population, because I prefer to a more quiet and peaceful life. Lastly, Canada is a free, highly developed country with the great health and welfare programs, and due to many opportunities in the Information Technology sector for software professionals, I can easily find my desired job position. Otherwise, Living in another different country is a extremely challenging thing to accomplish!  Therefore, I pick Canada as my new home.
 
 ## About Saskatchewan ##
 
@@ -36,13 +36,13 @@ Some of those rights and freedoms include:
 
 ### Responsibilities  ###
 
-Besides rights I will get in Canada, there are also responsibilities I have to take. Threrefore I also have legal obligations. It is important to know how the laws affect me in terms of both rights and obligations. The government system and its programs will be of interest to us as I begin to receive benefits and to pay taxes.
+Besides rights I will get in Canada, there are also responsibilities I have to take. Therefore I also have legal obligations. It is important to know how the laws affect me in terms of both rights and obligations. The government system and its programs will be of interest to us as I begin to receive benefits and to pay taxes.
 
 ### Others ###
 
 Other information about starting life in Canada can be easily accessed in [Welcome to Canada](http://www.cic.gc.ca/english/pdf/pub/welcome.pdf) 
 
-## Gathering all nessary documents  ##
+## Gathering all necessary documents  ##
 
 1. Passports with Canadian immigrant visa and Confirmation of Permanent Residence.  
 2. Two copies of a detailed list of all the personal or household items I bring or bring later filling Form B4, Personal Effects Accounting Document
@@ -89,7 +89,7 @@ To rent a house is an essential step to have a normal living in Saskatchewan. So
 
 [properties.mitula.ca](http://properties.mitula.ca)
 
-I will choose an area which is not far away from the university of Regina and Wascana Lake. I may signed one or six months's rental contract. When my full time work is confirmed, I will reconsider the location where I will live.
+I will choose an area which is not far away from the university of Regina and Wascana Lake. I may signed one or six months' rental contract. When my full time work is confirmed, I will reconsider the location where I will live.
 
 ##  Buying a house ##
 
@@ -116,9 +116,9 @@ Finding a job in Canada can take time and may be different from finding a job in
 I will collect all my certificated documents, such as college's GPA result, diplomas and my current and previous team leader's reference letters.
 
 ### My competency ###
-As an experienced software programmer, besides the offical engineering trainning and diplomas I got in college, I have also aquired abundant developing technologies and related experiences in my career life. I am familar with C, C++ and Java programming languages. I developed softwares and debuged on mutiple operating systems, such as Windows desktop, Windows CE and linux. At present, I have been working on android phone development for five years, I have had the deep understanding of Android smartphone's software stack and hardware's architecture. Therefore the most matched job position for me is Android related jobs, including the entire platform development or Android application development. I strongly believe that I can  get my desired job in SK.
+As an experienced software programmer, besides the official engineering training and diplomas I got in college, I have also acquired abundant developing technologies and related experiences in my career life. I am familiar with C, C++ and Java programming languages. I developed softwares and debugged on mutiple operating systems, such as Windows desktop, Windows CE and linux. At present, I have been working on android phone development for five years, I have had the deep understanding of Android Smartphone's software stack and hardware's architecture. Therefore the most matched job position for me is Android related jobs, including the entire platform development or Android application development. I strongly believe that I can  get my desired job in SK.
 
-### Potencial job postions ###
+### Potential job positions ###
 
 There are job positions from internet, such as LinkedIn and [www.workingincanada.gc.ca](http://www.workingincanada.gc.ca).
 
@@ -194,7 +194,7 @@ Languages English Education Bachelor's degree. Experience 3 years to less than 5
 
 * Mobile Developer- Junior to Intermediate
 
-Location:Regina, Saskatchewan
+Location: Regina, Saskatchewan
 Date Posted:February-19-16 reference number297932PROEN
 Our Regina based client in currently seeking Mobile Developers.
 
@@ -259,11 +259,11 @@ Currently, I still don't have a family, so maybe I will get married in the futur
 
 ### Getting a marriage ###
 
-When I am ready for getting marriage, I will colloect all my and my wife's related documents to get the  Marriage Certificate. This link includes many instructions and tutorials about marriage issues: [http://www.saskatchewan.ca/residents/births-deaths-marriages-and-divorces/marriages](http://www.saskatchewan.ca/residents/births-deaths-marriages-and-divorces/marriages).
+When I am ready for getting marriage, I will collect all my and my wife's related documents to get the  Marriage Certificate. This link includes many instructions and tutorials about marriage issues: [http://www.saskatchewan.ca/residents/births-deaths-marriages-and-divorces/marriages](http://www.saskatchewan.ca/residents/births-deaths-marriages-and-divorces/marriages).
 
-### Having a babay ###
+### Having a baby ###
 
-If we deicede to have a baby, we will learn enough knowledges to let babaies healthy. Then I am going to get the birth certificate, the helpful instruction is from [http://www.ehealthsask.ca/vitalstats/births/ordercertificate/Pages/default.aspx](http://www.ehealthsask.ca/vitalstats/births/ordercertificate/Pages/default.aspx).
+If we decide to have a baby, we will learn enough knowledges to let babies healthy. Then I am going to get the birth certificate, the helpful instruction is from [http://www.ehealthsask.ca/vitalstats/births/ordercertificate/Pages/default.aspx](http://www.ehealthsask.ca/vitalstats/births/ordercertificate/Pages/default.aspx).
 
 
 ## Money ##
