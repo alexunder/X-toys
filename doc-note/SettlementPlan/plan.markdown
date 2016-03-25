@@ -93,7 +93,7 @@ I will choose an area which is not far away from the university of Regina and Wa
 
 ##  Buying a house ##
 
-This linkis also okay for buying a house:
+This link is also okay for buying a house:
 
 [properties.mitula.ca](http://properties.mitula.ca)
 
