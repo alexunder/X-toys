@@ -93,7 +93,7 @@ I will choose an area which is not far away from the university of Regina and Wa
 
 ##  Buying a house ##
 
-This linkis also okay:
+This linkis also okay for buying a house:
 
 [properties.mitula.ca](http://properties.mitula.ca)
 
@@ -109,7 +109,7 @@ Finding a job in Canada can take time and may be different from finding a job in
 
 ### Some resources I can use ###
 
-* I can use the **Working in Canada** Tool ([www.workingincanada.gc.ca](http://www.workingincanada.gc.ca) ) to get information on the Canadian job market.
+* I can use the **Working in Canada Tool** ([www.workingincanada.gc.ca](http://www.workingincanada.gc.ca) ) to get information on the Canadian job market.
 * I also could use [LinkedIn](http://www.linkedin.com) to find my ideal job.
 
 ### Gathering Certificated Documents ###
@@ -120,7 +120,7 @@ As an experienced software programmer, besides the offical engineering trainning
 
 ### Potencial job postions ###
 
-There are job positions from internet, such as LinkedInand [www.workingincanada.gc.ca](http://www.workingincanada.gc.ca).
+There are job positions from internet, such as LinkedIn and [www.workingincanada.gc.ca](http://www.workingincanada.gc.ca).
 
 #### Job Description 0 ####
 
@@ -238,6 +238,7 @@ Web: http://www.rods.sk.ca
 Telephone: 306-352-3500
 
 **Services**:
+
 Language assessment/Language training (general)/Help with daily life/Find or become a mentor to a newcomer/Services for refugees/Services for Youth
 
 ## Education ##
