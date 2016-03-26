@@ -8,19 +8,19 @@ category: Confidential
 
 ## Why choose Canada? ##
 
-Firstly, to be a professional software developer, I have been working for ten years in Beijing. But the air polution in Beijing is very serious, I think that factor would be bad for my future family and myself, especially raising children, and Canada is a ideal place to live and work. Secondly, Canada is the second largest country in the world with many gorgeous landscapes, and without too much population, because I prefer to a more quiet and peaceful life. Lastly, Canada is a free, highly developed country with the great health and welfare programs, and due to many opportunities in the Information Technology sector for software professionals, I can easily find my desired job position. Otherwise, Living in another different country is a extremely challenging thing to accomplish!  Therefore, I pick Canada as my new home.
+Firstly, as a professional software programmer, I have been working in IT field for ten years in Beijing. But, as you may know, the air polution in Beijing is very serious, which would have bad effect on the health of myself and my future family, especially it is not a good place for raising children. And Canada, as the second largest country in the world with many gorgeous landscapes, and not much population, is an ideal place for me and my prospective family to live in and work at. Secondly, I prefer a more quiet and peaceful life which Beijing, as the political, economic and cultural center, cannot provide. Thirdly, due to many opportunities in the Information Technology sector for software professionals, I believe I can easily find a desired job in the near future after my arrival. Fourthly, Canada is a free, and highly developed country with great health and welfare programs. Besides, living in another different country is an extremely challenging thing to accomplish!  Therefore, I pick Canada as my new home.
 
 ## About Saskatchewan ##
 
-Saskatchewan is a land of natural beauty that is rich in resources and full of opportunities for study, quality careers, or starting a business. I think Saskatchewan is a great place for me and my future family to call home, and Regina would be the place where we choose to live. Regina’s comfortable size will give me more chances to explore and entertain, whether it’s walking around Wascana Lake, going to the movies or the art gallery, relaxing in the sun at nearby Regina Beach or skiing in the winter, and enjoy the favorite activities---Mosaic, a popular multicultural festival held every spring. It will be a great place to meet other immigrants who live there!
+Saskatchewan is a province which has many beautiful natural scenes in Canada, and it receives more hours of sunshine than any other Canadian province. With the highest employment rate in Canada and comfortable climate, It's an ideal place to work, live and study. As a cultural and commercial centre for southern Saskatchewan, Regina would be the city which I choose to live. The moderate city scale can greatly decrease the commuting time,  Wascana Lake can bring more beautiful city landscapes and entertaining places, University of Regina provides more educational resources and enhances city's cultural atmosphere. After investigations, although I have never been to Regina, I find I have fallen in love with it!
 
 # Before I leave #
 
-Before leaving from China, There are some fundamental learning works need to do.
+Before leaving from China, There are some fundamental things I need to do.
 
 ##Knowing more about Life in Canada ##
 
-As a new immigrant to Canada, it is important to know about Canada’s history, the land, climate, people, government, and laws and justice. We should understand both the rights and responsibilities of the people who live here. It is essential for me to learn rights and responsibilities of living in Saskatchewan as to adapt to the new culture.
+As a new immigrant to Canada, it is important to know about Canada’s history, land, climate, people, government, and laws and justice. We should understand both the rights and responsibilities of the people who live here. It is essential for me to learn rights and responsibilities of living in Saskatchewan as to adapt to the new culture.
 
 ### Rights in Canada ###
 
@@ -89,7 +89,7 @@ To rent a house is an essential step to have a normal living in Saskatchewan. So
 
 [properties.mitula.ca](http://properties.mitula.ca)
 
-I will choose an area which is not far away from the university of Regina and Wascana Lake. I may signed one or six months' rental contract. When my full time work is confirmed, I will reconsider the location where I will live.
+I will choose an area which is not far from the university of Regina and Wascana Lake. I may sign a one year's or six months' rental contract. When my full time work is confirmed, I will reconsider the location where I will live.
 
 ##  Buying a house ##
 
@@ -110,19 +110,19 @@ Finding a job in Canada can take time and may be different from finding a job in
 ### Some resources I can use ###
 
 * I can use the **Working in Canada Tool** ([www.workingincanada.gc.ca](http://www.workingincanada.gc.ca) ) to get information on the Canadian job market.
-* I also could use [LinkedIn](http://www.linkedin.com) to find my ideal job.
+* I also could use [LinkedIn](http://www.linkedin.com) to find an ideal job.
 
-### Gathering Certificated Documents ###
-I will collect all my certificated documents, such as college's GPA result, diplomas and my current and previous team leader's reference letters.
+### Gathering Certifited Documents ###
+I will collect all my certified documents, such as college's GPA result, undergraduate diploma, bachelor degree and my current and previous team leader's reference letters.
 
 ### My competency ###
-As an experienced software programmer, besides the official engineering training and diplomas I got in college, I have also acquired abundant developing technologies and related experiences in my career life. I am familiar with C, C++ and Java programming languages. I developed softwares and debugged on mutiple operating systems, such as Windows desktop, Windows CE and linux. At present, I have been working on android phone development for five years, I have had the deep understanding of Android Smartphone's software stack and hardware's architecture. Therefore the most matched job position for me is Android related jobs, including the entire platform development or Android application development. I strongly believe that I can  get my desired job in SK.
+As an experienced software programmer, besides the academic engineering training and degree I got in college, I have also acquired abundant developing technologies and related experience in my career life. I am familiar with programming languages, such as C, C++ and Java. I helped developing many softwares and debugging on mutiple operating systems, such as Windows desktop, Windows CE and linux. At present, I have been working on android phone development projects for five years, I have had deep understanding of Android Smartphone's software stack and hardware's architecture. Therefore the most matched job positions for me would be Android related jobs, including the entire platform development or Android application development. I strongly believe that I can  get my desired job in SK.
 
 ### Potential job positions ###
 
 There are job positions from internet, such as LinkedIn and [www.workingincanada.gc.ca](http://www.workingincanada.gc.ca).
 
-#### Job Description 0 ####
+#### Job Description 1 ####
 
 * Android Developer
 
@@ -147,7 +147,7 @@ Strong knowledge of Android UI design principles, patterns, and best practices
 
 This job position is come from LinkedIn, this is the most matched position for my current working field. As a developer with the strong capability of quick learning, I also can do other alternative developing jobs. 
 
-#### Job Description 1 ####
+#### Job Description 2 ####
 
 * Software Developer
 
@@ -179,7 +179,7 @@ We’re not big fans of giant lists of skills, but search engines require job po
 * Boostrap, SASS, LESS
 * HTML5, Handlebars, Mustache, Jade
 
-#### Job Description 2 ####
+#### Job Description 3 ####
 
 * Multimedia developer
 
@@ -190,7 +190,7 @@ Regina, CA
 
 Languages English Education Bachelor's degree. Experience 3 years to less than 5 years . Specific Skills Write, modify, integrate and test software code . Programming Languages JavaScript; Ajax; JQuery; C#; .NET; ASP.NET. Computer and Technology Knowledge Software development; SharePoint; API.
 
-#### Job Description 3 ####
+#### Job Description 4 ####
 
 * Mobile Developer- Junior to Intermediate
 
@@ -205,7 +205,7 @@ Experience with iOS application development and Python programming development
 Experience with web technologies including HTML5, Cascading Style Sheets, JavaScript, etc. 
 Experience with Android application development would be beneficial.
 
-#### Job Description 4 ####
+#### Job Description 5 ####
 
 * Software Developer in Test
 
@@ -228,9 +228,11 @@ Developer backgrounds, with a Computer Science degree and/or equivalent experien
 A demonstrated understanding of the development lifecycle and how SDET fits into the process
 A demonstrated understanding of front-end and back-end technologies and how they fit together.
 
+With my knowledge and skills in software programming and developing, I strongly believe that I am capable of above jobs and can find a perfect job after my arrival in Canada.
+
 ## Languages issues ##
 
-Canada has two official languages: English and French, and English is the main language spoken in the majority of provinces and territories. I realize that strong skills in languages are very important to my life in Canada, such as getting a job, accessing services, helping your children with school work, as well as meeting and interacting with people. Consider improving my English after arriving in Regina, I have already found some immigrant-serving organizations in the city, and they can help me find the information and services we need to start my new life, including language training and help finding work:
+Canada has two official languages: English and French, and English is the main language spoken in the majority of provinces and territories. I realize that strong skills in languages are very important to my prospective life in Canada, such as getting a job, accessing services, helping your children with school work, as well as meeting and interacting with people. Consider improving my English after arriving in Regina, I have already found some immigrant-serving organizations in the city, and they can help me find the information and services we need to start my new life, including language training and help finding work:
 
 **Regina Open Door Society**
 Add: 2332 11th Avenue Regina SK S4P 0K1  
@@ -259,16 +261,16 @@ Currently, I still don't have a family, so maybe I will get married in the futur
 
 ### Getting a marriage ###
 
-When I am ready for getting marriage, I will collect all my and my wife's related documents to get the  Marriage Certificate. This link includes many instructions and tutorials about marriage issues: [http://www.saskatchewan.ca/residents/births-deaths-marriages-and-divorces/marriages](http://www.saskatchewan.ca/residents/births-deaths-marriages-and-divorces/marriages).
+When I am ready for getting married, I will collect all my and my prospective wife's related documents to get the  Marriage Certificate. This link includes many instructions and tutorials about marriage issues: [http://www.saskatchewan.ca/residents/births-deaths-marriages-and-divorces/marriages](http://www.saskatchewan.ca/residents/births-deaths-marriages-and-divorces/marriages).
 
 ### Having a baby ###
 
-If we decide to have a baby, we will learn enough knowledges to let babies healthy. Then I am going to get the birth certificate, the helpful instruction is from [http://www.ehealthsask.ca/vitalstats/births/ordercertificate/Pages/default.aspx](http://www.ehealthsask.ca/vitalstats/births/ordercertificate/Pages/default.aspx).
+If we decide to have a baby, we will learn enough knowledges to let babies healthy. Then I am going to get the birth certificate, and the helpful instructions is from [http://www.ehealthsask.ca/vitalstats/births/ordercertificate/Pages/default.aspx](http://www.ehealthsask.ca/vitalstats/births/ordercertificate/Pages/default.aspx).
 
 
 ## Money ##
 
-I prepare about $13,000 to support me in the first year after we arrive Canada. The main cost I assumed is the cost of renting. It also includes the often-high cost of heating my home and paying for electricity, telephone service, water, food, transportation, etc. Below data is my statistics from my investigations on internet:
+I prepared about $13,000 to support me in the first six months after I arrive in Canada. The main cost I assumed is the cost of renting. It also includes heating, electricity, telephone, water, food and transportation, etc. Below data is my statistics from my investigations on internet:
 
 ### Cost per month ###
 
@@ -285,11 +287,11 @@ I prepare about $13,000 to support me in the first year after we arrive Canada. 
 
 ## Connecting ##
 
-Connecting with others in my new community is an important step in the settlement process. Making new friends and contacts will help me feel at home in Canada and help me advance my professional goals by creating a network of people that can support me in my search for work. There are many different ways in which I can connect with others in my new city or town.
+Connecting with other residents in the new community is an important step in the settling process. Making new friends and contacts will help me feel at home in Canada and help me advance my professional goals by creating a network of people who would be helpful in my career life. There are many different ways in which I can connect with others in my new city or town.
 
 ### Sports and Leisure Programs ###
 
-I can join fitness centers in some communities; City neighborhoods are organized into Community Associations that offer low-cost exercise, sports and special-interest programs for adults and children. Classes are usually held in local schools in the evenings.
+I can join fitness centers or gyms around my community; City neighborhoods are organized into Community Associations that offer low-cost exercise, sports and special-interest programs for adults and children.
 
 ### Outdoor Recreation ###
 
