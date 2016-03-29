@@ -115,3 +115,5 @@ Then he evaluates the expression
 ```
 
 What behavior will he observe with an interpreter that uses normal-order evaluation? Explain your answer. (Assume that the evaluation rule for the special form if is the same whether the interpreter is using normal or applicative order: The predicate expression is evaluated first, and the result determines whether to evaluate the consequent or the alternative expression.)
+
+According to the textbooks, applicative-order evaluation is that the parameter should be calculated before it is passed into the procedure. However, normal-order evaluation is kind of policy that the final value of parameter will be calculated when it is needed inside the procedure.
