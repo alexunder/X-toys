@@ -116,4 +116,52 @@ Then he evaluates the expression
 
 What behavior will he observe with an interpreter that uses normal-order evaluation? Explain your answer. (Assume that the evaluation rule for the special form if is the same whether the interpreter is using normal or applicative order: The predicate expression is evaluated first, and the result determines whether to evaluate the consequent or the alternative expression.)
 
+### Answer ###
+
 According to the textbooks, applicative-order evaluation is that the parameter should be calculated before it is passed into the procedure. However, normal-order evaluation is kind of policy that the final value of parameter will be calculated when it is needed inside the procedure.
+
+Therefore, let's talk about it by two cases:
+
+**1. Applicative-order evaluation**
+
+Before step into the test procedure, its two parameters must be confirmed. Then (define (p) (p)) will run, it's always Substitute itself with p, finally, it stuck on the dead loop.
+
+**2. Normal-order evaluation evaluation**
+
+Under this case, we will directly step into the test procedure, because x equals 0, the final result is 0 according the procedure's logical rutine. The value of y is not needed to calculate.
+
+## Exercise 1.6 ##
+
+Alyssa P. Hacker doesn’t see why if needs to be provided as a special form. “Why can’t I just define it as an ordinary procedure in terms of cond ?” she asks. Alyssa’s friend Eva Lu Ator claims this can indeed be done, and she
+defines a new version of if :
+
+```scheme
+(define (new-if predicate then-clause else-clause)
+   (cond (predicate then-clause)
+   (else else-clause)))
+```
+
+Eva demonstrates the program for Alyssa:
+
+```scheme
+(new-if (= 2 3) 0 5)
+5
+(new-if (= 1 1) 0 5)
+0
+```
+
+Delighted, Alyssa uses new-if to rewrite the square-root program:
+
+```scheme
+(define (sqrt-iter guess x)
+   (new-if (good-enough? guess x)
+   guess
+   (sqrt-iter (improve guess x) x)))
+```
+
+What happens when Alyssa aempts to use this to compute
+square roots? Explain.
+
+### Anwser ###
+
+According to the applicative-order evaluation which is used by scheme, before going into the sqrt-iter procedure, its parameters must be evaluated, then sqrt-iter will be called recursively forever until the calling depth exceeds the maximum of scheme.
