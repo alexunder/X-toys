@@ -159,9 +159,21 @@ Delighted, Alyssa uses new-if to rewrite the square-root program:
    (sqrt-iter (improve guess x) x)))
 ```
 
-What happens when Alyssa aempts to use this to compute
+What happens when Alyssa atempts to use this to compute
 square roots? Explain.
 
 ### Anwser ###
 
+After calling the new procedure, something bad will happen:
+
+```scheme
+1 ]=> (sqrt-new 9)
+
+;Aborting!: maximum recursion depth exceeded
+```
+
 According to the applicative-order evaluation which is used by scheme, before going into the sqrt-iter procedure, its parameters must be evaluated, then sqrt-iter will be called recursively forever until the calling depth exceeds the maximum of scheme.
+
+## Exercise 1.7 ##
+
+The good-enough? test used in computing square roots will not be very effective for finding the square roots of very small numbers. Also, in real computers, arithmetic operations are almost always performed with limited precision. This makes our test inadequate for very large numbers. Explain these statements, with examples showing how the test fails for small and large numbers. An alternative strategy for implementing good-enough? is to watch how guess changes from one iteration to the next and to stop when the change is a very small fraction of the guess. Design a square-root procedure that uses this kind of end test. Does this work better for small and large numbers?
