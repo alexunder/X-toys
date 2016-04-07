@@ -6,6 +6,7 @@
 //
 
 #include "mbrast.h"
+#include <stdio.h>
 
 class Rasterizer2D : public Rasterizer {
 public:
@@ -13,7 +14,7 @@ public:
         return true;
     }
 
-    void PreprocessGrids(const std::vector<ShadedGrid> &grids,
+    void PreprocessGrids(std::vector<ShadedGrid> &grids,
                          int bucketEdgeLength, int xRes, int yRes);
     void Rasterize(const std::vector<ShadedGrid> &grids,
                    int numIntervals, Bucket *bucket);
@@ -24,9 +25,49 @@ Rasterizer *Create2DRasterizer() {
 }
 
 void
-Rasterizer2D::PreprocessGrids(const std::vector<ShadedGrid> &grids,
+Rasterizer2D::PreprocessGrids(std::vector<ShadedGrid> &grids,
                               int bucketEdgeLength, int xRes, int yRes) {
-    // No preprocessing for this simple rasterizer
+    for (unsigned int i = 0; i < grids.size(); ++i) {
+        ShadedGrid &sg = grids[i];
+
+        const float * x0_buffer = sg.x0();
+        const float * y0_buffer = sg.y0();
+        const float * w0_buffer = sg.w0();
+
+        int j;
+        int size = sg.nu*sg.nv;
+
+        float xmin = x0_buffer[0] / w0_buffer[0];
+        float ymin = y0_buffer[0] / w0_buffer[0];
+        float xmax = x0_buffer[size - 1] / w0_buffer[size - 1];
+        float ymax = y0_buffer[size - 1] / w0_buffer[size - 1];
+
+        for (j = 0; j < size; j++)
+        {
+            float xTemp = x0_buffer[j] / w0_buffer[j];
+            float yTemp = y0_buffer[j] / w0_buffer[j];
+            // X min
+            if (xTemp < xmin)
+                xmin = xTemp;
+
+            //X max
+            if (xTemp > xmax)
+                xmax = xTemp;
+
+            //Y min
+            if (yTemp < ymin)
+                ymin = yTemp;
+
+            //Y max
+            if (yTemp > ymax)
+                ymax = yTemp;
+
+        }
+        sg.box.Xmin = floorf(xmin);
+        sg.box.Ymin = floorf(ymin);
+        sg.box.Xmax = ceilf(xmax);
+        sg.box.Ymax = ceilf(ymax);
+    }
 }
 
 
@@ -147,11 +188,31 @@ RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int v1,
     }
 }
 
+bool OverLapRect(int ax0, int ay0, int ax1, int ay1,
+                 int bx0, int by0, int bx1, int by1)
+{
+    int ixMin = std::max(ax0, bx0);
+    int ixMax = std::min(ax1, bx1);
+    int iyMin = std::max(ay0, by0);
+    int iyMax = std::min(ay1, by1);
+
+    if (ixMin >= ixMax || iyMin >= iyMax)
+        return false;
+
+    return true;
+}
+
 void
 Rasterizer2D::Rasterize(const std::vector<ShadedGrid> &grids,
                         int numIntervals, Bucket *bucket) {
     for (unsigned int i = 0; i < grids.size(); ++i) {
         const ShadedGrid &sg = grids[i];
+
+        if (!OverLapRect(sg.box.Xmin, sg.box.Ymin, sg.box.Xmax, sg.box.Ymax,
+                        bucket->x0, bucket->y0, bucket->x1, bucket->y1))
+        {
+            continue;
+        }
 
         // Loop over all micropolygons in the grid; split each one into two
         // triangles and rasterize each of the triangles.

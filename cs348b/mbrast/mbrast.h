@@ -15,6 +15,13 @@
 
 #define MAX_SAMPLES_PER_PIXEL 256
 
+typedef struct _BBox2D {
+    int Xmin;
+    int Ymin;
+    int Xmax;
+    int Ymax;
+}BBox2D;
+
 // A shaded grid of micropolygons
 struct ShadedGrid {
     // These give the number of micropolygon *vertices* in the u and v
@@ -30,6 +37,7 @@ struct ShadedGrid {
     // for the vertex colors.
     float *buf;
 
+    BBox2D box;
     // For convenience, the following methods do the initial indexing into
     // the buf array to give a pointer to the start of the corresponding
     // per-vertex values.
@@ -158,7 +166,7 @@ public:
     // rasterizer with all of the grids and to allow it to do any desired
     // per-preprocessing (e.g. computing bounding boxes, building data
     // structures over the grids) before rasteriztion begins.
-    virtual void PreprocessGrids(const std::vector<ShadedGrid> &grids,
+    virtual void PreprocessGrids(std::vector<ShadedGrid> &grids,
                                  int bucketEdgeLength, int xRes, int yRes) = 0;
 
     // Rasterize the grids into the provided Bucket of the image.  The

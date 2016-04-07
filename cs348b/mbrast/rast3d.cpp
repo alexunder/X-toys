@@ -13,7 +13,7 @@ public:
         return false;
     }
 
-    void PreprocessGrids(const std::vector<ShadedGrid> &grids,
+    void PreprocessGrids(std::vector<ShadedGrid> &grids,
                          int bucketEdgeLength, int xRes, int yRes);    
      void Rasterize(const std::vector<ShadedGrid> &grids,
                    int numIntervals, Bucket *bucket);
@@ -24,7 +24,7 @@ Rasterizer *Create3DRasterizer() {
 }
 
 void
-Rasterizer3D::PreprocessGrids(const std::vector<ShadedGrid> &grids,
+Rasterizer3D::PreprocessGrids(std::vector<ShadedGrid> &grids,
                               int bucketEdgeLength, int xRes, int yRes) {
     // TODO: implement this 
 }
