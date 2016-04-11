@@ -191,7 +191,6 @@ void GetSamples(int xPixel, int yPixel, int samplesPerPixel,
                 float xSamples[], float ySamples[],
                 float timeSamples[]);
 
-
 bool OverLapRect(int ax0, int ay0, int ax1, int ay1,
                  int bx0, int by0, int bx1, int by1);
 #endif // MBRAST_H

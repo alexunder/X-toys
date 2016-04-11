@@ -14,19 +14,6 @@
 
 #define MAX_CORES 16
 
-bool OverLapRect(int ax0, int ay0, int ax1, int ay1,
-                 int bx0, int by0, int bx1, int by1)
-{
-    int ixMin = std::max(ax0, bx0);
-    int ixMax = std::min(ax1, bx1);
-    int iyMin = std::max(ay0, by0);
-    int iyMax = std::min(ay1, by1);
-
-    if (ixMin >= ixMax || iyMin >= iyMax)
-        return false;
-
-    return true;
-}
 
 bool ReadGrids(const char *fn, std::vector<ShadedGrid> *grids);
 void WritePPM(const uint8_t *image, int xRes, int yRes, const char *fn);
@@ -93,8 +80,8 @@ int main(int argc, char *argv[]) {
 
     // Change this call to switch to creating an instance of your 3D
     // rasterizer once you start implementing it.
-    Rasterizer *rast = Create2DRasterizer();
-    //Rasterizer *rast = Create3DRasterizer();
+    //Rasterizer *rast = Create2DRasterizer();
+    Rasterizer *rast = Create3DRasterizer();
 
     // Initialize task system for multithreading if the rasterizer
     // indicates that it's thread safe.

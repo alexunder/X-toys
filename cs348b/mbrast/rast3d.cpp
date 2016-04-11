@@ -5,6 +5,7 @@
 //
 
 #include "mbrast.h"
+#include <stdio.h>
 
 class Rasterizer3D : public Rasterizer {
 public:
@@ -26,7 +27,6 @@ Rasterizer *Create3DRasterizer() {
 void
 Rasterizer3D::PreprocessGrids(std::vector<ShadedGrid> &grids,
                               int bucketEdgeLength, int xRes, int yRes) {
-#ifdef 0
     for (unsigned int i = 0; i < grids.size(); ++i) {
         ShadedGrid &sg = grids[i];
 
@@ -68,7 +68,6 @@ Rasterizer3D::PreprocessGrids(std::vector<ShadedGrid> &grids,
         sg.box.Xmax = ceilf(xmax);
         sg.box.Ymax = ceilf(ymax);
     }
-#endif
 }
 
 static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int v1,
@@ -89,14 +88,39 @@ static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int 
     float xc = sg.x0()[offset2] / sg.w0()[offset2];
     float yc = sg.y0()[offset2] / sg.w0()[offset2];
 
-    float x0 = sg.x0()[offset0];
-    float y0 = sg.y0()[offset0];
-    float w0 = sg.w0()[offset0];
+	//Acquire the shutter open triangle
+    float point_a_x0 = sg.x0()[offset0];
+    float point_a_y0 = sg.y0()[offset0];
+    float point_a_z0 = sg.z0()[offset0];
+    float point_a_w0 = sg.w0()[offset0];
 
-    float x1 = sg.x0()[offset0];
-    float y1 = sg.y0()[offset0];
-    float w1 = sg.w0()[offset0];
-    // Now compute the bounding box of the triangle on the screen in
+	float point_b_x0 = sg.x0()[offset1];
+    float point_b_y0 = sg.y0()[offset1];
+    float point_b_z0 = sg.z0()[offset1];
+    float point_b_w0 = sg.w0()[offset1];
+
+	float point_c_x0 = sg.x0()[offset2];
+    float point_c_y0 = sg.y0()[offset2];
+    float point_c_z0 = sg.z0()[offset2];
+    float point_c_w0 = sg.w0()[offset2];
+
+	//Acquire the shutter close triangle
+    float point_a_x1 = sg.x1()[offset0];
+    float point_a_y1 = sg.y1()[offset0];
+    float point_a_z1 = sg.z1()[offset0];
+    float point_a_w1 = sg.w1()[offset0];
+
+	float point_b_x1 = sg.x1()[offset1];
+    float point_b_y1 = sg.y1()[offset1];
+    float point_b_z1 = sg.z1()[offset1];
+    float point_b_w1 = sg.w1()[offset1];
+
+	float point_c_x1 = sg.x1()[offset2];
+    float point_c_y1 = sg.y1()[offset2];
+    float point_c_z1 = sg.z1()[offset2];
+    float point_c_w1 = sg.w1()[offset2];
+
+	// Now compute the bounding box of the triangle on the screen in
     // floating-point pixel coordinates.
     float xMin = std::min(xa, std::min(xb, xc));
     float xMax = std::max(xa, std::max(xb, xc));
@@ -125,12 +149,6 @@ static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int 
     float edge_c_2 = edge_a_2 * -x2 + edge_b_2 * -y2;
     */
 
-    // Triangle area and inverse area
-    float area = 0.5f * ((x1 - x0) * (y2 - y0) - (y1 - y0) * (x2 - x0));
-    float inv2Area = 1.f / (2.f * area);
-
-    if (area <= 0.)
-        return;
 
     // Loop over the bounding box of the pixels that the triangle possibly
     // covers.
@@ -150,54 +168,95 @@ static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int 
                 //Loop over the intervals
                 int i;
 
-                for (i = 0; i < interval; i++)
+                for (i = 0; i <= interval; i++)
                 {
-                    //Get the current vertict
-                    float t = (float)t /(float)interval;
-                    float xt = (1 - t) *sg.x0()[offset0];
-                }
-                // Evaluate edge equations at sample position (sx,sy).
-                float sx = xSamples[sampleNum], sy = ySamples[sampleNum];
-                float e0 = edge_a_0 * sx + edge_b_0 * sy + edge_c_0;
-                float e1 = edge_a_1 * sx + edge_b_1 * sy + edge_c_1;
-                float e2 = edge_a_2 * sx + edge_b_2 * sy + edge_c_2;
+                    //Get the current vertex
+                    float t = (float)i /(float)interval;
 
-                if (e0 <= 0.f || e1 <= 0.f || e2 <= 0.f)
-                    // The sample is outside the triangle
-                    continue;
+					float point_a_xt = (1 - t) * point_a_x0 + t * point_a_x1;
+					float point_a_yt = (1 - t) * point_a_y0 + t * point_a_y1;
+					float point_a_zt = (1 - t) * point_a_z0 + t * point_a_z1;
+					float point_a_wt = (1 - t) * point_a_w0 + t * point_a_w1;
 
-                // Compute interpolation weights
-                float wt0 = e1 * inv2Area;
-                float wt1 = e2 * inv2Area;
-                float wt2 = e0 * inv2Area;
+					float point_b_xt = (1 - t) * point_b_x0 + t * point_b_x1;
+					float point_b_yt = (1 - t) * point_b_y0 + t * point_b_y1;
+					float point_b_zt = (1 - t) * point_b_z0 + t * point_b_z1;
+					float point_b_wt = (1 - t) * point_b_w0 + t * point_b_w1;
 
-                // Interpolate z
-                float z = (wt0 * sg.z0()[offset0] +
-                           wt1 * sg.z0()[offset1] +
-                           wt2 * sg.z0()[offset2]);
+					float point_c_xt = (1 - t) * point_c_x0 + t * point_c_x1;
+					float point_c_yt = (1 - t) * point_c_y0 + t * point_c_y1;
+					float point_c_zt = (1 - t) * point_c_z0 + t * point_c_z1;
+					float point_c_wt = (1 - t) * point_c_w0 + t * point_c_w1;
 
-                // Z-test: is the z value closer than the z value currently
-                // in the framebuffer?
-                if (z < *bucket->Z(px, py, sampleNum)) {
-                    // z-test passed; update z in bucket framebuffer
-                    *bucket->Z(px, py, sampleNum) = z;
+					float xa = point_a_xt / point_a_wt;
+					float ya = point_a_yt / point_a_wt;
 
-                    // Interpolate R, G, B
-                    float r = (wt0 * sg.r()[offset0] +
-                               wt1 * sg.r()[offset1] +
-                               wt2 * sg.r()[offset2]);
-                    float g = (wt0 * sg.g()[offset0] +
-                               wt1 * sg.g()[offset1] +
-                               wt2 * sg.g()[offset2]);
-                    float b = (wt0 * sg.b()[offset0] +
-                               wt1 * sg.b()[offset1] +
-                               wt2 * sg.b()[offset2]);
+					float xb = point_b_xt / point_b_wt;
+					float yb = point_b_yt / point_b_wt;
 
-                    // Store r, g, b in framebuffer
-                    *bucket->R(px, py, sampleNum) = r;
-                    *bucket->G(px, py, sampleNum) = g;
-                    *bucket->B(px, py, sampleNum) = b;
-                }
+					float xc = point_c_xt / point_c_wt;
+					float yc = point_c_yt / point_c_wt;
+
+					// Triangle setup.
+					// Compute the edge equation coefficients.
+					float edge_a_0 = -(yb - ya);
+					float edge_a_1 = -(yc - yb);
+					float edge_a_2 = -(ya - yc);
+
+					float edge_b_0 =   xb - xa;
+					float edge_b_1 =   xc - xb;
+					float edge_b_2 =   xa - xc;
+
+					float edge_c_0 = edge_a_0 * -xa + edge_b_0 * -ya;
+					float edge_c_1 = edge_a_1 * -xb + edge_b_1 * -yb;
+					float edge_c_2 = edge_a_2 * -xc + edge_b_2 * -yc;
+
+					// Triangle area and inverse area
+					float area = 0.5f * ((xb - xa) * (yc - ya) - (yb - ya) * (xc - xa));
+					float inv2Area = 1.f / (2.f * area);
+
+					if (area <= 0.)
+						return;
+
+					// Evaluate edge equations at sample position (sx,sy).
+					float sx = xSamples[sampleNum], sy = ySamples[sampleNum];
+					float e0 = edge_a_0 * sx + edge_b_0 * sy + edge_c_0;
+					float e1 = edge_a_1 * sx + edge_b_1 * sy + edge_c_1;
+					float e2 = edge_a_2 * sx + edge_b_2 * sy + edge_c_2;
+
+					if (e0 <= 0.f || e1 <= 0.f || e2 <= 0.f)
+						continue;
+
+					// Compute interpolation weights
+					float wt0 = e1 * inv2Area;
+					float wt1 = e2 * inv2Area;
+					float wt2 = e0 * inv2Area;
+
+					// Interpolate z
+					float z = (wt0 * point_a_zt + wt1 * point_b_zt + wt2 * point_c_zt);
+					// Z-test: is the z value closer than the z value currently
+					// in the framebuffer?
+					if (z < *bucket->Z(px, py, sampleNum)) {
+						// z-test passed; update z in bucket framebuffer
+						*bucket->Z(px, py, sampleNum) = z;
+
+						// Interpolate R, G, B
+						float r = (wt0 * sg.r()[offset0] +
+								wt1 * sg.r()[offset1] +
+								wt2 * sg.r()[offset2]);
+						float g = (wt0 * sg.g()[offset0] +
+								wt1 * sg.g()[offset1] +
+								wt2 * sg.g()[offset2]);
+						float b = (wt0 * sg.b()[offset0] +
+								wt1 * sg.b()[offset1] +
+								wt2 * sg.b()[offset2]);
+
+						// Store r, g, b in framebuffer
+						*bucket->R(px, py, sampleNum) = r;
+						*bucket->G(px, py, sampleNum) = g;
+						*bucket->B(px, py, sampleNum) = b;
+					}
+				}
             }
         }
     }
@@ -211,13 +270,13 @@ Rasterizer3D::Rasterize(const std::vector<ShadedGrid> &grids,
     for (i = 0; i < grids.size(); ++i)
     {
         const ShadedGrid &sg = grids[i];
-#ifdef 0
-        if (!OverLapRect(sg.box.Xmin, sg.box.Ymin, sg.box.Xmax, sg.box.Ymax,
+
+		if (!OverLapRect(sg.box.Xmin, sg.box.Ymin, sg.box.Xmax, sg.box.Ymax,
                     bucket->x0, bucket->y0, bucket->x1, bucket->y1))
         {
             continue;
         }
-#endif
+
         // Loop over all micropolygons in the grid; split each one into two
         // triangles and rasterize each of the triangles.
         for (int v = 0; v < sg.nv-1; ++v) {

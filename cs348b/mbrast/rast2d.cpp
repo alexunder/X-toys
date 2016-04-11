@@ -188,20 +188,6 @@ RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int v1,
     }
 }
 
-bool OverLapRect(int ax0, int ay0, int ax1, int ay1,
-                 int bx0, int by0, int bx1, int by1)
-{
-    int ixMin = std::max(ax0, bx0);
-    int ixMax = std::min(ax1, bx1);
-    int iyMin = std::max(ay0, by0);
-    int iyMax = std::min(ay1, by1);
-
-    if (ixMin >= ixMax || iyMin >= iyMax)
-        return false;
-
-    return true;
-}
-
 void
 Rasterizer2D::Rasterize(const std::vector<ShadedGrid> &grids,
                         int numIntervals, Bucket *bucket) {
