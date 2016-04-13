@@ -16,8 +16,10 @@ public:
 
     void PreprocessGrids(std::vector<ShadedGrid> &grids,
                          int bucketEdgeLength, int xRes, int yRes);    
-     void Rasterize(const std::vector<ShadedGrid> &grids,
+    void Rasterize(const std::vector<ShadedGrid> &grids,
                    int numIntervals, Bucket *bucket);
+private:
+    BBox2D mBox;
 };
 
 Rasterizer *Create3DRasterizer() {
@@ -27,6 +29,11 @@ Rasterizer *Create3DRasterizer() {
 void
 Rasterizer3D::PreprocessGrids(std::vector<ShadedGrid> &grids,
                               int bucketEdgeLength, int xRes, int yRes) {
+    float xmin = xRes - 1.0;
+    float ymin = yRes - 1.0;
+    float xmax = 0.0;
+    float ymax = 0.0;
+
     for (unsigned int i = 0; i < grids.size(); ++i) {
         ShadedGrid &sg = grids[i];
 
@@ -36,11 +43,6 @@ Rasterizer3D::PreprocessGrids(std::vector<ShadedGrid> &grids,
 
         int j;
         int size = sg.nu*sg.nv;
-
-        float xmin = x0_buffer[0] / w0_buffer[0];
-        float ymin = y0_buffer[0] / w0_buffer[0];
-        float xmax = x0_buffer[size - 1] / w0_buffer[size - 1];
-        float ymax = y0_buffer[size - 1] / w0_buffer[size - 1];
 
         for (j = 0; j < size; j++)
         {
@@ -63,11 +65,12 @@ Rasterizer3D::PreprocessGrids(std::vector<ShadedGrid> &grids,
                 ymax = yTemp;
 
         }
-        sg.box.Xmin = floorf(xmin);
-        sg.box.Ymin = floorf(ymin);
-        sg.box.Xmax = ceilf(xmax);
-        sg.box.Ymax = ceilf(ymax);
     }
+
+    mBox.Xmin = floorf(xmin);
+    mBox.Ymin = floorf(ymin);
+    mBox.Xmax = ceilf(xmax);
+    mBox.Ymax = ceilf(ymax);
 }
 
 static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int v1,
@@ -98,12 +101,12 @@ static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int 
     float point_c_z0 = sg.z0()[offset2];
     float point_c_w0 = sg.w0()[offset2];
 
-    float x_0_min = std::min(point_a_x0, std::min(point_b_x0, point_c_x0));
-    float x_0_max = std::max(point_a_x0, std::max(point_b_x0, point_c_x0));
-    float y_0_min = std::min(point_a_y0, std::min(point_b_y0, point_c_y0));
-    float y_0_max = std::max(point_a_y0, std::max(point_b_y0, point_c_y0));
-    float w_0_min = std::min(point_a_w0, std::min(point_b_w0, point_c_w0));
-    float w_0_max = std::max(point_a_w0, std::max(point_b_w0, point_c_w0));
+    float x_0_min = std::min(point_a_x0 / point_a_w0, std::min(point_b_x0 / point_b_w0, point_c_x0 / point_c_w0));
+    float x_0_max = std::max(point_a_x0 / point_a_w0, std::max(point_b_x0 / point_b_w0, point_c_x0 / point_c_w0));
+    float y_0_min = std::min(point_a_y0 / point_a_w0, std::min(point_b_y0 / point_b_w0, point_c_y0 / point_c_w0));
+    float y_0_max = std::max(point_a_y0 / point_a_w0, std::max(point_b_y0 / point_b_w0, point_c_y0 / point_c_w0));
+    //float w_0_min = std::min(point_a_w0, std::min(point_b_w0, point_c_w0));
+    //float w_0_max = std::max(point_a_w0, std::max(point_b_w0, point_c_w0));
 	//Acquire the shutter close triangle
     float point_a_x1 = sg.x1()[offset0];
     float point_a_y1 = sg.y1()[offset0];
@@ -120,12 +123,12 @@ static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int 
     float point_c_z1 = sg.z1()[offset2];
     float point_c_w1 = sg.w1()[offset2];
 
-    float x_1_min = std::min(point_a_x1, std::min(point_b_x1, point_c_x1));
-    float x_1_max = std::max(point_a_x1, std::max(point_b_x1, point_c_x1));
-    float y_1_min = std::min(point_a_y1, std::min(point_b_y1, point_c_y1));
-    float y_1_max = std::max(point_a_y1, std::max(point_b_y1, point_c_y1));
-    float w_1_min = std::min(point_a_w1, std::min(point_b_w1, point_c_w1));
-    float w_1_max = std::max(point_a_w1, std::max(point_b_w1, point_c_w1));
+    float x_1_min = std::min(point_a_x1 / point_a_w1, std::min(point_b_x1 / point_b_w1, point_c_x1 / point_c_w1));
+    float x_1_max = std::max(point_a_x1 / point_a_w1, std::max(point_b_x1 / point_b_w1, point_c_x1 / point_c_w1));
+    float y_1_min = std::min(point_a_y1 / point_a_w1, std::min(point_b_y1 / point_b_w1, point_c_y1 / point_c_w1));
+    float y_1_max = std::max(point_a_y1 / point_a_w1, std::max(point_b_y1 / point_b_w1, point_c_y1 / point_c_w1));
+    //float w_1_min = std::min(point_a_w1, std::min(point_b_w1, point_c_w1));
+    //float w_1_max = std::max(point_a_w1, std::max(point_b_w1, point_c_w1));
 	// Now compute the bounding box of the triangle on the screen in
     // floating-point pixel coordinates.
 
@@ -133,14 +136,8 @@ static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int 
     float xMax = std::max(x_0_max, x_1_max);
     float yMin = std::min(y_0_min, y_1_min);
     float yMax = std::max(y_0_max, y_1_max);
-    float wMin = std::min(w_0_min, w_1_min);
-    float wMax = std::max(w_0_max, w_1_max);
-
-    xMin = xMin / wMax;
-    xMax = xMax / wMin;
-    yMin = yMin / wMax;
-    yMax = yMax / wMin;
-
+    //float wMin = std::min(w_0_min, w_1_min);
+    //float wMax = std::max(w_0_max, w_1_max);
     // Compute integer pixel bounds, clamped to the bucket extent
     int ixMin = std::max((int)floorf(xMin), bucket->x0);
     int ixMax = std::min((int)ceilf(xMax),  bucket->x1);
@@ -259,18 +256,17 @@ static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int 
 void
 Rasterizer3D::Rasterize(const std::vector<ShadedGrid> &grids,
                         int numIntervals, Bucket *bucket) {
+    if (!OverLapRect(mBox.Xmin, mBox.Ymin, mBox.Xmax, mBox.Ymax,
+                bucket->x0, bucket->y0, bucket->x1, bucket->y1))
+    {
+        return;
+    }
+
     int i;
 
     for (i = 0; i < grids.size(); ++i)
     {
         const ShadedGrid &sg = grids[i];
-#ifdef OPT
-		if (!OverLapRect(sg.box.Xmin, sg.box.Ymin, sg.box.Xmax, sg.box.Ymax,
-                    bucket->x0, bucket->y0, bucket->x1, bucket->y1))
-        {
-            continue;
-        }
-#endif
         // Loop over all micropolygons in the grid; split each one into two
         // triangles and rasterize each of the triangles.
         for (int v = 0; v < sg.nv-1; ++v) {
