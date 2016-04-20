@@ -14,7 +14,7 @@ public:
         return true;
     }
 
-    void PreprocessGrids(std::vector<ShadedGrid> &grids,
+    void PreprocessGrids(const std::vector<ShadedGrid> &grids,
                          int bucketEdgeLength, int xRes, int yRes);
     void Rasterize(const std::vector<ShadedGrid> &grids,
                    int numIntervals, Bucket *bucket);
@@ -25,10 +25,10 @@ Rasterizer *Create2DRasterizer() {
 }
 
 void
-Rasterizer2D::PreprocessGrids(std::vector<ShadedGrid> &grids,
+Rasterizer2D::PreprocessGrids(const std::vector<ShadedGrid> &grids,
                               int bucketEdgeLength, int xRes, int yRes) {
     for (unsigned int i = 0; i < grids.size(); ++i) {
-        ShadedGrid &sg = grids[i];
+        const ShadedGrid &sg = grids[i];
 
         const float * x0_buffer = sg.x0();
         const float * y0_buffer = sg.y0();
@@ -63,10 +63,10 @@ Rasterizer2D::PreprocessGrids(std::vector<ShadedGrid> &grids,
                 ymax = yTemp;
 
         }
-        sg.box.Xmin = floorf(xmin);
-        sg.box.Ymin = floorf(ymin);
-        sg.box.Xmax = ceilf(xmax);
-        sg.box.Ymax = ceilf(ymax);
+        //sg.box.Xmin = floorf(xmin);
+        //sg.box.Ymin = floorf(ymin);
+        //sg.box.Xmax = ceilf(xmax);
+        //sg.box.Ymax = ceilf(ymax);
     }
 }
 
@@ -194,11 +194,12 @@ Rasterizer2D::Rasterize(const std::vector<ShadedGrid> &grids,
     for (unsigned int i = 0; i < grids.size(); ++i) {
         const ShadedGrid &sg = grids[i];
 
+        /*
         if (!OverLapRect(sg.box.Xmin, sg.box.Ymin, sg.box.Xmax, sg.box.Ymax,
                         bucket->x0, bucket->y0, bucket->x1, bucket->y1))
         {
             continue;
-        }
+        }*/
 
         // Loop over all micropolygons in the grid; split each one into two
         // triangles and rasterize each of the triangles.

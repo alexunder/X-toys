@@ -14,7 +14,7 @@ public:
         return true;
     }
 
-    void PreprocessGrids(std::vector<ShadedGrid> &grids,
+    void PreprocessGrids(const std::vector<ShadedGrid> &grids,
                          int bucketEdgeLength, int xRes, int yRes);    
     void Rasterize(const std::vector<ShadedGrid> &grids,
                    int numIntervals, Bucket *bucket);
@@ -27,7 +27,7 @@ Rasterizer *Create3DRasterizer() {
 }
 
 void
-Rasterizer3D::PreprocessGrids(std::vector<ShadedGrid> &grids,
+Rasterizer3D::PreprocessGrids(const std::vector<ShadedGrid> &grids,
                               int bucketEdgeLength, int xRes, int yRes) {
     float xmin = xRes - 1.0;
     float ymin = yRes - 1.0;
@@ -35,11 +35,15 @@ Rasterizer3D::PreprocessGrids(std::vector<ShadedGrid> &grids,
     float ymax = 0.0;
 
     for (unsigned int i = 0; i < grids.size(); ++i) {
-        ShadedGrid &sg = grids[i];
+        const ShadedGrid &sg = grids[i];
 
         const float * x0_buffer = sg.x0();
         const float * y0_buffer = sg.y0();
         const float * w0_buffer = sg.w0();
+
+        const float * x1_buffer = sg.x1();
+        const float * y1_buffer = sg.y1();
+        const float * w1_buffer = sg.w1();
 
         int j;
         int size = sg.nu*sg.nv;
@@ -48,6 +52,28 @@ Rasterizer3D::PreprocessGrids(std::vector<ShadedGrid> &grids,
         {
             float xTemp = x0_buffer[j] / w0_buffer[j];
             float yTemp = y0_buffer[j] / w0_buffer[j];
+            // X min
+            if (xTemp < xmin)
+                xmin = xTemp;
+
+            //X max
+            if (xTemp > xmax)
+                xmax = xTemp;
+
+            //Y min
+            if (yTemp < ymin)
+                ymin = yTemp;
+
+            //Y max
+            if (yTemp > ymax)
+                ymax = yTemp;
+
+        }
+
+        for (j = 0; j < size; j++)
+        {
+            float xTemp = x1_buffer[j] / w1_buffer[j];
+            float yTemp = y1_buffer[j] / w1_buffer[j];
             // X min
             if (xTemp < xmin)
                 xmin = xTemp;
@@ -74,7 +100,7 @@ Rasterizer3D::PreprocessGrids(std::vector<ShadedGrid> &grids,
 }
 
 static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int v1,
-                              int u2, int v2, int interval, Bucket *bucket)
+                              int u2, int v2, Bucket *bucket)
 {
     // Compute offsets in the vertex arrays for the three vertices of the
     // triangle to be rasterized
@@ -84,60 +110,26 @@ static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int 
 
     // Compute screen-space vertex positions of the triangle at start time;
     // ignore motion completely.
+// Compute screen-space vertex positions of the triangle at start time;
+    Point vx0[2], vx1[2], vx2[2];
+    vx0[0].set(sg.x0()[offset0], sg.y0()[offset0], sg.z0()[offset0], sg.w0()[offset0]);
+    vx0[1].set(sg.x1()[offset0], sg.y1()[offset0], sg.z1()[offset0], sg.w1()[offset0]);
+    vx1[0].set(sg.x0()[offset1], sg.y0()[offset1], sg.z0()[offset1], sg.w0()[offset1]);
+    vx1[1].set(sg.x1()[offset1], sg.y1()[offset1], sg.z1()[offset1], sg.w1()[offset1]);
+    vx2[0].set(sg.x0()[offset2], sg.y0()[offset2], sg.z0()[offset2], sg.w0()[offset2]);
+    vx2[1].set(sg.x1()[offset2], sg.y1()[offset2], sg.z1()[offset2], sg.w1()[offset2]);
 
-	//Acquire the shutter open triangle
-    float point_a_x0 = sg.x0()[offset0];
-    float point_a_y0 = sg.y0()[offset0];
-    float point_a_z0 = sg.z0()[offset0];
-    float point_a_w0 = sg.w0()[offset0];
-
-	float point_b_x0 = sg.x0()[offset1];
-    float point_b_y0 = sg.y0()[offset1];
-    float point_b_z0 = sg.z0()[offset1];
-    float point_b_w0 = sg.w0()[offset1];
-
-	float point_c_x0 = sg.x0()[offset2];
-    float point_c_y0 = sg.y0()[offset2];
-    float point_c_z0 = sg.z0()[offset2];
-    float point_c_w0 = sg.w0()[offset2];
-
-    float x_0_min = std::min(point_a_x0 / point_a_w0, std::min(point_b_x0 / point_b_w0, point_c_x0 / point_c_w0));
-    float x_0_max = std::max(point_a_x0 / point_a_w0, std::max(point_b_x0 / point_b_w0, point_c_x0 / point_c_w0));
-    float y_0_min = std::min(point_a_y0 / point_a_w0, std::min(point_b_y0 / point_b_w0, point_c_y0 / point_c_w0));
-    float y_0_max = std::max(point_a_y0 / point_a_w0, std::max(point_b_y0 / point_b_w0, point_c_y0 / point_c_w0));
-    //float w_0_min = std::min(point_a_w0, std::min(point_b_w0, point_c_w0));
-    //float w_0_max = std::max(point_a_w0, std::max(point_b_w0, point_c_w0));
-	//Acquire the shutter close triangle
-    float point_a_x1 = sg.x1()[offset0];
-    float point_a_y1 = sg.y1()[offset0];
-    float point_a_z1 = sg.z1()[offset0];
-    float point_a_w1 = sg.w1()[offset0];
-
-	float point_b_x1 = sg.x1()[offset1];
-    float point_b_y1 = sg.y1()[offset1];
-    float point_b_z1 = sg.z1()[offset1];
-    float point_b_w1 = sg.w1()[offset1];
-
-	float point_c_x1 = sg.x1()[offset2];
-    float point_c_y1 = sg.y1()[offset2];
-    float point_c_z1 = sg.z1()[offset2];
-    float point_c_w1 = sg.w1()[offset2];
-
-    float x_1_min = std::min(point_a_x1 / point_a_w1, std::min(point_b_x1 / point_b_w1, point_c_x1 / point_c_w1));
-    float x_1_max = std::max(point_a_x1 / point_a_w1, std::max(point_b_x1 / point_b_w1, point_c_x1 / point_c_w1));
-    float y_1_min = std::min(point_a_y1 / point_a_w1, std::min(point_b_y1 / point_b_w1, point_c_y1 / point_c_w1));
-    float y_1_max = std::max(point_a_y1 / point_a_w1, std::max(point_b_y1 / point_b_w1, point_c_y1 / point_c_w1));
-    //float w_1_min = std::min(point_a_w1, std::min(point_b_w1, point_c_w1));
-    //float w_1_max = std::max(point_a_w1, std::max(point_b_w1, point_c_w1));
-	// Now compute the bounding box of the triangle on the screen in
+    // Now compute the bounding box of the triangle on the screen in
     // floating-point pixel coordinates.
+    float xMin = vx0[0].x2d(), xMax = vx0[0].x2d(), yMin = vx0[0].y2d(), yMax = vx0[0].y2d();
+    for (int i = 0; i < 2; i++)
+    {
+        xMin = std::min(xMin, std::min(vx0[i].x2d(), std::min(vx1[i].x2d(), vx2[i].x2d())));
+        yMin = std::min(yMin, std::min(vx0[i].y2d(), std::min(vx1[i].y2d(), vx2[i].y2d())));
+        xMax = std::max(xMax, std::max(vx0[i].x2d(), std::max(vx1[i].x2d(), vx2[i].x2d())));
+        yMax = std::max(yMax, std::max(vx0[i].y2d(), std::max(vx1[i].y2d(), vx2[i].y2d())));
+    }    
 
-    float xMin = std::min(x_0_min, x_1_min);
-    float xMax = std::max(x_0_max, x_1_max);
-    float yMin = std::min(y_0_min, y_1_min);
-    float yMax = std::max(y_0_max, y_1_max);
-    //float wMin = std::min(w_0_min, w_1_min);
-    //float wMax = std::max(w_0_max, w_1_max);
     // Compute integer pixel bounds, clamped to the bucket extent
     int ixMin = std::max((int)floorf(xMin), bucket->x0);
     int ixMax = std::min((int)ceilf(xMax),  bucket->x1);
@@ -166,29 +158,22 @@ static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int 
                 float st = timeSamples[sampleNum];
                     //Get the current vertex
 
-                float point_a_xt = (1 - st) * point_a_x0 + st * point_a_x1;
-                float point_a_yt = (1 - st) * point_a_y0 + st * point_a_y1;
-                float point_a_zt = (1 - st) * point_a_z0 + st * point_a_z1;
-                float point_a_wt = (1 - st) * point_a_w0 + st * point_a_w1;
+                float xa, xb, xc, ya, yb, yc, za, zb, zc;
+                Point vt0 = vx0[0] * (1 - st) + vx0[1] * st;
+                Point vt1 = vx1[0] * (1 - st) + vx1[1] * st;
+                Point vt2 = vx2[0] * (1 - st) + vx2[1] * st;
+                xa = vt0.x2d(); 
+                ya = vt0.y2d();
 
-                float point_b_xt = (1 - st) * point_b_x0 + st * point_b_x1;
-                float point_b_yt = (1 - st) * point_b_y0 + st * point_b_y1;
-                float point_b_zt = (1 - st) * point_b_z0 + st * point_b_z1;
-                float point_b_wt = (1 - st) * point_b_w0 + st * point_b_w1;
+                xb = vt1.x2d(); 
+                yb = vt1.y2d();
 
-                float point_c_xt = (1 - st) * point_c_x0 + st * point_c_x1;
-                float point_c_yt = (1 - st) * point_c_y0 + st * point_c_y1;
-                float point_c_zt = (1 - st) * point_c_z0 + st * point_c_z1;
-                float point_c_wt = (1 - st) * point_c_w0 + st * point_c_w1;
+                xc = vt2.x2d(); 
+                yc = vt2.y2d();
 
-                float xa = point_a_xt / point_a_wt;
-                float ya = point_a_yt / point_a_wt;
-
-                float xb = point_b_xt / point_b_wt;
-                float yb = point_b_yt / point_b_wt;
-
-                float xc = point_c_xt / point_c_wt;
-                float yc = point_c_yt / point_c_wt;
+                za = vt0.z;
+                zb = vt1.z;
+                zc = vt2.z;
 
                 // Triangle setup.
                 // Compute the edge equation coefficients.
@@ -225,7 +210,7 @@ static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int 
                 float wt2 = e0 * inv2Area;
 
                 // Interpolate z
-                float z = (wt0 * point_a_zt + wt1 * point_b_zt + wt2 * point_c_zt);
+                float z = (wt0 * za + wt1 * zb + wt2 * zc);
                 // Z-test: is the z value closer than the z value currently
                 // in the framebuffer?
                 if (z < *bucket->Z(px, py, sampleNum)) {
@@ -256,6 +241,7 @@ static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int 
 void
 Rasterizer3D::Rasterize(const std::vector<ShadedGrid> &grids,
                         int numIntervals, Bucket *bucket) {
+
     if (!OverLapRect(mBox.Xmin, mBox.Ymin, mBox.Xmax, mBox.Ymax,
                 bucket->x0, bucket->y0, bucket->x1, bucket->y1))
     {
@@ -271,8 +257,8 @@ Rasterizer3D::Rasterize(const std::vector<ShadedGrid> &grids,
         // triangles and rasterize each of the triangles.
         for (int v = 0; v < sg.nv-1; ++v) {
             for (int u = 0; u < sg.nu-1; ++u) {
-                RasterizeTriangle(sg, u, v, u+1, v, u+1, v+1, numIntervals, bucket);
-                RasterizeTriangle(sg, u, v, u+1, v+1, u, v+1, numIntervals, bucket);
+                RasterizeTriangle(sg, u, v, u+1, v, u+1, v+1, bucket);
+                RasterizeTriangle(sg, u, v, u+1, v+1, u, v+1, bucket);
             }
         }
     }

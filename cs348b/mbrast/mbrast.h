@@ -22,6 +22,36 @@ typedef struct _BBox2D {
     int Ymax;
 }BBox2D;
 
+//  define data structures to store points
+struct Point
+{
+    float x, y, z, w;
+    Point()
+    {}
+    void set(float xx, float yy, float zz, float ww)
+    {
+        x = xx; y = yy; z = zz; w = ww;
+    }
+
+    Point operator+(const Point& p) const
+    {
+        Point p2;
+        p2.set(x + p.x, y + p.y, z + p.z, w + p.w);
+        return p2;
+    }
+
+    Point operator*(const float f) const 
+    {
+        Point p;
+        p.set(x * f, y * f, z * f, w * f);
+        return p;
+    }
+    float x2d() {return x / w;}
+    float y2d() {return y / w;}
+    float z2d() {return z / w;}
+};
+
+
 // A shaded grid of micropolygons
 struct ShadedGrid {
     // These give the number of micropolygon *vertices* in the u and v
@@ -37,7 +67,7 @@ struct ShadedGrid {
     // for the vertex colors.
     float *buf;
 
-    BBox2D box;
+    //BBox2D box;
     // For convenience, the following methods do the initial indexing into
     // the buf array to give a pointer to the start of the corresponding
     // per-vertex values.
@@ -166,7 +196,7 @@ public:
     // rasterizer with all of the grids and to allow it to do any desired
     // per-preprocessing (e.g. computing bounding boxes, building data
     // structures over the grids) before rasteriztion begins.
-    virtual void PreprocessGrids(std::vector<ShadedGrid> &grids,
+    virtual void PreprocessGrids(const std::vector<ShadedGrid> &grids,
                                  int bucketEdgeLength, int xRes, int yRes) = 0;
 
     // Rasterize the grids into the provided Bucket of the image.  The
