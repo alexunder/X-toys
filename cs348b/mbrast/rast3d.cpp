@@ -194,7 +194,7 @@ static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int 
                 float inv2Area = 1.f / (2.f * area);
 
                 if (area <= 0.)
-                    return;
+                    continue;
 
                 // Evaluate edge equations at sample position (sx,sy).
                 float e0 = edge_a_0 * sx + edge_b_0 * sy + edge_c_0;
