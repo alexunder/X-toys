@@ -15,6 +15,19 @@
 
 #define MAX_SAMPLES_PER_PIXEL 256
 
+//  MBRAST_MODE:
+//      NAIVE_RAST_2D: the original reference 2d rasterizer
+//      SMART_RAST_2D: the smarter 2d rasterizer for step 4
+//      BASIC_RAST_3D: the basic 3d rasterizer for step 5
+//      INTER_RAST_3D: the interval 3d rasterizer for step 6
+#define NAIVE_RAST_2D   0
+#define SMART_RAST_2D   1
+#define BASIC_RAST_3D   2
+#define INTER_RAST_3D   3
+#define BASIC_RAST_5D   4
+#define MBRAST_MODE     INTER_RAST_3D
+
+
 typedef struct _BBox2D {
     int Xmin;
     int Ymin;

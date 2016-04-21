@@ -80,8 +80,14 @@ int main(int argc, char *argv[]) {
 
     // Change this call to switch to creating an instance of your 3D
     // rasterizer once you start implementing it.
-    //Rasterizer *rast = Create2DRasterizer();
+
+#if MBRAST_MODE == NAIVE_RAST_2D || MBRAST_MODE == SMART_RAST_2D
+    Rasterizer *rast = Create2DRasterizer();
+#elif MBRAST_MODE == BASIC_RAST_3D || MBRAST_MODE == INTER_RAST_3D
     Rasterizer *rast = Create3DRasterizer();
+#elif MBRAST_MODE == BASIC_RAST_5D
+    Rasterizer *rast = Create5DRasterizer();
+#endif
 
     // Initialize task system for multithreading if the rasterizer
     // indicates that it's thread safe.
