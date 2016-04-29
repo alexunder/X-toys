@@ -1,0 +1,5 @@
+<map id="Sphere" name="Sphere">
+<area shape="rect" id="node2" href="$classObject3D.html" title="{Object3D\n||+ Object3D()\l+ Object3D()\l+ ~Object3D()\l+ intersect()\l}" alt="" coords="33,688,171,825"/>
+<area shape="rect" id="node3" href="$classMaterial.html" title="{Material\n||+ Material()\l+ ~Material()\l+ getDiffuseColor()\l}" alt="" coords="5,503,199,623"/>
+<area shape="rect" id="node4" href="$classVec3f.html" title="{Vec3f\n||+ Vec3f()\l+ Vec3f()\l+ Vec3f()\l+ Vec3f()\l+ ~Vec3f()\l+ Get()\l+ operator[]()\l+ x()\l+ y()\l+ z()\land 21 more...\l+ Add()\l+ Sub()\l+ Mult()\l+ CopyScale()\l+ AddScale()\l+ Average()\l+ WeightedSum()\l+ Cross3()\l+ Min()\l+ Max()\l}" alt="" coords="23,5,181,437"/>
+</map>

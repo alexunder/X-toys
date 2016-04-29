@@ -1,0 +1,10 @@
+<map id="material.h" name="material.h">
+<area shape="rect" id="node2" href="$main_8cpp.html" title="main.cpp" alt="" coords="5,83,100,112"/>
+<area shape="rect" id="node3" href="$Plane_8h.html" title="Plane.h" alt="" coords="125,83,210,112"/>
+<area shape="rect" id="node5" href="$scene__parser_8cpp.html" title="scene_parser.cpp" alt="" coords="164,160,331,189"/>
+<area shape="rect" id="node6" href="$Sphere_8h.html" title="Sphere.h" alt="" coords="285,83,380,112"/>
+<area shape="rect" id="node8" href="$Triangle_8h.html" title="Triangle.h" alt="" coords="405,83,517,112"/>
+<area shape="rect" id="node4" href="$Plane_8cpp.html" title="Plane.cpp" alt="" coords="37,160,140,189"/>
+<area shape="rect" id="node7" href="$Sphere_8cpp.html" title="Sphere.cpp" alt="" coords="354,160,466,189"/>
+<area shape="rect" id="node9" href="$Triangle_8cpp.html" title="Triangle.cpp" alt="" coords="490,160,621,189"/>
+</map>

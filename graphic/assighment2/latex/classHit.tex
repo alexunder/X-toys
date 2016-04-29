@@ -1,0 +1,129 @@
+\hypertarget{classHit}{\section{Hit Class Reference}
+\label{classHit}\index{Hit@{Hit}}
+}
+
+
+{\ttfamily \#include $<$hit.\+h$>$}
+
+
+
+Collaboration diagram for Hit\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{classHit__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classHit_ac2727a27933c07b60b6a7ccccba12fff}{Hit} ()
+\item 
+\hyperlink{classHit_a5a32f693b7c37fedfc0d2b357b03374a}{Hit} (float \+\_\+t, \hyperlink{classMaterial}{Material} $\ast$m, \hyperlink{classVec3f}{Vec3f} n)
+\item 
+\hyperlink{classHit_acb4d552eb2451c8310329e485a516d06}{Hit} (const \hyperlink{classHit}{Hit} \&h)
+\item 
+\hyperlink{classHit_a6b06024fcf4bc21acd339461a549dc7c}{$\sim$\+Hit} ()
+\item 
+float \hyperlink{classHit_af5ebbf2d4370f17826617ea7d441abd9}{get\+T} () const 
+\item 
+\hyperlink{classMaterial}{Material} $\ast$ \hyperlink{classHit_a8143afec295fb4418daf38d207692923}{get\+Material} () const 
+\item 
+\hyperlink{classVec3f}{Vec3f} \hyperlink{classHit_aaa0cbcac47165d07318bba5efdb574f2}{get\+Normal} () const 
+\item 
+\hyperlink{classVec3f}{Vec3f} \hyperlink{classHit_ac07b2cc6a362e066abc87b86ff4c281d}{get\+Intersection\+Point} () const 
+\item 
+void \hyperlink{classHit_a09dd5834765113b153e12665ec580d36}{set} (float \+\_\+t, \hyperlink{classMaterial}{Material} $\ast$m, \hyperlink{classVec3f}{Vec3f} n, const \hyperlink{classRay}{Ray} \&ray)
+\item 
+void \hyperlink{classHit_acb2283496ca855ff94de46f4058ab1b8}{set} (float \+\_\+t, \hyperlink{classMaterial}{Material} $\ast$m, \hyperlink{classVec3f}{Vec3f} n, const \hyperlink{classVec3f}{Vec3f} \&p)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classHit_ac2727a27933c07b60b6a7ccccba12fff}{\index{Hit@{Hit}!Hit@{Hit}}
+\index{Hit@{Hit}!Hit@{Hit}}
+\subsubsection[{Hit}]{\setlength{\rightskip}{0pt plus 5cm}Hit\+::\+Hit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classHit_ac2727a27933c07b60b6a7ccccba12fff}
+\hypertarget{classHit_a5a32f693b7c37fedfc0d2b357b03374a}{\index{Hit@{Hit}!Hit@{Hit}}
+\index{Hit@{Hit}!Hit@{Hit}}
+\subsubsection[{Hit}]{\setlength{\rightskip}{0pt plus 5cm}Hit\+::\+Hit (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+t, }
+\item[{{\bf Material} $\ast$}]{m, }
+\item[{{\bf Vec3f}}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classHit_a5a32f693b7c37fedfc0d2b357b03374a}
+\hypertarget{classHit_acb4d552eb2451c8310329e485a516d06}{\index{Hit@{Hit}!Hit@{Hit}}
+\index{Hit@{Hit}!Hit@{Hit}}
+\subsubsection[{Hit}]{\setlength{\rightskip}{0pt plus 5cm}Hit\+::\+Hit (
+\begin{DoxyParamCaption}
+\item[{const {\bf Hit} \&}]{h}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classHit_acb4d552eb2451c8310329e485a516d06}
+\hypertarget{classHit_a6b06024fcf4bc21acd339461a549dc7c}{\index{Hit@{Hit}!````~Hit@{$\sim$\+Hit}}
+\index{````~Hit@{$\sim$\+Hit}!Hit@{Hit}}
+\subsubsection[{$\sim$\+Hit}]{\setlength{\rightskip}{0pt plus 5cm}Hit\+::$\sim$\+Hit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classHit_a6b06024fcf4bc21acd339461a549dc7c}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classHit_ac07b2cc6a362e066abc87b86ff4c281d}{\index{Hit@{Hit}!get\+Intersection\+Point@{get\+Intersection\+Point}}
+\index{get\+Intersection\+Point@{get\+Intersection\+Point}!Hit@{Hit}}
+\subsubsection[{get\+Intersection\+Point}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3f} Hit\+::get\+Intersection\+Point (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classHit_ac07b2cc6a362e066abc87b86ff4c281d}
+\hypertarget{classHit_a8143afec295fb4418daf38d207692923}{\index{Hit@{Hit}!get\+Material@{get\+Material}}
+\index{get\+Material@{get\+Material}!Hit@{Hit}}
+\subsubsection[{get\+Material}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Material}$\ast$ Hit\+::get\+Material (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classHit_a8143afec295fb4418daf38d207692923}
+\hypertarget{classHit_aaa0cbcac47165d07318bba5efdb574f2}{\index{Hit@{Hit}!get\+Normal@{get\+Normal}}
+\index{get\+Normal@{get\+Normal}!Hit@{Hit}}
+\subsubsection[{get\+Normal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3f} Hit\+::get\+Normal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classHit_aaa0cbcac47165d07318bba5efdb574f2}
+\hypertarget{classHit_af5ebbf2d4370f17826617ea7d441abd9}{\index{Hit@{Hit}!get\+T@{get\+T}}
+\index{get\+T@{get\+T}!Hit@{Hit}}
+\subsubsection[{get\+T}]{\setlength{\rightskip}{0pt plus 5cm}float Hit\+::get\+T (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classHit_af5ebbf2d4370f17826617ea7d441abd9}
+\hypertarget{classHit_a09dd5834765113b153e12665ec580d36}{\index{Hit@{Hit}!set@{set}}
+\index{set@{set}!Hit@{Hit}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void Hit\+::set (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+t, }
+\item[{{\bf Material} $\ast$}]{m, }
+\item[{{\bf Vec3f}}]{n, }
+\item[{const {\bf Ray} \&}]{ray}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classHit_a09dd5834765113b153e12665ec580d36}
+\hypertarget{classHit_acb2283496ca855ff94de46f4058ab1b8}{\index{Hit@{Hit}!set@{set}}
+\index{set@{set}!Hit@{Hit}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void Hit\+::set (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+t, }
+\item[{{\bf Material} $\ast$}]{m, }
+\item[{{\bf Vec3f}}]{n, }
+\item[{const {\bf Vec3f} \&}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classHit_acb2283496ca855ff94de46f4058ab1b8}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{hit_8h}{hit.\+h}\end{DoxyCompactItemize}

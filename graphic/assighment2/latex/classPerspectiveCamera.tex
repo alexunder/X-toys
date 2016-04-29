@@ -1,0 +1,102 @@
+\hypertarget{classPerspectiveCamera}{\section{Perspective\+Camera Class Reference}
+\label{classPerspectiveCamera}\index{Perspective\+Camera@{Perspective\+Camera}}
+}
+
+
+{\ttfamily \#include $<$Perspective\+Camera.\+h$>$}
+
+
+
+Inheritance diagram for Perspective\+Camera\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classPerspectiveCamera__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Perspective\+Camera\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classPerspectiveCamera__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPerspectiveCamera_a79e25c695b09c9500b585880e726a0f8}{Perspective\+Camera} (\hyperlink{classVec3f}{Vec3f} \&center, \hyperlink{classVec3f}{Vec3f} \&direction, \hyperlink{classVec3f}{Vec3f} \&up, float angle)
+\item 
+\hyperlink{classRay}{Ray} \hyperlink{classPerspectiveCamera_a28eb145d362d3861f8f92cb25a448602}{generate\+Ray} (\hyperlink{classVec2f}{Vec2f} point)
+\item 
+void \hyperlink{classPerspectiveCamera_a87c53b9f1c47e4d0c3cf4496fb780f7c}{set\+Ratio} (float ratio)
+\item 
+\hyperlink{Camera_8h_af7eb92b45c5f7f64f02821f87c385ebb}{Camera\+Type} \hyperlink{classPerspectiveCamera_adc1355f80042153eabbf25f618655655}{get\+Camera\+Type} ()
+\item 
+float \hyperlink{classPerspectiveCamera_a3a82bc5e9f2fd72faaaf42b3919ecf8a}{get\+T\+Min} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classPerspectiveCamera_a79e25c695b09c9500b585880e726a0f8}{\index{Perspective\+Camera@{Perspective\+Camera}!Perspective\+Camera@{Perspective\+Camera}}
+\index{Perspective\+Camera@{Perspective\+Camera}!Perspective\+Camera@{Perspective\+Camera}}
+\subsubsection[{Perspective\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}Perspective\+Camera\+::\+Perspective\+Camera (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec3f} \&}]{center, }
+\item[{{\bf Vec3f} \&}]{direction, }
+\item[{{\bf Vec3f} \&}]{up, }
+\item[{float}]{angle}
+\end{DoxyParamCaption}
+)}}\label{classPerspectiveCamera_a79e25c695b09c9500b585880e726a0f8}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classPerspectiveCamera_a28eb145d362d3861f8f92cb25a448602}{\index{Perspective\+Camera@{Perspective\+Camera}!generate\+Ray@{generate\+Ray}}
+\index{generate\+Ray@{generate\+Ray}!Perspective\+Camera@{Perspective\+Camera}}
+\subsubsection[{generate\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ray} Perspective\+Camera\+::generate\+Ray (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec2f}}]{point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classPerspectiveCamera_a28eb145d362d3861f8f92cb25a448602}
+
+
+Implements \hyperlink{classCamera_a38dbd2b70b31ee250aadd83b1bbe87fb}{Camera}.
+
+\hypertarget{classPerspectiveCamera_adc1355f80042153eabbf25f618655655}{\index{Perspective\+Camera@{Perspective\+Camera}!get\+Camera\+Type@{get\+Camera\+Type}}
+\index{get\+Camera\+Type@{get\+Camera\+Type}!Perspective\+Camera@{Perspective\+Camera}}
+\subsubsection[{get\+Camera\+Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera\+Type} Perspective\+Camera\+::get\+Camera\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classPerspectiveCamera_adc1355f80042153eabbf25f618655655}
+
+
+Reimplemented from \hyperlink{classCamera_a8ef78e5cc0c5e62077681a0805eb7522}{Camera}.
+
+\hypertarget{classPerspectiveCamera_a3a82bc5e9f2fd72faaaf42b3919ecf8a}{\index{Perspective\+Camera@{Perspective\+Camera}!get\+T\+Min@{get\+T\+Min}}
+\index{get\+T\+Min@{get\+T\+Min}!Perspective\+Camera@{Perspective\+Camera}}
+\subsubsection[{get\+T\+Min}]{\setlength{\rightskip}{0pt plus 5cm}float Perspective\+Camera\+::get\+T\+Min (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classPerspectiveCamera_a3a82bc5e9f2fd72faaaf42b3919ecf8a}
+
+
+Implements \hyperlink{classCamera_a476000c8588b1aef575482c86153fcb7}{Camera}.
+
+\hypertarget{classPerspectiveCamera_a87c53b9f1c47e4d0c3cf4496fb780f7c}{\index{Perspective\+Camera@{Perspective\+Camera}!set\+Ratio@{set\+Ratio}}
+\index{set\+Ratio@{set\+Ratio}!Perspective\+Camera@{Perspective\+Camera}}
+\subsubsection[{set\+Ratio}]{\setlength{\rightskip}{0pt plus 5cm}void Perspective\+Camera\+::set\+Ratio (
+\begin{DoxyParamCaption}
+\item[{float}]{ratio}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classPerspectiveCamera_a87c53b9f1c47e4d0c3cf4496fb780f7c}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{PerspectiveCamera_8h}{Perspective\+Camera.\+h}\item 
+\hyperlink{PerspectiveCamera_8cpp}{Perspective\+Camera.\+cpp}\end{DoxyCompactItemize}

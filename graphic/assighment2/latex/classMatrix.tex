@@ -1,0 +1,411 @@
+\hypertarget{classMatrix}{\section{Matrix Class Reference}
+\label{classMatrix}\index{Matrix@{Matrix}}
+}
+
+
+{\ttfamily \#include $<$matrix.\+h$>$}
+
+
+
+Collaboration diagram for Matrix\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classMatrix__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMatrix_a2dba13c45127354c9f75ef576f49269b}{Matrix} ()
+\item 
+\hyperlink{classMatrix_a765f4dcb51b6829311cc3e7576388423}{Matrix} (const \hyperlink{classMatrix}{Matrix} \&m)
+\item 
+\hyperlink{classMatrix_acfc1445f8a381d32f1989cd35714c290}{Matrix} (const float $\ast$m)
+\item 
+\hyperlink{classMatrix_a9b1c3627f573d78a2f08623fdfef990f}{$\sim$\+Matrix} ()
+\item 
+float $\ast$ \hyperlink{classMatrix_af8d06eec2ed4cc9329d664d539c7f2b8}{gl\+Get} (void) const 
+\item 
+float \hyperlink{classMatrix_aef91dcc82ede72fd100dc3e4004234c7}{Get} (int x, int y) const 
+\item 
+void \hyperlink{classMatrix_ac3560c1c5173148d2ed77488e46bd79f}{Set} (int x, int y, float v)
+\item 
+void \hyperlink{classMatrix_a16343771112fd6a54e6f3383bd82598d}{Set\+To\+Identity} ()
+\item 
+void \hyperlink{classMatrix_a77024c11b6ff4b02a265bfda0ff7eab1}{Clear} ()
+\item 
+void \hyperlink{classMatrix_a8191ef7491d6caa30bc367ec7c64cf30}{Transpose} (\hyperlink{classMatrix}{Matrix} \&m) const 
+\item 
+void \hyperlink{classMatrix_a350d12361c31ec650e667e8120da7274}{Transpose} ()
+\item 
+int \hyperlink{classMatrix_a84db3b710d89b69bf7fe5c019185fbbb}{Inverse} (\hyperlink{classMatrix}{Matrix} \&m, float epsilon=1e-\/08) const 
+\item 
+int \hyperlink{classMatrix_af203ab3d087288d9eb6e84afe5814fa9}{Inverse} (float epsilon=1e-\/08)
+\item 
+\hyperlink{classMatrix}{Matrix} \& \hyperlink{classMatrix_aea5a06385f646eb4a63929fae6fa3e14}{operator=} (const \hyperlink{classMatrix}{Matrix} \&m)
+\item 
+int \hyperlink{classMatrix_a3907074da7d66966da2ae99413d1c3bf}{operator==} (const \hyperlink{classMatrix}{Matrix} \&m) const 
+\item 
+int \hyperlink{classMatrix_a7677246e5e4d8350758f4f651dc87c90}{operator!=} (const \hyperlink{classMatrix}{Matrix} \&m) const 
+\item 
+\hyperlink{classMatrix}{Matrix} \& \hyperlink{classMatrix_a2780b459599c6ba0b4c63ce6ca6c1ba9}{operator+=} (const \hyperlink{classMatrix}{Matrix} \&m)
+\item 
+\hyperlink{classMatrix}{Matrix} \& \hyperlink{classMatrix_a26bb57b9a95c3c5ddcb6dfe4de089f04}{operator-\/=} (const \hyperlink{classMatrix}{Matrix} \&m)
+\item 
+\hyperlink{classMatrix}{Matrix} \& \hyperlink{classMatrix_a2db81df6efad774392a12384f7c2cf26}{operator$\ast$=} (const float f)
+\item 
+\hyperlink{classMatrix}{Matrix} \& \hyperlink{classMatrix_a4680eaaf820efafb0017a2ee593bea8c}{operator$\ast$=} (const \hyperlink{classMatrix}{Matrix} \&m)
+\item 
+void \hyperlink{classMatrix_a815a83fda075f44bf71f13defca9f83e}{Transform} (\hyperlink{classVec4f}{Vec4f} \&v) const 
+\item 
+void \hyperlink{classMatrix_a7208989bf27372bb361390c4b4df2157}{Transform} (\hyperlink{classVec3f}{Vec3f} \&v) const 
+\item 
+void \hyperlink{classMatrix_a16f9a1cf796c64979de415ba161ef84c}{Transform} (\hyperlink{classVec2f}{Vec2f} \&v) const 
+\item 
+void \hyperlink{classMatrix_a21f46ddfd67d21e873076e468f9b793e}{Transform\+Direction} (\hyperlink{classVec3f}{Vec3f} \&v) const 
+\item 
+void \hyperlink{classMatrix_ae8ba2f4d4b1431f5a0a9b77e654a544f}{Write} (F\+I\+L\+E $\ast$F=stdout) const 
+\item 
+void \hyperlink{classMatrix_a2c6c2fd2c666999a410ebccbd510d4fe}{Write3x3} (F\+I\+L\+E $\ast$F=stdout) const 
+\item 
+void \hyperlink{classMatrix_a6b4caf9e67b3981b432a7d7ea33530fa}{Read} (F\+I\+L\+E $\ast$F)
+\item 
+void \hyperlink{classMatrix_aa9884c4699079277f126cbaef4b76df6}{Read3x3} (F\+I\+L\+E $\ast$F)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a2b1cb490a87242c87a70663740da4ec5}{Make\+Translation} (const \hyperlink{classVec3f}{Vec3f} \&v)
+\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_abf53a10add62314631229fc752cd8c84}{Make\+Scale} (const \hyperlink{classVec3f}{Vec3f} \&v)
+\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a503eab51a48058e56e60b6199bb1b8e8}{Make\+Scale} (float s)
+\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a2e1addd0f882e4ce73264258525f70e0}{Make\+X\+Rotation} (float theta)
+\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a0848f661169a85ca7ee24f1d7b30aa80}{Make\+Y\+Rotation} (float theta)
+\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a10fcfa34357b477fd80c25b31e2d9105}{Make\+Z\+Rotation} (float theta)
+\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a2134c6c917c3bf24797c1202f56d9e82}{Make\+Axis\+Rotation} (const \hyperlink{classVec3f}{Vec3f} \&v, float theta)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_aa5a9f2db2b3c1862c9c0d19241239ce7}{operator+} (const \hyperlink{classMatrix}{Matrix} \&m1, const \hyperlink{classMatrix}{Matrix} \&m2)
+\item 
+\hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a52ad5ef4b9998529c85e8523c20d6b86}{operator-\/} (const \hyperlink{classMatrix}{Matrix} \&m1, const \hyperlink{classMatrix}{Matrix} \&m2)
+\item 
+\hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a24da5fd1a21f5010ee32de71af9be3b9}{operator$\ast$} (const \hyperlink{classMatrix}{Matrix} \&m1, const \hyperlink{classMatrix}{Matrix} \&m2)
+\item 
+\hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a895d86a3588e50c3aa51f0e43b43de39}{operator$\ast$} (const \hyperlink{classMatrix}{Matrix} \&m1, float f)
+\item 
+\hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a900892d8498953af4e4606741601c017}{operator$\ast$} (float f, const \hyperlink{classMatrix}{Matrix} \&m)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classMatrix_a2dba13c45127354c9f75ef576f49269b}{\index{Matrix@{Matrix}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Matrix@{Matrix}}
+\subsubsection[{Matrix}]{\setlength{\rightskip}{0pt plus 5cm}Matrix\+::\+Matrix (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a2dba13c45127354c9f75ef576f49269b}
+\hypertarget{classMatrix_a765f4dcb51b6829311cc3e7576388423}{\index{Matrix@{Matrix}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Matrix@{Matrix}}
+\subsubsection[{Matrix}]{\setlength{\rightskip}{0pt plus 5cm}Matrix\+::\+Matrix (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m}
+\end{DoxyParamCaption}
+)}}\label{classMatrix_a765f4dcb51b6829311cc3e7576388423}
+\hypertarget{classMatrix_acfc1445f8a381d32f1989cd35714c290}{\index{Matrix@{Matrix}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Matrix@{Matrix}}
+\subsubsection[{Matrix}]{\setlength{\rightskip}{0pt plus 5cm}Matrix\+::\+Matrix (
+\begin{DoxyParamCaption}
+\item[{const float $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{classMatrix_acfc1445f8a381d32f1989cd35714c290}
+\hypertarget{classMatrix_a9b1c3627f573d78a2f08623fdfef990f}{\index{Matrix@{Matrix}!````~Matrix@{$\sim$\+Matrix}}
+\index{````~Matrix@{$\sim$\+Matrix}!Matrix@{Matrix}}
+\subsubsection[{$\sim$\+Matrix}]{\setlength{\rightskip}{0pt plus 5cm}Matrix\+::$\sim$\+Matrix (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a9b1c3627f573d78a2f08623fdfef990f}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classMatrix_a77024c11b6ff4b02a265bfda0ff7eab1}{\index{Matrix@{Matrix}!Clear@{Clear}}
+\index{Clear@{Clear}!Matrix@{Matrix}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classMatrix_a77024c11b6ff4b02a265bfda0ff7eab1}
+\hypertarget{classMatrix_aef91dcc82ede72fd100dc3e4004234c7}{\index{Matrix@{Matrix}!Get@{Get}}
+\index{Get@{Get}!Matrix@{Matrix}}
+\subsubsection[{Get}]{\setlength{\rightskip}{0pt plus 5cm}float Matrix\+::\+Get (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_aef91dcc82ede72fd100dc3e4004234c7}
+\hypertarget{classMatrix_af8d06eec2ed4cc9329d664d539c7f2b8}{\index{Matrix@{Matrix}!gl\+Get@{gl\+Get}}
+\index{gl\+Get@{gl\+Get}!Matrix@{Matrix}}
+\subsubsection[{gl\+Get}]{\setlength{\rightskip}{0pt plus 5cm}float$\ast$ Matrix\+::gl\+Get (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_af8d06eec2ed4cc9329d664d539c7f2b8}
+\hypertarget{classMatrix_a84db3b710d89b69bf7fe5c019185fbbb}{\index{Matrix@{Matrix}!Inverse@{Inverse}}
+\index{Inverse@{Inverse}!Matrix@{Matrix}}
+\subsubsection[{Inverse}]{\setlength{\rightskip}{0pt plus 5cm}int Matrix\+::\+Inverse (
+\begin{DoxyParamCaption}
+\item[{{\bf Matrix} \&}]{m, }
+\item[{float}]{epsilon = {\ttfamily 1e-\/08}}
+\end{DoxyParamCaption}
+) const}}\label{classMatrix_a84db3b710d89b69bf7fe5c019185fbbb}
+\hypertarget{classMatrix_af203ab3d087288d9eb6e84afe5814fa9}{\index{Matrix@{Matrix}!Inverse@{Inverse}}
+\index{Inverse@{Inverse}!Matrix@{Matrix}}
+\subsubsection[{Inverse}]{\setlength{\rightskip}{0pt plus 5cm}int Matrix\+::\+Inverse (
+\begin{DoxyParamCaption}
+\item[{float}]{epsilon = {\ttfamily 1e-\/08}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_af203ab3d087288d9eb6e84afe5814fa9}
+\hypertarget{classMatrix_a2134c6c917c3bf24797c1202f56d9e82}{\index{Matrix@{Matrix}!Make\+Axis\+Rotation@{Make\+Axis\+Rotation}}
+\index{Make\+Axis\+Rotation@{Make\+Axis\+Rotation}!Matrix@{Matrix}}
+\subsubsection[{Make\+Axis\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} Matrix\+::\+Make\+Axis\+Rotation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec3f} \&}]{v, }
+\item[{float}]{theta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classMatrix_a2134c6c917c3bf24797c1202f56d9e82}
+\hypertarget{classMatrix_abf53a10add62314631229fc752cd8c84}{\index{Matrix@{Matrix}!Make\+Scale@{Make\+Scale}}
+\index{Make\+Scale@{Make\+Scale}!Matrix@{Matrix}}
+\subsubsection[{Make\+Scale}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} Matrix\+::\+Make\+Scale (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec3f} \&}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classMatrix_abf53a10add62314631229fc752cd8c84}
+\hypertarget{classMatrix_a503eab51a48058e56e60b6199bb1b8e8}{\index{Matrix@{Matrix}!Make\+Scale@{Make\+Scale}}
+\index{Make\+Scale@{Make\+Scale}!Matrix@{Matrix}}
+\subsubsection[{Make\+Scale}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Matrix} Matrix\+::\+Make\+Scale (
+\begin{DoxyParamCaption}
+\item[{float}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classMatrix_a503eab51a48058e56e60b6199bb1b8e8}
+\hypertarget{classMatrix_a2b1cb490a87242c87a70663740da4ec5}{\index{Matrix@{Matrix}!Make\+Translation@{Make\+Translation}}
+\index{Make\+Translation@{Make\+Translation}!Matrix@{Matrix}}
+\subsubsection[{Make\+Translation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} Matrix\+::\+Make\+Translation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec3f} \&}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classMatrix_a2b1cb490a87242c87a70663740da4ec5}
+\hypertarget{classMatrix_a2e1addd0f882e4ce73264258525f70e0}{\index{Matrix@{Matrix}!Make\+X\+Rotation@{Make\+X\+Rotation}}
+\index{Make\+X\+Rotation@{Make\+X\+Rotation}!Matrix@{Matrix}}
+\subsubsection[{Make\+X\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} Matrix\+::\+Make\+X\+Rotation (
+\begin{DoxyParamCaption}
+\item[{float}]{theta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classMatrix_a2e1addd0f882e4ce73264258525f70e0}
+\hypertarget{classMatrix_a0848f661169a85ca7ee24f1d7b30aa80}{\index{Matrix@{Matrix}!Make\+Y\+Rotation@{Make\+Y\+Rotation}}
+\index{Make\+Y\+Rotation@{Make\+Y\+Rotation}!Matrix@{Matrix}}
+\subsubsection[{Make\+Y\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} Matrix\+::\+Make\+Y\+Rotation (
+\begin{DoxyParamCaption}
+\item[{float}]{theta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classMatrix_a0848f661169a85ca7ee24f1d7b30aa80}
+\hypertarget{classMatrix_a10fcfa34357b477fd80c25b31e2d9105}{\index{Matrix@{Matrix}!Make\+Z\+Rotation@{Make\+Z\+Rotation}}
+\index{Make\+Z\+Rotation@{Make\+Z\+Rotation}!Matrix@{Matrix}}
+\subsubsection[{Make\+Z\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} Matrix\+::\+Make\+Z\+Rotation (
+\begin{DoxyParamCaption}
+\item[{float}]{theta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classMatrix_a10fcfa34357b477fd80c25b31e2d9105}
+\hypertarget{classMatrix_a7677246e5e4d8350758f4f651dc87c90}{\index{Matrix@{Matrix}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Matrix@{Matrix}}
+\subsubsection[{operator"!=}]{\setlength{\rightskip}{0pt plus 5cm}int Matrix\+::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a7677246e5e4d8350758f4f651dc87c90}
+\hypertarget{classMatrix_a2db81df6efad774392a12384f7c2cf26}{\index{Matrix@{Matrix}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Matrix@{Matrix}}
+\subsubsection[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix}\& Matrix\+::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{const float}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a2db81df6efad774392a12384f7c2cf26}
+\hypertarget{classMatrix_a4680eaaf820efafb0017a2ee593bea8c}{\index{Matrix@{Matrix}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Matrix@{Matrix}}
+\subsubsection[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix}\& Matrix\+::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a4680eaaf820efafb0017a2ee593bea8c}
+\hypertarget{classMatrix_a2780b459599c6ba0b4c63ce6ca6c1ba9}{\index{Matrix@{Matrix}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Matrix@{Matrix}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix}\& Matrix\+::operator+= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a2780b459599c6ba0b4c63ce6ca6c1ba9}
+\hypertarget{classMatrix_a26bb57b9a95c3c5ddcb6dfe4de089f04}{\index{Matrix@{Matrix}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Matrix@{Matrix}}
+\subsubsection[{operator-\/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix}\& Matrix\+::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a26bb57b9a95c3c5ddcb6dfe4de089f04}
+\hypertarget{classMatrix_aea5a06385f646eb4a63929fae6fa3e14}{\index{Matrix@{Matrix}!operator=@{operator=}}
+\index{operator=@{operator=}!Matrix@{Matrix}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} \& Matrix\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m}
+\end{DoxyParamCaption}
+)}}\label{classMatrix_aea5a06385f646eb4a63929fae6fa3e14}
+\hypertarget{classMatrix_a3907074da7d66966da2ae99413d1c3bf}{\index{Matrix@{Matrix}!operator==@{operator==}}
+\index{operator==@{operator==}!Matrix@{Matrix}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}int Matrix\+::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m}
+\end{DoxyParamCaption}
+) const}}\label{classMatrix_a3907074da7d66966da2ae99413d1c3bf}
+\hypertarget{classMatrix_a6b4caf9e67b3981b432a7d7ea33530fa}{\index{Matrix@{Matrix}!Read@{Read}}
+\index{Read@{Read}!Matrix@{Matrix}}
+\subsubsection[{Read}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Read (
+\begin{DoxyParamCaption}
+\item[{F\+I\+L\+E $\ast$}]{F}
+\end{DoxyParamCaption}
+)}}\label{classMatrix_a6b4caf9e67b3981b432a7d7ea33530fa}
+\hypertarget{classMatrix_aa9884c4699079277f126cbaef4b76df6}{\index{Matrix@{Matrix}!Read3x3@{Read3x3}}
+\index{Read3x3@{Read3x3}!Matrix@{Matrix}}
+\subsubsection[{Read3x3}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Read3x3 (
+\begin{DoxyParamCaption}
+\item[{F\+I\+L\+E $\ast$}]{F}
+\end{DoxyParamCaption}
+)}}\label{classMatrix_aa9884c4699079277f126cbaef4b76df6}
+\hypertarget{classMatrix_ac3560c1c5173148d2ed77488e46bd79f}{\index{Matrix@{Matrix}!Set@{Set}}
+\index{Set@{Set}!Matrix@{Matrix}}
+\subsubsection[{Set}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Set (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{float}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_ac3560c1c5173148d2ed77488e46bd79f}
+\hypertarget{classMatrix_a16343771112fd6a54e6f3383bd82598d}{\index{Matrix@{Matrix}!Set\+To\+Identity@{Set\+To\+Identity}}
+\index{Set\+To\+Identity@{Set\+To\+Identity}!Matrix@{Matrix}}
+\subsubsection[{Set\+To\+Identity}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Set\+To\+Identity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classMatrix_a16343771112fd6a54e6f3383bd82598d}
+\hypertarget{classMatrix_a815a83fda075f44bf71f13defca9f83e}{\index{Matrix@{Matrix}!Transform@{Transform}}
+\index{Transform@{Transform}!Matrix@{Matrix}}
+\subsubsection[{Transform}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Transform (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec4f} \&}]{v}
+\end{DoxyParamCaption}
+) const}}\label{classMatrix_a815a83fda075f44bf71f13defca9f83e}
+\hypertarget{classMatrix_a7208989bf27372bb361390c4b4df2157}{\index{Matrix@{Matrix}!Transform@{Transform}}
+\index{Transform@{Transform}!Matrix@{Matrix}}
+\subsubsection[{Transform}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Transform (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec3f} \&}]{v}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a7208989bf27372bb361390c4b4df2157}
+\hypertarget{classMatrix_a16f9a1cf796c64979de415ba161ef84c}{\index{Matrix@{Matrix}!Transform@{Transform}}
+\index{Transform@{Transform}!Matrix@{Matrix}}
+\subsubsection[{Transform}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Transform (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec2f} \&}]{v}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a16f9a1cf796c64979de415ba161ef84c}
+\hypertarget{classMatrix_a21f46ddfd67d21e873076e468f9b793e}{\index{Matrix@{Matrix}!Transform\+Direction@{Transform\+Direction}}
+\index{Transform\+Direction@{Transform\+Direction}!Matrix@{Matrix}}
+\subsubsection[{Transform\+Direction}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Transform\+Direction (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec3f} \&}]{v}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a21f46ddfd67d21e873076e468f9b793e}
+\hypertarget{classMatrix_a8191ef7491d6caa30bc367ec7c64cf30}{\index{Matrix@{Matrix}!Transpose@{Transpose}}
+\index{Transpose@{Transpose}!Matrix@{Matrix}}
+\subsubsection[{Transpose}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Transpose (
+\begin{DoxyParamCaption}
+\item[{{\bf Matrix} \&}]{m}
+\end{DoxyParamCaption}
+) const}}\label{classMatrix_a8191ef7491d6caa30bc367ec7c64cf30}
+\hypertarget{classMatrix_a350d12361c31ec650e667e8120da7274}{\index{Matrix@{Matrix}!Transpose@{Transpose}}
+\index{Transpose@{Transpose}!Matrix@{Matrix}}
+\subsubsection[{Transpose}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Transpose (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a350d12361c31ec650e667e8120da7274}
+\hypertarget{classMatrix_ae8ba2f4d4b1431f5a0a9b77e654a544f}{\index{Matrix@{Matrix}!Write@{Write}}
+\index{Write@{Write}!Matrix@{Matrix}}
+\subsubsection[{Write}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Write (
+\begin{DoxyParamCaption}
+\item[{F\+I\+L\+E $\ast$}]{F = {\ttfamily stdout}}
+\end{DoxyParamCaption}
+) const}}\label{classMatrix_ae8ba2f4d4b1431f5a0a9b77e654a544f}
+\hypertarget{classMatrix_a2c6c2fd2c666999a410ebccbd510d4fe}{\index{Matrix@{Matrix}!Write3x3@{Write3x3}}
+\index{Write3x3@{Write3x3}!Matrix@{Matrix}}
+\subsubsection[{Write3x3}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::\+Write3x3 (
+\begin{DoxyParamCaption}
+\item[{F\+I\+L\+E $\ast$}]{F = {\ttfamily stdout}}
+\end{DoxyParamCaption}
+) const}}\label{classMatrix_a2c6c2fd2c666999a410ebccbd510d4fe}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classMatrix_a24da5fd1a21f5010ee32de71af9be3b9}{\index{Matrix@{Matrix}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Matrix@{Matrix}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m1, }
+\item[{const {\bf Matrix} \&}]{m2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{classMatrix_a24da5fd1a21f5010ee32de71af9be3b9}
+\hypertarget{classMatrix_a895d86a3588e50c3aa51f0e43b43de39}{\index{Matrix@{Matrix}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Matrix@{Matrix}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m1, }
+\item[{float}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{classMatrix_a895d86a3588e50c3aa51f0e43b43de39}
+\hypertarget{classMatrix_a900892d8498953af4e4606741601c017}{\index{Matrix@{Matrix}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Matrix@{Matrix}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{float}]{f, }
+\item[{const {\bf Matrix} \&}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{classMatrix_a900892d8498953af4e4606741601c017}
+\hypertarget{classMatrix_aa5a9f2db2b3c1862c9c0d19241239ce7}{\index{Matrix@{Matrix}!operator+@{operator+}}
+\index{operator+@{operator+}!Matrix@{Matrix}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m1, }
+\item[{const {\bf Matrix} \&}]{m2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{classMatrix_aa5a9f2db2b3c1862c9c0d19241239ce7}
+\hypertarget{classMatrix_a52ad5ef4b9998529c85e8523c20d6b86}{\index{Matrix@{Matrix}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Matrix@{Matrix}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m1, }
+\item[{const {\bf Matrix} \&}]{m2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{classMatrix_a52ad5ef4b9998529c85e8523c20d6b86}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{matrix_8h}{matrix.\+h}\item 
+\hyperlink{matrix_8cpp}{matrix.\+cpp}\end{DoxyCompactItemize}

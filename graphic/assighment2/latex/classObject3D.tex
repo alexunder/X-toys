@@ -1,0 +1,94 @@
+\hypertarget{classObject3D}{\section{Object3\+D Class Reference}
+\label{classObject3D}\index{Object3\+D@{Object3\+D}}
+}
+
+
+{\ttfamily \#include $<$Object3\+D.\+h$>$}
+
+
+
+Inheritance diagram for Object3\+D\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classObject3D__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Object3\+D\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classObject3D__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classObject3D_ae29d1ad924cb8ab4b1b5c5647622f390}{Object3\+D} (\hyperlink{classMaterial}{Material} $\ast$m)
+\item 
+\hyperlink{classObject3D_ae3a1b17fb43ab59f5cf7b0ee21b9120b}{Object3\+D} ()
+\item 
+virtual \hyperlink{classObject3D_a0e0c43c27593f99b303319cbb54b9c50}{$\sim$\+Object3\+D} ()
+\item 
+virtual bool \hyperlink{classObject3D_a58f07cf2b37c5b6a1c796cd7a939f91b}{intersect} (const \hyperlink{classRay}{Ray} \&r, \hyperlink{classHit}{Hit} \&h, float tmin)=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMaterial}{Material} $\ast$ \hyperlink{classObject3D_a9eb94e46c928f4f90b1d718119bedaf9}{m\+Material}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classObject3D_ae29d1ad924cb8ab4b1b5c5647622f390}{\index{Object3\+D@{Object3\+D}!Object3\+D@{Object3\+D}}
+\index{Object3\+D@{Object3\+D}!Object3\+D@{Object3\+D}}
+\subsubsection[{Object3\+D}]{\setlength{\rightskip}{0pt plus 5cm}Object3\+D\+::\+Object3\+D (
+\begin{DoxyParamCaption}
+\item[{{\bf Material} $\ast$}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classObject3D_ae29d1ad924cb8ab4b1b5c5647622f390}
+\hypertarget{classObject3D_ae3a1b17fb43ab59f5cf7b0ee21b9120b}{\index{Object3\+D@{Object3\+D}!Object3\+D@{Object3\+D}}
+\index{Object3\+D@{Object3\+D}!Object3\+D@{Object3\+D}}
+\subsubsection[{Object3\+D}]{\setlength{\rightskip}{0pt plus 5cm}Object3\+D\+::\+Object3\+D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classObject3D_ae3a1b17fb43ab59f5cf7b0ee21b9120b}
+\hypertarget{classObject3D_a0e0c43c27593f99b303319cbb54b9c50}{\index{Object3\+D@{Object3\+D}!````~Object3\+D@{$\sim$\+Object3\+D}}
+\index{````~Object3\+D@{$\sim$\+Object3\+D}!Object3\+D@{Object3\+D}}
+\subsubsection[{$\sim$\+Object3\+D}]{\setlength{\rightskip}{0pt plus 5cm}virtual Object3\+D\+::$\sim$\+Object3\+D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classObject3D_a0e0c43c27593f99b303319cbb54b9c50}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classObject3D_a58f07cf2b37c5b6a1c796cd7a939f91b}{\index{Object3\+D@{Object3\+D}!intersect@{intersect}}
+\index{intersect@{intersect}!Object3\+D@{Object3\+D}}
+\subsubsection[{intersect}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Object3\+D\+::intersect (
+\begin{DoxyParamCaption}
+\item[{const {\bf Ray} \&}]{r, }
+\item[{{\bf Hit} \&}]{h, }
+\item[{float}]{tmin}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classObject3D_a58f07cf2b37c5b6a1c796cd7a939f91b}
+
+
+Implemented in \hyperlink{classGroup_aa09c8e6bce2db3666c1bae2c2fd9688b}{Group}, \hyperlink{classPlane_aa5d49b08c1d2bd97f62ede89dccc7298}{Plane}, \hyperlink{classSphere_a87f585d7a2618e8b8974968d4624c92a}{Sphere}, \hyperlink{classTriangle_a3e0979b60f7008812146905eace0f0e5}{Triangle}, and \hyperlink{classTransform_ad91c3a15e08477cc3e78def816d27bd6}{Transform}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classObject3D_a9eb94e46c928f4f90b1d718119bedaf9}{\index{Object3\+D@{Object3\+D}!m\+Material@{m\+Material}}
+\index{m\+Material@{m\+Material}!Object3\+D@{Object3\+D}}
+\subsubsection[{m\+Material}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Material}$\ast$ Object3\+D\+::m\+Material\hspace{0.3cm}{\ttfamily [protected]}}}\label{classObject3D_a9eb94e46c928f4f90b1d718119bedaf9}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Object3D_8h}{Object3\+D.\+h}\end{DoxyCompactItemize}

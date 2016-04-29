@@ -1,0 +1,148 @@
+\hypertarget{classImage}{\section{Image Class Reference}
+\label{classImage}\index{Image@{Image}}
+}
+
+
+{\ttfamily \#include $<$image.\+h$>$}
+
+
+
+Collaboration diagram for Image\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{classImage__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classImage_a05c964ca59502cc32c30e8ab89b5e920}{Image} (int w, int h)
+\item 
+\hyperlink{classImage_a0294f63700543e11c0f0da85601c7ae5}{$\sim$\+Image} ()
+\item 
+int \hyperlink{classImage_a55e9332ab0f27716de2b0765e1134aeb}{Width} () const 
+\item 
+int \hyperlink{classImage_a4ba2103cb0db707dabaea6adbab00be7}{Height} () const 
+\item 
+const \hyperlink{classVec3f}{Vec3f} \& \hyperlink{classImage_a5902ab3207a0d6f5b8fe92b6f11cb292}{Get\+Pixel} (int x, int y) const 
+\item 
+void \hyperlink{classImage_a4e91934550b21dd19041ea144e498c3c}{Set\+All\+Pixels} (const \hyperlink{classVec3f}{Vec3f} \&color)
+\item 
+void \hyperlink{classImage_af2f04f2fe7e6c3aba0401a0c6515963a}{Set\+Pixel} (int x, int y, const \hyperlink{classVec3f}{Vec3f} \&color)
+\item 
+void \hyperlink{classImage_a7aeb4943c2f410f9a806e91eb917756d}{Save\+P\+P\+M} (const char $\ast$filename) const 
+\item 
+void \hyperlink{classImage_a12ab68b68cc0f9c6501d2b4a019eb564}{Save\+T\+G\+A} (const char $\ast$filename) const 
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classImage}{Image} $\ast$ \hyperlink{classImage_ac2fc9197cc697efa2c610efe0519b466}{Load\+P\+P\+M} (const char $\ast$filename)
+\item 
+static \hyperlink{classImage}{Image} $\ast$ \hyperlink{classImage_a7c6b50633e25f53f9c5f1af90bf8332b}{Load\+T\+G\+A} (const char $\ast$filename)
+\item 
+static \hyperlink{classImage}{Image} $\ast$ \hyperlink{classImage_ac025574f36e212489546450083f3d331}{Compare} (\hyperlink{classImage}{Image} $\ast$img1, \hyperlink{classImage}{Image} $\ast$img2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classImage_a05c964ca59502cc32c30e8ab89b5e920}{\index{Image@{Image}!Image@{Image}}
+\index{Image@{Image}!Image@{Image}}
+\subsubsection[{Image}]{\setlength{\rightskip}{0pt plus 5cm}Image\+::\+Image (
+\begin{DoxyParamCaption}
+\item[{int}]{w, }
+\item[{int}]{h}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classImage_a05c964ca59502cc32c30e8ab89b5e920}
+\hypertarget{classImage_a0294f63700543e11c0f0da85601c7ae5}{\index{Image@{Image}!````~Image@{$\sim$\+Image}}
+\index{````~Image@{$\sim$\+Image}!Image@{Image}}
+\subsubsection[{$\sim$\+Image}]{\setlength{\rightskip}{0pt plus 5cm}Image\+::$\sim$\+Image (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classImage_a0294f63700543e11c0f0da85601c7ae5}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classImage_ac025574f36e212489546450083f3d331}{\index{Image@{Image}!Compare@{Compare}}
+\index{Compare@{Compare}!Image@{Image}}
+\subsubsection[{Compare}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Image} $\ast$ Image\+::\+Compare (
+\begin{DoxyParamCaption}
+\item[{{\bf Image} $\ast$}]{img1, }
+\item[{{\bf Image} $\ast$}]{img2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classImage_ac025574f36e212489546450083f3d331}
+\hypertarget{classImage_a5902ab3207a0d6f5b8fe92b6f11cb292}{\index{Image@{Image}!Get\+Pixel@{Get\+Pixel}}
+\index{Get\+Pixel@{Get\+Pixel}!Image@{Image}}
+\subsubsection[{Get\+Pixel}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Vec3f}\& Image\+::\+Get\+Pixel (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classImage_a5902ab3207a0d6f5b8fe92b6f11cb292}
+\hypertarget{classImage_a4ba2103cb0db707dabaea6adbab00be7}{\index{Image@{Image}!Height@{Height}}
+\index{Height@{Height}!Image@{Image}}
+\subsubsection[{Height}]{\setlength{\rightskip}{0pt plus 5cm}int Image\+::\+Height (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classImage_a4ba2103cb0db707dabaea6adbab00be7}
+\hypertarget{classImage_ac2fc9197cc697efa2c610efe0519b466}{\index{Image@{Image}!Load\+P\+P\+M@{Load\+P\+P\+M}}
+\index{Load\+P\+P\+M@{Load\+P\+P\+M}!Image@{Image}}
+\subsubsection[{Load\+P\+P\+M}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Image} $\ast$ Image\+::\+Load\+P\+P\+M (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classImage_ac2fc9197cc697efa2c610efe0519b466}
+\hypertarget{classImage_a7c6b50633e25f53f9c5f1af90bf8332b}{\index{Image@{Image}!Load\+T\+G\+A@{Load\+T\+G\+A}}
+\index{Load\+T\+G\+A@{Load\+T\+G\+A}!Image@{Image}}
+\subsubsection[{Load\+T\+G\+A}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Image} $\ast$ Image\+::\+Load\+T\+G\+A (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classImage_a7c6b50633e25f53f9c5f1af90bf8332b}
+\hypertarget{classImage_a7aeb4943c2f410f9a806e91eb917756d}{\index{Image@{Image}!Save\+P\+P\+M@{Save\+P\+P\+M}}
+\index{Save\+P\+P\+M@{Save\+P\+P\+M}!Image@{Image}}
+\subsubsection[{Save\+P\+P\+M}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+::\+Save\+P\+P\+M (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename}
+\end{DoxyParamCaption}
+) const}}\label{classImage_a7aeb4943c2f410f9a806e91eb917756d}
+\hypertarget{classImage_a12ab68b68cc0f9c6501d2b4a019eb564}{\index{Image@{Image}!Save\+T\+G\+A@{Save\+T\+G\+A}}
+\index{Save\+T\+G\+A@{Save\+T\+G\+A}!Image@{Image}}
+\subsubsection[{Save\+T\+G\+A}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+::\+Save\+T\+G\+A (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename}
+\end{DoxyParamCaption}
+) const}}\label{classImage_a12ab68b68cc0f9c6501d2b4a019eb564}
+\hypertarget{classImage_a4e91934550b21dd19041ea144e498c3c}{\index{Image@{Image}!Set\+All\+Pixels@{Set\+All\+Pixels}}
+\index{Set\+All\+Pixels@{Set\+All\+Pixels}!Image@{Image}}
+\subsubsection[{Set\+All\+Pixels}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+::\+Set\+All\+Pixels (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec3f} \&}]{color}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classImage_a4e91934550b21dd19041ea144e498c3c}
+\hypertarget{classImage_af2f04f2fe7e6c3aba0401a0c6515963a}{\index{Image@{Image}!Set\+Pixel@{Set\+Pixel}}
+\index{Set\+Pixel@{Set\+Pixel}!Image@{Image}}
+\subsubsection[{Set\+Pixel}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+::\+Set\+Pixel (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{const {\bf Vec3f} \&}]{color}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classImage_af2f04f2fe7e6c3aba0401a0c6515963a}
+\hypertarget{classImage_a55e9332ab0f27716de2b0765e1134aeb}{\index{Image@{Image}!Width@{Width}}
+\index{Width@{Width}!Image@{Image}}
+\subsubsection[{Width}]{\setlength{\rightskip}{0pt plus 5cm}int Image\+::\+Width (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classImage_a55e9332ab0f27716de2b0765e1134aeb}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{image_8h}{image.\+h}\item 
+\hyperlink{image_8cpp}{image.\+cpp}\end{DoxyCompactItemize}

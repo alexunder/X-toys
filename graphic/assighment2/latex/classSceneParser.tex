@@ -1,0 +1,122 @@
+\hypertarget{classSceneParser}{\section{Scene\+Parser Class Reference}
+\label{classSceneParser}\index{Scene\+Parser@{Scene\+Parser}}
+}
+
+
+{\ttfamily \#include $<$scene\+\_\+parser.\+h$>$}
+
+
+
+Collaboration diagram for Scene\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{classSceneParser__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSceneParser_ad88a09b16ec8ebbe49a8fd70e14216cf}{Scene\+Parser} (const char $\ast$filename)
+\item 
+\hyperlink{classSceneParser_af5809864333132e558dc1627f39170fe}{$\sim$\+Scene\+Parser} ()
+\item 
+\hyperlink{classCamera}{Camera} $\ast$ \hyperlink{classSceneParser_a9fbeeca8f642f40ade54674a41265115}{get\+Camera} () const 
+\item 
+\hyperlink{classVec3f}{Vec3f} \hyperlink{classSceneParser_a4254064ea79ff601d72d77bc3affb131}{get\+Background\+Color} () const 
+\item 
+\hyperlink{classVec3f}{Vec3f} \hyperlink{classSceneParser_a057055897d67275f7057368e592e5cbe}{get\+Ambient\+Light} () const 
+\item 
+int \hyperlink{classSceneParser_a67cf28b4c397a1bd98d060ee0f35d80b}{get\+Num\+Lights} () const 
+\item 
+\hyperlink{classLight}{Light} $\ast$ \hyperlink{classSceneParser_a4a7c20035a7402eea1618118e873894f}{get\+Light} (int i) const 
+\item 
+int \hyperlink{classSceneParser_ae5c6cca64c7bd4f7b9b19c5bb381c801}{get\+Num\+Materials} () const 
+\item 
+\hyperlink{classMaterial}{Material} $\ast$ \hyperlink{classSceneParser_aadffb5793d5dc58507d20eabb617c6d6}{get\+Material} (int i) const 
+\item 
+\hyperlink{classGroup}{Group} $\ast$ \hyperlink{classSceneParser_ab7035d29d61e4dfdf64f1e1b4f157b54}{get\+Group} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classSceneParser_ad88a09b16ec8ebbe49a8fd70e14216cf}{\index{Scene\+Parser@{Scene\+Parser}!Scene\+Parser@{Scene\+Parser}}
+\index{Scene\+Parser@{Scene\+Parser}!Scene\+Parser@{Scene\+Parser}}
+\subsubsection[{Scene\+Parser}]{\setlength{\rightskip}{0pt plus 5cm}Scene\+Parser\+::\+Scene\+Parser (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}}\label{classSceneParser_ad88a09b16ec8ebbe49a8fd70e14216cf}
+\hypertarget{classSceneParser_af5809864333132e558dc1627f39170fe}{\index{Scene\+Parser@{Scene\+Parser}!````~Scene\+Parser@{$\sim$\+Scene\+Parser}}
+\index{````~Scene\+Parser@{$\sim$\+Scene\+Parser}!Scene\+Parser@{Scene\+Parser}}
+\subsubsection[{$\sim$\+Scene\+Parser}]{\setlength{\rightskip}{0pt plus 5cm}Scene\+Parser\+::$\sim$\+Scene\+Parser (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSceneParser_af5809864333132e558dc1627f39170fe}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classSceneParser_a057055897d67275f7057368e592e5cbe}{\index{Scene\+Parser@{Scene\+Parser}!get\+Ambient\+Light@{get\+Ambient\+Light}}
+\index{get\+Ambient\+Light@{get\+Ambient\+Light}!Scene\+Parser@{Scene\+Parser}}
+\subsubsection[{get\+Ambient\+Light}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3f} Scene\+Parser\+::get\+Ambient\+Light (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSceneParser_a057055897d67275f7057368e592e5cbe}
+\hypertarget{classSceneParser_a4254064ea79ff601d72d77bc3affb131}{\index{Scene\+Parser@{Scene\+Parser}!get\+Background\+Color@{get\+Background\+Color}}
+\index{get\+Background\+Color@{get\+Background\+Color}!Scene\+Parser@{Scene\+Parser}}
+\subsubsection[{get\+Background\+Color}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3f} Scene\+Parser\+::get\+Background\+Color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSceneParser_a4254064ea79ff601d72d77bc3affb131}
+\hypertarget{classSceneParser_a9fbeeca8f642f40ade54674a41265115}{\index{Scene\+Parser@{Scene\+Parser}!get\+Camera@{get\+Camera}}
+\index{get\+Camera@{get\+Camera}!Scene\+Parser@{Scene\+Parser}}
+\subsubsection[{get\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Scene\+Parser\+::get\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSceneParser_a9fbeeca8f642f40ade54674a41265115}
+\hypertarget{classSceneParser_ab7035d29d61e4dfdf64f1e1b4f157b54}{\index{Scene\+Parser@{Scene\+Parser}!get\+Group@{get\+Group}}
+\index{get\+Group@{get\+Group}!Scene\+Parser@{Scene\+Parser}}
+\subsubsection[{get\+Group}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Group}$\ast$ Scene\+Parser\+::get\+Group (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSceneParser_ab7035d29d61e4dfdf64f1e1b4f157b54}
+\hypertarget{classSceneParser_a4a7c20035a7402eea1618118e873894f}{\index{Scene\+Parser@{Scene\+Parser}!get\+Light@{get\+Light}}
+\index{get\+Light@{get\+Light}!Scene\+Parser@{Scene\+Parser}}
+\subsubsection[{get\+Light}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light}$\ast$ Scene\+Parser\+::get\+Light (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSceneParser_a4a7c20035a7402eea1618118e873894f}
+\hypertarget{classSceneParser_aadffb5793d5dc58507d20eabb617c6d6}{\index{Scene\+Parser@{Scene\+Parser}!get\+Material@{get\+Material}}
+\index{get\+Material@{get\+Material}!Scene\+Parser@{Scene\+Parser}}
+\subsubsection[{get\+Material}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Material}$\ast$ Scene\+Parser\+::get\+Material (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSceneParser_aadffb5793d5dc58507d20eabb617c6d6}
+\hypertarget{classSceneParser_a67cf28b4c397a1bd98d060ee0f35d80b}{\index{Scene\+Parser@{Scene\+Parser}!get\+Num\+Lights@{get\+Num\+Lights}}
+\index{get\+Num\+Lights@{get\+Num\+Lights}!Scene\+Parser@{Scene\+Parser}}
+\subsubsection[{get\+Num\+Lights}]{\setlength{\rightskip}{0pt plus 5cm}int Scene\+Parser\+::get\+Num\+Lights (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSceneParser_a67cf28b4c397a1bd98d060ee0f35d80b}
+\hypertarget{classSceneParser_ae5c6cca64c7bd4f7b9b19c5bb381c801}{\index{Scene\+Parser@{Scene\+Parser}!get\+Num\+Materials@{get\+Num\+Materials}}
+\index{get\+Num\+Materials@{get\+Num\+Materials}!Scene\+Parser@{Scene\+Parser}}
+\subsubsection[{get\+Num\+Materials}]{\setlength{\rightskip}{0pt plus 5cm}int Scene\+Parser\+::get\+Num\+Materials (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classSceneParser_ae5c6cca64c7bd4f7b9b19c5bb381c801}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{scene__parser_8h}{scene\+\_\+parser.\+h}\item 
+\hyperlink{scene__parser_8cpp}{scene\+\_\+parser.\+cpp}\end{DoxyCompactItemize}
