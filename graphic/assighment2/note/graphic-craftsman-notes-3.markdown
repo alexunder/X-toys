@@ -8,13 +8,145 @@ category: Graphic
 
 MIT的作业做到第六个的时候，我暂时放弃了，原因有两个，第一，我认为了解了基本的光线求交的原理，以及对光反射，折射，阴影的绘制的了解，基本算是遁入空门；第二，第六个作业里的Voxel rendering还是有些难，所以就偷懒了。为了固化知识，还是硬着头皮来写吧。这个作业里主要包括Perspective Camera的实现，基本的光源渲染，还有三角形和平面的实现。
 
-# Perspective Camera的实现 #
+# PerspectiveCamera的实现 #
 
 其实对比上一章节的平行投影，这个应该叫做透视投影。在这种投影中，光线的传播方向不是平行的，相对于显示矩形上不同的坐标，方向不同。距离显示矩形上中心一段距离的一个位置，我们叫做视点，这一段距离叫做焦距。生成每个像素的射线的方向就是：从这个视点出发到显示矩形上的任意点的向量的方向，如图：
 
 ![perspective_camera.png](http://groups.csail.mit.edu/graphics/classes/6.837/F04/assignments/assignment2/perspective_camera.png "perspective_camera.png")
 
+和平行投影一样，我们必须继承基类Camera的几个虚方法：
 
+![classCamera__inherit__graph.png](classCamera__inherit__graph.png "classCamera__inherit__graph.png")
+
+最关键的是要实现GenerateRay函数，和OrthographicCamera类似，传进来的坐标已经是从屏幕坐标转换到了坐标从(0,0)到(1,1)的矩形空间内。然而和平行投影不同的是，透视投影需要不同的参数来决定：
+
+```cpp
+class PerspectiveCamera : public Camera
+{
+public:
+    PerspectiveCamera(Vec3f &center, Vec3f &direction, Vec3f &up, float angle);
+
+    Ray generateRay(Vec2f point);
+    void setRatio(float ratio)
+    {
+        mRatio = ratio;
+    }
+
+    CameraType getCameraType()
+    {
+        return CameraType::Perspective;
+    }
+
+    float getTMin() const
+    {
+        return 0.0;
+    }
+private:
+    Vec3f mCenter;
+    Vec3f mDirection;
+    Vec3f mUp;
+    Vec3f mHorizontal;
+    float mAngle;
+    float mRatio;
+};
+```
+
+从构造函数可以看出，最基本的数据是需要视点mCenter，方向向量以及垂直于方向向量向上的向量mUp，在构造函数中，考虑到从文件读出的数据可能不互相垂直，所以要通过一些向量叉乘来得到绝对的三个相互垂直的向量：
+
+```cpp
+PerspectiveCamera::PerspectiveCamera(Vec3f &center, Vec3f &direction, Vec3f &up, float angle)
+    : mCenter(center), mDirection(direction), mUp(up), mAngle(angle)
+{
+    float v = mUp.Dot3(mDirection);
+
+    if (v != 0)
+    {
+        Vec3f temp;
+        Vec3f::Cross3(temp, mDirection, mUp);
+        Vec3f::Cross3(mUp, temp, mDirection);
+    }
+
+    if (mDirection.Length() != 1)
+    {
+        mDirection.Normalize();    
+    }
+
+    if (mUp.Length() != 1)
+    {
+        mUp.Normalize();    
+    }
+
+    Vec3f::Cross3(mHorizontal, mDirection, mUp);
+
+    mRatio = 1.0;
+}
+```
+
+下面我开始关注最重要的GenerateRay函数，这是透视投影的精华所在。首先我们有些设定，前面说过透视投影有焦距，伴随着焦距，还有透视角度（View Angle）, 如图：
+
+![Perspective_angle.png](Perspective_angle.png "Perspective_angle.png")
+
+这个角度可以是基于显示矩形的宽，也可以是高，这个没有强制的，选哪个都行，代码中选择了高作为角度计算。因为最终，我们不能预先确定显示区域的分辨率，所以做了预选的判断，先把GenerateRay的代码列上：
+
+```cpp
+Ray PerspectiveCamera::generateRay(Vec2f point)
+{
+    float x_ndc = point.x();
+    float y_ndc = point.y();
+
+    float screenWidth = 0.f;
+    float screenHeight = 0.f;
+
+    if (mRatio > 1.f)
+    {
+        screenWidth = 2 * mRatio;
+        screenHeight = 2.f;
+    }
+    else
+    {
+        screenWidth = 2.f;
+        screenHeight = 2 * mRatio;
+    }
+
+    float left = - screenWidth / 2.0;
+    float top  = - screenHeight / 2.0;
+
+    float u = x_ndc * screenWidth + left;
+    float v = y_ndc * screenHeight + top;
+    float near = screenHeight / (2.f * tanf(mAngle / 2.0));
+
+    Vec3f originalDir = near * mDirection + u * mHorizontal + v * mUp;
+
+    if (originalDir.Length() != 0)
+    {
+        originalDir.Normalize();
+    }
+
+    Ray r(mCenter, originalDir);
+    return r;
+}
+```
+
+一般情况下，最终的显示区域都是宽长于高，所以选择长或者高为2，对比传进来的长宽比ratio来确定高是2还是2倍的ratio，最后如上图的几何关系我们可以得出焦距的公式为：
+
+$$
+d=\cfrac{h}{2\tan(\alpha/2)}
+$$
+
+我们知道焦距是视点到显示区域平面的距离，所以显示平面上的点相当于是以视点为原点在mDirection向量方向上的坐标，现在还差mUp和mHorizontal的方向上的坐标就可以得到显示区域上点的完整坐标。和平行投影一样，屏幕坐标映射到了(0,0)到(1,1)的矩形后，还要映射至(-screenWidth/2, -screenHeight/2)，(screenWidth/2, screenHeight/2)的矩形，最后得到在mHorizontal和mUp上的坐标：
+
+```cpp
+float u = x_ndc * screenWidth + left;
+float v = y_ndc * screenHeight + top;
+```
+
+最终显示矩形任意一点的坐标可以通过以下代码算出：
+
+```cpp
+Vec3f p = mCenter + near*mDirection + u*mHorizontal + v*mUp;
+```
+
+如代码所示，得到了从视点出发到显示屏幕的射线的方向。
 
 # Diffuse shading #
 
