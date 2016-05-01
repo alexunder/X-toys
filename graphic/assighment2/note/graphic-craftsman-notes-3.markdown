@@ -51,7 +51,7 @@ private:
 };
 ```
 
-从构造函数可以看出，最基本的数据是需要视点mCenter，方向向量以及垂直于方向向量向上的向量mUp，在构造函数中，考虑到从文件读出的数据可能不互相垂直，所以要通过一些向量叉乘来得到绝对的三个相互垂直的向量：
+从构造函数可以看出，最基本的数据是需要视点mCenter，方向向量mDirection以及垂直于方向向量向上的向量mUp，在构造函数中，考虑到从文件读出的数据可能不互相垂直，所以要通过一些向量叉乘来得到绝对的三个相互垂直的向量：
 
 ```cpp
 PerspectiveCamera::PerspectiveCamera(Vec3f &center, Vec3f &direction, Vec3f &up, float angle)
@@ -86,7 +86,7 @@ PerspectiveCamera::PerspectiveCamera(Vec3f &center, Vec3f &direction, Vec3f &up,
 
 ![Perspective_angle.png](Perspective_angle.png "Perspective_angle.png")
 
-这个角度可以是基于显示矩形的宽，也可以是高，这个没有强制的，选哪个都行，代码中选择了高作为角度计算。因为最终，我们不能预先确定显示区域的分辨率，所以做了预选的判断，先把GenerateRay的代码列上：
+这个角度可以是基于显示矩形的宽，也可以是高，这个没有强制，选哪个都行，代码中选择了高作为角度计算。因为我们不能预先确定显示区域的分辨率，所以做了预先的判断，先把GenerateRay的代码列上：
 
 ```cpp
 Ray PerspectiveCamera::generateRay(Vec2f point)
@@ -146,7 +146,9 @@ float v = y_ndc * screenHeight + top;
 Vec3f p = mCenter + near*mDirection + u*mHorizontal + v*mUp;
 ```
 
-如代码所示，得到了从视点出发到显示屏幕的射线的方向。
+如代码所示，再将得到的点减去视点，即mCenter就得到了从视点出发到显示屏幕的射线的方向，GenerateRay的代码省略了减去mCenter的操作。
+
+另外，很多渲染软件都是用Perspective Projections Matrix来获取屏幕坐标的，这个矩阵的推导的数学原理和我上面说的一样，但是推导起来稍微麻烦一些，我再专门写文叙述。
 
 # Diffuse shading #
 
