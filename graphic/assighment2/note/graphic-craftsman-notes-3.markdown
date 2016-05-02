@@ -152,6 +152,38 @@ Vec3f p = mCenter + near*mDirection + u*mHorizontal + v*mUp;
 
 # Diffuse shading #
 
+光照的着色处理是图形学中很重要的部分，OpenGL和DirectX的Shadding Language的主要就是实现一些特殊的光照渲染。这里的光照和上篇文章里说的光线还不太一样，光线是我们看到其他的东西的基础，或者说光线是我们绘制场景的基础，然而光照处理是场景中有类似灯，阳光这样的光源，给物体带来的效果。
+
+光照模型有几种，现在先实现一个比较简单的模型，Diffusing Shading也可以叫Directional Lighting。这种光源只有方向，颜色，没有其他属性了。课程网站提供了Light基类，和继承自他的DirectionalLight类：
+
+![classLight__inherit__graph.png](classLight__inherit__graph.png "classLight__inherit__graph.png")
+
+代码太简单，我就不列了。
+
+接下来，我们看看具体如何计算光照模型。如下图：
+
+![shad-light-beam3.png](http://www.scratchapixel.com/images/upload/shading-intro/shad-light-beam3.png "shad-light-beam3.png")
+
+L是光源照射来的反方向，因为计算向量点乘方便，就直接用反方向的向量计算了。所以对于这一点的光照计算，会用到光源反向量和当前物体点的法向量的点乘，即公式为：
+
+$$
+C=C_{r}C_{l}(\vec{n}.\vec{l}).
+$$
+
+为了避免得到负的叉乘的值，我们最好加上少许处理：
+
+$$
+C=C_{r}C_{l}max(\vec{n}.\vec{l}, 0).
+$$
+
+其中Cr是当前物体的颜色，Cl是光源的颜色。另外，我们可能有多个Directional Light, 为了计算一个点的综合光模型，我们有一个统一的公式，代码实现也是基于他：
+
+$$
+C_{pixel}=C_{r}C_{a} + \sum_{i=0}^{i=N-1}C_{r}C_{l_{i}}max(\vec{n}.\vec{l_{i}}, 0).
+$$
+
+其中Ca是Ambient Color, 也算Ambient shading, 可以理解为整个场景中所有物体的一种平均色，类似蓝天。这个公式假设有N个Directional Light。代码实现就不在这里罗列了，需要注意的是编程的时候不要让RBG的值超越[0, 1]的范围。
+
 # Triangle类和Plane类的实现 #
 
 # 尾声 #
