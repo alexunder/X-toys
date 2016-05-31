@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  fastboot source code analysis
+title:  图形匠人笔记2—MIT 6.837之assignment 2--Transformations & Additional Primitives
 category: Graphic
 ---
 
@@ -199,7 +199,7 @@ $$
 和Sphere一样，要通过上面的方程求出t值，但是对于平面的求交点，可以用更便捷的计算方法，在三维立体几何里，平面的通用方程是:
 
 $$
-f(x,y,z)=ax+by+cz+d
+f(x,y,z)=ax+by+cz+d=0
 $$
 
 上个方程中，a, b, c三个系数可以组成平面的法向量，即：
@@ -211,6 +211,29 @@ $$
     c &   
 \end{array}\right) 
 $$
+
+这个结论很容易理解，法向量就是垂直于平面的向量，可以知道平面上任意两点组成的向量都和法向量垂直，所以假设任意平面任意两个点：`\((X_{1}, Y_{1}, Z_{1})\)`, `\((X_{2}, Y_{2}, Z_{2})\)`, 代入平面方程得到两个式子：
+
+$$
+\begin{align}
+aX_{1}+bY_{1}+cZ_{1}+d=0 \\
+aX_{2}+bY_{2}+cZ_{2}+d=0
+\end{align}
+$$
+
+第二个式子减去第一个式子就得到法向量是三个系数a, b, c组成的。所以，平面方程可以改写成向量的模式，假设平面上任意一点`\( \vec{p}\)`，则平面方程可以表示为：
+
+$$
+\vec{p}.\vec{n} + d=0
+$$
+
+将`\(\vec{o} + t\vec{d}\)`代入得到：
+
+$$
+(\vec{o} + t\vec{d}).\vec{n} + d=0
+$$
+
+t就可以轻松求出来。
 
 # 尾声 #
 
