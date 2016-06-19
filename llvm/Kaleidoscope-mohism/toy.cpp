@@ -199,3 +199,14 @@ namespace
             : Proto(std::move(Proto)), Body(std::move(Body)) {}
     };
 }
+
+//===
+// Parser
+//===
+
+static int CurTok;
+static int getNextToken { return CurTok = gettok(); }
+
+/// BinopPrecedence - This holds the precedence of the pending binary operator
+/// that is defined.
+static std::map<char, int> BinopPrecedence;
