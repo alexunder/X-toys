@@ -18,11 +18,11 @@ RayTracer::RayTracer(SceneParser *s, int max_bounces, float cutoff_weight,
     : mParser(s), mBounces(max_bounces), mCutoffWeight(cutoff_weight), 
       mRenderShadow(shadows)
 {
-
+	mInner = false;
 }
 
 Vec3f RayTracer::traceRay(Ray &ray, float tmin, int bounces, float weight, 
-                                    float indexOfRefraction, Hit &hit) const
+                                    float indexOfRefraction, Hit &hit)
 {
 	Camera * pCamera = mParser->getCamera();
     float tm = pCamera->getTMin();
@@ -71,16 +71,18 @@ Vec3f RayTracer::traceRay(Ray &ray, float tmin, int bounces, float weight,
             if (mRenderShadow)
             {
                 Ray shadowRay(point, lightDir);
-                Hit shadowHit;
+
+				Hit shadowHit;
                 //Be careful, tm should be larger than one
                 if (!objGroups->intersect(shadowRay, shadowHit, tm))
                 {
                     pixelColor += tempColor;
+					RayTree::AddShadowSegment(shadowRay, 0, 100000.0);
                 }
-                else
-                {   //Shadow ray debug
-                    RayTree::AddShadowSegment(shadowRay, 0, shadowHit.getT());
-                }
+				else
+				{
+					RayTree::AddShadowSegment(shadowRay, 0, shadowHit.getT());
+				}
             }
             else
             {
@@ -102,7 +104,9 @@ Vec3f RayTracer::traceRay(Ray &ray, float tmin, int bounces, float weight,
                                                 indexOfRefraction, reflectiveHit);
 
             //Reflective ray debug
-            RayTree::AddReflectedSegment(reflectiveRay, 0, reflectiveHit.getT());
+			printf("reflective T=%f\n", reflectiveHit.getT());
+			float t = reflectiveHit.getT() > 0 ? reflectiveHit.getT() : 10000.0;
+            RayTree::AddReflectedSegment(reflectiveRay, 0, t);
         }
 
         //Process the refraction situation
@@ -112,43 +116,49 @@ Vec3f RayTracer::traceRay(Ray &ray, float tmin, int bounces, float weight,
             Vec3f incomingDir = ray.getDirection();
             float flag = incomingDir.Dot3(normal);
 
+			cout << "normal=" << normal << endl;
+			cout << "incomingDir" << incomingDir << endl;
+			cout << "flag=" << flag << endl;
+
             bool success = false; 
 
             float index_incident = indexOfRefraction;
             float index_material = pM->getIndexOfRefraction();
 
+			printf("index_incident=%f\n", index_incident);
+			printf("index_material=%f\n", index_material);
             Vec3f transimittedDir;
 
             Vec3f transparentColor(0.0, 0.0, 0.0);
 
             Hit transimittedHit;
+			
+			if (flag < 0)//outside-->inside
+			{
+				printf("outside-->inside\n");
+				if (transmittedDirection(normal, incomingDir, index_incident, index_material,
+							transimittedDir))
+				{
+					Ray refractionRay(point, transimittedDir);
+					transparentColor =  weight*traceRay(refractionRay, tm, bounces + 1, weight,
+							indexOfRefraction, transimittedHit);
 
-            if (flag > 0.0)
-            {
-               if (transmittedDirection(normal, incomingDir, index_material, index_incident,
-                   transimittedDir))
-               {
-                   Ray refractionRay(point, transimittedDir);
-                   transparentColor =  weight*traceRay(refractionRay, tm, bounces + 1, weight, 
-                   index_incident, transimittedHit);
+					RayTree::AddTransmittedSegment(refractionRay, 0, transimittedHit.getT());
+				}
+			}
+			else
+			{
+				printf("inside-->outside\n");
+				if (transmittedDirection(normal, incomingDir, index_material, index_incident, 
+							transimittedDir))
+				{
+					Ray refractionRay(point, transimittedDir);
+					transparentColor =  weight*traceRay(refractionRay, tm, bounces + 1, weight,
+							indexOfRefraction, transimittedHit);
 
-                   RayTree::AddTransmittedSegment(refractionRay, 0, transimittedHit.getT());
-               }
-            }
-            else if (flag < 0.0)
-            {
-               if (transmittedDirection(normal, incomingDir, index_incident, index_material,
-                   transimittedDir))
-               {
-                   Ray refractionRay(point, transimittedDir);
-                   transparentColor =  weight*traceRay(refractionRay, tm, bounces + 1, weight,
-                   index_material, transimittedHit);
-
-                   RayTree::AddTransmittedSegment(refractionRay, 0, transimittedHit.getT());
-               }
-
-            }
-
+					RayTree::AddTransmittedSegment(refractionRay, 0, transimittedHit.getT());
+				}
+			}
             pixelColor += transparentColor; 
         }
 
@@ -162,9 +172,13 @@ Vec3f RayTracer::traceRay(Ray &ray, float tmin, int bounces, float weight,
     
 Vec3f RayTracer::mirrorDirection(const Vec3f &normal, const Vec3f &incoming) const
 {
-   float d = normal.Dot3(incoming);
-   Vec3f reflection = (incoming - 2*d*normal);
-   return reflection; 
+	Vec3f N(normal);
+	Vec3f L(incoming);
+	N.Normalize();
+	L.Normalize();
+    float d = N.Dot3(L);
+    Vec3f reflection = (L - 2*d*N);
+    return reflection; 
 }
 
 bool RayTracer::transmittedDirection(const Vec3f &normal, const Vec3f &incoming,
@@ -178,6 +192,18 @@ bool RayTracer::transmittedDirection(const Vec3f &normal, const Vec3f &incoming,
     float cosin_incident = N.Dot3(L);
     float sin_incident_sqr = 1 - cosin_incident*cosin_incident; 
     float ratio = index_i / index_t;
-    float weight = ratio*cosin_incident - sqrt(1 - ratio*ratio*sin_incident_sqr);
-    transmitted = weight*N - ratio*L;
+	float temp = 1 - ratio*ratio*sin_incident_sqr;
+
+	if (temp >= 0)
+	{
+    	float weight = ratio*cosin_incident - sqrt(1 - ratio*ratio*sin_incident_sqr);
+    	transmitted = weight*N - ratio*L;
+	}
+	else
+	{
+		printf("Transmitted temp is negative.\n");
+		N.Negate();
+		transmitted = mirrorDirection(N, incoming);
+	}	
+	return true;
 }

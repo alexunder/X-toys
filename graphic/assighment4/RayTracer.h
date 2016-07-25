@@ -17,7 +17,7 @@ public:
     RayTracer(SceneParser *s, int max_bounces, float cutoff_weight, 
               bool shadows);
     Vec3f traceRay(Ray &ray, float tmin, int bounces, float weight, 
-                           float indexOfRefraction, Hit &hit) const;
+                           float indexOfRefraction, Hit &hit);
 private:
     Vec3f mirrorDirection(const Vec3f &normal, const Vec3f &incoming) const;
     bool transmittedDirection(const Vec3f &normal, const Vec3f &incoming,
@@ -27,6 +27,7 @@ private:
     int mBounces;
     int mCutoffWeight;
     bool mRenderShadow;
+	bool mInner;
 };
 
 #endif

@@ -26,8 +26,8 @@ SRCS 	 	= main.cpp \
 # NOTE:  On athena, the Mesa GL libraries are currently located in the
 #        mesa_v501 locker.  Type "add mesa_v501" to access these files.
 
-LIBS            = -lm -lGL -lGLU -lglut -L/usr/lib/x86_64-linux-gnu -lXmu -lXi
-		 # -Xlinker -rpath -Xlinker /mit/mesa_v501/lib/ -L/mit/mesa_v501/lib/
+LIBS            = -lm -lGL -lGLU -lglut -lXi
+		 # -lXmu -Xlinker -rpath -Xlinker /mit/mesa_v501/lib/ -L/mit/mesa_v501/lib/
 INCLUDE 	= -I/usr/include/
 CC		= g++
 EXE	  	= raytracer
