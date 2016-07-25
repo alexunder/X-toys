@@ -2,7 +2,6 @@
  * The RayTracer class
  * Implemented by Mohism Research
  */
-
 #include "RayTracer.h"
 #include "material.h"
 #include "Camera.h"
@@ -10,8 +9,11 @@
 #include "Group.h"
 #include "light.h"
 #include "rayTree.h"
+#include "trace.h"
 
 #include <math.h>
+
+#define LOG_TAG "RayTracer"
 
 RayTracer::RayTracer(SceneParser *s, int max_bounces, float cutoff_weight,
     bool shadows)
@@ -21,9 +23,10 @@ RayTracer::RayTracer(SceneParser *s, int max_bounces, float cutoff_weight,
 	mInner = false;
 }
 
-Vec3f RayTracer::traceRay(Ray &ray, float tmin, int bounces, float weight, 
+Vec3f RayTracer::traceRay(const Ray &ray, float tmin, int bounces, float weight, 
                                     float indexOfRefraction, Hit &hit)
 {
+    log_trace(LOG_TAG, "enter traceRay");
 	Camera * pCamera = mParser->getCamera();
     float tm = pCamera->getTMin();
     Vec3f backColor = mParser->getBackgroundColor();
@@ -105,7 +108,12 @@ Vec3f RayTracer::traceRay(Ray &ray, float tmin, int bounces, float weight,
 
             //Reflective ray debug
 			printf("reflective T=%f\n", reflectiveHit.getT());
-			float t = reflectiveHit.getT() > 0 ? reflectiveHit.getT() : 10000.0;
+			//float t = reflectiveHit.getT() > 0.0 ? reflectiveHit.getT() : 10000.0;
+            float t = reflectiveHit.getT();
+            if (t <= 0.0)
+                t = 10000.0;
+
+            printf("t=%f\n", t);
             RayTree::AddReflectedSegment(reflectiveRay, 0, t);
         }
 
@@ -149,7 +157,9 @@ Vec3f RayTracer::traceRay(Ray &ray, float tmin, int bounces, float weight,
 			else
 			{
 				printf("inside-->outside\n");
-				if (transmittedDirection(normal, incomingDir, index_material, index_incident, 
+                Vec3f n(normal);
+                n.Negate();
+				if (transmittedDirection(n, incomingDir, index_material, index_incident, 
 							transimittedDir))
 				{
 					Ray refractionRay(point, transimittedDir);
@@ -162,10 +172,12 @@ Vec3f RayTracer::traceRay(Ray &ray, float tmin, int bounces, float weight,
             pixelColor += transparentColor; 
         }
 
+        log_trace(LOG_TAG, "exit traceRay");
         return pixelColor;
     }
     else
     {
+        log_trace(LOG_TAG, "exit traceRay");
         return backColor;
     }
 }
@@ -184,6 +196,7 @@ Vec3f RayTracer::mirrorDirection(const Vec3f &normal, const Vec3f &incoming) con
 bool RayTracer::transmittedDirection(const Vec3f &normal, const Vec3f &incoming,
        float index_i, float index_t, Vec3f &transmitted) const
 {
+    printf("entry transmittedDirection.\n");
     Vec3f N(normal);
     N.Normalize();
     Vec3f L(incoming);
@@ -196,6 +209,7 @@ bool RayTracer::transmittedDirection(const Vec3f &normal, const Vec3f &incoming,
 
 	if (temp >= 0)
 	{
+		printf("Transmitted temp is positive.\n");
     	float weight = ratio*cosin_incident - sqrt(1 - ratio*ratio*sin_incident_sqr);
     	transmitted = weight*N - ratio*L;
 	}
@@ -204,6 +218,7 @@ bool RayTracer::transmittedDirection(const Vec3f &normal, const Vec3f &incoming,
 		printf("Transmitted temp is negative.\n");
 		N.Negate();
 		transmitted = mirrorDirection(N, incoming);
-	}	
+	}
+    cout << "Transmitted is " << transmitted <<endl;
 	return true;
 }

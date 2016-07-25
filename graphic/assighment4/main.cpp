@@ -4,6 +4,7 @@
  */
 #include<stdio.h>
 #include<string.h>
+#include <stdarg.h>
 #include<GL/glut.h>
 
 #include "scene_parser.h"
@@ -17,6 +18,11 @@
 #include "glCanvas.h"
 #include "Sphere.h"
 #include "RayTracer.h"
+#include "trace.h"
+
+#define LOG_TAG "main"
+#define TRACE_CMD
+//#define TRACE_FILE
 
 char * input_file = NULL;
 int    width = 100;
@@ -35,6 +41,35 @@ bool renderShadow = false;
 float weight = 0.0;
 int bounces = 0;
 RayTracer * pTracer = NULL;
+
+void log_trace(const char * TAG, const char * format, ...)
+{
+    char buffer[1024];
+    buffer[0] = 0;
+    /*
+    strncpy(buffer, TAG, strlen(TAG));
+    strcat(buffer, ":");
+    */
+
+    char content[256];
+    va_list ap;
+    va_start(ap, format);
+    vsnprintf(content, 256, format, ap);
+    va_end(ap);
+
+    strncat(buffer, content, 256);
+    strcat(buffer, "\n");
+#ifdef TRACE_CMD
+    printf("%s", buffer);
+#endif
+
+#ifdef TRACE_FILE
+    FILE * pfile = NULL;
+    pfile = fopen("log.txt", "a+");
+    fwrite(buf, strlen(buf), 1, pfile);
+    fclose(pfile);
+#endif
+}
 
 void parseArgs(int argc, char **argv)
 {

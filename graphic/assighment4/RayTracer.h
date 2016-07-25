@@ -16,7 +16,7 @@ class RayTracer
 public:
     RayTracer(SceneParser *s, int max_bounces, float cutoff_weight, 
               bool shadows);
-    Vec3f traceRay(Ray &ray, float tmin, int bounces, float weight, 
+    Vec3f traceRay(const Ray &ray, float tmin, int bounces, float weight, 
                            float indexOfRefraction, Hit &hit);
 private:
     Vec3f mirrorDirection(const Vec3f &normal, const Vec3f &incoming) const;
