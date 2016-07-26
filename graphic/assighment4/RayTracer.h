@@ -15,7 +15,7 @@ class RayTracer
 {
 public:
     RayTracer(SceneParser *s, int max_bounces, float cutoff_weight, 
-              bool shadows);
+              bool shadows, bool shadeback);
     Vec3f traceRay(const Ray &ray, float tmin, int bounces, float weight, 
                            float indexOfRefraction, Hit &hit);
 private:
@@ -27,7 +27,7 @@ private:
     int mBounces;
     int mCutoffWeight;
     bool mRenderShadow;
-	bool mInner;
+	bool mShadeBack;
 };
 
 #endif

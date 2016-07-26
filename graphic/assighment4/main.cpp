@@ -158,7 +158,8 @@ void parseArgs(int argc, char **argv)
 void RenderSceneV2()
 {
     if (pTracer == NULL )
-        pTracer = new RayTracer(parser, bounces, weight, renderShadow);
+        pTracer = new RayTracer(parser, bounces, weight, renderShadow,
+            needShadeBack);
 
 	Camera * pCamera = parser->getCamera();
     
@@ -447,7 +448,7 @@ void RenderNormal()
 void debugTraceRay(float x, float y)
 {
     if (pTracer == NULL )
-        pTracer = new RayTracer(parser, bounces, weight, renderShadow);
+        pTracer = new RayTracer(parser, bounces, weight, renderShadow, false);
     
     fprintf(stderr, "debugTraceRay, x=%f, y=%f \n", x, y);
 	Camera * pCamera = parser->getCamera();
