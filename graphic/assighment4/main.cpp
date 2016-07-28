@@ -458,7 +458,7 @@ void debugTraceRay(float x, float y)
    
     Hit hit;
     
-    pTracer->traceRay(ray, 1e-2, 0, 1.0f, 1.0f, hit);
+    pTracer->traceRay(ray, 1e-2, 0, 0.01f, 1.0f, hit);
 
     delete pTracer;
     pTracer = NULL;

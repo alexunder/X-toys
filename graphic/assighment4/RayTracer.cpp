@@ -27,7 +27,7 @@ RayTracer::RayTracer(SceneParser *s, int max_bounces, float cutoff_weight,
 Vec3f RayTracer::traceRay(const Ray &ray, float tmin, int bounces, float weight, 
                                     float indexOfRefraction, Hit &hit)
 {
-    log_trace(LOG_TAG, "enter traceRay");
+    log_trace(LOG_TAG, "enter traceRay, weight=%f", weight);
 	Camera * pCamera = mParser->getCamera();
     float tm = pCamera->getTMin();
     Vec3f backColor = mParser->getBackgroundColor();
@@ -53,6 +53,7 @@ Vec3f RayTracer::traceRay(const Ray &ray, float tmin, int bounces, float weight,
 
         Vec3f diffuseColor = pM->getDiffuseColor();
         pixelColor = diffuseColor * ambientLight; 
+        cout << "diffuse&ambient pixel color:" << pixelColor << endl;
 
         int k;
         for (k = 0; k < numberLights; k++)
@@ -67,12 +68,13 @@ Vec3f RayTracer::traceRay(const Ray &ray, float tmin, int bounces, float weight,
 
             if (d < epsilon)
             {
-                d = 0.0;
+                d = -d;
             }
 
             Vec3f tempColor = lightColor * diffuseColor;
             tempColor *= d;
             tempColor += pM->Shade(ray, hit, lightDir, lightColor);
+            cout << "tempColor=" << tempColor << endl;
 
             if (mRenderShadow)
             {
@@ -95,20 +97,22 @@ Vec3f RayTracer::traceRay(const Ray &ray, float tmin, int bounces, float weight,
                 pixelColor += tempColor;
                 
             }
+            cout << "Shadow pixel Color=" << pixelColor << endl;
         }
 
-        cout << "Reflective color=" << pM->getReflectiveColor() << endl;
+        Vec3f rc = pM->getReflectiveColor();
+        cout << "Reflective color=" << rc << endl;
         //Process the reflective situation
-        if (pM->getReflectiveColor().Length() > 0.0 && bounces < mBounces)
+        if (rc.Length() > 0.0 && bounces < mBounces)
         {
             printf("handle reflective.\n");
             Vec3f incomingDir = ray.getDirection();
             Vec3f reflectiveDir = mirrorDirection(normal, incomingDir);
             Ray reflectiveRay(point, reflectiveDir);
             Hit reflectiveHit;
-            pixelColor += weight*traceRay(reflectiveRay, tm, bounces + 1, weight,
+            pixelColor += rc*traceRay(reflectiveRay, tm, bounces + 1, weight*rc.Length(),
                                                 indexOfRefraction, reflectiveHit);
-
+            cout << "reflective pixel color:" << pixelColor << endl;
             //Reflective ray debug
 			printf("reflective T=%.20lf\n", reflectiveHit.getT());
 			//float t = reflectiveHit.getT() > 0.0 ? reflectiveHit.getT() : 10000.0;
@@ -120,8 +124,9 @@ Vec3f RayTracer::traceRay(const Ray &ray, float tmin, int bounces, float weight,
             RayTree::AddReflectedSegment(reflectiveRay, 0, t);
         }
 
+        Vec3f tc = pM->getTransparentColor();
         //Process the refraction situation
-        if (pM->getTransparentColor().Length() > 0.0 && bounces < mBounces)
+        if (tc.Length() > 0.0 && bounces < mBounces)
         {
             printf("handle refraction.\n");
             Vec3f incomingDir = ray.getDirection();
@@ -151,7 +156,7 @@ Vec3f RayTracer::traceRay(const Ray &ray, float tmin, int bounces, float weight,
 							transimittedDir))
 				{
 					Ray refractionRay(point, transimittedDir);
-					transparentColor =  weight*traceRay(refractionRay, tm, bounces + 1, weight,
+					transparentColor =  tc*traceRay(refractionRay, tm, bounces + 1, weight*tc.Length(),
 							indexOfRefraction, transimittedHit);
                     cout << "Transmitted Color:" << transparentColor << endl;
 					RayTree::AddTransmittedSegment(refractionRay, 0, transimittedHit.getT());
@@ -166,7 +171,7 @@ Vec3f RayTracer::traceRay(const Ray &ray, float tmin, int bounces, float weight,
 							transimittedDir))
 				{
 					Ray refractionRay(point, transimittedDir);
-					transparentColor =  weight*traceRay(refractionRay, tm, bounces + 1, weight,
+					transparentColor = tc*traceRay(refractionRay, tm, bounces + 1, weight*tc.Length(),
 							indexOfRefraction, transimittedHit);
 
                     cout << "Transmitted Color:" << transparentColor << endl;
@@ -174,6 +179,7 @@ Vec3f RayTracer::traceRay(const Ray &ray, float tmin, int bounces, float weight,
 				}
 			}
             pixelColor += transparentColor; 
+            cout << "Final pixel Color=" << pixelColor << endl;
         }
         pixelColor.Clamp();
         log_trace(LOG_TAG, "exit traceRay");
