@@ -274,7 +274,7 @@ If we decide to have a baby, we will learn enough knowledge to keep babies healt
 
 ## Money ##
 
-I prepared about $13,000 to support my life in the first six months after arriving in Canada. The main cost I assumed is the cost of renting. It also includes electricity, gas, water, telephone, Internet,  food and transportation, etc. Below data is my estimation after investigation on internet:
+I prepared about $15,000 to support my life in the first six months after arriving in Canada. The main cost I assumed is the cost of renting. It also includes electricity, gas, water, telephone, Internet,  food and transportation, etc. Below data is my estimation after investigation on internet:
 
 ### Cost per month ###
 
