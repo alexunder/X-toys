@@ -6,6 +6,7 @@
 #include "Sphere.h"
 #include "hit.h"
 #include "BoundingBox.h"
+#include "Grid.h"
 
 #include <math.h>
 #include <GL/gl.h>

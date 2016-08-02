@@ -8,6 +8,7 @@
 
 #include "Object3D.h"
 #include "BoundingBox.h"
+#include "MarchingInfo.h"
 
 class Grid : public Object3D
 {
@@ -33,8 +34,8 @@ public:
     }
 
     void paint();
-
     void initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const;
+    bool intersect(const Ray &r, Hit &h, float tmin);
 private:
     int mXSize;
     int mYSize;

@@ -28,13 +28,13 @@ public:
     Object3D()
     {
         mMaterial = NULL;
-
-        if (mpBox != NULL)
-            delete mpBox;
+        mpBox = NULL;
     }
 
     virtual ~Object3D()
     {
+        //if (mpBox != NULL)
+        //    delete mpBox;
     }
 
     virtual bool intersect(const Ray &r, Hit &h, float tmin) = 0;
@@ -54,9 +54,4 @@ protected:
     Material * mMaterial;
     BoundingBox * mpBox;
 };
-
-//Some tools' functions
-
-
-
 #endif

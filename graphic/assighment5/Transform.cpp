@@ -36,7 +36,7 @@ Transform::Transform(Matrix &m, Object3D *o)
     box = Union(box, maxP);
 
     mpBox = new BoundingBox();
-    mpBox->set(box);
+    mpBox->Set(&box);
 }
     
 bool Transform::intersect(const Ray &r, Hit &h, float tmin)

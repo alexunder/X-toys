@@ -3,6 +3,7 @@
  *  Developed by Mohist Research
  */
 #include<stdio.h>
+#include <stdarg.h>
 #include<string.h>
 #include<GL/glut.h>
 
@@ -18,6 +19,9 @@
 #include "Sphere.h"
 #include "RayTracer.h"
 #include "Grid.h"
+#include "trace.h"
+
+#define TRACE_CMD
 
 char * input_file = NULL;
 int    width = 100;
@@ -43,6 +47,35 @@ bool malloc_grid = false;
 int nx = 1;
 int ny = 1;
 int nz = 1;
+
+void log_trace(const char * TAG, const char * format, ...)
+{
+    char buffer[1024];
+    buffer[0] = 0;
+    /*
+    strncpy(buffer, TAG, strlen(TAG));
+    strcat(buffer, ":");
+    */
+
+    char content[256];
+    va_list ap;
+    va_start(ap, format);
+    vsnprintf(content, 256, format, ap);
+    va_end(ap);
+
+    strncat(buffer, content, 256);
+    strcat(buffer, "\n");
+#ifdef TRACE_CMD
+    printf("%s", buffer);
+#endif
+
+#ifdef TRACE_FILE
+    FILE * pfile = NULL;
+    pfile = fopen("log.txt", "a+");
+    fwrite(buf, strlen(buf), 1, pfile);
+    fclose(pfile);
+#endif
+}
 
 void parseArgs(int argc, char **argv)
 {
@@ -126,7 +159,7 @@ void parseArgs(int argc, char **argv)
         }
         else if (!strcmp(argv[i],"-grid"))
         {
-            malloc_grid = true
+            malloc_grid = true;
             i++;
             assert (i < argc);
             nx = atoi(argv[i]);
@@ -148,8 +181,9 @@ void parseArgs(int argc, char **argv)
 void RenderSceneV2()
 {
     if (malloc_grid)
-        pGrid = new Grid(parser->getGroup()->getBoundingBox, nx, ny, nz);
-    if (pTracer == NULL )
+        pGrid = new Grid(parser->getGroup()->getBoundingBox(), nx, ny, nz);
+
+    if (pTracer == NULL)
         pTracer = new RayTracer(parser, bounces, weight, renderShadow, pGrid);
 
 	Camera * pCamera = parser->getCamera();
@@ -439,7 +473,7 @@ void RenderNormal()
 void debugTraceRay(float x, float y)
 {
     if (pTracer == NULL )
-        pTracer = new RayTracer(parser, bounces, weight, renderShadow);
+        pTracer = new RayTracer(parser, bounces, weight, renderShadow, false);
     
     fprintf(stderr, "debugTraceRay, x=%f, y=%f \n", x, y);
 	Camera * pCamera = parser->getCamera();
@@ -449,7 +483,7 @@ void debugTraceRay(float x, float y)
    
     Hit hit;
     
-    pTracer->traceRay(ray, 1e-2, 0, 1.0f, 1.0f, hit);
+    pTracer->traceRay(ray, 1e-2, 0, 0.01f, 1.0f, hit);
 
     delete pTracer;
     pTracer = NULL;
