@@ -30,6 +30,7 @@ category: UltraLearning
 ## Graphic ##
 
 [6.837](http://groups.csail.mit.edu/graphics/classes/6.837/F04/) Computer Graphic
+
 [Stanford CS348](http://graphics.stanford.edu/courses/cs348b/) Image Synthesis Techniques
 
 ## Machine Learning ##

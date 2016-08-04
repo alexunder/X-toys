@@ -1,0 +1,21 @@
+mAngle=0.523599
+Vec3f <1, 0, 0>
+Vec3f <0, 0, 0>
+1
+Vec3f <0, 0, 0>
+Vec3f <0, 0, 0>
+1
+Vec3f <0, 1, 0>
+Vec3f <0, 0, 0>
+1
+Vec3f <0, 0, 0>
+Vec3f <0, 0, 0>
+1
+Sphere, mCenterPoint = (x=0.000000,y=0.000000,z=0.000000)
+radius=1.000000
+PerspectiveCamera::generateRay, x_ndc=0.683750, y_ndc=0.138750
+screenWidth=2.000000, screenHeight=2.000000
+u=0.367500, v=-0.722500
+near=3.732051
+Ray <o:Vec3f <0.124968, -0.0249056, 4.99837>, d:Vec3f <0.0714851, -0.184447, -0.980239>>
+Reflective color=Vec3f <0, 0, 0>
