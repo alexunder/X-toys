@@ -25,7 +25,7 @@ category: UltraLearning
 
 [6.033](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-033-computer-system-engineering-spring-2009/) Computer System Engineering
 
-[6.035](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-035-computer-language-engineering-spring-2010/) Computer Language Engineering or 
+[6.035](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-035-computer-language-engineering-spring-2010/) Computer Language Engineering && [CS1 Stanford](https://lagunita.stanford.edu/courses/Engineering/Compilers/Fall2014) Compilers
 
 ## Graphic ##
 
