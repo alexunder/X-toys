@@ -184,7 +184,8 @@ void RenderSceneV2()
         pGrid = new Grid(parser->getGroup()->getBoundingBox(), nx, ny, nz);
 
     if (pTracer == NULL)
-        pTracer = new RayTracer(parser, bounces, weight, renderShadow, pGrid);
+        pTracer = new RayTracer(parser, bounces, weight, renderShadow,
+            needShadeBack, pGrid);
 
 	Camera * pCamera = parser->getCamera();
     

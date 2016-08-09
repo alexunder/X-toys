@@ -10,12 +10,13 @@
 #include "scene_parser.h"
 #include "hit.h"
 #include "ray.h"
+#include "Grid.h"
 
 class RayTracer
 {
 public:
     RayTracer(SceneParser *s, int max_bounces, float cutoff_weight, 
-              bool shadows, bool shadeback);
+              bool shadows, bool shadeback, Grid * grid);
     Vec3f traceRay(const Ray &ray, float tmin, int bounces, float weight, 
                            float indexOfRefraction, Hit &hit);
 private:
@@ -24,6 +25,7 @@ private:
             float index_i, float index_t, Vec3f &transmitted) const;
 private:
     SceneParser * mParser;
+    Grid * mGrid;
     int mBounces;
     int mCutoffWeight;
     bool mRenderShadow;

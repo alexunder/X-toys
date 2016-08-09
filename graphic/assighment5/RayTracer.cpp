@@ -18,9 +18,9 @@
 const float epsilon = 0.0000001;
 
 RayTracer::RayTracer(SceneParser *s, int max_bounces, float cutoff_weight,
-    bool shadows, bool shadeback)
+    bool shadows, bool shadeback, Grid * grid)
     : mParser(s), mBounces(max_bounces), mCutoffWeight(cutoff_weight), 
-      mRenderShadow(shadows), mShadeBack(shadeback)
+      mRenderShadow(shadows), mShadeBack(shadeback), mGrid(grid)
 {
 }
 
