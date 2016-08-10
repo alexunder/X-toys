@@ -21,6 +21,7 @@ SRCS 	 	= main.cpp \
 		  RayTracer.cpp \
           glCanvas.cpp \
           BoundingBox.cpp \
+          MarchingInfo.cpp \
           Grid.cpp
  #         material.cpp \
 		  raytracer.C \

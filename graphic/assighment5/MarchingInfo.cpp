@@ -1,4 +1,4 @@
-#include "marchingInfo.h"
+#include "MarchingInfo.h"
 
 MarchingInfo::MarchingInfo()
 {

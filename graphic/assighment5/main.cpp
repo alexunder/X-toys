@@ -155,7 +155,7 @@ void parseArgs(int argc, char **argv)
         }
         else if (!strcmp(argv[i], "-visualize_grid"))
         {
-            renderShadow = true;
+            visualize_grid = true;
         }
         else if (!strcmp(argv[i],"-grid"))
         {
@@ -474,7 +474,8 @@ void RenderNormal()
 void debugTraceRay(float x, float y)
 {
     if (pTracer == NULL )
-        pTracer = new RayTracer(parser, bounces, weight, renderShadow, false);
+        pTracer = new RayTracer(parser, bounces, weight, renderShadow, false,
+            NULL);
     
     fprintf(stderr, "debugTraceRay, x=%f, y=%f \n", x, y);
 	Camera * pCamera = parser->getCamera();
@@ -511,7 +512,8 @@ int main(int argc, char ** argv)
         Sphere::setTesselationSize(theta_steps, phi_steps);
         glutInit(&argc, argv);
         GLCanvas canvas;
-        canvas.initialize(parser, RenderAll, debugTraceRay);
+        canvas.initialize(parser, RenderAll, debugTraceRay, pGrid,
+            visualize_grid);
     }
     else
     {
