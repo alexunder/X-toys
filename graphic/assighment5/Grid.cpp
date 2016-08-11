@@ -152,6 +152,16 @@ void Grid::initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const
 {
     Vec3f rayOrigin = r.getOrigin();
     Vec3f rayDir = r.getDirection();
+
+    float rayT;
+    if (mpBox.Inside(rayOrigin))
+        rayT = 0.0;
+    else if (!mpBox.IntersectP(r, &rayT))
+    {
+        return;
+    }
+
+    Vec3f gridIntersect = r.pointAtParameter(rayT);
 }
 
 bool Grid::intersect(const Ray &r, Hit &h, float tmin)

@@ -62,6 +62,15 @@ public:
         Extend(bb->min);
         Extend(bb->max); }
 
+    bool Inside(const Vec3f &pt) const {
+        return (pt.x() >= min.x() && pt.x() <= max.x() &&
+                pt.y() >= min.y() && pt.y() <= max.y() &&
+                pt.z() >= min.z() && pt.z() <= max.z() );
+    }
+
+    bool IntersectP(const Ray &ray, float *hitt0 = NULL,
+        float *hitt1 = NULL) const;
+
         // DEBUGGING 
     void Print() const {
         printf ("%f %f %f  -> %f %f %f\n", min.x(),min.y(),min.z(),

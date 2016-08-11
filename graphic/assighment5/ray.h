@@ -27,7 +27,9 @@ public:
   const Vec3f& getDirection() const { return direction; }
   Vec3f pointAtParameter(float t) const {
     return origin+direction*t; }
-
+public:
+    static float mint = 0.0;
+    static float maxt = 10000.0;
 private:
 
   // REPRESENTATION
