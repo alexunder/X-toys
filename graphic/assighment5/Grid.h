@@ -40,6 +40,7 @@ private:
     int mXSize;
     int mYSize;
     int mZSize;
+    int mVoxel[3];
     bool * mpFlagArray;
 };
 

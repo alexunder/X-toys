@@ -12,6 +12,16 @@ Grid::Grid(BoundingBox *bb, int nx, int ny, int nz)
     : mXSize(nx), mYSize(ny), mZSize(nz)
 {
     mpBox = bb;
+    int axis;
+    int gridSize[3];
+    gridSize[0] = mXSize;
+    gridSize[1] = mYSize;
+    gridSize[2] = mZSize;
+    for (axis = 0; axis < 3; axis++)
+    {
+        mVoxel[axis] = fabs(mpBox.getMax()[axis] - mpBox.getMin()[axis]) / gridSize[axis];
+    }
+
     int arraySize = mXSize * mYSize * mZSize;
     mpFlagArray = new bool[arraySize];
 
@@ -148,10 +158,18 @@ void Grid::paint(void)
 
 }
 
+int Grid::posToVoxel(const Vec3f & point, int axis) const
+{
+   int v = point[axis] - mpBox.getMin()[axis];
+}
+
 void Grid::initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const
 {
     Vec3f rayOrigin = r.getOrigin();
     Vec3f rayDir = r.getDirection();
+
+    Vec3f boxMin = mpBox.getMin();
+    Vec3f boxMax = mpBox.getMax();
 
     float rayT;
     if (mpBox.Inside(rayOrigin))
@@ -160,6 +178,19 @@ void Grid::initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const
     {
         return;
     }
+
+    //MarchingInfo for Sign
+    int sign_x = 0, sign_y = 0, sign_z = 0;
+    if (rayDir.x() != 0) sign_x = rayDir.x() > 0 ? 1 : -1;
+    if (rayDir.y() != 0) sign_y = rayDir.y() > 0 ? 1 : -1;
+    if (rayDir.z() != 0) sign_z = rayDir.z() > 0 ? 1 : -1;
+    mi.setSign(sign_x, sign_y, sign_z);
+
+    //MarchingInfo for Delta
+    float delta_x = mVoxel[0] / rayDir[0];
+    float delta_y = mVoxel[1] / rayDir[1];
+    float delta_z = mVoxel[2] / rayDir[2];
+    mi.setDelta(delta_x, delta_y, delta_x);
 
     Vec3f gridIntersect = r.pointAtParameter(rayT);
 }
