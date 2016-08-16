@@ -160,7 +160,7 @@ void Grid::paint(void)
 
 int Grid::posToVoxel(const Vec3f & point, int axis) const
 {
-   int v = point[axis] - mpBox.getMin()[axis];
+   int v = (int)((point[axis] - mpBox.getMin()[axis]) / mVoxel[axis]);
 }
 
 void Grid::initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const
@@ -179,23 +179,41 @@ void Grid::initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const
         return;
     }
 
-    //MarchingInfo for Sign
-    int sign_x = 0, sign_y = 0, sign_z = 0;
-    if (rayDir.x() != 0) sign_x = rayDir.x() > 0 ? 1 : -1;
-    if (rayDir.y() != 0) sign_y = rayDir.y() > 0 ? 1 : -1;
-    if (rayDir.z() != 0) sign_z = rayDir.z() > 0 ? 1 : -1;
-    mi.setSign(sign_x, sign_y, sign_z);
-
-    //MarchingInfo for Delta
-    float delta_x = mVoxel[0] / rayDir[0];
-    float delta_y = mVoxel[1] / rayDir[1];
-    float delta_z = mVoxel[2] / rayDir[2];
-    mi.setDelta(delta_x, delta_y, delta_x);
-
     Vec3f gridIntersect = r.pointAtParameter(rayT);
+
+    //MarchingInfo for indices
+    int pos[3];
+    int axis;
+    int sign[3];
+    float delta[3];
+    float next[3];
+    int indices[3];
+    for (axis = 0; axis < 3; axis++) {
+        pos[axis] = poxToVoxel(gridIntersect, axis);
+        if (rayDir[axis] != 0)
+            sign[axis] = rayDir[axis] > 0 ? 1 : -1;
+
+        if (sign[axis] >= 0) {
+            next[axis] = rayT +
+                (voxelToPos(pos[axis]+1, axis) - gridIntersect[axis])/rayDir[axis];
+            delta[axis] = mVoxel[axis] / rayDir[axis];
+        }
+        else {
+            next[axis] = rayT +
+                (voxelToPos(pos[axis], axis) - gridIntersect[axis])/rayDir[axis];
+            delta[axis] = mVoxel[axis] / rayDir[axis];
+        }
+    }
+
+    mi.setIndices(pos[0], pos[1], pos[2]);
+    mi.setSign(sign[0], sign[1], sign[2]);
+    mi.setDelta(delta[0], delta[1], delta[2]);
+    mi.set_tmin(rayT);
 }
 
 bool Grid::intersect(const Ray &r, Hit &h, float tmin)
 {
+    MarchingInfo mi;
+    initializeRayMarch(mi, r, tmin);
     return false;
 }
