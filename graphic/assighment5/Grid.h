@@ -36,6 +36,13 @@ public:
     void paint();
     void initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const;
     bool intersect(const Ray &r, Hit &h, float tmin);
+    int posToVoxel(const Vec3f & point, int axis) const;
+    float voxelToPos(int p, int axis) const;
+
+    inline int offset(int x, int y, int z) const {
+        return z*mXSize*mYSize + y*mXSize + x;
+    }
+
 private:
     int mXSize;
     int mYSize;

@@ -36,7 +36,7 @@ Grid::~Grid()
 
 void Grid::setVoxelFlag(int i, int j, int k)
 {
-    mpFlagArray[i + j*mXSize + k*mXSize*mYSize] = true;
+    mpFlagArray[offset(i, j, k)] = true;
 }
 
 
@@ -163,6 +163,10 @@ int Grid::posToVoxel(const Vec3f & point, int axis) const
    int v = (int)((point[axis] - mpBox.getMin()[axis]) / mVoxel[axis]);
 }
 
+float Grid::voxelToPos(int p, int axis) const {
+    return mpBox.getMin()[axis] + p * mVoxel[axis];
+}
+
 void Grid::initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const
 {
     Vec3f rayOrigin = r.getOrigin();
@@ -208,6 +212,7 @@ void Grid::initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const
     mi.setIndices(pos[0], pos[1], pos[2]);
     mi.setSign(sign[0], sign[1], sign[2]);
     mi.setDelta(delta[0], delta[1], delta[2]);
+    mi.setNext(next[0], next[1], next[2]);
     mi.set_tmin(rayT);
 }
 
@@ -215,5 +220,18 @@ bool Grid::intersect(const Ray &r, Hit &h, float tmin)
 {
     MarchingInfo mi;
     initializeRayMarch(mi, r, tmin);
+
+    bool hitSomething = false;
+    int i, j, k;
+    do {
+        mi.getIndices(i, j, k);
+
+        if (mpFlagArray[ offset(i, j, k)]) {
+            h.setNormal(mi.getNormal());
+            return true;
+        }
+
+        mi.nextCell();
+    } while(i < mXSize && j < mYSize && k < mZSize);
     return false;
 }
