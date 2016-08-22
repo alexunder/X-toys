@@ -99,7 +99,6 @@ BoundingBox * Group::getBoundingBox()
 
         mpBox->Set(&box);
     }
-
     return mpBox;
 }
 

@@ -44,9 +44,9 @@ public:
         max = bb->max; }
     
     void Set(Vec3f _min, Vec3f _max) {
-        assert (min.x() <= max.x() &&
-                min.y() <= max.y() &&
-                min.z() <= max.z());
+        assert (_min.x() <= _max.x() &&
+                _min.y() <= _max.y() &&
+                _min.z() <= _max.z());
         min = _min;
         max = _max; }
     

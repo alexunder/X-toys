@@ -180,8 +180,6 @@ void parseArgs(int argc, char **argv)
 
 void RenderSceneV2()
 {
-    if (malloc_grid)
-        pGrid = new Grid(parser->getGroup()->getBoundingBox(), nx, ny, nz);
 
     if (pTracer == NULL)
         pTracer = new RayTracer(parser, bounces, weight, renderShadow,
@@ -505,6 +503,9 @@ int main(int argc, char ** argv)
     parseArgs(argc, argv);
     //Now we start to parse the scene file
     parser = new SceneParser(input_file);
+
+    if (malloc_grid)
+        pGrid = new Grid(parser->getGroup()->getBoundingBox(), nx, ny, nz);
 
     //OpenGL ui
     if (guiMode)

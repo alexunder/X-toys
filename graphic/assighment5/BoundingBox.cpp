@@ -56,6 +56,7 @@ BoundingBox Union(const BoundingBox &b, const Vec3f &p)
                 max(b.getMax().z(), p.z()) );
 
     ret.Set(minP, maxP);
+    return ret;
 }
 
 BoundingBox Union(const BoundingBox &b, const BoundingBox &b2)
@@ -71,6 +72,7 @@ BoundingBox Union(const BoundingBox &b, const BoundingBox &b2)
                 max(b.getMax().z(), b2.getMax().x()) );
 
     ret.Set(minP, maxP);
+    return ret;
 }
 
 bool BoundingBox::IntersectP(const Ray &ray, float *hitt0,float *hitt1) const
