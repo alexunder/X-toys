@@ -184,13 +184,13 @@ void Sphere::insertIntoGrid(Grid *g, Matrix *m)
         //Get the min point
         Vec3f curPoint(minp.x() + (i + 0.5)*xDelta,
                        minp.y() + (j + 0.5)*yDelta,
-                       minp.z() + (k + 0.5) *zDelta );
+                       minp.z() + (k + 0.5)*zDelta );
 
         //Computing the distance between the voxel and the center point;
         Vec3f temp = curPoint - mCenterPoint;
         float distance = temp.Length();
 
         if (distance <= mRadius)
-            g->setVoxelFlag(i, j, k);
+            g->AddObjectToGrid(this, i, j, k);
     }
 }

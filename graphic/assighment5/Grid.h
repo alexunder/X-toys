@@ -9,6 +9,7 @@
 #include "Object3D.h"
 #include "BoundingBox.h"
 #include "MarchingInfo.h"
+#include "object3dvector.h"
 
 class Grid : public Object3D
 {
@@ -39,6 +40,8 @@ public:
     int posToVoxel(const Vec3f & point, int axis) const;
     float voxelToPos(int p, int axis) const;
 
+    void AddObjectToGrid(Object3D * obj, int i, int j, int k);
+
     inline int offset(int x, int y, int z) const {
         return z*mXSize*mYSize + y*mXSize + x;
     }
@@ -48,7 +51,7 @@ private:
     int mYSize;
     int mZSize;
     int mVoxel[3];
-    bool * mpFlagArray;
+    Object3DVector * mObjects;
 };
 
 #endif

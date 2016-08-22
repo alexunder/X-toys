@@ -185,7 +185,7 @@ void RenderSceneV2()
 
     if (pTracer == NULL)
         pTracer = new RayTracer(parser, bounces, weight, renderShadow,
-            needShadeBack, pGrid);
+            needShadeBack, pGrid, NULL);
 
 	Camera * pCamera = parser->getCamera();
     
@@ -475,7 +475,7 @@ void debugTraceRay(float x, float y)
 {
     if (pTracer == NULL )
         pTracer = new RayTracer(parser, bounces, weight, renderShadow, false,
-            NULL);
+            NULL, NULL);
     
     fprintf(stderr, "debugTraceRay, x=%f, y=%f \n", x, y);
 	Camera * pCamera = parser->getCamera();

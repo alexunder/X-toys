@@ -2,7 +2,7 @@
 #define _BOUNDING_BOX_H_
 
 #include "vectors.h"
-
+#include "ray.h"
 
 #include <assert.h>
 

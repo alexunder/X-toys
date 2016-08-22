@@ -18,12 +18,41 @@
 const float epsilon = 0.0000001;
 
 RayTracer::RayTracer(SceneParser *s, int max_bounces, float cutoff_weight,
-    bool shadows, bool shadeback, Grid * grid)
+    bool shadows, bool shadeback, Grid * grid, Matrix * matrix)
     : mParser(s), mBounces(max_bounces), mCutoffWeight(cutoff_weight), 
       mRenderShadow(shadows), mShadeBack(shadeback), mGrid(grid)
 {
+    mParser->getGroup()->insertIntoGrid(mGrid, matrix);
 }
+/*
+Vec3f RayTracer::traceRayPro(const Ray &ray, float tmin, int bounces, float weight,
+                            float indexOfRefrection, Hit &hit) {
+	Camera * pCamera = mParser->getCamera();
+    float tm = pCamera->getTMin();
+    Vec3f backColor = mParser->getBackgroundColor();
+	Vec3f ambientLight = mParser->getAmbientLight();
 
+    Group * objGroups = mParser->getGroup();
+    int numberLights = mParser->getNumLights();
+
+    Vec3f pixelColor(0.0, 0.0, 0.0);
+
+    bool ishit = false;
+    ishit = grid->intersect(ray, hit, tm);
+
+    if (ishit) {
+         
+        if (bounces == 0)
+            RayTree::SetMainSegment(ray, 0, hit.getT());
+
+        Material * pM = hit.getMaterial();
+        Vec3f normal = hit.getNormal();
+        Vec3f point = hit.getIntersectionPoint();
+        Vec3f diffuseColor = pM->getDiffuseColor();
+        pixelColor = diffuseColor * ambientLight; 
+    }
+}
+*/
 Vec3f RayTracer::traceRay(const Ray &ray, float tmin, int bounces, float weight, 
                                     float indexOfRefraction, Hit &hit)
 {
@@ -39,7 +68,11 @@ Vec3f RayTracer::traceRay(const Ray &ray, float tmin, int bounces, float weight,
     Vec3f pixelColor(0.0, 0.0, 0.0);
 
     bool ishit = false;
+#ifdef NON_OPT
     ishit = objGroups->intersect(ray, hit, tm);
+#else
+    ishit = mGrid->intersect(ray, hit, tm);
+#endif
 
     if (ishit)
     {

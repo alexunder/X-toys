@@ -5,7 +5,9 @@
 
 #include "Grid.h"
 #include "MarchingInfo.h"
-#include "ray.h" 
+#include "ray.h"
+#include "hit.h"
+#include "PhongMaterial.h"
 #include <memory.h>
 
 Grid::Grid(BoundingBox *bb, int nx, int ny, int nz)
@@ -19,26 +21,19 @@ Grid::Grid(BoundingBox *bb, int nx, int ny, int nz)
     gridSize[2] = mZSize;
     for (axis = 0; axis < 3; axis++)
     {
-        mVoxel[axis] = fabs(mpBox.getMax()[axis] - mpBox.getMin()[axis]) / gridSize[axis];
+        mVoxel[axis] = fabs(mpBox->getMax()[axis] - mpBox->getMin()[axis])
+            / gridSize[axis];
     }
 
-    int arraySize = mXSize * mYSize * mZSize;
-    mpFlagArray = new bool[arraySize];
-
-    memset(mpFlagArray, 0, sizeof(bool)* arraySize);
+    int objectSize = mXSize * mYSize * mZSize;
+    mObjects = new Object3DVector[objectSize];
 }
 
 Grid::~Grid()
 {
-    if (mpFlagArray != NULL)
-        delete [] mpFlagArray;
+    if (mObjects != NULL)
+        delete [] mObjects;
 }
-
-void Grid::setVoxelFlag(int i, int j, int k)
-{
-    mpFlagArray[offset(i, j, k)] = true;
-}
-
 
 void Grid::paint(void)
 {
@@ -68,8 +63,7 @@ void Grid::paint(void)
     for (j = 0; j < ySize; j++)
     for (i = 0; i < xSize; i++)
     {
-        if (mpFlagArray[i + j*mXSize + k*mXSize*mYSize])
-        {
+        if (mObjects[offset(i, j, k)].getNumObjects() > 0) {
             Vec3f curMinPoint(minp.x() + i*xDelta,
                               minp.y() + j*yDelta,
                               minp.z() + k*zDelta );
@@ -160,11 +154,12 @@ void Grid::paint(void)
 
 int Grid::posToVoxel(const Vec3f & point, int axis) const
 {
-   int v = (int)((point[axis] - mpBox.getMin()[axis]) / mVoxel[axis]);
+   int v = (int)((point[axis] - mpBox->getMin()[axis])
+               / mVoxel[axis]);
 }
 
 float Grid::voxelToPos(int p, int axis) const {
-    return mpBox.getMin()[axis] + p * mVoxel[axis];
+    return mpBox->getMin()[axis] + p * mVoxel[axis];
 }
 
 void Grid::initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const
@@ -172,13 +167,13 @@ void Grid::initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const
     Vec3f rayOrigin = r.getOrigin();
     Vec3f rayDir = r.getDirection();
 
-    Vec3f boxMin = mpBox.getMin();
-    Vec3f boxMax = mpBox.getMax();
+    Vec3f boxMin = mpBox->getMin();
+    Vec3f boxMax = mpBox->getMax();
 
     float rayT;
-    if (mpBox.Inside(rayOrigin))
+    if (mpBox->Inside(rayOrigin))
         rayT = 0.0;
-    else if (!mpBox.IntersectP(r, &rayT))
+    else if (!mpBox->IntersectP(r, &rayT))
     {
         return;
     }
@@ -193,7 +188,7 @@ void Grid::initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const
     float next[3];
     int indices[3];
     for (axis = 0; axis < 3; axis++) {
-        pos[axis] = poxToVoxel(gridIntersect, axis);
+        pos[axis] = posToVoxel(gridIntersect, axis);
         if (rayDir[axis] != 0)
             sign[axis] = rayDir[axis] > 0 ? 1 : -1;
 
@@ -218,6 +213,17 @@ void Grid::initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const
 
 bool Grid::intersect(const Ray &r, Hit &h, float tmin)
 {
+    //Prepare the Material objects
+    Vec3f diffuseColor(1, 1, 1);
+    Vec3f specularColor(0, 0, 0);
+    float exponent = 1;
+    Vec3f reflectiveColor(0, 0, 0);
+    Vec3f transparentColor(0, 0, 0);
+    float indexOfRefraction = 1;
+    PhongMaterial *m = new PhongMaterial(diffuseColor, specularColor, exponent,
+            reflectiveColor, transparentColor, indexOfRefraction);
+
+    //Start to do DDA
     MarchingInfo mi;
     initializeRayMarch(mi, r, tmin);
 
@@ -226,12 +232,17 @@ bool Grid::intersect(const Ray &r, Hit &h, float tmin)
     do {
         mi.getIndices(i, j, k);
 
-        if (mpFlagArray[ offset(i, j, k)]) {
-            h.setNormal(mi.getNormal());
+        /*
+        if (mpFlagArray[offset(i, j, k)]) {
+            h.set(mi.get_tmin(), m, mi.getNormal(), r);
             return true;
-        }
+        }*/
 
         mi.nextCell();
     } while(i < mXSize && j < mYSize && k < mZSize);
     return false;
+}
+
+void Grid::AddObjectToGrid(Object3D * obj, int i, int j, int k) {
+    mObjects[offset(i, j, j)].addObject(obj);
 }

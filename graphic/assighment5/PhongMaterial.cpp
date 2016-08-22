@@ -14,11 +14,12 @@
 extern int SPECULAR_FIX_WHICH_PASS;
 #endif
 
-PhongMaterial::PhongMaterial(const Vec3f &diffuseColor, const Vec3f &specularColor, float exponent,
-                             const Vec3f &reflectiveColor, const Vec3f &transparentColor,
-                             float indexOfRefraction)
+PhongMaterial::PhongMaterial(const Vec3f &diffuseColor, const Vec3f &specularColor, 
+                             float exponent, const Vec3f &reflectiveColor, 
+                             const Vec3f &transparentColor,float indexOfRefraction)
     : Material(diffuseColor), mHighLightColor(specularColor), mPhongComponent(exponent), 
-      mReflectiveColor(reflectiveColor), mTransparentColor(transparentColor), mIndexOfRefraction(indexOfRefraction)
+      mReflectiveColor(reflectiveColor), mTransparentColor(transparentColor),
+      mIndexOfRefraction(indexOfRefraction)
 {
 #ifdef DEBUG
     cout << diffuseColor << endl;

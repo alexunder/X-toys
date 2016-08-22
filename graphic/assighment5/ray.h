@@ -28,8 +28,8 @@ public:
   Vec3f pointAtParameter(float t) const {
     return origin+direction*t; }
 public:
-    static float mint = 0.0;
-    static float maxt = 10000.0;
+    static constexpr float mint = 0.0;
+    static constexpr float maxt = 10000.0;
 private:
 
   // REPRESENTATION
@@ -41,7 +41,6 @@ inline ostream &operator<<(ostream &os, const Ray &r) {
   os << "Ray <o:" <<r.getOrigin()<<", d:"<<r.getDirection()<<">";
   return os;
 }
-
 // ====================================================================
 // ====================================================================
 
