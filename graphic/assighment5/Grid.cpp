@@ -43,7 +43,7 @@ void Grid::paint(void)
 
     if (mpBox == NULL)
         return;
-
+    printf("Grid::paint entry\n");
     Vec3f minp = mpBox->getMin();
     Vec3f maxp = mpBox->getMax();
 
@@ -63,7 +63,9 @@ void Grid::paint(void)
     for (j = 0; j < ySize; j++)
     for (i = 0; i < xSize; i++)
     {
+        printf("Obj:%d %d %d, num=%d\n", i, j, k, mObjects[offset(i, j, k)].getNumObjects());
         if (mObjects[offset(i, j, k)].getNumObjects() > 0) {
+            printf("Paint:%d, %d, %d\n", i, j, k);
             Vec3f curMinPoint(minp.x() + i*xDelta,
                               minp.y() + j*yDelta,
                               minp.z() + k*zDelta );
@@ -149,7 +151,7 @@ void Grid::paint(void)
             glEnd();
         }
     }
-
+    printf("Grid::paint Exit\n");
 }
 
 int Grid::posToVoxel(const Vec3f & point, int axis) const
@@ -232,11 +234,10 @@ bool Grid::intersect(const Ray &r, Hit &h, float tmin)
     do {
         mi.getIndices(i, j, k);
 
-        /*
-        if (mpFlagArray[offset(i, j, k)]) {
+        if (mObjects[offset(i, j, k)].getNumObjects() > 0) {
             h.set(mi.get_tmin(), m, mi.getNormal(), r);
             return true;
-        }*/
+        }
 
         mi.nextCell();
     } while(i < mXSize && j < mYSize && k < mZSize);

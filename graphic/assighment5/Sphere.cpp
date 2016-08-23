@@ -155,6 +155,9 @@ void Sphere::setTesselationSize(int theta, int phi)
 
 void Sphere::insertIntoGrid(Grid *g, Matrix *m)
 {
+#ifdef DEBUG
+    printf("Sphere::insertIntoGrid.\n");
+#endif
     int i;
     int j;
     int k;
@@ -191,6 +194,7 @@ void Sphere::insertIntoGrid(Grid *g, Matrix *m)
         float distance = temp.Length();
 
         if (distance <= mRadius)
+            printf("Overlapped in %d %d %d\n", i, j, k);
             g->AddObjectToGrid(this, i, j, k);
     }
 }

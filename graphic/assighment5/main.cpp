@@ -180,11 +180,6 @@ void parseArgs(int argc, char **argv)
 
 void RenderSceneV2()
 {
-
-    if (pTracer == NULL)
-        pTracer = new RayTracer(parser, bounces, weight, renderShadow,
-            needShadeBack, pGrid, NULL);
-
 	Camera * pCamera = parser->getCamera();
     
     if (pCamera->getCameraType() == CameraType::Orthographic)
@@ -507,6 +502,9 @@ int main(int argc, char ** argv)
     if (malloc_grid)
         pGrid = new Grid(parser->getGroup()->getBoundingBox(), nx, ny, nz);
 
+    if (pTracer == NULL)
+        pTracer = new RayTracer(parser, bounces, weight, renderShadow,
+            needShadeBack, pGrid, NULL);
     //OpenGL ui
     if (guiMode)
     {

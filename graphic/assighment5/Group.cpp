@@ -104,6 +104,9 @@ BoundingBox * Group::getBoundingBox()
 
 void Group::insertIntoGrid(Grid *g, Matrix *m)
 {
+#ifdef DEBUG
+    printf("Group::insertIntoGrid.\n");
+#endif
     vector<Object3D*>::iterator itr_end = mObjectArray.end();
     vector<Object3D*>::iterator itr;
     int i;
