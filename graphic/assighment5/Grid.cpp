@@ -233,6 +233,8 @@ bool Grid::intersect(const Ray &r, Hit &h, float tmin)
     int i, j, k;
     do {
         mi.getIndices(i, j, k);
+        
+        printf("The current point is:%d,%d,%d\n", i, j, k);
 
         if (mObjects[offset(i, j, k)].getNumObjects() > 0) {
             h.set(mi.get_tmin(), m, mi.getNormal(), r);
@@ -245,5 +247,14 @@ bool Grid::intersect(const Ray &r, Hit &h, float tmin)
 }
 
 void Grid::AddObjectToGrid(Object3D * obj, int i, int j, int k) {
-    mObjects[offset(i, j, j)].addObject(obj);
+    mObjects[offset(i, j, k)].addObject(obj);
+}
+
+void Grid::dumpObjectInfo() {
+    printf("The grid object details are:\n");
+    int i;
+    int size = mXSize*mYSize*mZSize;
+    for (i = 0; i < size; i++) {
+        printf("Object:%d, Objects'size=%d\n", i, mObjects[i].getNumObjects());
+    }
 }

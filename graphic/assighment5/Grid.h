@@ -46,6 +46,7 @@ public:
         return z*mXSize*mYSize + y*mXSize + x;
     }
 
+    void dumpObjectInfo();
 private:
     int mXSize;
     int mYSize;

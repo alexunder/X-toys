@@ -193,8 +193,10 @@ void Sphere::insertIntoGrid(Grid *g, Matrix *m)
         Vec3f temp = curPoint - mCenterPoint;
         float distance = temp.Length();
 
-        if (distance <= mRadius)
+        if (distance <= mRadius) {
             printf("Overlapped in %d %d %d\n", i, j, k);
             g->AddObjectToGrid(this, i, j, k);
+        }
     }
+    g->dumpObjectInfo();
 }
