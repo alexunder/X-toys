@@ -14,6 +14,7 @@
 #include <math.h>
 
 #define LOG_TAG "RayTracer"
+#define RENDER_GRID
 
 const float epsilon = 0.0000001;
 
@@ -68,11 +69,42 @@ Vec3f RayTracer::traceRay(const Ray &ray, float tmin, int bounces, float weight,
     Vec3f pixelColor(0.0, 0.0, 0.0);
 
     bool ishit = false;
-#ifdef NON_OPT
-    ishit = objGroups->intersect(ray, hit, tm);
-#else
+#ifdef RENDER_GRID
     ishit = mGrid->intersect(ray, hit, tm);
+    if (ishit) {
+        if (bounces == 0)
+            RayTree::SetMainSegment(ray, 0, hit.getT());
+
+        Material * pM = hit.getMaterial();
+        Vec3f normal = hit.getNormal();
+        Vec3f point = hit.getIntersectionPoint();
+
+        Vec3f diffuseColor = pM->getDiffuseColor();
+        pixelColor = diffuseColor * ambientLight;
+
+        int k;
+        for (k = 0; k < numberLights; k++) {
+            Light * plight = mParser->getLight(k);
+            Vec3f lightDir;
+            Vec3f lightColor;
+            float distance;
+            plight->getIllumination(point, lightDir, lightColor, distance);
+            float d = lightDir.Dot3(normal);
+
+            Vec3f tempColor = lightColor * diffuseColor;
+            tempColor *= d;
+            tempColor += pM->Shade(ray, hit, lightDir, lightColor);
+            pixelColor += tempColor;
+        }
+    } else {
+        pixelColor = backColor;
+    }
+
+    pixelColor.Clamp();
+    return pixelColor;
 #endif
+
+    ishit = objGroups->intersect(ray, hit, tm);
 
     if (ishit)
     {

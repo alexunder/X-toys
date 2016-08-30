@@ -158,6 +158,7 @@ int Grid::posToVoxel(const Vec3f & point, int axis) const
 {
    int v = (int)((point[axis] - mpBox->getMin()[axis])
                / mVoxel[axis]);
+   return v;
 }
 
 float Grid::voxelToPos(int p, int axis) const {
