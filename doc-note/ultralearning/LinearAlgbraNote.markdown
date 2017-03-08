@@ -41,3 +41,18 @@ According to the constructure of the course pn OCW, the whole course will be sep
 
 Read Section 1.1, 1.2, and 2.1 in the 4th or 5th edition.
 
+This sub section contains three points, just like the content from the summary which is provided by the course.
+
+1. Linear Combinations.
+2. Matrix Multiplication(Dot product).
+3. The concept of Linear Independence.
+
+All these three things are used for solving the system eqation.
+
+$$
+AX=B
+$$
+
+## The overview of key ideas ##
+
+Linear algebra progresses from **Vectors** to **Matrices** to **Subspaces**.
