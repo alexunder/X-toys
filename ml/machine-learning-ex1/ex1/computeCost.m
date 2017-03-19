@@ -13,10 +13,10 @@ J = 0;
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
-
-
-
-
+for index = 1 : m
+	Yregression = X(index, :)*theta;
+	J += (Yregression - y(index))^2;
+end
 % =========================================================================
-
+J = J/(2*m);
 end
