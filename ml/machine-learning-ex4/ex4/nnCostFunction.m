@@ -68,11 +68,20 @@ vec_one = ones(num_labels, 1);
 
 for i = 1:m
     a1 = X(i,:);
-    a2 = sigmoid(a1 * Theta1');
+	z2 = a1*Theta1';
+    fprintf('z2 size=%d', size(z2));
+	a2 = sigmoid(z2);
     a2 = [ones(size(a2, 1), 1) a2];
-    a3 = sigmoid(a2 * Theta2');
+    z3 = a2*Theta2';
+	a3 = sigmoid(z3);
     sigH = a3';
     y_vec = (1:num_labels) == y(i);
+	phi_3 = a3 - y_vec;
+	z2 = [1 z2];
+	phi_2 = (Theta2'*phi_3').*sigmoidGradient(z2);
+	phi_2 = phi_2(2:end);
+ 	Theta1_grad = Theta1_grad + phi_2 * a1';
+    Theta2_grad = Theta2_grad + phi_3 * a2';
     J += -y_vec*log(sigH) - (1 - y_vec)*log(1 - sigH);
 end
 
