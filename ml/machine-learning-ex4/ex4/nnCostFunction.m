@@ -29,7 +29,6 @@ m = size(X, 1);
 J = 0;
 Theta1_grad = zeros(size(Theta1));
 Theta2_grad = zeros(size(Theta2));
-
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the code by working through the
 %               following parts.
@@ -69,8 +68,7 @@ vec_one = ones(num_labels, 1);
 for i = 1:m
     a1 = X(i,:);
 	z2 = a1*Theta1';
-    fprintf('z2 size=%d', size(z2));
-	a2 = sigmoid(z2);
+    a2 = sigmoid(z2);
     a2 = [ones(size(a2, 1), 1) a2];
     z3 = a2*Theta2';
 	a3 = sigmoid(z3);
@@ -78,10 +76,10 @@ for i = 1:m
     y_vec = (1:num_labels) == y(i);
 	phi_3 = a3 - y_vec;
 	z2 = [1 z2];
-	phi_2 = (Theta2'*phi_3').*sigmoidGradient(z2);
+	phi_2 = (phi_3 * Theta2).*sigmoidGradient(z2);
 	phi_2 = phi_2(2:end);
- 	Theta1_grad = Theta1_grad + phi_2 * a1';
-    Theta2_grad = Theta2_grad + phi_3 * a2';
+ 	Theta1_grad = Theta1_grad + phi_2' * a1;
+    Theta2_grad = Theta2_grad + phi_3' * a2;
     J += -y_vec*log(sigH) - (1 - y_vec)*log(1 - sigH);
 end
 
@@ -102,12 +100,20 @@ regular = regular*lambda/(2*m);
 
 J += regular;
 
+Theta1_grad /= m;
+Theta2_grad /= m;
 
+theta1_grad_temp = Theta1;
+theta2_grad_temp = Theta2;
 
+theta1_grad_temp(:,1) = zeros(size(Theta1, 1), 1);
+theta2_grad_temp(:,1) = zeros(size(Theta2, 1), 1);
 
+theta1_grad_temp *=(lambda/m);
+theta2_grad_temp *=(lambda/m);
 
-
-
+Theta1_grad += theta1_grad_temp;
+Theta2_grad += theta2_grad_temp;
 
 
 
