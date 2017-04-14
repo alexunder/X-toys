@@ -11,6 +11,8 @@ category: UltraLearning
 
 - [ ] [18.06sc](http://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/) Linear Algebra
 
+- [ ] [18.445](https://ocw.mit.edu/courses/mathematics/18-445-introduction-to-stochastic-processes-spring-2015/) Introduction to Stochastic Processes
+
 - [ ] [18.062J](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/) Mathematics for Computer Science
 
 - [ ] [18.03](http://ocw.mit.edu/courses/mathematics/18-03-differential-equations-spring-2010/index.htm) Differential Eqations
