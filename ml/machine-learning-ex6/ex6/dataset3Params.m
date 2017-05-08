@@ -25,15 +25,22 @@ sigma = 0.3;
 parameters = [0.01, 0.03, 0.1, 0.3, 1, 3, 10 ,30];
 
 
-m = 0;
+min_err = 1000;
 for c = parameters
     for sig = parameters
         model= svmTrain(X, y, c, @(x1, x2) gaussianKernel(x1, x2, sig));
         predictions = svmPredict(model, Xval);
-        mean(double(predictions ~= yval))
+        err = mean(double(predictions ~= yval));
+        if err < min_err
+            C = c;
+            sigma = sig;
+            min_err = err;
+        end
+    end
 end
 
 
+fprintf('In the case of sig=%f, c=%f, error=%f is smallest.\n', sigma, C, min_err);
 
 % =========================================================================
 

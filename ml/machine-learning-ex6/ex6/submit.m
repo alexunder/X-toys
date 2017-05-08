@@ -51,5 +51,5 @@ function out = output(partId, auxstring)
   elseif partId == '4'
     x = emailFeatures(wi);
     out = sprintf('%d ', x);
-  end 
+  end
 end
