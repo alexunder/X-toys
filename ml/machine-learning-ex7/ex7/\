@@ -28,8 +28,11 @@ centroids = zeros(K, n);
 
 for i = 1:K
     index_vec = (idx == i);
+    printf('\n The class %d index is:\n', i);
+    disp(index_vec);
     num_points = sum(index_vec);
-    centroids(i, :) = (X'*index_vec)' / num_points;
+    printf('\n The number of points is %d \n', num_points);
+    centroids(i, :) = sum(X'*index_vec) / num_points;
 end
 
 % =============================================================
