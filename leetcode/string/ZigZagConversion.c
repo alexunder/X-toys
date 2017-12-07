@@ -17,6 +17,8 @@ char* convert(char* s, int numRows) {
     else
         totalWidth += 1 + bitch - numRows;
 
+	printf("totalWidth=%d\n", totalWidth);
+	printf("numRows=%d\n", numRows);
     char * matrix = (char*)malloc(totalWidth*numRows*sizeof(char));
     memset(matrix, 0, totalWidth*numRows*sizeof(char));
 
@@ -27,7 +29,7 @@ char* convert(char* s, int numRows) {
     for (i = 1; i < lens; i++)
     {
         int temp = i % basic_width;
-        if ((temp < (numRows - 1)) && (temp > 0))
+        if ((temp < numRows) && (temp > 0))
         {
             starty++;
         }
@@ -40,6 +42,21 @@ char* convert(char* s, int numRows) {
         matrix[startx + starty*totalWidth] = s[i];
     }
 
+	//Dump the matrix
+	printf("The Matrices are:\n");
+    for (i = 0; i < totalWidth*numRows; i++)
+    {
+		if (matrix[i] > 0)
+			printf("%c", matrix[i]);
+		else
+			printf("%d", matrix[i]);
+
+		if (i % totalWidth == (totalWidth - 1))
+			printf("\n");
+		else
+			printf(" ");
+	}
+
     int cnt = 0;
     for (i = 0; i < totalWidth*numRows; i++)
     {
@@ -47,12 +64,13 @@ char* convert(char* s, int numRows) {
             s[cnt++] = matrix[i];
     }
 
-    //free(matrix);
+    free(matrix);
     return s;
 }
 
 int main()
 {
     char input[] = "PAHNAPLSIIGYIR";
+    printf("Before input=%s\n", input);
     printf("s=%s\n", convert(input, 3));
 }
