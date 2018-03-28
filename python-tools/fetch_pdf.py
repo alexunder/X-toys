@@ -1,10 +1,13 @@
 import urllib.request
 from urllib.parse import urljoin
+from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 import os, ssl
 import re
 import socket
 import requests
+import argparse
+import sys
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.error import HTTPError
 
@@ -23,7 +26,6 @@ def download_pdf(link, location, name):
         raise
 
 
-
 def shorten_title(title):
     m1 = re.search('[[0-9]*]', title)
     m2 = re.search('".*"', title)
@@ -33,6 +35,14 @@ def shorten_title(title):
         title = ' '.join((title, m2.group(0)))   
         return title[:50] + ' [...]'    
 
+def is_reasonable_name(name):
+    if len(name) < 5:
+        return False
+    if name.startswith('http://') or name.startswith('https://'):
+        return False
+    if name.endswith('.pdf'):
+        return True
+    return False
 
 def enable_https():
     if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
@@ -43,7 +53,20 @@ if __name__ == '__main__':
 
     enable_https()
 
-    base = 'https://www.ml.cmu.edu/research/data-analysis-projects.html'
+    parser = argparse.ArgumentParser(description = 'Download all the PDF files from the web into a specified directory.')
+    parser.add_argument('-d', action="store", dest="directory")
+    parser.add_argument('-u', action="store", dest="url")
+
+    results = parser.parse_args()
+
+    output_directory = 'pdfs' if results.directory is None else results.directory
+
+    #base = 'https://www.ml.cmu.edu/research/data-analysis-projects.html'
+    if results.url is None:
+        print("The -d option must be set!")
+        sys.exit(1)
+
+    base = results.url;
     response = urllib.request.urlopen(base)
     html = response.read()
     soup = BeautifulSoup(html, "lxml")
@@ -59,16 +82,20 @@ if __name__ == '__main__':
     for i, link in enumerate(soup.findAll('a')):
         _FULLURL = urljoin(base, link.get('href'))
         if _FULLURL.endswith('.pdf'):
-            #print(_FULLURL)
+            print(_FULLURL)
             urls.append(_FULLURL)
             name = soup.select('a')[i].text
             if name == "":
                 #print("name is void, continue")
                 continue
-            #print(name)
-            name = name.replace(" [", "")
-            name = name.replace("]", "")
-            #print(name)
+            print(name)
+            if is_reasonable_name(name):
+                #print(name)
+                name = name.replace(" [", "")
+                name = name.replace("]", "")
+            else:
+                name = name = _FULLURL.split("/")[-1]
+            print(name)
             names.append(name)
 
     names_urls = zip(names, urls)
@@ -79,6 +106,8 @@ if __name__ == '__main__':
         res = urllib.request.urlopen(url)
         print("Saving " + str(name))
         #download_pdf(url, "data-analysis-projects", name)
-        pdf = open("data-analysis-projects/" + name, 'wb')
+        pdf = open(output_directory  + '/' + name, 'wb')
         pdf.write(res.read())
         pdf.close()
+
+    sys.exit(0)
