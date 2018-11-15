@@ -1,0 +1,11 @@
+digraph asrlog_architecture {
+    fontname = "Verdana";        
+    fontsize = 10;
+    rankdir=TB;
+    node [fontname = "Verdana", fontsize = 10, color="skyblue", shape="record"];
+    edge [fontname = "Verdana", fontsize = 10, color="crimson", style="solid"];
+
+    "OfflineLog" -> "AsrlogCtl"  [dir="both"];
+    "Shell users" -> "AsrlogCtl" [dir="both"];
+    "AsrlogCtl" -> "Asrlog Daemon" [dir="both"];
+}

@@ -15,7 +15,7 @@ public:
     }
 
     void PreprocessGrids(const std::vector<ShadedGrid> &grids,
-                         int bucketEdgeLength, int xRes, int yRes);    
+                         int bucketEdgeLength, int xRes, int yRes);
     void Rasterize(const std::vector<ShadedGrid> &grids,
                    int numIntervals, Bucket *bucket);
 private:
@@ -127,7 +127,7 @@ static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int 
         yMin = std::min(yMin, std::min(vx0[i].y2d(), std::min(vx1[i].y2d(), vx2[i].y2d())));
         xMax = std::max(xMax, std::max(vx0[i].x2d(), std::max(vx1[i].x2d(), vx2[i].x2d())));
         yMax = std::max(yMax, std::max(vx0[i].y2d(), std::max(vx1[i].y2d(), vx2[i].y2d())));
-    }    
+    }
 
     // Compute integer pixel bounds, clamped to the bucket extent
     int ixMin = std::max((int)floorf(xMin), bucket->x0);
@@ -161,13 +161,13 @@ static void RasterizeTriangle(const ShadedGrid &sg, int u0, int v0, int u1, int 
                 Point vt0 = vx0[0] * (1 - st) + vx0[1] * st;
                 Point vt1 = vx1[0] * (1 - st) + vx1[1] * st;
                 Point vt2 = vx2[0] * (1 - st) + vx2[1] * st;
-                xa = vt0.x2d(); 
+                xa = vt0.x2d();
                 ya = vt0.y2d();
 
-                xb = vt1.x2d(); 
+                xb = vt1.x2d();
                 yb = vt1.y2d();
 
-                xc = vt2.x2d(); 
+                xc = vt2.x2d();
                 yc = vt2.y2d();
 
                 za = vt0.z;

@@ -1,0 +1,316 @@
+\hypertarget{classVec2f}{\section{Vec2f Class Reference}
+\label{classVec2f}\index{Vec2f@{Vec2f}}
+}
+
+
+{\ttfamily \#include $<$vectors.\+h$>$}
+
+
+
+Collaboration diagram for Vec2f\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{classVec2f__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classVec2f_a3582875fbf3badc6af02646e07bcf440}{Vec2f} ()
+\item 
+\hyperlink{classVec2f_a1ccd068b35746d18e32a4eace483f6a8}{Vec2f} (const \hyperlink{classVec2f}{Vec2f} \&V)
+\item 
+\hyperlink{classVec2f_ad05e55e211dd1b8e074f3d7d885702b9}{Vec2f} (float d0, float d1)
+\item 
+\hyperlink{classVec2f_a3d38f3909d8afebe49d445bce2222f95}{Vec2f} (const \hyperlink{classVec2f}{Vec2f} \&V1, const \hyperlink{classVec2f}{Vec2f} \&V2)
+\item 
+\hyperlink{classVec2f_a47eb22a462a2c7b7eb61edc07acb94cd}{$\sim$\+Vec2f} ()
+\item 
+void \hyperlink{classVec2f_a9fae265c16db131c066c14f73612eeeb}{Get} (float \&d0, float \&d1) const 
+\item 
+float \hyperlink{classVec2f_a289c043da9eeb8b3d2b6431d0e503d7b}{operator\mbox{[}$\,$\mbox{]}} (int i) const 
+\item 
+float \hyperlink{classVec2f_afa3f111d472b59c28e1d16085672a486}{x} () const 
+\item 
+float \hyperlink{classVec2f_a95deeb91f6b67910e012afc23e1bee5a}{y} () const 
+\item 
+float \hyperlink{classVec2f_a4ff073e7f62ee4099033dc000cede267}{Length} () const 
+\item 
+void \hyperlink{classVec2f_a33fda3509f836bd7edb439dd1704560d}{Set} (float d0, float d1)
+\item 
+void \hyperlink{classVec2f_a99b9eaccfebc7f10e7931171b1435018}{Scale} (float d0, float d1)
+\item 
+void \hyperlink{classVec2f_a9e9b6b93359ff9d0dc1208b7ddb37835}{Divide} (float d0, float d1)
+\item 
+void \hyperlink{classVec2f_a9117c2ca7d92eb0b4cd74916dfd11bf0}{Negate} ()
+\item 
+\hyperlink{classVec2f}{Vec2f} \& \hyperlink{classVec2f_a09876a9fe3d0e12c16afc31e69d52a95}{operator=} (const \hyperlink{classVec2f}{Vec2f} \&V)
+\item 
+int \hyperlink{classVec2f_a14005267a1c6a528577ad4d8976a4fd0}{operator==} (const \hyperlink{classVec2f}{Vec2f} \&V) const 
+\item 
+int \hyperlink{classVec2f_ad35c0e389f6bbcf52b9aabaf0693362f}{operator!=} (const \hyperlink{classVec2f}{Vec2f} \&V)
+\item 
+\hyperlink{classVec2f}{Vec2f} \& \hyperlink{classVec2f_afcf9b0267e8e4bc489e92536d2a59f94}{operator+=} (const \hyperlink{classVec2f}{Vec2f} \&V)
+\item 
+\hyperlink{classVec2f}{Vec2f} \& \hyperlink{classVec2f_a7617681b3e723a3e079a7ac9aa1cd5b8}{operator-\/=} (const \hyperlink{classVec2f}{Vec2f} \&V)
+\item 
+\hyperlink{classVec2f}{Vec2f} \& \hyperlink{classVec2f_a90602c3e9acd18762a488ed2a8393f61}{operator$\ast$=} (float f)
+\item 
+\hyperlink{classVec2f}{Vec2f} \& \hyperlink{classVec2f_a37cc7be7b91f340669d513e287974eff}{operator/=} (float f)
+\item 
+float \hyperlink{classVec2f_a827b91f7366c14666cdbb14d471a8aab}{Dot2} (const \hyperlink{classVec2f}{Vec2f} \&V) const 
+\item 
+void \hyperlink{classVec2f_af423b0af426c519e9301e83f62afe14e}{Write} (F\+I\+L\+E $\ast$F=stdout) const 
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classVec2f_aaa72e50ede2f02d9cbfead98966a6a10}{Add} (\hyperlink{classVec2f}{Vec2f} \&a, const \hyperlink{classVec2f}{Vec2f} \&b, const \hyperlink{classVec2f}{Vec2f} \&c)
+\item 
+static void \hyperlink{classVec2f_aa3efb59c19587d81ec7ad53ecf12226d}{Sub} (\hyperlink{classVec2f}{Vec2f} \&a, const \hyperlink{classVec2f}{Vec2f} \&b, const \hyperlink{classVec2f}{Vec2f} \&c)
+\item 
+static void \hyperlink{classVec2f_a32c4b20a2c2b5fae581a4eeae4316c47}{Copy\+Scale} (\hyperlink{classVec2f}{Vec2f} \&a, const \hyperlink{classVec2f}{Vec2f} \&b, float c)
+\item 
+static void \hyperlink{classVec2f_a80a502fea4f66b921c84019829128ff1}{Add\+Scale} (\hyperlink{classVec2f}{Vec2f} \&a, const \hyperlink{classVec2f}{Vec2f} \&b, const \hyperlink{classVec2f}{Vec2f} \&c, float d)
+\item 
+static void \hyperlink{classVec2f_ab8bb3386b3363f60cf814fb289528c16}{Average} (\hyperlink{classVec2f}{Vec2f} \&a, const \hyperlink{classVec2f}{Vec2f} \&b, const \hyperlink{classVec2f}{Vec2f} \&c)
+\item 
+static void \hyperlink{classVec2f_aec7c624674de97ca3cdf2a895d0c1495}{Weighted\+Sum} (\hyperlink{classVec2f}{Vec2f} \&a, const \hyperlink{classVec2f}{Vec2f} \&b, float c, const \hyperlink{classVec2f}{Vec2f} \&d, float e)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classVec2f_a3582875fbf3badc6af02646e07bcf440}{\index{Vec2f@{Vec2f}!Vec2f@{Vec2f}}
+\index{Vec2f@{Vec2f}!Vec2f@{Vec2f}}
+\subsubsection[{Vec2f}]{\setlength{\rightskip}{0pt plus 5cm}Vec2f\+::\+Vec2f (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a3582875fbf3badc6af02646e07bcf440}
+\hypertarget{classVec2f_a1ccd068b35746d18e32a4eace483f6a8}{\index{Vec2f@{Vec2f}!Vec2f@{Vec2f}}
+\index{Vec2f@{Vec2f}!Vec2f@{Vec2f}}
+\subsubsection[{Vec2f}]{\setlength{\rightskip}{0pt plus 5cm}Vec2f\+::\+Vec2f (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2f} \&}]{V}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a1ccd068b35746d18e32a4eace483f6a8}
+\hypertarget{classVec2f_ad05e55e211dd1b8e074f3d7d885702b9}{\index{Vec2f@{Vec2f}!Vec2f@{Vec2f}}
+\index{Vec2f@{Vec2f}!Vec2f@{Vec2f}}
+\subsubsection[{Vec2f}]{\setlength{\rightskip}{0pt plus 5cm}Vec2f\+::\+Vec2f (
+\begin{DoxyParamCaption}
+\item[{float}]{d0, }
+\item[{float}]{d1}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_ad05e55e211dd1b8e074f3d7d885702b9}
+\hypertarget{classVec2f_a3d38f3909d8afebe49d445bce2222f95}{\index{Vec2f@{Vec2f}!Vec2f@{Vec2f}}
+\index{Vec2f@{Vec2f}!Vec2f@{Vec2f}}
+\subsubsection[{Vec2f}]{\setlength{\rightskip}{0pt plus 5cm}Vec2f\+::\+Vec2f (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2f} \&}]{V1, }
+\item[{const {\bf Vec2f} \&}]{V2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a3d38f3909d8afebe49d445bce2222f95}
+\hypertarget{classVec2f_a47eb22a462a2c7b7eb61edc07acb94cd}{\index{Vec2f@{Vec2f}!````~Vec2f@{$\sim$\+Vec2f}}
+\index{````~Vec2f@{$\sim$\+Vec2f}!Vec2f@{Vec2f}}
+\subsubsection[{$\sim$\+Vec2f}]{\setlength{\rightskip}{0pt plus 5cm}Vec2f\+::$\sim$\+Vec2f (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a47eb22a462a2c7b7eb61edc07acb94cd}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classVec2f_aaa72e50ede2f02d9cbfead98966a6a10}{\index{Vec2f@{Vec2f}!Add@{Add}}
+\index{Add@{Add}!Vec2f@{Vec2f}}
+\subsubsection[{Add}]{\setlength{\rightskip}{0pt plus 5cm}static void Vec2f\+::\+Add (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec2f} \&}]{a, }
+\item[{const {\bf Vec2f} \&}]{b, }
+\item[{const {\bf Vec2f} \&}]{c}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classVec2f_aaa72e50ede2f02d9cbfead98966a6a10}
+\hypertarget{classVec2f_a80a502fea4f66b921c84019829128ff1}{\index{Vec2f@{Vec2f}!Add\+Scale@{Add\+Scale}}
+\index{Add\+Scale@{Add\+Scale}!Vec2f@{Vec2f}}
+\subsubsection[{Add\+Scale}]{\setlength{\rightskip}{0pt plus 5cm}static void Vec2f\+::\+Add\+Scale (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec2f} \&}]{a, }
+\item[{const {\bf Vec2f} \&}]{b, }
+\item[{const {\bf Vec2f} \&}]{c, }
+\item[{float}]{d}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classVec2f_a80a502fea4f66b921c84019829128ff1}
+\hypertarget{classVec2f_ab8bb3386b3363f60cf814fb289528c16}{\index{Vec2f@{Vec2f}!Average@{Average}}
+\index{Average@{Average}!Vec2f@{Vec2f}}
+\subsubsection[{Average}]{\setlength{\rightskip}{0pt plus 5cm}static void Vec2f\+::\+Average (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec2f} \&}]{a, }
+\item[{const {\bf Vec2f} \&}]{b, }
+\item[{const {\bf Vec2f} \&}]{c}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classVec2f_ab8bb3386b3363f60cf814fb289528c16}
+\hypertarget{classVec2f_a32c4b20a2c2b5fae581a4eeae4316c47}{\index{Vec2f@{Vec2f}!Copy\+Scale@{Copy\+Scale}}
+\index{Copy\+Scale@{Copy\+Scale}!Vec2f@{Vec2f}}
+\subsubsection[{Copy\+Scale}]{\setlength{\rightskip}{0pt plus 5cm}static void Vec2f\+::\+Copy\+Scale (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec2f} \&}]{a, }
+\item[{const {\bf Vec2f} \&}]{b, }
+\item[{float}]{c}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classVec2f_a32c4b20a2c2b5fae581a4eeae4316c47}
+\hypertarget{classVec2f_a9e9b6b93359ff9d0dc1208b7ddb37835}{\index{Vec2f@{Vec2f}!Divide@{Divide}}
+\index{Divide@{Divide}!Vec2f@{Vec2f}}
+\subsubsection[{Divide}]{\setlength{\rightskip}{0pt plus 5cm}void Vec2f\+::\+Divide (
+\begin{DoxyParamCaption}
+\item[{float}]{d0, }
+\item[{float}]{d1}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a9e9b6b93359ff9d0dc1208b7ddb37835}
+\hypertarget{classVec2f_a827b91f7366c14666cdbb14d471a8aab}{\index{Vec2f@{Vec2f}!Dot2@{Dot2}}
+\index{Dot2@{Dot2}!Vec2f@{Vec2f}}
+\subsubsection[{Dot2}]{\setlength{\rightskip}{0pt plus 5cm}float Vec2f\+::\+Dot2 (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2f} \&}]{V}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a827b91f7366c14666cdbb14d471a8aab}
+\hypertarget{classVec2f_a9fae265c16db131c066c14f73612eeeb}{\index{Vec2f@{Vec2f}!Get@{Get}}
+\index{Get@{Get}!Vec2f@{Vec2f}}
+\subsubsection[{Get}]{\setlength{\rightskip}{0pt plus 5cm}void Vec2f\+::\+Get (
+\begin{DoxyParamCaption}
+\item[{float \&}]{d0, }
+\item[{float \&}]{d1}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a9fae265c16db131c066c14f73612eeeb}
+\hypertarget{classVec2f_a4ff073e7f62ee4099033dc000cede267}{\index{Vec2f@{Vec2f}!Length@{Length}}
+\index{Length@{Length}!Vec2f@{Vec2f}}
+\subsubsection[{Length}]{\setlength{\rightskip}{0pt plus 5cm}float Vec2f\+::\+Length (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a4ff073e7f62ee4099033dc000cede267}
+\hypertarget{classVec2f_a9117c2ca7d92eb0b4cd74916dfd11bf0}{\index{Vec2f@{Vec2f}!Negate@{Negate}}
+\index{Negate@{Negate}!Vec2f@{Vec2f}}
+\subsubsection[{Negate}]{\setlength{\rightskip}{0pt plus 5cm}void Vec2f\+::\+Negate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a9117c2ca7d92eb0b4cd74916dfd11bf0}
+\hypertarget{classVec2f_ad35c0e389f6bbcf52b9aabaf0693362f}{\index{Vec2f@{Vec2f}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Vec2f@{Vec2f}}
+\subsubsection[{operator"!=}]{\setlength{\rightskip}{0pt plus 5cm}int Vec2f\+::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2f} \&}]{V}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_ad35c0e389f6bbcf52b9aabaf0693362f}
+\hypertarget{classVec2f_a90602c3e9acd18762a488ed2a8393f61}{\index{Vec2f@{Vec2f}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Vec2f@{Vec2f}}
+\subsubsection[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2f}\& Vec2f\+::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{float}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a90602c3e9acd18762a488ed2a8393f61}
+\hypertarget{classVec2f_afcf9b0267e8e4bc489e92536d2a59f94}{\index{Vec2f@{Vec2f}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Vec2f@{Vec2f}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2f}\& Vec2f\+::operator+= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2f} \&}]{V}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_afcf9b0267e8e4bc489e92536d2a59f94}
+\hypertarget{classVec2f_a7617681b3e723a3e079a7ac9aa1cd5b8}{\index{Vec2f@{Vec2f}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Vec2f@{Vec2f}}
+\subsubsection[{operator-\/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2f}\& Vec2f\+::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2f} \&}]{V}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a7617681b3e723a3e079a7ac9aa1cd5b8}
+\hypertarget{classVec2f_a37cc7be7b91f340669d513e287974eff}{\index{Vec2f@{Vec2f}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Vec2f@{Vec2f}}
+\subsubsection[{operator/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2f}\& Vec2f\+::operator/= (
+\begin{DoxyParamCaption}
+\item[{float}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a37cc7be7b91f340669d513e287974eff}
+\hypertarget{classVec2f_a09876a9fe3d0e12c16afc31e69d52a95}{\index{Vec2f@{Vec2f}!operator=@{operator=}}
+\index{operator=@{operator=}!Vec2f@{Vec2f}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2f}\& Vec2f\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2f} \&}]{V}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a09876a9fe3d0e12c16afc31e69d52a95}
+\hypertarget{classVec2f_a14005267a1c6a528577ad4d8976a4fd0}{\index{Vec2f@{Vec2f}!operator==@{operator==}}
+\index{operator==@{operator==}!Vec2f@{Vec2f}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}int Vec2f\+::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2f} \&}]{V}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a14005267a1c6a528577ad4d8976a4fd0}
+\hypertarget{classVec2f_a289c043da9eeb8b3d2b6431d0e503d7b}{\index{Vec2f@{Vec2f}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!Vec2f@{Vec2f}}
+\subsubsection[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}float Vec2f\+::operator\mbox{[}$\,$\mbox{]} (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a289c043da9eeb8b3d2b6431d0e503d7b}
+\hypertarget{classVec2f_a99b9eaccfebc7f10e7931171b1435018}{\index{Vec2f@{Vec2f}!Scale@{Scale}}
+\index{Scale@{Scale}!Vec2f@{Vec2f}}
+\subsubsection[{Scale}]{\setlength{\rightskip}{0pt plus 5cm}void Vec2f\+::\+Scale (
+\begin{DoxyParamCaption}
+\item[{float}]{d0, }
+\item[{float}]{d1}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a99b9eaccfebc7f10e7931171b1435018}
+\hypertarget{classVec2f_a33fda3509f836bd7edb439dd1704560d}{\index{Vec2f@{Vec2f}!Set@{Set}}
+\index{Set@{Set}!Vec2f@{Vec2f}}
+\subsubsection[{Set}]{\setlength{\rightskip}{0pt plus 5cm}void Vec2f\+::\+Set (
+\begin{DoxyParamCaption}
+\item[{float}]{d0, }
+\item[{float}]{d1}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a33fda3509f836bd7edb439dd1704560d}
+\hypertarget{classVec2f_aa3efb59c19587d81ec7ad53ecf12226d}{\index{Vec2f@{Vec2f}!Sub@{Sub}}
+\index{Sub@{Sub}!Vec2f@{Vec2f}}
+\subsubsection[{Sub}]{\setlength{\rightskip}{0pt plus 5cm}static void Vec2f\+::\+Sub (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec2f} \&}]{a, }
+\item[{const {\bf Vec2f} \&}]{b, }
+\item[{const {\bf Vec2f} \&}]{c}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classVec2f_aa3efb59c19587d81ec7ad53ecf12226d}
+\hypertarget{classVec2f_aec7c624674de97ca3cdf2a895d0c1495}{\index{Vec2f@{Vec2f}!Weighted\+Sum@{Weighted\+Sum}}
+\index{Weighted\+Sum@{Weighted\+Sum}!Vec2f@{Vec2f}}
+\subsubsection[{Weighted\+Sum}]{\setlength{\rightskip}{0pt plus 5cm}static void Vec2f\+::\+Weighted\+Sum (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec2f} \&}]{a, }
+\item[{const {\bf Vec2f} \&}]{b, }
+\item[{float}]{c, }
+\item[{const {\bf Vec2f} \&}]{d, }
+\item[{float}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classVec2f_aec7c624674de97ca3cdf2a895d0c1495}
+\hypertarget{classVec2f_af423b0af426c519e9301e83f62afe14e}{\index{Vec2f@{Vec2f}!Write@{Write}}
+\index{Write@{Write}!Vec2f@{Vec2f}}
+\subsubsection[{Write}]{\setlength{\rightskip}{0pt plus 5cm}void Vec2f\+::\+Write (
+\begin{DoxyParamCaption}
+\item[{F\+I\+L\+E $\ast$}]{F = {\ttfamily stdout}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_af423b0af426c519e9301e83f62afe14e}
+\hypertarget{classVec2f_afa3f111d472b59c28e1d16085672a486}{\index{Vec2f@{Vec2f}!x@{x}}
+\index{x@{x}!Vec2f@{Vec2f}}
+\subsubsection[{x}]{\setlength{\rightskip}{0pt plus 5cm}float Vec2f\+::x (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_afa3f111d472b59c28e1d16085672a486}
+\hypertarget{classVec2f_a95deeb91f6b67910e012afc23e1bee5a}{\index{Vec2f@{Vec2f}!y@{y}}
+\index{y@{y}!Vec2f@{Vec2f}}
+\subsubsection[{y}]{\setlength{\rightskip}{0pt plus 5cm}float Vec2f\+::y (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classVec2f_a95deeb91f6b67910e012afc23e1bee5a}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{vectors_8h}{vectors.\+h}\end{DoxyCompactItemize}

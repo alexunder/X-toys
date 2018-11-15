@@ -1,0 +1,161 @@
+\hypertarget{classOrthographicCamera}{\section{Orthographic\+Camera Class Reference}
+\label{classOrthographicCamera}\index{Orthographic\+Camera@{Orthographic\+Camera}}
+}
+
+
+{\ttfamily \#include $<$Orthographic\+Camera.\+h$>$}
+
+
+
+Inheritance diagram for Orthographic\+Camera\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{classOrthographicCamera__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Orthographic\+Camera\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{classOrthographicCamera__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classOrthographicCamera_a23c7fec8ea2f52dceee182e4d5d793c6}{Orthographic\+Camera} (const \hyperlink{classVec3f}{Vec3f} \&center, \hyperlink{classVec3f}{Vec3f} \&direction, \hyperlink{classVec3f}{Vec3f} \&up, int size)
+\item 
+\hyperlink{classRay}{Ray} \hyperlink{classOrthographicCamera_a0d38d086463e985bebc1eeeb8ee1688c}{generate\+Ray} (\hyperlink{classVec2f}{Vec2f} point)
+\item 
+float \hyperlink{classOrthographicCamera_a8e94c85d863b6e822c6dc41dd6c8c48d}{get\+T\+Min} () const 
+\item 
+void \hyperlink{classOrthographicCamera_a0e4e4d3ef3128978ead52558bafdebeb}{gl\+Init} (int w, int h)
+\item 
+void \hyperlink{classOrthographicCamera_a21d150063a24159895e2bd9946ea66a3}{gl\+Place\+Camera} (void)
+\item 
+void \hyperlink{classOrthographicCamera_afbb4731ec857cb912f14adedc4786220}{dolly\+Camera} (float dist)
+\item 
+void \hyperlink{classOrthographicCamera_a231788d4a893e5ab46fe21ae19f3d2cc}{truck\+Camera} (float dx, float dy)
+\item 
+void \hyperlink{classOrthographicCamera_a116139a92d5e16190466663aadeff010}{rotate\+Camera} (float rx, float ry)
+\item 
+\hyperlink{Camera_8h_af7eb92b45c5f7f64f02821f87c385ebb}{Camera\+Type} \hyperlink{classOrthographicCamera_a971f9b483e42da2a6b8f8026ea6ceec4}{get\+Camera\+Type} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classOrthographicCamera_a23c7fec8ea2f52dceee182e4d5d793c6}{\index{Orthographic\+Camera@{Orthographic\+Camera}!Orthographic\+Camera@{Orthographic\+Camera}}
+\index{Orthographic\+Camera@{Orthographic\+Camera}!Orthographic\+Camera@{Orthographic\+Camera}}
+\subsubsection[{Orthographic\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}Orthographic\+Camera\+::\+Orthographic\+Camera (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec3f} \&}]{center, }
+\item[{{\bf Vec3f} \&}]{direction, }
+\item[{{\bf Vec3f} \&}]{up, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}\label{classOrthographicCamera_a23c7fec8ea2f52dceee182e4d5d793c6}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classOrthographicCamera_afbb4731ec857cb912f14adedc4786220}{\index{Orthographic\+Camera@{Orthographic\+Camera}!dolly\+Camera@{dolly\+Camera}}
+\index{dolly\+Camera@{dolly\+Camera}!Orthographic\+Camera@{Orthographic\+Camera}}
+\subsubsection[{dolly\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}void Orthographic\+Camera\+::dolly\+Camera (
+\begin{DoxyParamCaption}
+\item[{float}]{dist}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classOrthographicCamera_afbb4731ec857cb912f14adedc4786220}
+
+
+Implements \hyperlink{classCamera_a26f0d7649db9d533ce9a270dc78b2356}{Camera}.
+
+\hypertarget{classOrthographicCamera_a0d38d086463e985bebc1eeeb8ee1688c}{\index{Orthographic\+Camera@{Orthographic\+Camera}!generate\+Ray@{generate\+Ray}}
+\index{generate\+Ray@{generate\+Ray}!Orthographic\+Camera@{Orthographic\+Camera}}
+\subsubsection[{generate\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ray} Orthographic\+Camera\+::generate\+Ray (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec2f}}]{point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classOrthographicCamera_a0d38d086463e985bebc1eeeb8ee1688c}
+
+
+Implements \hyperlink{classCamera_a38dbd2b70b31ee250aadd83b1bbe87fb}{Camera}.
+
+\hypertarget{classOrthographicCamera_a971f9b483e42da2a6b8f8026ea6ceec4}{\index{Orthographic\+Camera@{Orthographic\+Camera}!get\+Camera\+Type@{get\+Camera\+Type}}
+\index{get\+Camera\+Type@{get\+Camera\+Type}!Orthographic\+Camera@{Orthographic\+Camera}}
+\subsubsection[{get\+Camera\+Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera\+Type} Orthographic\+Camera\+::get\+Camera\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classOrthographicCamera_a971f9b483e42da2a6b8f8026ea6ceec4}
+
+
+Reimplemented from \hyperlink{classCamera_a8ef78e5cc0c5e62077681a0805eb7522}{Camera}.
+
+\hypertarget{classOrthographicCamera_a8e94c85d863b6e822c6dc41dd6c8c48d}{\index{Orthographic\+Camera@{Orthographic\+Camera}!get\+T\+Min@{get\+T\+Min}}
+\index{get\+T\+Min@{get\+T\+Min}!Orthographic\+Camera@{Orthographic\+Camera}}
+\subsubsection[{get\+T\+Min}]{\setlength{\rightskip}{0pt plus 5cm}float Orthographic\+Camera\+::get\+T\+Min (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classOrthographicCamera_a8e94c85d863b6e822c6dc41dd6c8c48d}
+
+
+Implements \hyperlink{classCamera_a476000c8588b1aef575482c86153fcb7}{Camera}.
+
+\hypertarget{classOrthographicCamera_a0e4e4d3ef3128978ead52558bafdebeb}{\index{Orthographic\+Camera@{Orthographic\+Camera}!gl\+Init@{gl\+Init}}
+\index{gl\+Init@{gl\+Init}!Orthographic\+Camera@{Orthographic\+Camera}}
+\subsubsection[{gl\+Init}]{\setlength{\rightskip}{0pt plus 5cm}void Orthographic\+Camera\+::gl\+Init (
+\begin{DoxyParamCaption}
+\item[{int}]{w, }
+\item[{int}]{h}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classOrthographicCamera_a0e4e4d3ef3128978ead52558bafdebeb}
+
+
+Implements \hyperlink{classCamera_a6019cf89c6805c8b95421cefd18fb5a4}{Camera}.
+
+\hypertarget{classOrthographicCamera_a21d150063a24159895e2bd9946ea66a3}{\index{Orthographic\+Camera@{Orthographic\+Camera}!gl\+Place\+Camera@{gl\+Place\+Camera}}
+\index{gl\+Place\+Camera@{gl\+Place\+Camera}!Orthographic\+Camera@{Orthographic\+Camera}}
+\subsubsection[{gl\+Place\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}void Orthographic\+Camera\+::gl\+Place\+Camera (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classOrthographicCamera_a21d150063a24159895e2bd9946ea66a3}
+
+
+Implements \hyperlink{classCamera_aa4ca1a479cd395f63b66403358cd8663}{Camera}.
+
+\hypertarget{classOrthographicCamera_a116139a92d5e16190466663aadeff010}{\index{Orthographic\+Camera@{Orthographic\+Camera}!rotate\+Camera@{rotate\+Camera}}
+\index{rotate\+Camera@{rotate\+Camera}!Orthographic\+Camera@{Orthographic\+Camera}}
+\subsubsection[{rotate\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}void Orthographic\+Camera\+::rotate\+Camera (
+\begin{DoxyParamCaption}
+\item[{float}]{rx, }
+\item[{float}]{ry}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classOrthographicCamera_a116139a92d5e16190466663aadeff010}
+
+
+Implements \hyperlink{classCamera_a23cb6869d6f6f0b284d085d9248138dc}{Camera}.
+
+\hypertarget{classOrthographicCamera_a231788d4a893e5ab46fe21ae19f3d2cc}{\index{Orthographic\+Camera@{Orthographic\+Camera}!truck\+Camera@{truck\+Camera}}
+\index{truck\+Camera@{truck\+Camera}!Orthographic\+Camera@{Orthographic\+Camera}}
+\subsubsection[{truck\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}void Orthographic\+Camera\+::truck\+Camera (
+\begin{DoxyParamCaption}
+\item[{float}]{dx, }
+\item[{float}]{dy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classOrthographicCamera_a231788d4a893e5ab46fe21ae19f3d2cc}
+
+
+Implements \hyperlink{classCamera_a8f4824f47acc2ef1b7724e7412abc2da}{Camera}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{OrthographicCamera_8h}{Orthographic\+Camera.\+h}\item 
+\hyperlink{OrthographicCamera_8cpp}{Orthographic\+Camera.\+cpp}\end{DoxyCompactItemize}

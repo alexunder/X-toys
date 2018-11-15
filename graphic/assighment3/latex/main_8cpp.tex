@@ -1,0 +1,157 @@
+\hypertarget{main_8cpp}{\section{main.\+cpp File Reference}
+\label{main_8cpp}\index{main.\+cpp@{main.\+cpp}}
+}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$G\+L/glut.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}scene\+\_\+parser.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Orthographic\+Camera.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Perspective\+Camera.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Group.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}image.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}hit.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}material.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}light.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gl\+Canvas.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Sphere.\+h\char`\"{}}\\*
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main_8cpp_a860ddb7326d94dbdd58266acdaf773b1}{parse\+Args} (int argc, char $\ast$$\ast$argv)
+\item 
+void \hyperlink{main_8cpp_a2fe48e89660e455d6353c1f28bc3d161}{Render\+Scene} ()
+\item 
+void \hyperlink{main_8cpp_a5ae4fcd437f25aa763b250337ddf6229}{Render\+Depth} ()
+\item 
+void \hyperlink{main_8cpp_aa083e0f1f9b8de2db08cdd8ece8a02d8}{Render\+Normal} ()
+\item 
+void \hyperlink{main_8cpp_a406d7b8ae89d745877a73eddb4275f73}{Render\+All} ()
+\item 
+int \hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{main_8cpp_aa4f3a15de34c409bdec6ceacf93078ed}{input\+\_\+file} = N\+U\+L\+L
+\item 
+int \hyperlink{main_8cpp_a2474a5474cbff19523a51eb1de01cda4}{width} = 100
+\item 
+int \hyperlink{main_8cpp_ad12fc34ce789bce6c8a05d8a17138534}{height} = 100
+\item 
+char $\ast$ \hyperlink{main_8cpp_a4d59733effad59b54bbd4e5d6016c538}{output\+\_\+file} = N\+U\+L\+L
+\item 
+float \hyperlink{main_8cpp_ab38d37893fee70f613a07093554ac9e3}{depth\+\_\+min} = 0
+\item 
+float \hyperlink{main_8cpp_a05f04224c4db5213b439776be3345172}{depth\+\_\+max} = 1
+\item 
+char $\ast$ \hyperlink{main_8cpp_ae33db29a5aab7f7b69f9517b24c0f65a}{depth\+\_\+file} = N\+U\+L\+L
+\item 
+char $\ast$ \hyperlink{main_8cpp_a12d48dceaafef7369019bb9264652daa}{normal\+\_\+file} = N\+U\+L\+L
+\item 
+bool \hyperlink{main_8cpp_ae3a48efbedf7ab327522e1a5603c1f18}{need\+Shade\+Back} = false
+\item 
+int \hyperlink{main_8cpp_a32f5547b719e8992817fdc65ad5f99c5}{theta\+\_\+steps} = 10
+\item 
+int \hyperlink{main_8cpp_a5afb8cb5717b722791f3bf60c49dc030}{phi\+\_\+steps} = 5
+\item 
+bool \hyperlink{main_8cpp_a4e650ce452ff45389fbd3b8565b26875}{gui\+Mode} = false
+\item 
+\hyperlink{classSceneParser}{Scene\+Parser} $\ast$ \hyperlink{main_8cpp_ab007953610a68f92ff66b6b4f30b1d76}{parser} = N\+U\+L\+L
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{\index{main.\+cpp@{main.\+cpp}!main@{main}}
+\index{main@{main}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+\hypertarget{main_8cpp_a860ddb7326d94dbdd58266acdaf773b1}{\index{main.\+cpp@{main.\+cpp}!parse\+Args@{parse\+Args}}
+\index{parse\+Args@{parse\+Args}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{parse\+Args}]{\setlength{\rightskip}{0pt plus 5cm}void parse\+Args (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_a860ddb7326d94dbdd58266acdaf773b1}
+\hypertarget{main_8cpp_a406d7b8ae89d745877a73eddb4275f73}{\index{main.\+cpp@{main.\+cpp}!Render\+All@{Render\+All}}
+\index{Render\+All@{Render\+All}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{Render\+All}]{\setlength{\rightskip}{0pt plus 5cm}void Render\+All (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_a406d7b8ae89d745877a73eddb4275f73}
+\hypertarget{main_8cpp_a5ae4fcd437f25aa763b250337ddf6229}{\index{main.\+cpp@{main.\+cpp}!Render\+Depth@{Render\+Depth}}
+\index{Render\+Depth@{Render\+Depth}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{Render\+Depth}]{\setlength{\rightskip}{0pt plus 5cm}void Render\+Depth (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_a5ae4fcd437f25aa763b250337ddf6229}
+\hypertarget{main_8cpp_aa083e0f1f9b8de2db08cdd8ece8a02d8}{\index{main.\+cpp@{main.\+cpp}!Render\+Normal@{Render\+Normal}}
+\index{Render\+Normal@{Render\+Normal}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{Render\+Normal}]{\setlength{\rightskip}{0pt plus 5cm}void Render\+Normal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_aa083e0f1f9b8de2db08cdd8ece8a02d8}
+\hypertarget{main_8cpp_a2fe48e89660e455d6353c1f28bc3d161}{\index{main.\+cpp@{main.\+cpp}!Render\+Scene@{Render\+Scene}}
+\index{Render\+Scene@{Render\+Scene}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{Render\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}void Render\+Scene (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_a2fe48e89660e455d6353c1f28bc3d161}
+
+
+\subsection{Variable Documentation}
+\hypertarget{main_8cpp_ae33db29a5aab7f7b69f9517b24c0f65a}{\index{main.\+cpp@{main.\+cpp}!depth\+\_\+file@{depth\+\_\+file}}
+\index{depth\+\_\+file@{depth\+\_\+file}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{depth\+\_\+file}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ depth\+\_\+file = N\+U\+L\+L}}\label{main_8cpp_ae33db29a5aab7f7b69f9517b24c0f65a}
+\hypertarget{main_8cpp_a05f04224c4db5213b439776be3345172}{\index{main.\+cpp@{main.\+cpp}!depth\+\_\+max@{depth\+\_\+max}}
+\index{depth\+\_\+max@{depth\+\_\+max}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{depth\+\_\+max}]{\setlength{\rightskip}{0pt plus 5cm}float depth\+\_\+max = 1}}\label{main_8cpp_a05f04224c4db5213b439776be3345172}
+\hypertarget{main_8cpp_ab38d37893fee70f613a07093554ac9e3}{\index{main.\+cpp@{main.\+cpp}!depth\+\_\+min@{depth\+\_\+min}}
+\index{depth\+\_\+min@{depth\+\_\+min}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{depth\+\_\+min}]{\setlength{\rightskip}{0pt plus 5cm}float depth\+\_\+min = 0}}\label{main_8cpp_ab38d37893fee70f613a07093554ac9e3}
+\hypertarget{main_8cpp_a4e650ce452ff45389fbd3b8565b26875}{\index{main.\+cpp@{main.\+cpp}!gui\+Mode@{gui\+Mode}}
+\index{gui\+Mode@{gui\+Mode}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{gui\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}bool gui\+Mode = false}}\label{main_8cpp_a4e650ce452ff45389fbd3b8565b26875}
+\hypertarget{main_8cpp_ad12fc34ce789bce6c8a05d8a17138534}{\index{main.\+cpp@{main.\+cpp}!height@{height}}
+\index{height@{height}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{height}]{\setlength{\rightskip}{0pt plus 5cm}int height = 100}}\label{main_8cpp_ad12fc34ce789bce6c8a05d8a17138534}
+\hypertarget{main_8cpp_aa4f3a15de34c409bdec6ceacf93078ed}{\index{main.\+cpp@{main.\+cpp}!input\+\_\+file@{input\+\_\+file}}
+\index{input\+\_\+file@{input\+\_\+file}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{input\+\_\+file}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ input\+\_\+file = N\+U\+L\+L}}\label{main_8cpp_aa4f3a15de34c409bdec6ceacf93078ed}
+\hypertarget{main_8cpp_ae3a48efbedf7ab327522e1a5603c1f18}{\index{main.\+cpp@{main.\+cpp}!need\+Shade\+Back@{need\+Shade\+Back}}
+\index{need\+Shade\+Back@{need\+Shade\+Back}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{need\+Shade\+Back}]{\setlength{\rightskip}{0pt plus 5cm}bool need\+Shade\+Back = false}}\label{main_8cpp_ae3a48efbedf7ab327522e1a5603c1f18}
+\hypertarget{main_8cpp_a12d48dceaafef7369019bb9264652daa}{\index{main.\+cpp@{main.\+cpp}!normal\+\_\+file@{normal\+\_\+file}}
+\index{normal\+\_\+file@{normal\+\_\+file}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{normal\+\_\+file}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ normal\+\_\+file = N\+U\+L\+L}}\label{main_8cpp_a12d48dceaafef7369019bb9264652daa}
+\hypertarget{main_8cpp_a4d59733effad59b54bbd4e5d6016c538}{\index{main.\+cpp@{main.\+cpp}!output\+\_\+file@{output\+\_\+file}}
+\index{output\+\_\+file@{output\+\_\+file}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{output\+\_\+file}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ output\+\_\+file = N\+U\+L\+L}}\label{main_8cpp_a4d59733effad59b54bbd4e5d6016c538}
+\hypertarget{main_8cpp_ab007953610a68f92ff66b6b4f30b1d76}{\index{main.\+cpp@{main.\+cpp}!parser@{parser}}
+\index{parser@{parser}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{parser}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene\+Parser}$\ast$ parser = N\+U\+L\+L}}\label{main_8cpp_ab007953610a68f92ff66b6b4f30b1d76}
+\hypertarget{main_8cpp_a5afb8cb5717b722791f3bf60c49dc030}{\index{main.\+cpp@{main.\+cpp}!phi\+\_\+steps@{phi\+\_\+steps}}
+\index{phi\+\_\+steps@{phi\+\_\+steps}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{phi\+\_\+steps}]{\setlength{\rightskip}{0pt plus 5cm}int phi\+\_\+steps = 5}}\label{main_8cpp_a5afb8cb5717b722791f3bf60c49dc030}
+\hypertarget{main_8cpp_a32f5547b719e8992817fdc65ad5f99c5}{\index{main.\+cpp@{main.\+cpp}!theta\+\_\+steps@{theta\+\_\+steps}}
+\index{theta\+\_\+steps@{theta\+\_\+steps}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{theta\+\_\+steps}]{\setlength{\rightskip}{0pt plus 5cm}int theta\+\_\+steps = 10}}\label{main_8cpp_a32f5547b719e8992817fdc65ad5f99c5}
+\hypertarget{main_8cpp_a2474a5474cbff19523a51eb1de01cda4}{\index{main.\+cpp@{main.\+cpp}!width@{width}}
+\index{width@{width}!main.\+cpp@{main.\+cpp}}
+\subsubsection[{width}]{\setlength{\rightskip}{0pt plus 5cm}int width = 100}}\label{main_8cpp_a2474a5474cbff19523a51eb1de01cda4}

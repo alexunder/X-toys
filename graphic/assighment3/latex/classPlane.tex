@@ -1,0 +1,94 @@
+\hypertarget{classPlane}{\section{Plane Class Reference}
+\label{classPlane}\index{Plane@{Plane}}
+}
+
+
+{\ttfamily \#include $<$Plane.\+h$>$}
+
+
+
+Inheritance diagram for Plane\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{classPlane__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Plane\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classPlane__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPlane_a03b8454ad8a2449db6b17f16e5937f30}{Plane} (\hyperlink{classVec3f}{Vec3f} \&normal, float d, \hyperlink{classMaterial}{Material} $\ast$m)
+\item 
+\hyperlink{classPlane_a0635018b797d1d6bad2ba7b77d5bb850}{Plane} (\hyperlink{classVec3f}{Vec3f} a, \hyperlink{classVec3f}{Vec3f} b, \hyperlink{classVec3f}{Vec3f} c, \hyperlink{classMaterial}{Material} $\ast$m)
+\item 
+bool \hyperlink{classPlane_aa5d49b08c1d2bd97f62ede89dccc7298}{intersect} (const \hyperlink{classRay}{Ray} \&r, \hyperlink{classHit}{Hit} \&h, float tmin)
+\item 
+void \hyperlink{classPlane_a07d23e6d410f03bb716bbcc5366323c7}{paint} (void)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classPlane_a03b8454ad8a2449db6b17f16e5937f30}{\index{Plane@{Plane}!Plane@{Plane}}
+\index{Plane@{Plane}!Plane@{Plane}}
+\subsubsection[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}Plane\+::\+Plane (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec3f} \&}]{normal, }
+\item[{float}]{d, }
+\item[{{\bf Material} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{classPlane_a03b8454ad8a2449db6b17f16e5937f30}
+\hypertarget{classPlane_a0635018b797d1d6bad2ba7b77d5bb850}{\index{Plane@{Plane}!Plane@{Plane}}
+\index{Plane@{Plane}!Plane@{Plane}}
+\subsubsection[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}Plane\+::\+Plane (
+\begin{DoxyParamCaption}
+\item[{{\bf Vec3f}}]{a, }
+\item[{{\bf Vec3f}}]{b, }
+\item[{{\bf Vec3f}}]{c, }
+\item[{{\bf Material} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{classPlane_a0635018b797d1d6bad2ba7b77d5bb850}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classPlane_aa5d49b08c1d2bd97f62ede89dccc7298}{\index{Plane@{Plane}!intersect@{intersect}}
+\index{intersect@{intersect}!Plane@{Plane}}
+\subsubsection[{intersect}]{\setlength{\rightskip}{0pt plus 5cm}bool Plane\+::intersect (
+\begin{DoxyParamCaption}
+\item[{const {\bf Ray} \&}]{r, }
+\item[{{\bf Hit} \&}]{h, }
+\item[{float}]{tmin}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classPlane_aa5d49b08c1d2bd97f62ede89dccc7298}
+
+
+Implements \hyperlink{classObject3D_a58f07cf2b37c5b6a1c796cd7a939f91b}{Object3\+D}.
+
+\hypertarget{classPlane_a07d23e6d410f03bb716bbcc5366323c7}{\index{Plane@{Plane}!paint@{paint}}
+\index{paint@{paint}!Plane@{Plane}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void Plane\+::paint (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classPlane_a07d23e6d410f03bb716bbcc5366323c7}
+
+
+Implements \hyperlink{classObject3D_a374ef54b92edff375d58f0100c33c373}{Object3\+D}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Plane_8h}{Plane.\+h}\item 
+\hyperlink{Plane_8cpp}{Plane.\+cpp}\end{DoxyCompactItemize}

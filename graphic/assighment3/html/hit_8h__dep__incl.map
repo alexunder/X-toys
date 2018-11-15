@@ -1,0 +1,15 @@
+<map id="hit.h" name="hit.h">
+<area shape="rect" id="node2" href="$Group_8cpp.html" title="Group.cpp" alt="" coords="24,160,127,189"/>
+<area shape="rect" id="node3" href="$material_8h.html" title="material.h" alt="" coords="384,83,496,112"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="main.cpp" alt="" coords="75,237,170,267"/>
+<area shape="rect" id="node7" href="$Sphere_8cpp.html" title="Sphere.cpp" alt="" coords="582,237,694,267"/>
+<area shape="rect" id="node11" href="$Plane_8cpp.html" title="Plane.cpp" alt="" coords="874,237,976,267"/>
+<area shape="rect" id="node13" href="$Triangle_8cpp.html" title="Triangle.cpp" alt="" coords="718,237,849,267"/>
+<area shape="rect" id="node14" href="$Transform_8cpp.html" title="Transform.cpp" alt="" coords="952,83,1090,112"/>
+<area shape="rect" id="node5" href="$Sphere_8h.html" title="Sphere.h" alt="" coords="435,160,530,189"/>
+<area shape="rect" id="node6" href="$scene__parser_8cpp.html" title="scene_parser.cpp" alt="" coords="392,237,559,267"/>
+<area shape="rect" id="node8" href="$PhongMaterial_8h.html" title="PhongMaterial.h" alt="" coords="202,160,360,189"/>
+<area shape="rect" id="node10" href="$Plane_8h.html" title="Plane.h" alt="" coords="690,160,776,189"/>
+<area shape="rect" id="node12" href="$Triangle_8h.html" title="Triangle.h" alt="" coords="554,160,666,189"/>
+<area shape="rect" id="node9" href="$PhongMaterial_8cpp.html" title="PhongMaterial.cpp" alt="" coords="194,237,368,267"/>
+</map>

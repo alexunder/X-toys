@@ -72,6 +72,7 @@ Vec3f RayTracer::traceRay(const Ray &ray, float tmin, int bounces, float weight,
 #ifdef RENDER_GRID
     ishit = mGrid->intersect(ray, hit, tm);
     if (ishit) {
+        printf("Hit fucker.\n");
         if (bounces == 0)
             RayTree::SetMainSegment(ray, 0, hit.getT());
 
@@ -92,7 +93,7 @@ Vec3f RayTracer::traceRay(const Ray &ray, float tmin, int bounces, float weight,
             float d = lightDir.Dot3(normal);
 
             Vec3f tempColor = lightColor * diffuseColor;
-            tempColor *= d;
+            //tempColor *= d;
             tempColor += pM->Shade(ray, hit, lightDir, lightColor);
             pixelColor += tempColor;
         }

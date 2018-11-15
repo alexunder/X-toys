@@ -1,0 +1,14 @@
+digraph routine_fastboot{
+    fontname = "Verdana";
+    fontsize = 10;
+    rankdir=TB;
+    node [fontname = "Verdana", fontsize = 10, color="skyblue", shape="record"];
+    edge [fontname = "Verdana", fontsize = 10, color="crimson", style="solid"];
+
+    "main" -> "ciClientStubInit";
+    //"main" -> "tcInit";
+    //"main" -> "utlEventLoop";
+    //rankdir = LR;
+    "ciClientStubInit" -> "tcInit";
+    "tcInit" -> "utlEventLoop";
+}

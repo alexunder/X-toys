@@ -1,0 +1,83 @@
+\hypertarget{classPhongMaterial}{\section{Phong\+Material Class Reference}
+\label{classPhongMaterial}\index{Phong\+Material@{Phong\+Material}}
+}
+
+
+{\ttfamily \#include $<$Phong\+Material.\+h$>$}
+
+
+
+Inheritance diagram for Phong\+Material\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{classPhongMaterial__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Phong\+Material\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classPhongMaterial__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPhongMaterial_a89cbc561f93291ffa07e4fee6408fdca}{Phong\+Material} (const \hyperlink{classVec3f}{Vec3f} \&\hyperlink{classMaterial_ae81bccaee22b88d46074b843dc7bdc32}{diffuse\+Color}, const \hyperlink{classVec3f}{Vec3f} \&specular\+Color, float exponent)
+\item 
+\hyperlink{classVec3f}{Vec3f} \hyperlink{classPhongMaterial_aa35744f32b0505bd60e4295e0ba87b28}{Shade} (const \hyperlink{classRay}{Ray} \&ray, const \hyperlink{classHit}{Hit} \&hit, const \hyperlink{classVec3f}{Vec3f} \&dir\+To\+Light, const \hyperlink{classVec3f}{Vec3f} \&light\+Color) const 
+\item 
+void \hyperlink{classPhongMaterial_aaba23700fd0826e36aba3ea9945b4922}{gl\+Set\+Material} (void) const 
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classPhongMaterial_a89cbc561f93291ffa07e4fee6408fdca}{\index{Phong\+Material@{Phong\+Material}!Phong\+Material@{Phong\+Material}}
+\index{Phong\+Material@{Phong\+Material}!Phong\+Material@{Phong\+Material}}
+\subsubsection[{Phong\+Material}]{\setlength{\rightskip}{0pt plus 5cm}Phong\+Material\+::\+Phong\+Material (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec3f} \&}]{diffuse\+Color, }
+\item[{const {\bf Vec3f} \&}]{specular\+Color, }
+\item[{float}]{exponent}
+\end{DoxyParamCaption}
+)}}\label{classPhongMaterial_a89cbc561f93291ffa07e4fee6408fdca}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classPhongMaterial_aaba23700fd0826e36aba3ea9945b4922}{\index{Phong\+Material@{Phong\+Material}!gl\+Set\+Material@{gl\+Set\+Material}}
+\index{gl\+Set\+Material@{gl\+Set\+Material}!Phong\+Material@{Phong\+Material}}
+\subsubsection[{gl\+Set\+Material}]{\setlength{\rightskip}{0pt plus 5cm}void Phong\+Material\+::gl\+Set\+Material (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classPhongMaterial_aaba23700fd0826e36aba3ea9945b4922}
+
+
+Implements \hyperlink{classMaterial_a44425af1be1191f95445ff741b573d53}{Material}.
+
+\hypertarget{classPhongMaterial_aa35744f32b0505bd60e4295e0ba87b28}{\index{Phong\+Material@{Phong\+Material}!Shade@{Shade}}
+\index{Shade@{Shade}!Phong\+Material@{Phong\+Material}}
+\subsubsection[{Shade}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3f} Phong\+Material\+::\+Shade (
+\begin{DoxyParamCaption}
+\item[{const {\bf Ray} \&}]{ray, }
+\item[{const {\bf Hit} \&}]{hit, }
+\item[{const {\bf Vec3f} \&}]{dir\+To\+Light, }
+\item[{const {\bf Vec3f} \&}]{light\+Color}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classPhongMaterial_aa35744f32b0505bd60e4295e0ba87b28}
+
+
+Implements \hyperlink{classMaterial_ac920053a1283ac5c4ed83b3a3282270e}{Material}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{PhongMaterial_8h}{Phong\+Material.\+h}\item 
+\hyperlink{PhongMaterial_8cpp}{Phong\+Material.\+cpp}\end{DoxyCompactItemize}

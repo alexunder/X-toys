@@ -1,0 +1,10 @@
+digraph routine_fastboot{
+    fontname = "Verdana";        
+    fontsize = 10;
+    rankdir=LR;
+    node [fontname = "Verdana", fontsize = 10, color="skyblue", shape="record"];
+    edge [fontname = "Verdana", fontsize = 10, color="crimson", style="solid"];
+
+    "Detecting USB" -> "Queuing the command";
+    "Queuing the command" -> "Execute the command";
+}

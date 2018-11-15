@@ -1,0 +1,116 @@
+\hypertarget{matrix_8cpp}{\section{matrix.\+cpp File Reference}
+\label{matrix_8cpp}\index{matrix.\+cpp@{matrix.\+cpp}}
+}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}matrix.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}vectors.\+h\char`\"{}}\\*
+Include dependency graph for matrix.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{matrix_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{matrix_8cpp_a2026efe1acd00677b39e6ae710eaf945}{det4x4} (float a1, float a2, float a3, float a4, float b1, float b2, float b3, float b4, float c1, float c2, float c3, float c4, float d1, float d2, float d3, float d4)
+\item 
+float \hyperlink{matrix_8cpp_a51f32abaa7e4afcf2a10357d61413b68}{det3x3} (float a1, float a2, float a3, float b1, float b2, float b3, float c1, float c2, float c3)
+\item 
+float \hyperlink{matrix_8cpp_ac1d2ee8881805ada95b910fddba16700}{det2x2} (float a, float b, float c, float d)
+\item 
+\hyperlink{classMatrix}{Matrix} \hyperlink{matrix_8cpp_aa5a9f2db2b3c1862c9c0d19241239ce7}{operator+} (const \hyperlink{classMatrix}{Matrix} \&m1, const \hyperlink{classMatrix}{Matrix} \&m2)
+\item 
+\hyperlink{classMatrix}{Matrix} \hyperlink{matrix_8cpp_a52ad5ef4b9998529c85e8523c20d6b86}{operator-\/} (const \hyperlink{classMatrix}{Matrix} \&m1, const \hyperlink{classMatrix}{Matrix} \&m2)
+\item 
+\hyperlink{classMatrix}{Matrix} \hyperlink{matrix_8cpp_a24da5fd1a21f5010ee32de71af9be3b9}{operator$\ast$} (const \hyperlink{classMatrix}{Matrix} \&m1, const \hyperlink{classMatrix}{Matrix} \&m2)
+\item 
+\hyperlink{classMatrix}{Matrix} \hyperlink{matrix_8cpp_a4e6d4d99ea83423ef011e7e75094e79e}{operator$\ast$} (const \hyperlink{classMatrix}{Matrix} \&m, float f)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{matrix_8cpp_ac1d2ee8881805ada95b910fddba16700}{\index{matrix.\+cpp@{matrix.\+cpp}!det2x2@{det2x2}}
+\index{det2x2@{det2x2}!matrix.\+cpp@{matrix.\+cpp}}
+\subsubsection[{det2x2}]{\setlength{\rightskip}{0pt plus 5cm}float det2x2 (
+\begin{DoxyParamCaption}
+\item[{float}]{a, }
+\item[{float}]{b, }
+\item[{float}]{c, }
+\item[{float}]{d}
+\end{DoxyParamCaption}
+)}}\label{matrix_8cpp_ac1d2ee8881805ada95b910fddba16700}
+\hypertarget{matrix_8cpp_a51f32abaa7e4afcf2a10357d61413b68}{\index{matrix.\+cpp@{matrix.\+cpp}!det3x3@{det3x3}}
+\index{det3x3@{det3x3}!matrix.\+cpp@{matrix.\+cpp}}
+\subsubsection[{det3x3}]{\setlength{\rightskip}{0pt plus 5cm}float det3x3 (
+\begin{DoxyParamCaption}
+\item[{float}]{a1, }
+\item[{float}]{a2, }
+\item[{float}]{a3, }
+\item[{float}]{b1, }
+\item[{float}]{b2, }
+\item[{float}]{b3, }
+\item[{float}]{c1, }
+\item[{float}]{c2, }
+\item[{float}]{c3}
+\end{DoxyParamCaption}
+)}}\label{matrix_8cpp_a51f32abaa7e4afcf2a10357d61413b68}
+\hypertarget{matrix_8cpp_a2026efe1acd00677b39e6ae710eaf945}{\index{matrix.\+cpp@{matrix.\+cpp}!det4x4@{det4x4}}
+\index{det4x4@{det4x4}!matrix.\+cpp@{matrix.\+cpp}}
+\subsubsection[{det4x4}]{\setlength{\rightskip}{0pt plus 5cm}float det4x4 (
+\begin{DoxyParamCaption}
+\item[{float}]{a1, }
+\item[{float}]{a2, }
+\item[{float}]{a3, }
+\item[{float}]{a4, }
+\item[{float}]{b1, }
+\item[{float}]{b2, }
+\item[{float}]{b3, }
+\item[{float}]{b4, }
+\item[{float}]{c1, }
+\item[{float}]{c2, }
+\item[{float}]{c3, }
+\item[{float}]{c4, }
+\item[{float}]{d1, }
+\item[{float}]{d2, }
+\item[{float}]{d3, }
+\item[{float}]{d4}
+\end{DoxyParamCaption}
+)}}\label{matrix_8cpp_a2026efe1acd00677b39e6ae710eaf945}
+\hypertarget{matrix_8cpp_a24da5fd1a21f5010ee32de71af9be3b9}{\index{matrix.\+cpp@{matrix.\+cpp}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!matrix.\+cpp@{matrix.\+cpp}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m1, }
+\item[{const {\bf Matrix} \&}]{m2}
+\end{DoxyParamCaption}
+)}}\label{matrix_8cpp_a24da5fd1a21f5010ee32de71af9be3b9}
+\hypertarget{matrix_8cpp_a4e6d4d99ea83423ef011e7e75094e79e}{\index{matrix.\+cpp@{matrix.\+cpp}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!matrix.\+cpp@{matrix.\+cpp}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m, }
+\item[{float}]{f}
+\end{DoxyParamCaption}
+)}}\label{matrix_8cpp_a4e6d4d99ea83423ef011e7e75094e79e}
+\hypertarget{matrix_8cpp_aa5a9f2db2b3c1862c9c0d19241239ce7}{\index{matrix.\+cpp@{matrix.\+cpp}!operator+@{operator+}}
+\index{operator+@{operator+}!matrix.\+cpp@{matrix.\+cpp}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m1, }
+\item[{const {\bf Matrix} \&}]{m2}
+\end{DoxyParamCaption}
+)}}\label{matrix_8cpp_aa5a9f2db2b3c1862c9c0d19241239ce7}
+\hypertarget{matrix_8cpp_a52ad5ef4b9998529c85e8523c20d6b86}{\index{matrix.\+cpp@{matrix.\+cpp}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!matrix.\+cpp@{matrix.\+cpp}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m1, }
+\item[{const {\bf Matrix} \&}]{m2}
+\end{DoxyParamCaption}
+)}}\label{matrix_8cpp_a52ad5ef4b9998529c85e8523c20d6b86}

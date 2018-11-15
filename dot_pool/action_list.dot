@@ -1,0 +1,16 @@
+digraph st2{
+    fontname = "Verdana";
+    fontsize = 10;
+    rankdir = LR;
+    node [fontname = "Verdana", fontsize = 10, color="skyblue", shape="record"];
+    edge [fontname = "Verdana", fontsize = 10, color="crimson", style="solid"];
+
+    Action0 [label="{{<head>struct Action|<f1>unsigned op|<f2>Action *next|<f3>Other fields}}"]
+    Action1 [label="{{<head>struct Action|<f1>unsigned op|<f2>Action *next|<f3>Other fields}}"]
+    Action2 [label="{{<head>struct Action|<f1>unsigned op|<f2>Action *next|<f3>Other fields}}"]
+    Action3 [label="{{<head>struct Action|<f1>unsigned op|<f2>Action *next|<f3>Other fields}}"]
+
+    Action0:f2 -> Action1:head;
+    Action1:f2 -> Action2:head;
+    Action2:f2 -> Action3:head;
+}

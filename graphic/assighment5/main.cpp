@@ -212,18 +212,21 @@ void RenderSceneV2()
 	for (j = 0; j < height; j++)
 	for (i = 0; i < width; i++)
 	{
-        fprintf(stderr, "Render,pixel at x=%d, y=%d\n", i, j);
         float u = (i + 0.5) / width;
         float v = (j + 0.5) / height;
         Vec2f p(u, v);
 	    Ray	r = pCamera->generateRay(p);
 
+        printf("Render,pixel at x=%d, y=%d\n", i, j);
+        cout << "ray=" << r << endl;
         int bounces = 0;
         Hit hit;
-        Vec3f pixelcolor = pTracer->traceRay(r, 0.0, bounces, weight, airRefraction, hit); 
+        Vec3f pixelcolor = pTracer->traceRay(r, 0.0, bounces, weight,
+            airRefraction, hit); 
         
         pixelcolor.Clamp();
         outImg.SetPixel(i, j, pixelcolor);
+        cout << "pixel Value:=" << pixelcolor << endl;
     }
 	
     outImg.SaveTGA(output_file);

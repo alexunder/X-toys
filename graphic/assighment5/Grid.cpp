@@ -180,9 +180,12 @@ void Grid::initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const
     {
         return;
     }
-
+    
+    printf("rayT=%f\n", rayT);
     Vec3f gridIntersect = r.pointAtParameter(rayT);
-
+    cout << "gridIntersect=" << gridIntersect << endl;
+    cout << "Box min=" << mpBox->getMin() << endl;
+    printf("mVoxel:%d, %d, %d \n", mVoxel[0], mVoxel[1], mVoxel[2]);
     //MarchingInfo for indices
     int pos[3];
     int axis;
@@ -206,7 +209,7 @@ void Grid::initializeRayMarch(MarchingInfo &mi, const Ray &r, float tmin) const
             delta[axis] = mVoxel[axis] / rayDir[axis];
         }
     }
-
+    printf("Indices:%d, %d, %d \n", pos[0], pos[1], pos[2]);
     mi.setIndices(pos[0], pos[1], pos[2]);
     mi.setSign(sign[0], sign[1], sign[2]);
     mi.setDelta(delta[0], delta[1], delta[2]);

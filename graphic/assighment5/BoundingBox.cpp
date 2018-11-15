@@ -79,6 +79,7 @@ bool BoundingBox::IntersectP(const Ray &ray, float *hitt0,float *hitt1) const
 {
     float t0 = Ray::mint;
     float t1 = Ray::maxt;
+    printf("BBox::intersectP,t0=%f, t1=%f\n", t0, t1);
     for (int i = 0; i < 3; ++i)
     {
         Vec3f dir = ray.getDirection();
@@ -87,6 +88,7 @@ bool BoundingBox::IntersectP(const Ray &ray, float *hitt0,float *hitt1) const
         float invRayDir = 1.f / dir[i];
         float tNear = (min[i] - org[i]) * invRayDir;
         float tFar  = (max[i] - org[i]) * invRayDir;
+        
         // Update parametric interval from slab intersection $t$s
         if (tNear > tFar)
         {
@@ -96,10 +98,12 @@ bool BoundingBox::IntersectP(const Ray &ray, float *hitt0,float *hitt1) const
            tFar = temp;
         }
 
+        printf("Axis:%d, near=%f, far=%f\n", i, tNear, tFar);
         t0 = tNear > t0 ? tNear : t0;
         t1 = tFar  < t1 ? tFar  : t1;
         if (t0 > t1) return false;
     }
+    printf("Finally,t0=%f, t1=%f\n", t0, t1);
     if (hitt0) *hitt0 = t0;
     if (hitt1) *hitt1 = t1;
     return true;

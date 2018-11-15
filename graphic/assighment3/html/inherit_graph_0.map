@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classCamera.html" title="Camera" alt="" coords="5,32,81,61"/>
+<area shape="rect" id="node2" href="$classOrthographicCamera.html" title="OrthographicCamera" alt="" coords="129,5,313,35"/>
+<area shape="rect" id="node3" href="$classPerspectiveCamera.html" title="PerspectiveCamera" alt="" coords="134,59,309,88"/>
+</map>

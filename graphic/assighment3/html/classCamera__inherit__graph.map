@@ -1,0 +1,4 @@
+<map id="Camera" name="Camera">
+<area shape="rect" id="node2" href="$classOrthographicCamera.html" title="{OrthographicCamera\n||+ OrthographicCamera()\l+ generateRay()\l+ getTMin()\l+ glInit()\l+ glPlaceCamera()\l+ dollyCamera()\l+ truckCamera()\l+ rotateCamera()\l+ getCameraType()\l}" alt="" coords="5,286,225,510"/>
+<area shape="rect" id="node3" href="$classPerspectiveCamera.html" title="{PerspectiveCamera\n||+ PerspectiveCamera()\l+ generateRay()\l+ setRatio()\l+ glInit()\l+ glPlaceCamera()\l+ dollyCamera()\l+ truckCamera()\l+ rotateCamera()\l+ getCameraType()\l+ getTMin()\l}" alt="" coords="250,277,461,519"/>
+</map>

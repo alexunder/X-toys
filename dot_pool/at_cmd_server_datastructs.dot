@@ -1,0 +1,22 @@
+digraph st2{
+    fontname = "Verdana";
+    fontsize = 10;
+    rankdir = LR;
+    node [fontname = "Verdana", fontsize = 10, color="skyblue", shape="record"];
+    edge [fontname = "Verdana", fontsize = 10, color="crimson", style="solid"];
+
+    TelAtpCtrl [label="{{<head>struct TelAtpCtrl|<f1>pthread_t taskRef|<f2>int iFd|<f3>TelAtParserID index|<f4>TelAtpDesc *pTelAtpDesc|<f5>BOOL bEnable|<f6>TelAtpDataEntry pTelAtpDataEntry|<f7>int iNotifyReadEnd|<f8>int iNotifyWriteEnd|<f9>BOOL psQueryAllCid}}"]
+    TelAtpDesc [label="{{<head>struct TelAtpDesc|<f1>TelAtParserID index|<f2>char *path|<f3>SIMID targetSim|<f4>SIMID currentTargetSim|<f5>BOOL needIndication|<f6>BOOL apOnly}}"]
+    TelAtpDataEntry [label="{{<head>struct TelAtpDataEntry|<f1>TelMsgDataMode smsDataEntryMode|<f2>UINT32 reqHandle|<f3>UINT32 cnmaReply}}"]
+
+    TelAtParserID [label="{{<head>enum TelAtParserID|<f1>TEL_AT_CMD_ATP_0|<f2>TEL_AGPS_AT_CMD_ATP|<f3>TEL_SIMAL_AT_CMD_ATP|<f4>TEL_ESP_AT_CMD_ATP|<f5>TEL_MODEM_AT_CMD_ATP|<f6>TEL_PROD_AT_CMD_ATP(optional)|<f7>TEL_AT_CMD_ATP_0_1|<f8>TEL_AGPS_AT_CMD_ATP_1|<f9>TEL_SIMAL_AT_CMD_ATP_1|<f10>TEL_ESP_AT_CMD_ATP_1|<f11>TEL_IMS_AT_CMD_ATP_1|<f12>TEL_IMS_AT_CMD_ATP_2|<f13>TEL_SOCKET_AT_CMD_ATP_BEGIN|<f14>NUM_OF_TEL_ATP = 64}}"]
+    TelMsgDataMode [label="{{<head>enum TelMsgDataMode|<f1>TEL_MSG_DATA_NONE|<f2>TEL_MSG_DATA_CMGS|<f3>TEL_MSG_DATA_CMGC|<f4>TEL_MSG_DATA_CNMA|<f5>NUM_OF_TEL_MSG_DATA}}"]
+    SIMID [label="{{<head>enum SIMID|<f1>SIM1|<f2>SIM2|<f3>DUAL_SIM|<f4>MASTER_SIM|<f5>SIMID_NUM}}"]
+
+    TelAtpCtrl:f3 -> TelAtParserID:head;
+    TelAtpCtrl:f4 -> TelAtpDesc:head;
+    TelAtpCtrl:f6 -> TelAtpDataEntry:head;
+    TelAtpDesc:f1 -> TelAtParserID:head;
+    TelAtpDesc:f3 -> SIMID:head;
+    TelAtpDataEntry:f1 -> TelMsgDataMode:head;
+}

@@ -1,0 +1,117 @@
+\hypertarget{classMaterial}{\section{Material Class Reference}
+\label{classMaterial}\index{Material@{Material}}
+}
+
+
+{\ttfamily \#include $<$material.\+h$>$}
+
+
+
+Inheritance diagram for Material\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{classMaterial__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Material\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classMaterial__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMaterial_a35eb3afb51f8d1425df2da47e8030fad}{Material} (const \hyperlink{classVec3f}{Vec3f} \&d\+\_\+color)
+\item 
+\hyperlink{classMaterial_a137e987401b63eb7c6c27c3e38bc74b5}{Material} ()
+\item 
+virtual \hyperlink{classMaterial_a179e16d6a1bd4a0f039b8e4cbf2ade30}{$\sim$\+Material} ()
+\item 
+virtual \hyperlink{classVec3f}{Vec3f} \hyperlink{classMaterial_a83b7c9dcae7d529879d90c920892e611}{get\+Diffuse\+Color} () const 
+\item 
+virtual \hyperlink{classVec3f}{Vec3f} \hyperlink{classMaterial_ac920053a1283ac5c4ed83b3a3282270e}{Shade} (const \hyperlink{classRay}{Ray} \&ray, const \hyperlink{classHit}{Hit} \&hit, const \hyperlink{classVec3f}{Vec3f} \&dir\+To\+Light, const \hyperlink{classVec3f}{Vec3f} \&light\+Color) const =0
+\item 
+virtual void \hyperlink{classMaterial_a44425af1be1191f95445ff741b573d53}{gl\+Set\+Material} (void) const =0
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classVec3f}{Vec3f} \hyperlink{classMaterial_ae81bccaee22b88d46074b843dc7bdc32}{diffuse\+Color}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classMaterial_a35eb3afb51f8d1425df2da47e8030fad}{\index{Material@{Material}!Material@{Material}}
+\index{Material@{Material}!Material@{Material}}
+\subsubsection[{Material}]{\setlength{\rightskip}{0pt plus 5cm}Material\+::\+Material (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec3f} \&}]{d\+\_\+color}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMaterial_a35eb3afb51f8d1425df2da47e8030fad}
+\hypertarget{classMaterial_a137e987401b63eb7c6c27c3e38bc74b5}{\index{Material@{Material}!Material@{Material}}
+\index{Material@{Material}!Material@{Material}}
+\subsubsection[{Material}]{\setlength{\rightskip}{0pt plus 5cm}Material\+::\+Material (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMaterial_a137e987401b63eb7c6c27c3e38bc74b5}
+\hypertarget{classMaterial_a179e16d6a1bd4a0f039b8e4cbf2ade30}{\index{Material@{Material}!````~Material@{$\sim$\+Material}}
+\index{````~Material@{$\sim$\+Material}!Material@{Material}}
+\subsubsection[{$\sim$\+Material}]{\setlength{\rightskip}{0pt plus 5cm}virtual Material\+::$\sim$\+Material (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classMaterial_a179e16d6a1bd4a0f039b8e4cbf2ade30}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classMaterial_a83b7c9dcae7d529879d90c920892e611}{\index{Material@{Material}!get\+Diffuse\+Color@{get\+Diffuse\+Color}}
+\index{get\+Diffuse\+Color@{get\+Diffuse\+Color}!Material@{Material}}
+\subsubsection[{get\+Diffuse\+Color}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vec3f} Material\+::get\+Diffuse\+Color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classMaterial_a83b7c9dcae7d529879d90c920892e611}
+\hypertarget{classMaterial_a44425af1be1191f95445ff741b573d53}{\index{Material@{Material}!gl\+Set\+Material@{gl\+Set\+Material}}
+\index{gl\+Set\+Material@{gl\+Set\+Material}!Material@{Material}}
+\subsubsection[{gl\+Set\+Material}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Material\+::gl\+Set\+Material (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classMaterial_a44425af1be1191f95445ff741b573d53}
+
+
+Implemented in \hyperlink{classPhongMaterial_aaba23700fd0826e36aba3ea9945b4922}{Phong\+Material}.
+
+\hypertarget{classMaterial_ac920053a1283ac5c4ed83b3a3282270e}{\index{Material@{Material}!Shade@{Shade}}
+\index{Shade@{Shade}!Material@{Material}}
+\subsubsection[{Shade}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vec3f} Material\+::\+Shade (
+\begin{DoxyParamCaption}
+\item[{const {\bf Ray} \&}]{ray, }
+\item[{const {\bf Hit} \&}]{hit, }
+\item[{const {\bf Vec3f} \&}]{dir\+To\+Light, }
+\item[{const {\bf Vec3f} \&}]{light\+Color}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classMaterial_ac920053a1283ac5c4ed83b3a3282270e}
+
+
+Implemented in \hyperlink{classPhongMaterial_aa35744f32b0505bd60e4295e0ba87b28}{Phong\+Material}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classMaterial_ae81bccaee22b88d46074b843dc7bdc32}{\index{Material@{Material}!diffuse\+Color@{diffuse\+Color}}
+\index{diffuse\+Color@{diffuse\+Color}!Material@{Material}}
+\subsubsection[{diffuse\+Color}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3f} Material\+::diffuse\+Color\hspace{0.3cm}{\ttfamily [protected]}}}\label{classMaterial_ae81bccaee22b88d46074b843dc7bdc32}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{material_8h}{material.\+h}\end{DoxyCompactItemize}
