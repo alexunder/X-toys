@@ -1,0 +1,8 @@
+syntax on
+set number
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+let mapleader=","
+nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
