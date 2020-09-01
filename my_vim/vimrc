@@ -4,6 +4,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+set cursorcolumn
+set cursorline
+
 map <F2> :NERDTreeToggle<CR>
 
 let mapleader=","
