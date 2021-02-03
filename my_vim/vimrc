@@ -1,11 +1,74 @@
+" Alexander vim configuration
+
+set nocompatible
+
 syntax on
+
+" Disable the default Vim startup message.
+set shortmess+=I
+
 set number
+set relativenumber
+
+set laststatus=2
+
+set backspace=indent,eol,start
+
+" Disable audible bell because it's annoying.
+set noerrorbells visualbell t_vb=
+
+set hidden
+
+
+set ignorecase
+set smartcase
+
+" Enable searching as you type, rather than waiting till you press enter.
+set incsearch
+
+" Unbind some useless/annoying default key bindings.
+nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
+
+" Enable mouse support. You should avoid relying on this too much, but it can
+" sometimes be convenient.
+set mouse+=a
+
+nnoremap <Left>  :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up>    :echoe "Use k"<CR>
+nnoremap <Down>  :echoe "Use j"<CR>
+" ...and in insert mode
+inoremap <Left>  <ESC>:echoe "Use h"<CR>
+inoremap <Right> <ESC>:echoe "Use l"<CR>
+inoremap <Up>    <ESC>:echoe "Use k"<CR>
+inoremap <Down>  <ESC>:echoe "Use j"<CR>
+
+" Below configurations are from my previous
+
 set tabstop=4
 set shiftwidth=4
 set expandtab
 
 set cursorcolumn
 set cursorline
+
+" Plugins Config
+call plug#begin('~/.vim/plugged')
+Plug 'lervag/vimtex'
+
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+Plug 'sirver/ultisnips'
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+
+call plug#end()
+
 
 map <F2> :NERDTreeToggle<CR>
 
